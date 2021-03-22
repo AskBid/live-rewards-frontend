@@ -31,3 +31,15 @@ h1 {
   color: #e4e2ff;
   margin: 0;
 }
+
+button {
+  background: #4ad9e4;
+  min-height: 40px;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+button:hover {
+  background: #acf5fa;
+  color: #010606;
+}

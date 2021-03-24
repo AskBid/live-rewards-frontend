@@ -1,17 +1,12 @@
 import React, { Component } from 'react'
-// import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
-
 class NewUserForm extends Component {
-    // history = useHistory();
 
     fetchOnSubmit = (e) => {
       e.preventDefault()
       const form = e.target
       const body = new FormData()
-      console.log('this.props')
-      console.log(this.props)
 
       body.append('user[username]', form.username.value)
       body.append('user[password]', form.password.value)
@@ -23,11 +18,7 @@ class NewUserForm extends Component {
         body
       }).then(resp => resp.json())
         .then(json => {
-          console.log(json);
-          console.log(this.props)
-          console.log(this.props.history)
-          // history.push("/");
-          debugger
+          this.props.history.push("/live-rewards");
         })
     }
 
@@ -50,9 +41,8 @@ class NewUserForm extends Component {
             <input
               type="password"
               name="password"
-              className='w-100 border border-primary shadow p-2 mb-5 rounded-3'>
+              className='w-100 border border-primary shadow p-2 mb-4 rounded-3'>
             </input>
-            <button className='h-1 border-2 border-primary rounded-pill mb-5 ml-auto mr-auto' style={{width:'60%',display:'block'}} type='Submit'>Submit</button>
             <label htmlFor="email" className="block">
               Email (?)
               <span className="text-red-400"></span>
@@ -71,6 +61,7 @@ class NewUserForm extends Component {
               name="stake_address"
               className='w-100 border border-primary shadow p-2 mb-5 rounded-3'>
             </input>
+            <button className='h-1 border-0 border-primary rounded-pill mb-5 ml-auto mr-auto' style={{width:'60%',display:'block'}} type='Submit'>Submit</button>
           </form>
         )
     }

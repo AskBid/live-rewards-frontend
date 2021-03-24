@@ -1,7 +1,7 @@
 import React from 'react'
 import NewUserForm from '../containers/NewUserForm'
 
-function Signup({history}) {
+function Signin({history}) {
     return (
       <div className="container">
         <div className="row mb-5">
@@ -15,4 +15,4 @@ function Signup({history}) {
     )
 }
 
-export default Signup
+export default Signin

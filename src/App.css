@@ -32,7 +32,7 @@ h1 {
   margin: 0;
 }
 
-button {
+/*button {
   background: #4ad9e4;
   min-height: 40px;
   color: #fff;
@@ -42,4 +42,24 @@ button {
 button:hover {
   background: #acf5fa;
   color: #010606;
+}*/
+
+button {
+  border-radius: 30px;
+  background: #4ad9e4;
+  padding: 10px 22px;
+  color: #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  margin-left: 5em;
 }
+button:hover {
+  transition: all 0.2s ease-in-out;
+  background: #fff;
+  color: #010606;
+  border: 1px solid black;
+}
+    

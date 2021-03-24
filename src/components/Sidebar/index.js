@@ -1,9 +1,10 @@
 import React from 'react'
+import {SidebarContainer, Icon, CloseIcon} from './SidebarElements.js'
 
-const Sidebar = () => {
+const Sidebar = ({isOpen,toggle}) => {
   return (
-    <SidebarContainer>
-      <Icon>
+    <SidebarContainer isOpen={isOpen} onClick={toggle}>
+      <Icon onClick={toggle}>
       	<CloseIcon />
       </Icon>
     </SidebarContainer>

@@ -1,6 +1,7 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
+import Sidebar from './components/Sidebar';
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import Home from './pages'
 import Liverewards from './pages/rewards'
@@ -8,9 +9,17 @@ import Signup from './pages/signup'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () =>{
+    setIsOpen(!isOpen);
+  }
+
   return (
     <Router>
-      <Navbar />
+      <Navbar toggle={toggle} />
+      <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
         <Route path='/live-rewards' component={Liverewards}/>
         <Route path='/signup' component={Signup}/>

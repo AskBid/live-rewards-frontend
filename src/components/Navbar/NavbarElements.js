@@ -39,9 +39,11 @@ export const NavLink = styled(Link)
   margin: 0;
   height: 100%;
   cursor: pointer;
+  padding-bottom: 3px;
   &.active {
     text-decoration: none;
     border-bottom: 3px solid #fff;
+    padding-bottom: 0;
     // border-bottom: 3px solid #4ad9e4;
   }
 `;

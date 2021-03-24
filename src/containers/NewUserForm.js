@@ -25,6 +25,7 @@ class NewUserForm extends Component {
         .then(json => {
           console.log(json);
           console.log(this.props)
+          console.log(this.props.history)
           // history.push("/");
           debugger
         })

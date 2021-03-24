@@ -4,7 +4,7 @@ import { Nav, Bars, NavBtnLink, NavMenu, NavLink } from './NavbarElements'
 const Navbar = () => {
     return (
       <Nav>
-        <NavLink to='/'>
+        <NavLink to='/' exact>
 	        <h1>SWAN<span>Pool</span></h1>
         </NavLink>
         <Bars />

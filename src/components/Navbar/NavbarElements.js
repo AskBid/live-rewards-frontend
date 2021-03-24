@@ -9,7 +9,8 @@ export const Nav = styled.nav `
   color: #fff;
   justify-content: space-between;
   align-content: center;
-  padding: 0.5em calc((100vw - 1100px) / 2);
+  padding-bottom: 0;
+  padding: 0em calc((100vw - 1100px) / 2);
   z-index: 10;
 `;
 
@@ -35,10 +36,13 @@ export const NavLink = styled(Link)
   align-items: center;
   text-decoration: none;
   padding: 0 1rem;
+  margin: 0;
   height: 100%;
   cursor: pointer;
   &.active {
     text-decoration: none;
+    border-bottom: 3px solid #fff;
+    // border-bottom: 3px solid #4ad9e4;
   }
 `;
 

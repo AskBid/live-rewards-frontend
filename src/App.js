@@ -6,6 +6,7 @@ import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import Home from './pages'
 import Liverewards from './pages/rewards'
 import Signup from './pages/signup'
+import Signin from './pages/signin'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
         <Route path='/live-rewards' component={Liverewards}/>
+        <Route path='/signin' component={Signin}/>
         <Route path='/signup' component={Signup}/>
         <Route path='/' exact component={Home}/>
       </Switch>

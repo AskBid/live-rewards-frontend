@@ -24,9 +24,6 @@ const Navbar = ({toggle}) => {
             <NavLink to='/about' >
               About
             </NavLink>
-            <NavLink to='/signup' >
-              Sign Up
-            </NavLink>
             <NavBtnLink to='/signin'>Sign In</NavBtnLink>
           </NavMenu>
         </NavbarContainer>

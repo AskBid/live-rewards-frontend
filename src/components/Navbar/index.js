@@ -6,7 +6,7 @@ const Navbar = ({toggle}) => {
       <Nav>
         <NavbarContainer>
           <NavLink to='/' exact>
-  	        <h1>SWAN<span>Pool</span></h1>
+  	        <h1>SWAN<span className='logo'>Pool</span></h1>
           </NavLink>
           <MobileIcon onClick={toggle}>
             <Bars />

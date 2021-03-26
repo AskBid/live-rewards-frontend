@@ -23,14 +23,14 @@ a:hover {
   text-decoration: underline;
 }
 
-span {
+.logo {
   color: rgba(255,255,255,0.6);
   font-size:0.3em;
   position: relative;
   right: 0.05em;
   bottom: 0.13em;  
 }
-span:hover { color: #4ad9e4;}
+.logo:hover { color: #4ad9e4;}
 
 h1 {
   font-family: 'Roboto', sans-serif;

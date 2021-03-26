@@ -5,27 +5,45 @@ import { register } from '../actions/user.actions'
 class NewUserForm extends Component {
 
     state = {
-      username: '',
-      password: '',
-      email: ''
+      user: {
+        username: '',
+        password: '',
+        email: ''
+      },
+      errors: {
+        username: undefined,
+        password: undefined,
+        email: undefined
+      }
     }
 
     handleChange = (e) => {
       this.setState({
-        [e.target.name]: e.target.value
+        user: {
+          ...this.state.user,
+          [e.target.name]: e.target.value
+        }
       })
     }
 
     fetchOnSubmit = (e) => {
       e.preventDefault()
-      const user = {
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.email
-      }
+      this.props.register(this.state)
+        .then(resp => {
+          console.log(resp)
+          console.log(this.state)
+          if (resp.error) {
+            this.setState({
+              errors: {
+                ...this.state.errors,
+                ...resp.error
+              }
+            })
+            debugger
+          } else {
 
-      this.props.register({user: user})
-        .then(resp => console.log(resp))
+          }
+        })
     }
 
     render() {
@@ -34,7 +52,7 @@ class NewUserForm extends Component {
             <h2 className='text-dark mb-4'>Register</h2>
             <label htmlFor="username" className="block">
               Username*
-              <span className="text-red-400"></span>
+              <span className="text-danger">{this.state.errors.username ? ` ${this.state.errors.username.join(', ')}` : null}</span>
             </label>
             <input
               type="text"
@@ -44,7 +62,7 @@ class NewUserForm extends Component {
             </input>
             <label htmlFor="password" className="block">
               Password*
-              <span className="text-red-400"></span>
+              <span className="text-danger">{this.state.errors.password ? ` ${this.state.errors.password.join(', ')}` : null}</span>
             </label>
             <input
               type="password"
@@ -54,7 +72,7 @@ class NewUserForm extends Component {
             </input>
             <label htmlFor="email" className="block">
               Email (?)
-              <span className="text-red-400"></span>
+              <span className="text-danger">{this.state.errors.email ? ` ${this.state.errors.email.join(', ')}` : null}</span>
             </label>
             <input
               type="text"

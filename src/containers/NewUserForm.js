@@ -10,11 +10,7 @@ class NewUserForm extends Component {
         password: '',
         email: ''
       },
-      errors: {
-        username: undefined,
-        password: undefined,
-        email: undefined
-      }
+      errors: {}
     }
 
     handleChange = (e) => {
@@ -35,7 +31,6 @@ class NewUserForm extends Component {
           if (resp.error) {
             this.setState({
               errors: {
-                ...this.state.errors,
                 ...resp.error
               }
             })

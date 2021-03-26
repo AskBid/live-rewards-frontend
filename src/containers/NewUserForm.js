@@ -26,17 +26,14 @@ class NewUserForm extends Component {
       e.preventDefault()
       this.props.register(this.state)
         .then(resp => {
-          console.log(resp)
-          console.log(this.state)
           if (resp.error) {
             this.setState({
               errors: {
                 ...resp.error
               }
             })
-            debugger
           } else {
-
+            this.props.history.push(`/signin`);
           }
         })
     }

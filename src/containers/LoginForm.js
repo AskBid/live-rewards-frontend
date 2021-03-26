@@ -4,23 +4,22 @@ import { Link } from 'react-router-dom'
 
 class NewUserForm extends Component {
 
+    state = {
+      username: '',
+      password: '',
+      errors: {}
+    }
+
+    handleChange = (e) => {
+      this.setState({
+          ...this.state,
+          [e.target.name]: e.target.value
+      })
+    }
+
     fetchOnSubmit = (e) => {
       e.preventDefault()
-      const form = e.target
-      const body = new FormData()
-
-      body.append('user[username]', form.username.value)
-      body.append('user[password]', form.password.value)
-      body.append('user[email]', form.email.value)
-      body.append('user[stake_address]', form.stake_address.value)
-
-      fetch('http://localhost:3001/users', {
-        method: 'POST',
-        body
-      }).then(resp => resp.json())
-        .then(json => {
-          this.props.history.push("/live-rewards");
-        })
+      console.log(this.state)
     }
 
     render() {
@@ -34,7 +33,8 @@ class NewUserForm extends Component {
               <input
                 type="text"
                 name="username"
-                className='w-100 border border-primary shadow p-2 mb-4 rounded-3'>
+                className='w-100 border border-primary shadow p-2 mb-4 rounded-3'
+                onChange={this.handleChange}>
               </input>
             </div>
             <div class="row">
@@ -45,7 +45,8 @@ class NewUserForm extends Component {
               <input
                 type="password"
                 name="password"
-                className='w-100 border border-primary shadow p-2 mb-4 rounded-3'>
+                className='w-100 border border-primary shadow p-2 mb-4 rounded-3'
+                onChange={this.handleChange}>
               </input>
             </div>
             <div class="row  mb-5">

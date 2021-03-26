@@ -1,30 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
+import { register } from '../actions/user.actions'
 
 class NewUserForm extends Component {
 
+    state = {
+      username: '',
+      password: '',
+      email: ''
+    }
+
+    handleChange = (e) => {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
+
     fetchOnSubmit = (e) => {
       e.preventDefault()
-      const form = e.target
-      const body = new FormData()
+      const user = {
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email
+      }
 
-      body.append('user[username]', form.username.value)
-      body.append('user[password]', form.password.value)
-      body.append('user[email]', form.email.value)
-      body.append('user[stake_address]', form.stake_address.value)
-
-      fetch('http://localhost:3001/users', {
-        method: 'POST',
-        body
-      }).then(resp => resp.json())
-        .then(json => {
-          this.props.history.push("/live-rewards");
-        })
+      this.props.register({user: user})
+        .then(resp => console.log(resp))
     }
 
     render() {
         return (
           <form onSubmit={this.fetchOnSubmit}>
+            <h2 className='text-dark mb-4'>Register</h2>
             <label htmlFor="username" className="block">
               Username*
               <span className="text-red-400"></span>
@@ -32,7 +39,8 @@ class NewUserForm extends Component {
             <input
               type="text"
               name="username"
-              className='w-100 border border-primary shadow p-2 mb-4 rounded-3'>
+              className='w-100 border border-primary shadow p-2 mb-4 rounded-3'
+              onChange={this.handleChange}>
             </input>
             <label htmlFor="password" className="block">
               Password*
@@ -41,7 +49,8 @@ class NewUserForm extends Component {
             <input
               type="password"
               name="password"
-              className='w-100 border border-primary shadow p-2 mb-4 rounded-3'>
+              className='w-100 border border-primary shadow p-2 mb-4 rounded-3'
+              onChange={this.handleChange}>
             </input>
             <label htmlFor="email" className="block">
               Email (?)
@@ -50,21 +59,24 @@ class NewUserForm extends Component {
             <input
               type="text"
               name="email"
-              className='w-100 border border-primary shadow p-2 mb-4 rounded-3'>
+              className='w-100 border border-primary shadow p-2 mb-4 rounded-3'
+              onChange={this.handleChange}>
             </input>
-            <label htmlFor="stake_address" className="block">
-              Stake Address (?)
-              <span className="text-red-400"></span>
-            </label>
-            <input
-              type="text"
-              name="stake_address"
-              className='w-100 border border-primary shadow p-2 mb-5 rounded-3'>
-            </input>
-            <button className='h-1 border-0 border-primary rounded-pill mb-5 ml-auto mr-auto' style={{width:'60%',display:'block'}} type='Submit'>Submit</button>
+            <button className='h-1 border-0 border-primary rounded-pill mb-5 mt-4 ml-auto mr-auto' style={{width:'60%',display:'block'}} type='Submit'>Submit</button>
           </form>
         )
     }
 }
 
-export default connect()(NewUserForm);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    register: (body) => {
+      return dispatch(register(body))
+    }
+  };
+}
+
+export default connect(null, mapDispatchToProps)(NewUserForm);
+
+
+

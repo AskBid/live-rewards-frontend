@@ -14,7 +14,10 @@ export const register = (formData) => {
 	    body: JSON.stringify(formData)
 	  }).then(res => res.json())
 	  	.then(json => {
-	  		dispatch({type: REGISTER_SUCCESS, message: json})
+	  		dispatch({
+	  			type: REGISTER_SUCCESS, 
+	  			message: {alerts: {}, errors: {}, ...json}
+	  		})
 	  	})
 			.catch(err => {
 				dispatch({type: REGISTER_FAILURE, errors: err})

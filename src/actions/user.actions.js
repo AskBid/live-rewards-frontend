@@ -1,4 +1,8 @@
-import {REGISTER_REQUEST} from './'
+import { 
+	REGISTER_REQUEST, 
+	REGISTER_SUCCESS, 
+	REGISTER_FAILURE 
+} from './'
 
 export const register = (formData) => {
 	return (dispatch) => {
@@ -8,10 +12,12 @@ export const register = (formData) => {
 	  	method: 'POST',
 	    headers: { 'Content-Type': 'application/json' },
 	    body: JSON.stringify(formData)
-	  }).then(res => {
-				return res.json()
+	  }).then(res => res.json())
+	  	.then(json => {
+	  		dispatch({type: REGISTER_SUCCESS, message: json})
+	  	})
+			.catch(err => {
+				dispatch({type: REGISTER_FAILURE, errors: err})
 			})
-			.catch(err => console.error('error catched'))
-		
 	}
 }

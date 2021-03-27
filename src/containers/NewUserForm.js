@@ -9,8 +9,7 @@ class NewUserForm extends Component {
         username: '',
         password: '',
         email: ''
-      },
-      errors: {}
+      }
     }
 
     handleChange = (e) => {
@@ -24,18 +23,14 @@ class NewUserForm extends Component {
 
     fetchOnSubmit = (e) => {
       e.preventDefault()
-      this.props.register(this.state)
-        .then(resp => {
-          if (resp.error) {
-            this.setState({
-              errors: {
-                ...resp.error
-              }
-            })
-          } else {
-            this.props.history.push(`/signin`);
+      this.props.register({user:this.state.user})
+        .then((res) => {
+          if (this.props.alerts.success) {
+            this.props.history.push(`/signin`)
           }
         })
+        .then(() => console.log('clear messages'))
+        .catch((err) => console.log(err))
     }
 
     render() {
@@ -44,7 +39,7 @@ class NewUserForm extends Component {
             <h2 className='text-dark mb-4'>Register</h2>
             <label htmlFor="username" className="block">
               Username*
-              <span className="text-danger">{this.state.errors.username ? ` ${this.state.errors.username.join(', ')}` : null}</span>
+              <span className="text-danger">{this.props.errors.username ? ` ${this.props.errors.username.join(', ')}` : null}</span>
             </label>
             <input
               type="text"
@@ -54,7 +49,7 @@ class NewUserForm extends Component {
             </input>
             <label htmlFor="password" className="block">
               Password*
-              <span className="text-danger">{this.state.errors.password ? ` ${this.state.errors.password.join(', ')}` : null}</span>
+              <span className="text-danger">{this.props.errors.password ? ` ${this.props.errors.password.join(', ')}` : null}</span>
             </label>
             <input
               type="password"
@@ -64,7 +59,7 @@ class NewUserForm extends Component {
             </input>
             <label htmlFor="email" className="block">
               Email (?)
-              <span className="text-danger">{this.state.errors.email ? ` ${this.state.errors.email.join(', ')}` : null}</span>
+              <span className="text-danger">{this.props.errors.email ? ` ${this.props.errors.email.join(', ')}` : null}</span>
             </label>
             <input
               type="text"
@@ -78,7 +73,7 @@ class NewUserForm extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     register: (body) => {
       return dispatch(register(body))
@@ -86,7 +81,15 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-export default connect(null, mapDispatchToProps)(NewUserForm);
+const mapStateToProps = (state) => {
+  return {
+    errors: state.errors,
+    alerts: state.alerts,
+    registering: state.registering
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewUserForm);
 
 
 

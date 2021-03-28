@@ -5,7 +5,6 @@ import {
 } from '../actions'
 
 const initialState = {
-  user: [],
   registering: false,
   errors: {},
   alerts: {}

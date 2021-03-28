@@ -25,10 +25,10 @@ class LoginForm extends Component {
     render() {
         return (
           <form onSubmit={this.fetchOnSubmit}>
-            { this.props.registered_alert.success &&
-              <div className='alert alert-success'>
-                {this.props.registered_alert.success.join(', ').split('<b>')[0]}
-                <b>{this.props.registered_alert.success.join(', ').split('<b>')[1]}</b>
+            { this.props.alert.message &&
+              <div className={`alert ${this.props.alert.type}`}>
+                {this.props.alert.message.split('<b>').splice(0,1)}
+                <b>{this.props.alert.message.split('<b>').splice(1,1)}</b>
               </div>
             }
             <h2 className='text-dark mb-4'>Login{'  '}
@@ -78,9 +78,8 @@ class LoginForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    registered_alert: state.users.alerts,
-    errors: state.sessions.errors,
-    submitting: state.sessions.submitting
+    submitting: state.sessions.submitting,
+    alert: state.alert
   }
 }
 

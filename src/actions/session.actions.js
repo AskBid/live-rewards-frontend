@@ -1,7 +1,8 @@
 import { 
 	LOGIN_REQUEST,
 	LOGIN_REQUEST_SUCCESS,
-	LOGIN_REQUEST_FAILURE
+	LOGIN_REQUEST_FAILURE,
+	ERROR
 } from './'
 
 export const login = (formData) => {

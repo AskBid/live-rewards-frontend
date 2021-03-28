@@ -29,7 +29,6 @@ class NewUserForm extends Component {
             this.props.history.push(`/signin`)
           }
         })
-        .then(() => console.log('clear messages'))
         .catch((err) => console.log(err))
     }
 
@@ -83,9 +82,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state) => {
   return {
-    errors: state.errors,
-    alerts: state.alerts,
-    registering: state.registering
+    errors: state.users.errors,
+    alerts: state.users.alerts,
+    registering: state.users.registering
   }
 }
 

@@ -7,7 +7,6 @@ class NewUserForm extends Component {
     state = {
       username: '',
       password: '',
-      errors: {}
     }
 
     handleChange = (e) => {
@@ -50,7 +49,7 @@ class NewUserForm extends Component {
               </input>
             </div>
             <div class="row  mb-5">
-                <div class="col d-flex"><button className='h-1 border-0 rounded-pill ml-auto mr-auto' style={{width:'100%',display:'inline'}} type='Submit'>Submit</button></div>
+                <div class="col d-flex"><button className='h-1 border-0 rounded-pill ml-auto mr-auto' style={{width:'100%',display:'inline'}} type='Submit'>LogIn</button></div>
                 <div class="col d-flex"><Link to="/Signup" className='ml-auto mr-auto mt-auto mb-auto text-primary hardlink'>Register</Link></div>
             </div>
           </form>

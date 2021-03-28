@@ -23,7 +23,7 @@ class NewUserForm extends Component {
 
     fetchOnSubmit = (e) => {
       e.preventDefault()
-      this.props.register({user:this.state.user})
+      this.props.register(this.state)
         .then((res) => {
           if (this.props.alerts.success) {
             this.props.history.push(`/signin`)

@@ -15,9 +15,9 @@ export const login = (formData) => {
 	  	.then(user => {
 	  		// store user details and jwt token in local storage to keep user logged in between page refreshes
         !user.errors &&	localStorage.setItem('user', JSON.stringify(user));
+	  		user.errors && dispatch({type: ERROR, message: user.errors})
 	  		dispatch({
 	  			type: LOGIN_REQUEST_SUCCESS,
-	  			errors: user.errors ? {...user.errors} : {}
 	  		})
 	  		debugger
 	  	})

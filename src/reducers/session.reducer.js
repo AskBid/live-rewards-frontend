@@ -6,9 +6,6 @@ import {
 
 const initialState = {
   submitting: false,
-  registered_alert: undefined,
-  errors: {},
-  alerts: {}
 };
 
 export default function sessionReducer(state = initialState, action) {
@@ -24,7 +21,6 @@ export default function sessionReducer(state = initialState, action) {
   		return {
   			...state,
         submitting: false,
-        errors: action.errors
   		}
 
   	case LOGIN_REQUEST_FAILURE:

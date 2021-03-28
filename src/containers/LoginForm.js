@@ -7,13 +7,13 @@ class LoginForm extends Component {
 
     state = {
       username: '',
-      password: '',
+      password: ''
     }
 
     handleChange = (e) => {
       this.setState({
-          ...this.state,
-          [e.target.name]: e.target.value
+        ...this.state,
+        [e.target.name]: e.target.value
       })
     }
 

@@ -80,6 +80,25 @@ export const NavLink = styled(Link)
   }
 `;
 
+export const NavLinkLogo = styled(Link)
+`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  margin: 0;
+  height: 100%;
+  cursor: pointer;
+
+  &.active {
+    text-decoration: none;
+
+    padding-bottom: 0;
+    // border-bottom: 3px solid #4ad9e4;
+  }
+`;
+
 export const Logo = styled.nav `
   display: flex;
   flex-direction: row;

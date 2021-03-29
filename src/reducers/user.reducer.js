@@ -6,8 +6,7 @@ import {
 
 const initialState = {
   registering: false,
-  errors: {},
-  alerts: {}
+  errors: {}
 };
 
 export default function userReducer(state = initialState, action) {
@@ -23,7 +22,7 @@ export default function userReducer(state = initialState, action) {
   		return {
   			...state,
   			registering: false,
-  			...action.message
+  			errors: action.errors
   		}
 
   	case REGISTER_REQUEST_FAILURE:

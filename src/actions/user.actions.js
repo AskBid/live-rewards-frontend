@@ -1,7 +1,8 @@
 import { 
 	REGISTER_REQUEST, 
 	REGISTER_REQUEST_SUCCESS, 
-	REGISTER_REQUEST_FAILURE 
+	REGISTER_REQUEST_FAILURE,
+	SUCCESS
 } from './'
 
 export const register = (formData) => {
@@ -13,10 +14,14 @@ export const register = (formData) => {
 	    headers: { 'Content-Type': 'application/json' },
 	    body: JSON.stringify(formData)
 	  }).then(res => res.json())
-	  	.then(json => {
+	  	.then(json => { 
 	  		dispatch({
 	  			type: REGISTER_REQUEST_SUCCESS, 
-	  			message: {alerts: {}, errors: {}, ...json}
+	  			errors: {...json.errors}
+	  		});
+	  		dispatch({
+	  			type: SUCCESS, 
+	  			message: json.alert
 	  		})
 	  	})
 			.catch(err => {

@@ -25,7 +25,7 @@ class NewUserForm extends Component {
       e.preventDefault()
       this.props.register(this.state)
         .then((res) => {
-          if (this.props.alerts.success) {
+          if (JSON.stringify(this.props.errors) === '{}') {
             this.props.history.push(`/signin`)
           }
         })
@@ -94,7 +94,6 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (state) => {
   return {
     errors: state.users.errors,
-    alerts: state.users.alerts,
     registering: state.users.registering
   }
 }

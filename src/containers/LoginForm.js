@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { login } from '../actions/session.actions'
 import { Link } from 'react-router-dom'
+import { login } from '../actions/session.actions'
 
 class LoginForm extends Component {
 
@@ -19,7 +19,9 @@ class LoginForm extends Component {
 
     fetchOnSubmit = (e) => {
       e.preventDefault()
+      debugger
       this.props.login(this.state)
+        .then(res => this.props.errors ? null : this.props.history.push(`/`))
     }
 
     render() {
@@ -79,14 +81,15 @@ class LoginForm extends Component {
 const mapStateToProps = state => {
   return {
     submitting: state.sessions.submitting,
-    alert: state.alert
+    alert: state.alert,
+    errors: state.sessions.errors
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     login: (credentials) => {
-      dispatch(login(credentials))
+      return dispatch(login(credentials))
     }
   }
 }

@@ -24,7 +24,10 @@ export default function sessionReducer(state = initialState, action) {
   		}
 
   	case LOGIN_REQUEST_FAILURE:
-  		return { ...state }
+  		return { 
+        ...state,
+        submitting: false
+      }
 
     default:
       return state;

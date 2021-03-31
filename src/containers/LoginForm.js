@@ -19,9 +19,8 @@ class LoginForm extends Component {
 
     fetchOnSubmit = (e) => {
       e.preventDefault()
-      debugger
+      
       this.props.login(this.state)
-        .then(res => this.props.errors ? null : this.props.history.push(`/`))
     }
 
     render() {
@@ -82,7 +81,6 @@ const mapStateToProps = state => {
   return {
     submitting: state.sessions.submitting,
     alert: state.alert,
-    errors: state.sessions.errors
   }
 }
 

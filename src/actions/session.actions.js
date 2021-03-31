@@ -4,8 +4,6 @@ import {
 	LOGIN_REQUEST_FAILURE,
 	ERROR
 } from '.'
-import history from '../helpers/history';
-
 
 export const login = (formData) => {
 	return (dispatch) => {
@@ -22,17 +20,15 @@ export const login = (formData) => {
 		  	}
 		  })
 	  	.then((user) => {
-	  		debugger
 	  		localStorage.setItem('user', JSON.stringify(user));
 	  		dispatch({
 	  			type: LOGIN_REQUEST_SUCCESS
 	  		})
-	  		history.push('/live-rewards')
 	  	})
 			.catch(err => {
 				dispatch({type: LOGIN_REQUEST_FAILURE})
 				dispatch({type: ERROR, message: err})
-				return Promise.reject()
+				return Promise.reject(err)
 			})
 	}
 }

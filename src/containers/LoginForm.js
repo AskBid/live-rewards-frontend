@@ -20,7 +20,7 @@ class LoginForm extends Component {
     fetchOnSubmit = (e) => {
       e.preventDefault()
       this.props.login(this.state)
-        .then(success => this.props.history.push(`/`))
+        .then(user => this.props.history.push(`/stake_addresses/${user.username}`))
         .catch(res => console.log)
     }
 

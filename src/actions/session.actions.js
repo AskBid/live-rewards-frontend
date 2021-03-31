@@ -22,8 +22,10 @@ export const login = (formData) => {
 	  	.then((user) => {
 	  		localStorage.setItem('user', JSON.stringify(user));
 	  		dispatch({
-	  			type: LOGIN_REQUEST_SUCCESS
+	  			type: LOGIN_REQUEST_SUCCESS,
+	  			user: user.username
 	  		})
+	  		return user
 	  	})
 			.catch(err => {
 				dispatch({type: LOGIN_REQUEST_FAILURE})

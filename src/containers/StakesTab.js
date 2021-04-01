@@ -31,10 +31,10 @@ class StakesTab extends Component {
                   <div className='col-sm-5 text-right pr-1 text-monospace text-muted text-nowrap'>$234,000</div>
                 </div>
                 <div class="dropdown-divider m-0"></div>  
-                <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white'>
-                  <div className='col text-right pr-1 text-nowrap'>rewards:</div>
-                  <div className='col-sm-5 text-right pr-1 text-monospace text-info text-nowrap font-weight-bold'>
-                    $340
+                <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white mt-auto mb-auto'>
+                  <div className='col text-right pr-1 text-nowrap mt-auto mb-auto'>rewards:</div>
+                  <div className='col-sm-5 mt-auto mb-auto text-right pr-1 text-monospace text-info text-nowrap font-weight-bold'>
+                    <h4 className='mt-auto mb-auto pt-2 pb-2'>$340</h4>
                   </div>
                 </div>
                 <div class="dropdown-divider m-0"></div>

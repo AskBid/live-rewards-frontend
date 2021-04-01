@@ -68,4 +68,13 @@ button:hover {
   color: #010606;
   border: 1px solid black;
 }
+
+.buttonsbar {
+  background: #fff;
+  color: #010606;
+}
+.buttonsbar:hover {
+  background: #4ad9e4;
+  color: #fff;
+}
     

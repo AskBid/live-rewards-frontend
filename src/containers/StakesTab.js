@@ -8,24 +8,47 @@ class StakesTab extends Component {
 
     render() {
       return (
-        <div className='row text-light bg-white bg-gradient rounded p-2 shadow'>
-          {//<h6 className='small'>stake ...r7fx5g</h6>
+        <div className='text-light bg-white bg-gradient rounded pt-3 shadow'>
+          {
+          //<h6 className='small'>stake ...r7fx5g</h6>
           }
-          <div className='col-auto mt-auto mb-auto'>
-            <h1 className='text-muted'>255</h1>
+          <div className='row m-auto pr-2 pl-2'>
+            <div className='mt-auto mb-auto ml-5 mr-5'>
+              <h1 className='text-muted ml-auto mr-auto text-center'>255</h1>
+            </div>
+            <div className='col bg-light rounded border border-secondary ml-1 d-flex flex-row flex-wrap'>
+              <div className='text-dark mt-auto mb-auto'>
+                <h2 className='text-dark mt-auto mb-auto mr-5'>DIGI</h2>
+              </div>
+              <div className='container col'>
+                <div className='ml-auto'>
+                  <div className='row text-dark rounded d-flex flex-row flex-nowrap'>
+                    <div className='col text-right pr-1 text-nowrap text-muted'>your delegation:</div>
+                    <div className='col-sm-5 text-right pr-1 text-monospace text-muted text-nowrap'>$234,000</div>
+                  </div>
+                  <div class="dropdown-divider m-0"></div>  
+                  <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white'>
+                    <div className='col text-right pr-1 text-nowrap'>rewards:</div>
+                    <div className='col-sm-5 text-right pr-1 text-monospace text-info text-nowrap font-weight-bold'>
+                      $340
+                    </div>
+                  </div>
+                  <div class="dropdown-divider m-0"></div>
+                  <div className='row text-dark rounded d-flex flex-row text-muted flex-nowrap'>
+                    <div className='col text-right pr-1 text-nowrap'>pool's blocks:</div>
+                    <div className='col-sm-5 text-right pr-1 text-monospace text-muted text-nowrap'>3</div>
+                  </div>
+                  <div class="dropdown-divider m-0"></div>
+                  <div className='row text-dark rounded d-flex flex-row text-muted flex-nowrap'>
+                    <div className='col text-right pr-1 text-nowrap'>estimated blocks:</div>
+                    <div className='col-sm-5 text-right pr-1 text-monospace text-muted text-nowrap'>6</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className='col bg-light rounded border border-secondary'>
-            <div className='text-dark'>
-              <h2>DIGI</h2>
-            </div>
-            <div className='row text-dark justify-content-end items-stretch'>
-              <div className='col text-right'>your delegation:</div>
-              <div className='col-auto text-right text-monospace'>$234,000</div>
-            </div>
-            <div className='row text-dark justify-content-end items-stretch'>
-              <div className='col text-right'>rewards:</div>
-              <div className='col-auto text-right text-monospace'>$340</div>
-            </div>
+          <div className="progress mt-4" style={{height: "3px"}}>
+            <div className="progress-bar bg-info" role={'progressbar'} style={{width: '60%'}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
           </div>
         </div>
       )

@@ -22,7 +22,7 @@ function App() {
       <Navbar toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
-        <Route path='/live-rewards' component={Liverewards}/>
+        <Route path='/stake_addresses/:username' component={Liverewards}/>
         <Route path='/signin' component={Signin}/>
         <Route path='/signup' component={Signup}/>
         <Route path='/' exact component={Home}/>

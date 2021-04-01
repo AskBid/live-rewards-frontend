@@ -7,7 +7,7 @@ class StakesTab extends Component {
   state = {}
 
   componentDidMount() {
-    
+    this.props.currentEpoch()
   }
 
   render() {

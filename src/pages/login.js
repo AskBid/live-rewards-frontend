@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginForm from '../containers/LoginForm'
 
-function Signin({history}) {
+function Login({history}) {
   return (
     <div className="container">
       <div className="row mb-5">
@@ -15,4 +15,4 @@ function Signin({history}) {
   )
 }
 
-export default Signin
+export default Login

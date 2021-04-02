@@ -139,18 +139,18 @@ export const NavBtnLink = styled(Link)
 export const NavBtnUserLink = styled(Link)
 `
   border-radius: 30px;
-  background: #4ad9e4;
+  background: #e4e2ff;
   padding: 10px 22px;
   color:  #010606;
   outline: none;
-  border: 2px solid #010606;
+  border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   margin-left: 5em;
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #010606;
+    background: #4ad9e4;
+    color: #e4e2ff;
   }
 `;

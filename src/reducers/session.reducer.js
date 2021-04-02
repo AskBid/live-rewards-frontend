@@ -4,8 +4,12 @@ import {
  LOGIN_REQUEST_FAILURE
 } from '../actions'
 
+let user = JSON.parse(localStorage.getItem('user'));
+user = user ? user.username : undefined;
+
 const initialState = {
   submitting: false,
+  user
 };
 
 export default function sessionReducer(state = initialState, action) {

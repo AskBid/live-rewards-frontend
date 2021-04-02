@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom'
+import { currentEpoch } from '../actions/epoch.actions';
 
 class StakesTab extends Component {
 
   state = {}
 
   componentDidMount() {
-    this.props.currentEpoch()
+    console.log('current epoch')
+    this.props.getCurrentEpoch().then(() => console.log(this.props.currentEpoch))
+    console.log(this.props.currentEpoch)
   }
 
   render() {
     return (
-      <div className='text-light bg-white bg-gradient rounded pt-3 shadow'>
-        {
-        //<h6 className='small'>stake ...r7fx5g</h6>
+      <React.Fragment>
+      <div className='text-light bg-white bg-gradient rounded pt-3 shadow mb-4'>
+        {//<h6 className='small'>stake ...r7fx5g</h6>
         }
         <div className='row m-auto pr-2 pl-2'>
           <div className='mt-auto mb-auto ml-5 mr-5'>
@@ -55,12 +57,23 @@ class StakesTab extends Component {
           <div className="progress-bar bg-info" role={'progressbar'} style={{width: '60%'}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
         </div>
       </div>
+      </React.Fragment>
     )
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getCurrentEpoch: () => dispatch(currentEpoch())
+  }
+}
+const mapStateToProps = store => {
+  return {
+    currentEpoch: store.epochs.current
+  }
+}
 
-export default StakesTab;
+export default connect(mapStateToProps, mapDispatchToProps)(StakesTab);
 
 
 

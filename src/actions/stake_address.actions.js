@@ -8,9 +8,11 @@ export const userStakeAddresses = (user, epochno) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_STAKES})
 		return fetch(`http://localhost:3001/users/:user_id/stake_addresses`, {
-	  	method: 'POST',
-	    headers: { 'Content-Type': 'application/json' },
-	    body: JSON.stringify({user, epochno})
+	  	method: 'GET',
+	    headers: {
+	    	'Content-Type': 'application/json',
+	    	"Accept": "application/json" 
+	    }
 	  }).then(res => res.json())
 	  	.then(json => { 
 	  		dispatch({

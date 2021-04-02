@@ -1,7 +1,7 @@
 import React from 'react'
 import StakesTab from '../containers/StakesTab'
 
-function Liverewards() {
+function Liverewards({match}) {
     return (
       <div className="container-fluid mh-100 ">
 	      <div className="row mb-5 h-100">

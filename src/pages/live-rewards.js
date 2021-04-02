@@ -1,5 +1,5 @@
 import React from 'react'
-import StakesTab from '../containers/StakesTab'
+import StakesColumn from '../containers/StakesColumn'
 import LiveRewardsControlBar from '../containers/LiveRewardsControlBar'
 
 function LiveRewards({match}) {
@@ -11,7 +11,7 @@ function LiveRewards({match}) {
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto">
 	        	<LiveRewardsControlBar/>
-	          <StakesTab/>
+	          <StakesColumn/>
 	        </div>
 	        <div className='col'></div>
 	      </div>

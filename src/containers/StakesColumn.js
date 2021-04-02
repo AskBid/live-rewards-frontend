@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { currentEpoch } from '../actions/epoch.actions';
 
-class StakesTab extends Component {
+class StakesColumn extends Component {
 
   state = {}
 
@@ -73,7 +73,7 @@ const mapStateToProps = store => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StakesTab);
+export default connect(mapStateToProps, mapDispatchToProps)(StakesColumn);
 
 
 

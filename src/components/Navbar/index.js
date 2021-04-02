@@ -1,7 +1,11 @@
 import React from 'react'
-import { Nav, Bars, NavBtnLink, NavMenu, NavLink, NavLinkLogo, MobileIcon, NavbarContainer } from './NavbarElements'
+import { Nav, Bars, NavBtnLink, NavBtnUserLink, NavMenu, NavLink, NavLinkLogo, MobileIcon, NavbarContainer } from './NavbarElements'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const Navbar = ({toggle}) => {
+    const user = useSelector( state => state.sessions.user )
+
     return (
       <Nav>
         <NavbarContainer>
@@ -21,7 +25,10 @@ const Navbar = ({toggle}) => {
             <NavLink to='/about' >
               About
             </NavLink>
-            <NavBtnLink to='/login'>Log In</NavBtnLink>
+            { user ?
+              <NavBtnUserLink to={`/users/${user}`}>@{user}</NavBtnUserLink>
+              :
+              <NavBtnLink to='/login'>Log In</NavBtnLink> }
           </NavMenu>
         </NavbarContainer>
       </Nav>

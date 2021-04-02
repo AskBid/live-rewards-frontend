@@ -4,7 +4,7 @@ import { Navbar } from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import Home from './pages'
-import Liverewards from './pages/live-rewards'
+import LiveRewards from './pages/live-rewards'
 import Signup from './pages/signup'
 import Login from './pages/login'
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,7 +22,7 @@ function App() {
       <Navbar toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
-        <Route path='/live-rewards' component={Liverewards}/>
+        <Route path='/live-rewards' component={LiveRewards}/>
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={Signup}/>
         <Route path='/' exact component={Home}/>

@@ -4,6 +4,7 @@ import AddStakeForm from '../components/AddStakeForm'
 import DefaultControlBar from '../components/DefaultControlBar'
 
 function LiveRewardsControlBar() {
+  
   return (
   	<div className='row mt-4 mb-3 mr-auto ml-auto'>
   		<Switch>

@@ -22,9 +22,6 @@ const Navbar = ({toggle}) => {
           	<NavLink to='/howto' >
               How To
             </NavLink>
-            <NavLink to='/about' >
-              About
-            </NavLink>
             { user ?
               <NavBtnUserLink to={`/users/${user}`}>@{user}</NavBtnUserLink>
               :

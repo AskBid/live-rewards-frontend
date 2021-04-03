@@ -7,6 +7,7 @@ import Home from './pages'
 import LiveRewards from './pages/live-rewards'
 import Signup from './pages/signup'
 import Login from './pages/login'
+import User from './pages/user'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path='/live-rewards' component={LiveRewards}/>
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={Signup}/>
+        <Route path='/users/:username' component={User}/>
         <Route path='/' exact component={Home}/>
       </Switch>
     </Router>

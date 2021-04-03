@@ -1,20 +1,22 @@
 import { 
 	REQUEST_USER_STAKES,
 	REQUEST_USER_STAKES_SUCCESS,
-	REQUEST_USER_STAKES_FAILURE
+	REQUEST_USER_STAKES_FAILURE,
+	SUCCESS
 } from '.'
 
-export const userStakeAddresses = (user, epochno) => {
+export const userStakeAddresses = () => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_STAKES})
 		return fetch(`http://localhost:3001/users/:user_id/stake_addresses`, {
 	  	method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
-	    	"Accept": "application/json" 
+	    	"Accept": "application/json"
 	    }
 	  }).then(res => res.json())
 	  	.then(json => { 
+	  		debugger
 	  		dispatch({
 	  			type: REQUEST_USER_STAKES_SUCCESS, 
 	  			errors: {...json.errors}
@@ -25,7 +27,8 @@ export const userStakeAddresses = (user, epochno) => {
 	  		})
 	  	})
 			.catch(err => {
-				dispatch({type: REGISTER_REQUEST_FAILURE, errors: err})
+				debugger
+				dispatch({type: REQUEST_USER_STAKES_FAILURE, errors: err})
 			})
 	}
 }

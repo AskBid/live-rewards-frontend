@@ -1,7 +1,8 @@
 import { 
 	REQUEST_LAST_EPOCH,
 	REQUEST_LAST_EPOCH_SUCCESS,
-	REQUEST_LAST_EPOCH_FAILURE
+	REQUEST_LAST_EPOCH_FAILURE,
+	ADD_EPOCH
 } from '.'
 
 export const currentEpoch = () => {
@@ -19,6 +20,7 @@ export const currentEpoch = () => {
 	  			type: REQUEST_LAST_EPOCH_SUCCESS, 
 	  			payload: epochno
 	  		});
+	  		console.log('now')
 	  	})
 			.catch(err => {
 				dispatch({type: REQUEST_LAST_EPOCH_FAILURE})
@@ -26,8 +28,8 @@ export const currentEpoch = () => {
 	}
 }
 
-// export const addEpoch = (number) => {
-// 	return (dispatch) => {
-// 		dispatch({type: ADD_EPOCH, payload: number})
-// 	}
-// }
+export const addEpoch = (number) => {
+	return (dispatch) => {
+		dispatch({type: ADD_EPOCH, payload: number})
+	}
+}

@@ -2,7 +2,7 @@ import React from 'react'
 
 const StakeTab = ({epochno}) => {
   return (
-      <div className='text-light bg-white bg-gradient rounded pt-3 shadow mb-4'>
+      <div className='text-light bg-white bg-gradient rounded pt-3 shadow mb-5'>
         {//<h6 className='small'>stake ...r7fx5g</h6>
         }
         <div className='row m-auto pr-2 pl-2'>

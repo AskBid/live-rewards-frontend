@@ -1,24 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { currentEpoch } from '../actions/epoch.actions';
+import { addEpoch } from '../actions/epoch.actions';
 import StakeTab from '../components/StakeTab';
 
 class StakesColumn extends Component {
 
-  state = {}
-
   componentDidMount() {
-    console.log('current epoch')
-    this.props.getCurrentEpoch().then(() => console.log(this.props.currentEpoch))
-    console.log(this.props.currentEpoch)
+    this.props.getCurrentEpoch().then((res) => {
+      for (let i=0; i < 3; i++) {
+        this.props.addEpoch(this.props.currentEpoch - i)
+      }
+    }).catch((err) => console.log(err))
+  }
+
+  deployEpochs = () => {
+    return this.props.epochNos.map(epochno => <StakeTab epochno={epochno} />)
   }
 
   render() {
     return (
       <React.Fragment>
-        <StakeTab epochno={255} />
-        <StakeTab epochno={254} />
-        <StakeTab epochno={253} />
+        {this.deployEpochs()}
       </React.Fragment>
     )
   }
@@ -26,13 +29,15 @@ class StakesColumn extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCurrentEpoch: () => dispatch(currentEpoch())
+    getCurrentEpoch: () => dispatch(currentEpoch()),
+    addEpoch: (epochno) => dispatch(addEpoch(epochno))
   }
 }
 
 const mapStateToProps = store => {
   return {
-    currentEpoch: store.epochs.current
+    currentEpoch: store.epochs.current,
+    epochNos: store.epochs.epochNos
   }
 }
 

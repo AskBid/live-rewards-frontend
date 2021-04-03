@@ -6,7 +6,7 @@ import DefaultControlBar from '../components/DefaultControlBar'
 function LiveRewardsControlBar() {
   
   return (
-  	<div className='row mt-4 mb-3 mr-auto ml-auto'>
+  	<div className='row mt-4 mb-5 mr-auto ml-auto'>
   		<Switch>
   			<Route path={`/live-rewards/users/:username/stake_addresses/edit`}>
   				<AddStakeForm/>

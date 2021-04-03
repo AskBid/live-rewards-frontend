@@ -2,6 +2,7 @@ import {
 	LOGIN_REQUEST,
 	LOGIN_REQUEST_SUCCESS,
 	LOGIN_REQUEST_FAILURE,
+	LOGOUT,
 	ERROR
 } from '.'
 
@@ -32,5 +33,12 @@ export const login = (formData) => {
 				dispatch({type: ERROR, message: err})
 				return Promise.reject(err)
 			})
+	}
+}
+
+export const logout = () => {
+	return (dispatch) => {
+		localStorage.removeItem('user')
+		dispatch({type: LOGOUT})
 	}
 }

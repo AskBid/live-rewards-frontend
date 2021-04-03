@@ -1,7 +1,8 @@
 import { 
  LOGIN_REQUEST,
  LOGIN_REQUEST_SUCCESS,
- LOGIN_REQUEST_FAILURE
+ LOGIN_REQUEST_FAILURE,
+ LOGOUT
 } from '../actions'
 
 let user = JSON.parse(localStorage.getItem('user'));
@@ -33,6 +34,9 @@ export default function sessionReducer(state = initialState, action) {
         ...state,
         submitting: false
       }
+
+    case LOGOUT:
+      return {}
 
     default:
       return state;

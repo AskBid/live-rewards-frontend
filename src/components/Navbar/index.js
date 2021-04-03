@@ -1,11 +1,10 @@
 import React from 'react'
 import { Nav, Bars, NavBtnLink, NavBtnUserLink, NavMenu, NavLink, NavLinkLogo, MobileIcon, NavbarContainer } from './NavbarElements'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 const Navbar = ({toggle}) => {
     const user = useSelector( state => state.sessions.user )
-
+    
     return (
       <Nav>
         <NavbarContainer>

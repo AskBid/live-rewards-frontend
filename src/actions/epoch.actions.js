@@ -25,3 +25,9 @@ export const currentEpoch = () => {
 			})
 	}
 }
+
+// export const addEpoch = (number) => {
+// 	return (dispatch) => {
+// 		dispatch({type: ADD_EPOCH, payload: number})
+// 	}
+// }

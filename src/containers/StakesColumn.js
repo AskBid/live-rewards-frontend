@@ -1,25 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { currentEpoch } from '../actions/epoch.actions';
-import { addEpoch } from '../actions/epoch.actions';
-import { userStakeAddresses } from '../actions/stake_address.actions';
+import { userEpochStakes } from '../actions/epoch_stake.actions';
 import StakeTab from '../components/StakeTab';
 
 class StakesColumn extends Component {
 
   componentDidMount() {
-    this.props.getCurrentEpoch().then((res) => {
-      for (let i=0; i < 3; i++) {
-        this.props.addEpoch(this.props.currentEpoch - i)
-      }
-    }).then(() => {
-        this.props.userStakeAddresses('p','p')
-      })
-      .catch((err) => console.log(err))
+    this.props.userEpochStakes(this.props.username)
+      .then((res) => {
+      }).catch((err) => console.log(err))
   }
 
   deployEpochs = () => {
-    return this.props.epochNos.map(epochno => <StakeTab key={epochno} epochno={epochno} />)
+    // return this.props.epoch_stakes.map(epochno => <StakeTab key={epochno} epochno={epochno} />)
   }
 
   render() {
@@ -33,22 +26,16 @@ class StakesColumn extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCurrentEpoch: () => dispatch(currentEpoch()),
-    addEpoch: (epochno) => dispatch(addEpoch(epochno)),
-    userStakeAddresses: () => dispatch(userStakeAddresses())
+    userEpochStakes: (username) => dispatch(userEpochStakes(username))
   }
 }
 
 const mapStateToProps = store => {
   return {
-    currentEpoch: store.epochs.current,
-    epochNos: store.epochs.epochNos,
+    username: store.sessions.user,
+    epoch_stakes: store.epoch_stakes.epoch_stakes
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StakesColumn);
-
-
-
-
 

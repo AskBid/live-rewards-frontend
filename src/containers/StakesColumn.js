@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { userEpochStakes } from '../actions/epoch_stake.actions';
 import StakeTab from '../components/StakeTab';
+import _ , { groupBy } from 'underscore';
 
 class StakesColumn extends Component {
 
@@ -12,6 +13,7 @@ class StakesColumn extends Component {
   }
 
   deployEpochs = () => {
+    console.log(_.groupBy(this.props.epoch_stakes, 'epoch_no'))
     // return this.props.epoch_stakes.map(epochno => <StakeTab key={epochno} epochno={epochno} />)
   }
 

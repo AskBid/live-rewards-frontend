@@ -10,7 +10,7 @@ const EpochTab = ({epochno, stakes}) => {
           </div>
           {stakes.map(stake => <StakeTab stake={stake} />)}
         </div>
-        <div className="progress mt-4" style={{height: "3px"}}>
+        <div className="progress mt-2" style={{height: "3px"}}>
           <div className="progress-bar bg-info" role={'progressbar'} style={{width: '60%'}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
         </div>
       </div>

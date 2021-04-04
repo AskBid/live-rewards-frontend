@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { userEpochStakes } from '../actions/epoch_stake.actions';
 import StakeTab from '../components/StakeTab';
-import _ , { groupBy } from 'underscore';
+import { groupBy } from 'underscore';
 
 class StakesColumn extends Component {
 
@@ -13,8 +13,14 @@ class StakesColumn extends Component {
   }
 
   deployEpochs = () => {
-    console.log(_.groupBy(this.props.epoch_stakes, 'epoch_no'))
-    // return this.props.epoch_stakes.map(epochno => <StakeTab key={epochno} epochno={epochno} />)
+    const epoch_stakes_by_epoch = groupBy(this.props.epoch_stakes, 'epoch_no')
+    const ordered_keys = Object.keys(epoch_stakes_by_epoch)
+      .map(str => parseInt(str))
+      .sort((a,b) => a + b)
+      .reverse()
+    return ordered_keys.map(epochno => {
+      return <StakeTab key={epochno} epochno={epochno} stakes={epoch_stakes_by_epoch[epochno]} />
+    })
   }
 
   render() {

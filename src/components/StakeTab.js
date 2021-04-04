@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StakeTab = ({epochno}) => {
+const StakeTab = ({epochno, stakes}) => {
   return (
       <div className='text-light bg-white bg-gradient rounded pt-3 shadow mb-5'>
         {//<h6 className='small'>stake ...r7fx5g</h6>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { userEpochStakes } from '../actions/epoch_stake.actions';
-import StakeTab from '../components/StakeTab';
+import EpochTab from '../components/EpochTab';
 import { groupBy } from 'underscore';
 
 class StakesColumn extends Component {
@@ -19,7 +19,7 @@ class StakesColumn extends Component {
       .sort((a,b) => a + b)
       .reverse()
     return ordered_keys.map(epochno => {
-      return <StakeTab key={epochno} epochno={epochno} stakes={epoch_stakes_by_epoch[epochno]} />
+      return <EpochTab key={epochno} epochno={epochno} stakes={epoch_stakes_by_epoch[epochno]} />
     })
   }
 

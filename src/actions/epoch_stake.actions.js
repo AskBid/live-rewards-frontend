@@ -6,6 +6,7 @@ import {
 	ADD_USER_STAKE_REQUEST_SUCCESS,
 	ADD_USER_STAKE_REQUEST_FAILURE
 } from '.'
+import { authHeader } from '../helpers/auth-header'
 
 export const userEpochStakes = (username) => {
 	return (dispatch) => {
@@ -40,7 +41,10 @@ export const addUserStake = (user, address) => {
 		dispatch({type: ADD_USER_STAKE_REQUEST})
 		return fetch(`http://localhost:3001/users/${user}/user_stake`, {
 			method: 'POST',
-	    headers: { 'Content-Type': 'application/json' },
+	    headers: {
+	    	'Content-Type': 'application/json',
+	    	...authHeader()
+	    },
 	    body: JSON.stringify(address)
 		}).then(res => {
 			if (res.ok) {
@@ -51,7 +55,7 @@ export const addUserStake = (user, address) => {
 			})
 			.then(json => {
 				dispatch({
-	  			type: ADD_USER_STAKE_REQUEST_SUCCESS, 
+	  			type: ADD_USER_STAKE_REQUEST_SUCCESS,
 	  			payload: json
 	  		});
 			})

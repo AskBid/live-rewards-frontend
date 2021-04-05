@@ -1,7 +1,10 @@
 import { 
   REQUEST_USER_EPOCH_STAKES,
   REQUEST_USER_EPOCH_STAKES_SUCCESS,
-  REQUEST_USER_EPOCH_STAKES_FAILURE
+  REQUEST_USER_EPOCH_STAKES_FAILURE,
+  ADD_USER_STAKE_REQUEST,
+	ADD_USER_STAKE_REQUEST_SUCCESS,
+	ADD_USER_STAKE_REQUEST_FAILURE
 } from '.'
 
 export const userEpochStakes = (username) => {
@@ -13,7 +16,13 @@ export const userEpochStakes = (username) => {
 	    	'Content-Type': 'application/json',
 	    	"Accept": "application/json"
 	    }
-	  }).then(res => res.json())
+	  }).then(res => {
+				if (res.ok) {
+					return res.json()
+				} else {
+					return res.json.then(json => Promise.reject())
+				}
+			})
 	  	.then(json => { 
 	  		dispatch({
 	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
@@ -21,7 +30,37 @@ export const userEpochStakes = (username) => {
 	  		});
 	  	})
 			.catch(err => {
-				dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE, errors: err})
+				dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE})
 			})
 	}
 }
+
+export const addUserStake = (user, address) => {
+	return (dispatch) => {
+		dispatch({type: ADD_USER_STAKE_REQUEST})
+		return fetch(`http://localhost:3001/users/${user}/user_stake`, {
+			method: 'POST',
+	    headers: { 'Content-Type': 'application/json' },
+	    body: JSON.stringify(address)
+		}).then(res => {
+			if (res.ok) {
+				return res.json()
+			} else {
+				return res.json().then(json => Promise.reject())
+			}
+			})
+			.then(json => {
+				dispatch({
+	  			type: ADD_USER_STAKE_REQUEST_SUCCESS, 
+	  			payload: json
+	  		});
+			})
+			.catch(err => {
+				dispatch({type: ADD_USER_STAKE_REQUEST_FAILURE})
+			})
+	}
+}
+
+
+
+

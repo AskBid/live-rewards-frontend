@@ -1,9 +1,7 @@
 import React from 'react'
 import numeral from 'numeral'
 
-const StakeTab = ({stake}) => {
-  console.log(stake)
-  debugger
+const StakeTab = ({stake}) => { 
   const ticker = stake.pool_hash.pool.ticker
   return (
     <div className='col bg-light rounded border border-secondary ml-3 mr-3 mb-3 p-1 pl-3 d-flex flex-row flex-wrap'>

@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loading: false,
-  epoch_stakes: []
+  list: []
 };
 
 export default function epochStakeReducer(state = initialState, action) {
@@ -22,7 +22,7 @@ export default function epochStakeReducer(state = initialState, action) {
   		return {
   			...state,
         loading: false,
-        epoch_stakes: action.payload
+        list: action.payload
   		}
 
   	case REQUEST_USER_EPOCH_STAKES_FAILURE:

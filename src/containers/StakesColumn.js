@@ -13,19 +13,27 @@ class StakesColumn extends Component {
   }
 
   deployEpochs = () => {
-    const epoch_stakes_by_epoch = groupBy(this.props.epoch_stakes, 'epoch_no')
-    const ordered_keys = Object.keys(epoch_stakes_by_epoch)
-      .map(str => parseInt(str))
-      .sort((a,b) => a + b)
-      .reverse()
-    return ordered_keys.map(epochno => {
-      return <EpochTab key={epochno} epochno={epochno} stakes={epoch_stakes_by_epoch[epochno]} />
-    })
+    const { epoch_stakes } = this.props
+    if (!!epoch_stakes.length) {
+      const epoch_stakes_by_epoch = groupBy(epoch_stakes, 'epoch_no')
+      const ordered_keys = Object.keys(epoch_stakes_by_epoch)
+        .map(str => parseInt(str))
+        .sort((a,b) => a + b)
+        .reverse()
+      return ordered_keys.map(epochno => {
+        return <EpochTab key={epochno} epochno={epochno} stakes={epoch_stakes_by_epoch[epochno]} />
+      })
+    }
   }
 
   render() {
     return (
       <React.Fragment>
+        <div className='d-flex justify-content-center'>
+          {this.props.loading && 
+            <img alt='spinner' src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          }
+        </div>
         {this.deployEpochs()}
       </React.Fragment>
     )
@@ -41,7 +49,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = store => {
   return {
     username: store.sessions.user,
-    epoch_stakes: store.epoch_stakes.epoch_stakes
+    epoch_stakes: store.epoch_stakes.list,
+    loading: store.epoch_stakes.loading
   }
 }
 

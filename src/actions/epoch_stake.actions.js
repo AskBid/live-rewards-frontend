@@ -54,6 +54,7 @@ export const addUserStake = (user, address) => {
 			}
 			})
 			.then(json => {
+				debugger
 				dispatch({
 	  			type: ADD_USER_STAKE_REQUEST_SUCCESS,
 	  			payload: json

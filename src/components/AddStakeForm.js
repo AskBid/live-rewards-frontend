@@ -3,17 +3,43 @@ import { Link } from 'react-router-dom'
 
 
 const AddStakeForm = ({addUserStake, match}) => {
-  const [{address}, setAddress] = useState({address: ''})
+  const [address, setAddress] = useState('')
+  const [check, setCheck] = useState(false)
+  const [message, setMessage] = useState('')
 
-  const handleAddressInputChange = (e) => setAddress(state => ({address: e.target.value}))
+  const handleAddressInputChange = (e) => {
+    if (address.length > 6) {
+      setCheck(true)
+    } 
+    address.includes("world");
+    setAddress(state => (e.target.value))
+  }
+
+  const addressChecksMessages = () => {
+    if (!address.includes("stake1") && address.length > 6 && !address.includes("addr1")) {
+      return <div>{`The address should start with "stake1".`}</div>
+    } else if (address.length != 59 && !address.includes("addr1") && address.length > 6) {
+      return <div>{`The address should be 59 letters long. count: ${address.length}/59`}</div>
+    }
+    if (address.includes("addr1") && address.length === 103) {
+      return <div>{`You entered a`}
+            <b>{` Wallet Address`}</b>
+            {`, to find its `}<b>{`Stake Address`}</b>{` visit: `}
+          <a href={`https://cardanoscan.io/address/${address}`}>
+            {`https://cardanoscan.io/address/${address.slice(0,18)}...`}
+          </a>
+        </div>
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addUserStake(match.params.username, {stake_address: address})
+    addUserStake(match.params.username, address)
       .then((res) => {debugger})
   }
 
   return (
+    <>
     <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={handleSubmit}>
       <Link to='/live-rewards' className=''>
         <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' type='Submit'>
@@ -33,6 +59,8 @@ const AddStakeForm = ({addUserStake, match}) => {
         Submit Address
       </button>
     </form>
+    {<div className='d-flex row w-100 justify-content-center'> {addressChecksMessages()} </div>}
+    </>
   )
 }
 

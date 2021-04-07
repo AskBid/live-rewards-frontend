@@ -1,7 +1,7 @@
 import { 
   ADD_USER_STAKE_REQUEST,
-	ADD_USER_STAKE_REQUEST_SUCCESS,
-	ADD_USER_STAKE_REQUEST_FAILURE,
+	ADD_USER_STAKE_SUCCESS,
+	ADD_USER_STAKE_FAILURE,
 	ERROR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
@@ -24,14 +24,13 @@ export const addUserStake = (user, address) => {
 			}
 			})
 			.then(json => {
-				debugger
 				dispatch({
-	  			type: ADD_USER_STAKE_REQUEST_SUCCESS,
+	  			type: ADD_USER_STAKE_SUCCESS,
 	  			payload: json
 	  		});
 			})
 			.catch(err => {
-				dispatch({type: ADD_USER_STAKE_REQUEST_FAILURE})
+				dispatch({type: ADD_USER_STAKE_FAILURE})
 				dispatch({type: ERROR, message: err.toString()})
 			})
 	}

@@ -14,7 +14,7 @@ const AddStakeForm = ({addUserStake, match}) => {
     return address.length === 0 ? true : correct_address
   }
 
-  const addressChecksMessages = () => {
+  const addressChecksMessage = () => {
     if (!address.includes("stake1") && address.length > 6 && !address.includes("addr1")) {
       return <div className='alert alert-info mt-4'>{`The address should start with "stake1".`}</div>
     } else if (address.length != 59 && !address.includes("addr1") && address.length > 2) {
@@ -34,7 +34,6 @@ const AddStakeForm = ({addUserStake, match}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     addUserStake(match.params.username, address)
-      .then((res) => {debugger})
   }
 
   return (
@@ -49,7 +48,7 @@ const AddStakeForm = ({addUserStake, match}) => {
         <input
           type="text"
           name="stake_address"
-          placeholder="e.g. stake1ux026n9gx9ygv... (If empty, will pick a random address)"
+          placeholder="stake1ux026n9gx9ygv... (If empty, will pick a random address)"
           className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded'
           onChange={handleAddressInputChange}>
         </input>
@@ -60,7 +59,9 @@ const AddStakeForm = ({addUserStake, match}) => {
         Submit Address
       </button>
     </form>
-    {<div className='d-flex row w-100 justify-content-center'> {addressChecksMessages()} </div>}
+    <div className='d-flex row w-100 justify-content-center'> 
+      {addressChecksMessage()}
+    </div>
     </>
   )
 }

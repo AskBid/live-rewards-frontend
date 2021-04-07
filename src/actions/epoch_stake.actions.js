@@ -4,7 +4,8 @@ import {
   REQUEST_USER_EPOCH_STAKES_FAILURE,
   ADD_USER_STAKE_REQUEST,
 	ADD_USER_STAKE_REQUEST_SUCCESS,
-	ADD_USER_STAKE_REQUEST_FAILURE
+	ADD_USER_STAKE_REQUEST_FAILURE,
+	ERROR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 
@@ -45,12 +46,12 @@ export const addUserStake = (user, address) => {
 	    	'Content-Type': 'application/json',
 	    	...authHeader()
 	    },
-	    body: JSON.stringify(address)
+	    body: JSON.stringify({stake_address: address})
 		}).then(res => {
 			if (res.ok) {
 				return res.json()
 			} else {
-				return res.json().then(json => Promise.reject())
+				return res.json().then(json => Promise.reject(json.error))
 			}
 			})
 			.then(json => {
@@ -62,6 +63,7 @@ export const addUserStake = (user, address) => {
 			})
 			.catch(err => {
 				dispatch({type: ADD_USER_STAKE_REQUEST_FAILURE})
+				dispatch({type: ERROR, message: err.toString()})
 			})
 	}
 }

@@ -2,6 +2,9 @@ import {
   ADD_USER_STAKE_REQUEST,
 	ADD_USER_STAKE_SUCCESS,
 	ADD_USER_STAKE_FAILURE,
+	DELETE_USER_STAKE_REQUEST,
+	DELETE_USER_STAKE_SUCCESS,
+	DELETE_USER_STAKE_FAILURE,
 	ERROR,
 	CLEAR
 } from '.'
@@ -41,8 +44,9 @@ export const addUserStake = (user, address) => {
 }
 
 export const deleteStakeAddress = (user, addr_id) => {
+	debugger
 	return (dispatch) => {
-		dispatch({type: ADD_USER_STAKE_REQUEST})
+		dispatch({type: DELETE_USER_STAKE_REQUEST})
 		return fetch(`http://localhost:3001/users/${user}/user_stake/:addr_id`, {
 			method: 'DELETE',
 	    headers: {
@@ -59,7 +63,7 @@ export const deleteStakeAddress = (user, addr_id) => {
 			})
 			.then(json => {
 				dispatch({
-	  			type: ADD_USER_STAKE_SUCCESS,
+	  			type: DELETE_USER_STAKE_SUCCESS,
 	  			payload: json
 	  		});
 	  		dispatch({
@@ -67,7 +71,7 @@ export const deleteStakeAddress = (user, addr_id) => {
 	  		});
 			})
 			.catch(err => {
-				dispatch({type: ADD_USER_STAKE_FAILURE})
+				dispatch({type: DELETE_USER_STAKE_FAILURE})
 				dispatch({type: ERROR, message: err.toString()})
 			})
 	}

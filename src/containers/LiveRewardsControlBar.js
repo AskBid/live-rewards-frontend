@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { connect } from "react-redux"
 import AddStakeForm from '../components/AddStakeForm'
 import DefaultControlBar from '../components/DefaultControlBar'
-import { addUserStake } from '../actions/epoch_stake.actions'
+import { addUserStake } from '../actions/stake_address.actions'
 
 class LiveRewardsControlBar extends Component {
   

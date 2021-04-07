@@ -15,4 +15,6 @@ export const DeleteBtn = styled.button `
 
 export const CloseIcon = styled(FaTimes)`
 	color: rgba(255, 250, 250, 0.8);
+	margin: 0px;
+	padding: 0px;
 `

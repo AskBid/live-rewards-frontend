@@ -1,16 +1,25 @@
 import React from 'react'
 import numeral from 'numeral'
 import { DeleteBtn, CloseIcon } from './DeleteButton'
-
+import { useDispatch } from 'react-redux'
+import { deleteStakeAddress } from '../actions/stake_address.actions';
 
 const StakeTab = ({stake}) => { 
+
+  const dispatch = useDispatch()
   const ticker = stake.pool_hash.pool.ticker
+
   return (
     <div className='col bg-light rounded border border-secondary ml-3 mr-3 mb-3 p-0 d-flex flex-row flex-wrap'>
       <div className='flex-row d-flex w-100'>
-        <DeleteBtn className='align-top mt-aut p-1 mb-auto rounded h-100 ml-0 mr-0' style={{width:'2vw'}}>
-          <CloseIcon /> 
-        </DeleteBtn>
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          dispatch(deleteStakeAddress('user', stake.addr_id))
+        }}>
+          <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto rounded h-100 ml-auto mr-auto' style={{width:'2vw'}}>
+            <CloseIcon /> 
+          </DeleteBtn>
+        </form>
         <div className='col d-flex flex-row flex-wrap m-0 p-0'>
           <div className='col text-dark mt-auto mb-auto'>
             <h2 className='text-dark mt-auto mb-auto'>

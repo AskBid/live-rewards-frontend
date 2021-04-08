@@ -17,14 +17,14 @@ const AddStakeForm = ({addUserStake, match}) => {
   const addressChecksMessage = () => {
     if (!address.includes("stake1") && address.length > 6 && !address.includes("addr1")) {
       return <div className='alert alert-info mt-4'>{`The address should start with "stake1".`}</div>
-    } else if (address.length != 59 && !address.includes("addr1") && address.length > 2) {
+    } else if (address.length !== 59 && !address.includes("addr1") && address.length > 2) {
       return <div className='alert alert-info mt-4'>{`The address should be 59 letters long. count: ${address.length}/59`}</div>
     }
     if (address.includes("addr1") && address.length === 103) {
       return <div className='alert alert-info mt-4'>{`You entered a`}
             <b>{` Wallet Address`}</b>
             {`, to find its BECH32 `}<b>{`Stake Address`}</b>{` visit: `}<br/>
-          <a href={`https://cardanoscan.io/address/${address}`} target="_blank">
+          <a href={`https://cardanoscan.io/address/${address}`} target="_blank" rel="noreferrer">
             {`https://cardanoscan.io/address/${address.slice(0,18)}...`}
           </a>
         </div>

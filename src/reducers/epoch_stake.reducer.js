@@ -12,7 +12,6 @@ import {
 
 const initialState = {
   loading: false,
-  deleting_addr_id: undefined,
   list: []
 };
 
@@ -61,6 +60,22 @@ export default function epochStakeReducer(state = initialState, action) {
       return {
         ...state,
         deleting_addr_id: action.payload
+      }
+
+    case DELETE_USER_STAKE_SUCCESS:
+      const list = state.list.filter((epoch_stake) => {
+        return epoch_stake.stake_address.id != action.payload.addr_id
+      })
+      return {
+        ...state,
+        deleting_addr_id: undefined,
+        list
+      }
+
+    case DELETE_USER_STAKE_FAILURE:
+      return {
+        ...state,
+        deleting_addr_id: undefined
       }
 
     default:

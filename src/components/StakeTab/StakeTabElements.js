@@ -5,6 +5,7 @@ export const DeleteBtn = styled.button `
 	background: rgba(245, 81, 66, 0.05);
 	border: none;
 	color: white;
+	min-width: 28px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: rgba(245, 81, 66, 0.8);
@@ -21,9 +22,9 @@ export const CloseIcon = styled(FaTimes)`
 
 export const AddrLabel = styled.span`
 	color: rgba(40, 40, 40, 0.3);
-	font-size: 0.6em;
+	font-size: 0.7em;
 	position: absolute;
-	top: -11px;
+	top: -13px;
 	right: 0px;
 	&:hover {
     color: rgba(245, 81, 66, 0.7);

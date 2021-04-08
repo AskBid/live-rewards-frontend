@@ -1,20 +1,32 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
-const AddPoolForm = ({addUserStake, match}) => {
-  const [address, setAddress] = useState('')
+class AddPoolForm extends Component {
 
-  const handleAddressInputChange = (e) => {
-    setAddress(state => e.target.value)
+  state = {
+    address: ''
   }
 
-  const buttonActivation = () => {
+  componentDidMount() {
+    //fetch tickers
+  }
+
+  handleAddressInputChange = (e) => {
+    this.setAddress({
+      address: e.target.value
+    })
+  }
+
+  buttonActivation = () => {
+    const address = this.state.address  
     const correct_address = address.includes("stake1") && address.length === 59
     return address.length === 0 ? true : correct_address
   }
 
-  const addressChecksMessage = () => {
+  addressChecksMessage = () => {
+    const address = this.state.address  
     if (!address.includes("stake1") && address.length > 6 && !address.includes("addr1")) {
       return <div className='alert alert-info mt-4'>{`The address should start with "stake1".`}</div>
     } else if (address.length !== 59 && !address.includes("addr1") && address.length > 2) {
@@ -31,14 +43,13 @@ const AddPoolForm = ({addUserStake, match}) => {
     }
   }
 
-  const handleSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault()
-    addUserStake(match.params.username, address)
   }
 
-  return (
-    <>
-    <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={handleSubmit}>
+  render() { return (
+    <React.Fragment>
+    <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={this.handleSubmit}>
       <Link to='/live-rewards' className=''>
         <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' type='Submit'>
           Hide
@@ -47,23 +58,27 @@ const AddPoolForm = ({addUserStake, match}) => {
       <fieldset className='col w-100 d-inline-flex p-0 pl-2'>
         <input
           type="text"
-          name="stake_address"
-          placeholder="stake1ux026n9gx9ygv... (If empty, will pick a random address)"
+          name="pool"
+          placeholder="TICKR or pool1cuxntl7p... (If empty, will pick a random Pool)"
           className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded'
-          onChange={handleAddressInputChange}>
+          onChange={this.handleAddressInputChange}>
         </input>
       </fieldset>
       <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
         type='Submit'
-        disabled={!buttonActivation()}>
-        Submit Address
+        disabled={!this.buttonActivation()}>
+        Follow Pool
       </button>
     </form>
     <div className='d-flex row w-100 justify-content-center'> 
-      {addressChecksMessage()}
+      {this.addressChecksMessage()}
     </div>
-    </>
-  )
+    </React.Fragment>
+  )}
 }
 
-export default AddPoolForm
+const map
+
+export default connect(null)(AddPoolForm)
+
+

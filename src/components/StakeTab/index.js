@@ -1,17 +1,19 @@
 import React from 'react'
 import numeral from 'numeral'
-import { DeleteBtn, CloseIcon } from './DeleteButton'
+import { DeleteBtn, CloseIcon, AddrLabel } from './StakeTabElements'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteStakeAddress } from '../../actions/stake_address.actions';
 
 const StakeTab = ({stake}) => { 
 
   const user = useSelector(state => state.sessions.user)
+  const deleting = useSelector(state => state.sessions.user)
   const dispatch = useDispatch()
   const ticker = stake.pool_hash.pool.ticker
 
   return (
     <div className='col bg-light rounded border border-secondary ml-3 mr-3 mb-3 p-0 d-flex flex-row flex-wrap'>
+      <AddrLabel className="text-monospace">stake1 ...{stake.stake_address.view.slice(-6)}</AddrLabel>
       <div className='flex-row d-flex w-100'>
         <form onSubmit={(e) => {
           e.preventDefault()

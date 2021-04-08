@@ -44,16 +44,14 @@ export const addUserStake = (user, address) => {
 }
 
 export const deleteStakeAddress = (user, addr_id) => {
-	debugger
 	return (dispatch) => {
 		dispatch({type: DELETE_USER_STAKE_REQUEST})
-		return fetch(`http://localhost:3001/users/${user}/user_stake/:addr_id`, {
+		return fetch(`http://localhost:3001/users/${user}/user_stake/${addr_id}`, {
 			method: 'DELETE',
 	    headers: {
 	    	'Content-Type': 'application/json',
 	    	...authHeader()
-	    },
-	    body: JSON.stringify()
+	    }
 		}).then(res => {
 			if (res.ok) {
 				return res.json()
@@ -76,7 +74,3 @@ export const deleteStakeAddress = (user, addr_id) => {
 			})
 	}
 }
-
-
-
-

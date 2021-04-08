@@ -31,3 +31,10 @@ export const AddrLabel = styled.span`
     cursor: auto; 
   }
 `
+
+export const SpinnerDiv = styled.div`
+	position: absolute;
+	width: 100%;
+	top: 10px;
+	z-index: 5;
+`

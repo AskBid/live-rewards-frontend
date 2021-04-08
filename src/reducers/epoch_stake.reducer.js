@@ -12,6 +12,7 @@ import {
 
 const initialState = {
   loading: false,
+  deleting_addr_id: undefined,
   list: []
 };
 
@@ -28,7 +29,6 @@ export default function epochStakeReducer(state = initialState, action) {
   		return {
   			...state,
         loading: false,
-        deleting_id: undefined,
         list: action.payload
   		}
 
@@ -59,7 +59,8 @@ export default function epochStakeReducer(state = initialState, action) {
 
     case DELETE_USER_STAKE_REQUEST:
       return {
-        ...state
+        ...state,
+        deleting_addr_id: action.payload
       }
 
     default:

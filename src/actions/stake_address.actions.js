@@ -45,7 +45,10 @@ export const addUserStake = (user, address) => {
 
 export const deleteStakeAddress = (user, addr_id) => {
 	return (dispatch) => {
-		dispatch({type: DELETE_USER_STAKE_REQUEST})
+		dispatch({
+			type: DELETE_USER_STAKE_REQUEST,
+			payload: addr_id
+		})
 		return fetch(`http://localhost:3001/users/${user}/user_stake/${addr_id}`, {
 			method: 'DELETE',
 	    headers: {

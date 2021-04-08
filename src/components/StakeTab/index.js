@@ -1,8 +1,16 @@
 import React from 'react'
 import numeral from 'numeral'
-import { DeleteBtn, CloseIcon, AddrLabel, SpinnerDiv } from './StakeTabElements'
+import { 
+  DeleteBtn,
+  PoolBtn,
+  CloseIcon, 
+  PoolIcon, 
+  AddrLabel, 
+  SpinnerDiv 
+} from './StakeTabElements'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteStakeAddress } from '../../actions/stake_address.actions';
+import { Link } from 'react-router-dom'
 
 const StakeTab = ({stake}) => { 
 
@@ -27,12 +35,16 @@ const StakeTab = ({stake}) => {
           e.preventDefault()
           dispatch(deleteStakeAddress(user, stake.stake_address.id))
         }}>
-          <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto rounded h-100 ml-auto mr-auto' style={{width:'2vw'}}>
+          <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'2vw'}}>
             <CloseIcon /> 
           </DeleteBtn>
         </form>
 
-        <div className='col-auto mt-2 mb-auto mr-3 w-auto text-dark'>C</div>
+        <Link>
+          <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2vw'}}>
+            <PoolIcon /> 
+          </PoolBtn>
+        </Link>
 
         <div className='col d-flex flex-row flex-wrap m-0 p-0'>
           <div className='col text-dark mt-auto mb-auto'>

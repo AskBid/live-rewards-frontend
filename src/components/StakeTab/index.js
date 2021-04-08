@@ -40,7 +40,7 @@ const StakeTab = ({stake}) => {
           </DeleteBtn>
         </form>
 
-        <Link to={`/pool-compare`}>
+        <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
           <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2vw'}}>
             <PoolIcon /> 
           </PoolBtn>

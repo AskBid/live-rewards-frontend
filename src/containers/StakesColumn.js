@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { userEpochStakes } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
-import EpochTabPlaceholder from '../components/EpochTabPlaceholder';
 import { groupBy } from 'underscore';
 
 class StakesColumn extends Component {

@@ -6,16 +6,12 @@ import { getTickers } from '../actions/pool.actions'
 class AddPoolForm extends Component {
 
   state = {
-    ticker: '',
-    tickers: []
+    ticker: ''
   }
 
   componentDidMount() {
     // avoid to fetch tickers every time component is mounted?
-    console.log(this.state.tickers)
-    console.log(this.state.tickers.length)
-    console.log(this.state.tickers.length === 0)
-    this.state.tickers.length === 0 && this.props.getTickers()
+    !this.props.tickers && this.props.getTickers()
   }
 
   handleAddressInputChange = (e) => {
@@ -38,6 +34,14 @@ class AddPoolForm extends Component {
   }
 
   addressChecksMessage = () => {
+    const ticker = this.state.ticker
+    const chars = ticker.length
+    if ((chars > 5 || (chars > 0 && chars < 3)) && !(ticker.includes("pool1") && chars.length === 56)) {
+      return <div className='alert alert-info mt-4 position-absolute'>
+        <p>{`Pool TICKER can only be between 3 and 5 characters.`}</p>
+        {`Pool addresses should start with 'pool1' and be 56 characters long. (${chars}/56)`}
+      </div>
+    }
   }
 
   handleSubmit = (e) => {
@@ -80,6 +84,12 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddPoolForm)
+const mapStateToProps = state => {
+  return {
+    tickers: state.pools.tickers
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPoolForm)
 
 

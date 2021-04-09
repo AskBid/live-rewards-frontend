@@ -1,7 +1,6 @@
 import { 
 	REQUEST_POOL_TICKERS,
 	REQUEST_POOL_TICKERS_SUCCESS,
-	REQUEST_POOL_TICKERS_FAILURE,
 	ERROR,
 	CLEAR
 } from '.'
@@ -17,7 +16,6 @@ export const getTickers = () => {
 	    	"Accept": "application/json"
 	    }
 		}).then(res => {
-			console.log('fetching tickers')
 			if (res.ok) {
 				return res.json()
 			} else {
@@ -34,8 +32,7 @@ export const getTickers = () => {
 	  		});
 			})
 			.catch(err => {
-				dispatch({type: REQUEST_POOL_TICKERS_FAILURE})
-				// dispatch({type: ERROR, message: err.toString()})
+				dispatch({type: ERROR, message: err.toString()})
 			})
 	}
 }

@@ -108,4 +108,10 @@ button:hover {
   top: 80px;
   z-index: 5;
 }
+
+.autocomplete {
+  background: rgba(255,255,255,0.5);
+  width: 100%;
+  top: 50px;
+}
     

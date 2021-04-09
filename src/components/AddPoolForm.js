@@ -48,7 +48,9 @@ class AddPoolForm extends Component {
     e.preventDefault()
   }
 
-  render() { return (
+  render() { 
+    const tickers = this.props.tickers
+    return (
     <React.Fragment>
     <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={this.handleSubmit}>
       <div>
@@ -61,9 +63,14 @@ class AddPoolForm extends Component {
           type="text"
           name="pool"
           placeholder="TICKR or pool1cuxntl7p... (If empty, will pick a random Pool)"
-          className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded'
+          className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
           onChange={this.handleAddressInputChange}>
         </input>
+        <div className='d-block-flex position-absolute autocomplete'>
+          <ul>
+            {tickers && tickers.slice(0,6).map(item => <li>{item}</li>)}
+          </ul>
+        </div>
       </fieldset>
       <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
         type='Submit'

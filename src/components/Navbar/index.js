@@ -18,9 +18,6 @@ const Navbar = ({toggle}) => {
           	<NavLink to='/live-rewards'>
               Live Rewards
             </NavLink>
-            <NavLink to='/pool-compare'>
-              Pool Compare
-            </NavLink>
           	<NavLink to='/howto' >
               How To
             </NavLink>

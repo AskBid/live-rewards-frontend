@@ -66,9 +66,9 @@ class AddPoolForm extends Component {
           className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
           onChange={this.handleAddressInputChange}>
         </input>
-        <div className='d-block-flex position-absolute autocomplete'>
+        <div className='d-block-flex position-absolute autocomplete border rounded pl-3 pt-2'>
           <ul>
-            {tickers && tickers.slice(0,6).map(item => <li>{item}</li>)}
+            {tickers && tickers.slice(0,200).map(item => <li>{item}</li>)}
           </ul>
         </div>
       </fieldset>

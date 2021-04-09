@@ -1,5 +1,6 @@
 import React from 'react'
 import PoolCompareControlBar from '../containers/PoolCompareControlBar'
+import UserPoolsBucket from '../containers/UserPoolsBucket'
 
 function PoolCompare({match}) {
 
@@ -10,7 +11,7 @@ function PoolCompare({match}) {
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto">
 	        	<PoolCompareControlBar/>
-	    			<h1 className='text-dark'>...Pool Comparisons...</h1>
+	    			<UserPoolsBucket/>
 	        </div>
 	        <div className='col'></div>
 	      </div>

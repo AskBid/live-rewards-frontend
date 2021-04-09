@@ -1,20 +1,23 @@
 import { 
+	REQUEST_POOL_TICKERS,
+	REQUEST_POOL_TICKERS_SUCCESS,
+	REQUEST_POOL_TICKERS_FAILURE,
 	ERROR,
 	CLEAR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 
-export const addUserStake = (ticker) => {
+export const getTickers = () => {
 	return (dispatch) => {
-		dispatch({type: })
+		dispatch({type: REQUEST_POOL_TICKERS})
 		return fetch(`http://localhost:3001/pools/tickers`, {
 			method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
 	    	"Accept": "application/json"
-	    },
-	    body: JSON.stringify(ticker)
+	    }
 		}).then(res => {
+			console.log('fetching tickers')
 			if (res.ok) {
 				return res.json()
 			} else {
@@ -23,7 +26,7 @@ export const addUserStake = (ticker) => {
 			})
 			.then(json => {
 				dispatch({
-	  			type: ,
+	  			type: REQUEST_POOL_TICKERS_SUCCESS,
 	  			payload: json
 	  		});
 	  		dispatch({
@@ -31,8 +34,8 @@ export const addUserStake = (ticker) => {
 	  		});
 			})
 			.catch(err => {
-				dispatch({type: })
-				dispatch({type: ERROR, message: err.toString()})
+				dispatch({type: REQUEST_POOL_TICKERS_FAILURE})
+				// dispatch({type: ERROR, message: err.toString()})
 			})
 	}
 }

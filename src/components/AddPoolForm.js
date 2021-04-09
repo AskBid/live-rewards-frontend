@@ -1,46 +1,43 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-
+import { getTickers } from '../actions/pool.actions'
 
 class AddPoolForm extends Component {
 
   state = {
-    address: ''
+    ticker: '',
+    tickers: []
   }
 
   componentDidMount() {
-    //fetch tickers
+    // avoid to fetch tickers every time component is mounted?
+    console.log(this.state.tickers)
+    console.log(this.state.tickers.length)
+    console.log(this.state.tickers.length === 0)
+    this.state.tickers.length === 0 && this.props.getTickers()
   }
 
   handleAddressInputChange = (e) => {
-    this.setAddress({
-      address: e.target.value
+    this.setState({
+      ticker: e.target.value
     })
   }
 
   buttonActivation = () => {
-    const address = this.state.address  
-    const correct_address = address.includes("stake1") && address.length === 59
-    return address.length === 0 ? true : correct_address
+    const ticker = this.state.ticker 
+    if (ticker.length === 0) {
+      return true
+    } else { 
+      return (ticker.includes("pool1") && ticker.length === 56) || (ticker.length < 6 && ticker.length > 2)
+    }
+  }
+
+  hideButton = () => {
+    this.props.history.goBack()
   }
 
   addressChecksMessage = () => {
-    const address = this.state.address  
-    if (!address.includes("stake1") && address.length > 6 && !address.includes("addr1")) {
-      return <div className='alert alert-info mt-4'>{`The address should start with "stake1".`}</div>
-    } else if (address.length !== 59 && !address.includes("addr1") && address.length > 2) {
-      return <div className='alert alert-info mt-4'>{`The address should be 59 letters long. count: ${address.length}/59`}</div>
-    }
-    if (address.includes("addr1") && address.length === 103) {
-      return <div className='alert alert-info mt-4'>{`You entered a`}
-            <b>{` Wallet Address`}</b>
-            {`, to find its BECH32 `}<b>{`Stake Address`}</b>{` visit: `}<br/>
-          <a href={`https://cardanoscan.io/address/${address}`} target="_blank" rel="noreferrer">
-            {`https://cardanoscan.io/address/${address.slice(0,18)}...`}
-          </a>
-        </div>
-    }
   }
 
   handleSubmit = (e) => {
@@ -50,11 +47,11 @@ class AddPoolForm extends Component {
   render() { return (
     <React.Fragment>
     <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={this.handleSubmit}>
-      <Link to='/live-rewards' className=''>
-        <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' type='Submit'>
+      <div>
+        <button onClick={this.hideButton} className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1'>
           Hide
         </button>
-      </Link>
+      </div>
       <fieldset className='col w-100 d-inline-flex p-0 pl-2'>
         <input
           type="text"
@@ -77,8 +74,12 @@ class AddPoolForm extends Component {
   )}
 }
 
-const map
+const mapDispatchToProps = dispatch => {
+  return {
+    getTickers: (ticker) => dispatch(getTickers(ticker))
+  }
+}
 
-export default connect(null)(AddPoolForm)
+export default connect(null, mapDispatchToProps)(AddPoolForm)
 
 

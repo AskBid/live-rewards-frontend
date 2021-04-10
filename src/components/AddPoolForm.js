@@ -14,7 +14,7 @@ class AddPoolForm extends Component {
     !this.props.tickers && this.props.getTickers()
   }
 
-  handleAddressInputChange = (e) => {
+  handleTickerInputChange = (e) => {
     this.setState({
       ticker: e.target.value
     })
@@ -37,7 +37,7 @@ class AddPoolForm extends Component {
     const ticker = this.state.ticker
     const chars = ticker.length
     if ((chars > 5 || (chars > 0 && chars < 3)) && !(ticker.includes("pool1") && chars.length === 56)) {
-      return <div className='alert alert-info mt-4 position-absolute'>
+      return <div className='alert alert-info mt-4 position-absolute messages'>
         <p>{`Pool TICKER can only be between 3 and 5 characters.`}</p>
         {`Pool addresses should start with 'pool1' and be 56 characters long. (${chars}/56)`}
       </div>
@@ -64,7 +64,7 @@ class AddPoolForm extends Component {
           name="pool"
           placeholder="TICKR or pool1cuxntl7p... (If empty, will pick a random Pool)"
           className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
-          onChange={this.handleAddressInputChange}>
+          onChange={this.handleTickerInputChange}>
         </input>
         <div className='d-block-flex position-absolute autocomplete border rounded pl-3 pt-2'>
           <ul>

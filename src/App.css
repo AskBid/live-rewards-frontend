@@ -109,11 +109,18 @@ button:hover {
   z-index: 5;
 }
 
+.messages {
+  opacity: 90%;
+  position: absolute;
+  top: 60vh;
+}
+
 .autocomplete {
-  background: rgba(255,255,255,0.96);
+  background: rgba(255,255,255,0.9);
   overflow: scroll;
   height: 50vh;
   width: 100%;
   top: 50px;
+  z-index: 5;
 }
     

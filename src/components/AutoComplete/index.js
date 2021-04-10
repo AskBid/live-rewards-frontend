@@ -13,6 +13,7 @@ const AutoComplete = ({
 
 	const searchContainer = useRef(null);
 	const searchResultRef = useRef(null);
+	const searchResultDivRef = useRef(null);
 
 	useEffect(() => {
     window.addEventListener("mousedown", handleClickOutside);
@@ -38,7 +39,9 @@ const AutoComplete = ({
     const isHighlighted = false
     if ( suggestions.length > 0 ) {
       return (
-      	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}>
+      	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}
+      		ref={searchResultDivRef}
+      	>
 	        <ul ref={searchResultRef}>
 	        	{suggestions.map( (ticker, idx) => (
 		          <AutoCompleteItem 
@@ -100,11 +103,14 @@ const AutoComplete = ({
       if (cursor < 0 || cursor > suggestions.length || !searchResultRef) {
           return () => {};
       }
-      debugger
-      if (cursor > 10) {
-      	let listItems = Array.from(searchResultRef.current.children);
-     		listItems[cursor] && scrollIntoView(listItems[cursor].offsetTop);
-      }
+
+    	let listItems = Array.from(searchResultRef.current.children);
+   		if (listItems[cursor]) {
+   			const height = searchResultDivRef.current.offsetHeight
+   			debugger
+   			const location = listItems[cursor].offsetTop
+   			(location % height) < 20 ? scrollIntoView(location) : null
+   		}
   }, [cursor]);
 
 	return (

@@ -10,6 +10,7 @@ const AutoComplete = ({
 
 	const [isVisbile, setVisiblity] = useState(false);
 	const [cursor, setCursor] = useState(-1);
+	const [scroll, setScroll] = useState(0);
 
 	const searchContainer = useRef(null);
 	const searchResultRef = useRef(null);
@@ -41,6 +42,7 @@ const AutoComplete = ({
       return (
       	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}
       		ref={searchResultDivRef}
+      		style={{overflow:'scroll'}}
       	>
 	        <ul ref={searchResultRef}>
 	        	{suggestions.map( (ticker, idx) => (
@@ -106,17 +108,11 @@ const AutoComplete = ({
 
     	let listItems = Array.from(searchResultRef.current.children);
    		if (listItems[cursor]) {
-   			const tolerance = 20
    			const height = searchResultDivRef.current.offsetHeight
    			const location = listItems[cursor].offsetTop
-   			let fromTop = (location > height) ? (location % height) : tolerance
-   			console.log('location')
-   			console.log(location)
-   			console.log('height')
-   			console.log(height)
-   			console.log('fromTop')
-   			console.log(fromTop)
-   			if (fromTop < tolerance) {
+   			// debugger
+   			if (((location - scroll) > (height-10)) || ((location - scroll) < 0)) {
+   				setScroll(location)
    				scrollIntoView(location)
    			}
    		}

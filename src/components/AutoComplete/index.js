@@ -106,10 +106,19 @@ const AutoComplete = ({
 
     	let listItems = Array.from(searchResultRef.current.children);
    		if (listItems[cursor]) {
+   			const tolerance = 20
    			const height = searchResultDivRef.current.offsetHeight
-   			debugger
    			const location = listItems[cursor].offsetTop
-   			(location % height) < 20 ? scrollIntoView(location) : null
+   			let fromTop = (location > height) ? (location % height) : tolerance
+   			console.log('location')
+   			console.log(location)
+   			console.log('height')
+   			console.log(height)
+   			console.log('fromTop')
+   			console.log(fromTop)
+   			if (fromTop < tolerance) {
+   				scrollIntoView(location)
+   			}
    		}
   }, [cursor]);
 

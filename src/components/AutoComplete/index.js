@@ -37,7 +37,7 @@ const AutoComplete = ({
     const isHighlighted = false
     if ( suggestions.length > 0 ) {
       return (
-      	<div className={`w-100 d-block-flex autocomplete border rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}>
+      	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}>
 	        <ul>
 	        	{suggestions.map( (ticker, idx) => (
 		          <AutoCompleteItem 
@@ -71,12 +71,12 @@ const AutoComplete = ({
   const keyboardNavigation = e => {
     if (e.key === "ArrowDown") {
       isVisbile
-	      ? setCursor(c => (c < suggestions.length - 1 ? c + 1 : c))
+	      ? setCursor(c => (c < suggestions.length - 1 ? c + 1 : 0))
 	      : showSuggestion();
     }
 
     if (e.key === "ArrowUp") {
-      setCursor(c => (c > 0 ? c - 1 : 0));
+      setCursor(c => (c > 0 ? c - 1 : suggestions.length - 1));
     }
 
     if (e.key === "Escape") {

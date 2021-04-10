@@ -4,14 +4,14 @@ import AutoCompleteItem from "./AutoCompleteItem";
 const AutoComplete = ({ 
 		suggestions, 
 		text, 
-		handleTextChange 
+		handleTextChange,
+		selectSuggestion
 	}) => {
 
 	const [isVisbile, setVisiblity] = useState(false);
 	const [cursor, setCursor] = useState(-1);
 
 	const searchContainer = useRef(null);
-  const searchResultRef = useRef(null);
 
 	useEffect(() => {
     window.addEventListener("mousedown", handleClickOutside);
@@ -42,7 +42,8 @@ const AutoComplete = ({
 	        	{suggestions.map( (ticker, idx) => (
 		          <AutoCompleteItem 
 		          	key={idx}
-		            onSelectItem={hideSuggestion}
+		            // onSelectItem={hideSuggestion}
+		            selectSuggestion={selectSuggestion}
 		            isHighlighted={cursor === idx ? true : false}
 		            ticker={ticker}
 		            text={text}
@@ -83,7 +84,7 @@ const AutoComplete = ({
     }
 
     if (e.key === "Enter" && cursor > 0) {
-      hideSuggestion();
+      selectSuggestion(suggestions[cursor])
     }
   };
 

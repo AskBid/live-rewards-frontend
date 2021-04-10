@@ -65,7 +65,7 @@ class AddPoolForm extends Component {
             Hide
           </button>
         </div>
-        <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={this.handleSubmit}>
+        <div className='row d-inline-flex w-100 mr-auto ml-auto'>
           <AutoComplete 
             suggestions={this.state.suggestions}
             handleTextChange={this.handleTextChange} 
@@ -76,7 +76,7 @@ class AddPoolForm extends Component {
             disabled={!this.buttonActivation()}>
             Follow Pool
           </button>
-        </form>
+        </div>
       </div>
     </React.Fragment>
   )}

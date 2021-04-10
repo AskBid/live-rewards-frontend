@@ -6,7 +6,7 @@ import { getTickers } from '../actions/pool.actions'
 class AddPoolForm extends Component {
 
   state = {
-    ticker: '',
+    text: '',
     suggestions: []
   }
 
@@ -24,7 +24,7 @@ class AddPoolForm extends Component {
       suggestions = this.props.tickers.sort().filter(tick => regex.test(tick))
     }
     this.setState({
-      ticker: e.target.value,
+      text: e.target.value,
       suggestions
     })
   }
@@ -37,14 +37,23 @@ class AddPoolForm extends Component {
     return (
       <div className='d-block-flex position-absolute autocomplete border rounded pl-3 pt-2'>
         <ul>
-          {suggestions && suggestions.map(item => <li className='decoration-none'>{item}</li>)}
+          {suggestions && suggestions.map(item => {
+            return <li className='decoration-none' onClick={() => this.selectSuggestion(item)}>{item}</li>
+          })}
         </ul>
       </div>
     )
   }
 
+  selectSuggestion = (value) => {
+    this.setState({
+      text: value,
+      suggestions: []
+    })
+  }
+
   buttonActivation = () => {
-    const ticker = this.state.ticker 
+    const ticker = this.state.text 
     if (ticker.length === 0) {
       return true
     } else { 
@@ -57,7 +66,7 @@ class AddPoolForm extends Component {
   }
 
   addressChecksMessage = () => {
-    const ticker = this.state.ticker
+    const ticker = this.state.text
     const chars = ticker.length
     if ((chars > 5 || (chars > 0 && chars < 3)) && !(ticker.includes("pool1") && chars.length === 56)) {
       return <div className='alert alert-info mt-4 position-absolute messages'>
@@ -73,6 +82,7 @@ class AddPoolForm extends Component {
 
   render() { 
     const tickers = this.props.tickers
+    const ticker = this.state.text
     return (
     <React.Fragment>
     <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={this.handleSubmit}>
@@ -83,6 +93,7 @@ class AddPoolForm extends Component {
       </div>
       <fieldset className='col w-100 d-inline-flex p-0 pl-2'>
         <input
+          value={ticker}
           type="text"
           name="pool"
           placeholder="TICKR or pool1cuxntl7p... (If empty, will pick a random Pool)"

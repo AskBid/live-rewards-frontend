@@ -12,6 +12,7 @@ const AutoComplete = ({
 	const [cursor, setCursor] = useState(-1);
 
 	const searchContainer = useRef(null);
+	const searchResultRef = useRef(null);
 
 	useEffect(() => {
     window.addEventListener("mousedown", handleClickOutside);
@@ -38,7 +39,7 @@ const AutoComplete = ({
     if ( suggestions.length > 0 ) {
       return (
       	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}>
-	        <ul>
+	        <ul ref={searchResultRef}>
 	        	{suggestions.map( (ticker, idx) => (
 		          <AutoCompleteItem 
 		          	key={idx}
@@ -87,6 +88,24 @@ const AutoComplete = ({
       selectSuggestion(suggestions[cursor])
     }
   };
+
+  const scrollIntoView = position => {
+    searchResultRef.current.parentNode.scrollTo({
+        top: position,
+        behavior: "smooth"
+    });
+  };
+
+  useEffect(() => {
+      if (cursor < 0 || cursor > suggestions.length || !searchResultRef) {
+          return () => {};
+      }
+      debugger
+      if (cursor > 10) {
+      	let listItems = Array.from(searchResultRef.current.children);
+     		listItems[cursor] && scrollIntoView(listItems[cursor].offsetTop);
+      }
+  }, [cursor]);
 
 	return (
 		<fieldset className='col w-100 p-0 pl-2 pr-2' ref={searchContainer}>

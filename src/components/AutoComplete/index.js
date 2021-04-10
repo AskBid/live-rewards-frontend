@@ -8,6 +8,7 @@ const AutoComplete = ({
 	}) => {
 
 	const [isVisbile, setVisiblity] = useState(false);
+	const [cursor, setCursor] = useState(-1);
 
 	const searchContainer = useRef(null);
   const searchResultRef = useRef(null);
@@ -34,33 +35,35 @@ const AutoComplete = ({
 
 	const renderSuggestions = () => {
     const isHighlighted = false
-    if ( suggestions.length === 0 ) {
-      return addressChecksMessage();
+    if ( suggestions.length > 0 ) {
+      return (
+      	<div className={`w-100 d-block-flex autocomplete border rounded pl-3 pt-2 ${isVisbile ? null : 'invisible'}`}>
+	        <ul>
+	        	{suggestions.map( (ticker, idx) => (
+		          <AutoCompleteItem 
+		          	key={idx}
+		            onSelectItem={hideSuggestion}
+		            isHighlighted={cursor === idx ? true : false}
+		            ticker={ticker}
+		            text={text}
+		          />))
+	        	}
+	        </ul>
+	      </div>
+	    )
     } 
-    return (
-    	<div className='position-absolute'>
-      <div className={`d-block-flex autocomplete border rounded pl-3 pt-2 ${isVisbile ? null : 'invisible'}`}>
-        <ul>
-          {suggestions && suggestions.map(item => {
-            return <li className={`decoration-none ${isHighlighted}`} onClick={() => this.selectSuggestion(item)}>
-              <b>{item.slice(0,text.length)}</b>{item.slice(text.length)}
-            </li>
-          })}
-        </ul>
-      </div>
-        {addressChecksMessage()}
-      </div>
-    )
   }
 
   const addressChecksMessage = () => {
     const ticker = text
     const chars = ticker.length
     if ((chars > 5 || (chars > 0 && chars < 3)) && !(ticker.includes("pool1") && chars.length === 56)) {
-      return <div className='alert alert-info mt-1 messages'>
-        {`Pool TICKER must have between 3 and 5 characters.`}<br/>
-        {`Pool addresses should start with 'pool1' and be 56 characters long. (${chars}/56)`}
-      </div>
+      return (
+      	<div className='alert alert-info mt-1 messages'>
+	        {`Pool TICKER must have between 3 and 5 characters.`}<br/>
+	        {`Pool addresses should start with 'pool1' and be 56 characters long. (${chars}/56)`}
+	      </div>
+	    )
     }
   }
 
@@ -76,11 +79,19 @@ const AutoComplete = ({
 	      onClick={showSuggestion}
 	      autocomplete="off">
 	    </input>
-	    {renderSuggestions()}
+	    <div className='position-absolute w-100'>
+	    	{renderSuggestions()}
+        {addressChecksMessage()}
+      </div>
 	  </fieldset>
   )
 };
 
-export default AutoComplete;
+export default AutoComplete;		
 
-
+/*
+{suggestions && suggestions.map(item => {
+  return <li className={`decoration-none ${isHighlighted}`} onClick={() => this.selectSuggestion(item)}>
+    <b>{item.slice(0,text.length)}</b>{item.slice(text.length)}
+  </li>
+})}*/

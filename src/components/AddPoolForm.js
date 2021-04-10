@@ -21,7 +21,7 @@ class AddPoolForm extends Component {
     if (value.length > 0) {
       //matches to string starting with the value, 'i' is for case insenstitive.
       const regex = new RegExp(`^${value}`, 'i')
-      suggestions = this.props.tickers.sort().filter(tick => tick.test(regex))
+      suggestions = this.props.tickers.sort().filter(tick => regex.test(tick))
     }
     this.setState({
       ticker: e.target.value,
@@ -37,7 +37,7 @@ class AddPoolForm extends Component {
     return (
       <div className='d-block-flex position-absolute autocomplete border rounded pl-3 pt-2'>
         <ul>
-          {suggestions && tickers.slice(0,200).map(item => <li>{item}</li>)}
+          {suggestions && suggestions.map(item => <li className='decoration-none'>{item}</li>)}
         </ul>
       </div>
     )
@@ -87,9 +87,10 @@ class AddPoolForm extends Component {
           name="pool"
           placeholder="TICKR or pool1cuxntl7p... (If empty, will pick a random Pool)"
           className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
-          onChange={this.handleTickerInputChange}>
+          onChange={this.handleTickerInputChange}
+          autocomplete="off">
         </input>
-        {}
+        {this.renderSuggestions()}
       </fieldset>
       <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
         type='Submit'

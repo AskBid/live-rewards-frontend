@@ -38,27 +38,29 @@ const AddStakeForm = ({addUserStake, match}) => {
 
   return (
     <>
-    <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={handleSubmit}>
+    <div className='d-flex d-inline-flex w-100 mr-auto ml-auto'>
       <Link to='/live-rewards' className=''>
         <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' type='Submit'>
           Hide
         </button>
       </Link>
-      <fieldset className='col w-100 d-inline-flex p-0 pl-2'>
-        <input
-          type="text"
-          name="stake_address"
-          placeholder="stake1ux026n9gx9ygv... (If empty, will pick a random address)"
-          className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded'
-          onChange={handleAddressInputChange}>
-        </input>
-      </fieldset>
-      <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
-        type='Submit'
-        disabled={!buttonActivation()}>
-        Submit Address
-      </button>
-    </form>
+      <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={handleSubmit}>
+        <fieldset className='col w-100 d-inline-flex p-0 pl-2'>
+          <input
+            type="text"
+            name="stake_address"
+            placeholder="stake1ux026n9gx9ygv... (If empty, will pick a random address)"
+            className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded'
+            onChange={handleAddressInputChange}>
+          </input>
+        </fieldset>
+        <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
+          type='Submit'
+          disabled={!buttonActivation()}>
+          Submit Address
+        </button>
+      </form>
+    </div>
     <div className='d-flex row w-100 justify-content-center'> 
       {addressChecksMessage()}
     </div>

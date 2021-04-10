@@ -112,7 +112,7 @@ button:hover {
 .messages {
   opacity: 90%;
   position: absolute;
-  top: 60vh;
+  top: 4vh;
 }
 
 .autocomplete {

@@ -10,10 +10,11 @@ const AutoComplete = ({
 	const renderSuggestions = () => {
     const isHighlighted = false
     if ( suggestions.length === 0 ) {
-      return null;
+      return addressChecksMessage();
     } 
     return (
-      <div className='d-block-flex position-absolute autocomplete border rounded pl-3 pt-2'>
+    	<div className='position-absolute'>
+      <div className='d-block-flex autocomplete border rounded pl-3 pt-2'>
         <ul>
           {suggestions && suggestions.map(item => {
             return <li className={`decoration-none ${isHighlighted}`} onClick={() => this.selectSuggestion(item)}>
@@ -22,11 +23,24 @@ const AutoComplete = ({
           })}
         </ul>
       </div>
+        {addressChecksMessage()}
+      </div>
     )
   }
 
+  const addressChecksMessage = () => {
+    const ticker = text
+    const chars = ticker.length
+    if ((chars > 5 || (chars > 0 && chars < 3)) && !(ticker.includes("pool1") && chars.length === 56)) {
+      return <div className='alert alert-info mt-1'>
+        {`Pool TICKER can only be between 3 and 5 characters.`}<br/>
+        {`Pool addresses should start with 'pool1' and be 56 characters long. (${chars}/56)`}
+      </div>
+    }
+  }
+
 	return (
-		<fieldset className='col w-100 d-inline-flex p-0 pl-2'>
+		<fieldset className='col w-100 p-0 pl-2 pr-2'>
 	    <input
 	      value={text}
 	      type="text"

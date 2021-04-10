@@ -19,6 +19,7 @@ class AddPoolForm extends Component {
 
   handleTextChange = (e) => {
     const value = e.target.value;
+    console.log(value)
     let suggestions = [];
     if (value.length > 0) {
       //matches to string starting with the value, 'i' is for case insenstitive.
@@ -51,17 +52,6 @@ class AddPoolForm extends Component {
     this.props.history.goBack()
   }
 
-  addressChecksMessage = () => {
-    const ticker = this.state.text
-    const chars = ticker.length
-    if ((chars > 5 || (chars > 0 && chars < 3)) && !(ticker.includes("pool1") && chars.length === 56)) {
-      return <div className='alert alert-info mt-4 position-absolute messages'>
-        <p>{`Pool TICKER can only be between 3 and 5 characters.`}</p>
-        {`Pool addresses should start with 'pool1' and be 56 characters long. (${chars}/56)`}
-      </div>
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault()
   }
@@ -77,7 +67,7 @@ class AddPoolForm extends Component {
       </div>
       <AutoComplete 
         suggestions={this.state.suggestions}
-        handleTickerInputChange={this.handleTickerInputChange} 
+        handleTextChange={this.handleTextChange} 
         text={this.state.text}/>
       <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
         type='Submit'
@@ -85,9 +75,6 @@ class AddPoolForm extends Component {
         Follow Pool
       </button>
     </form>
-    <div className='d-flex row w-100 justify-content-center'> 
-      {this.addressChecksMessage()}
-    </div>
     </React.Fragment>
   )}
 }

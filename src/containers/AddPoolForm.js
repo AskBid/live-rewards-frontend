@@ -19,7 +19,6 @@ class AddPoolForm extends Component {
 
   handleTextChange = (e) => {
     const value = e.target.value;
-    console.log(value)
     let suggestions = [];
     if (value.length > 0) {
       //matches to string starting with the value, 'i' is for case insenstitive.
@@ -54,6 +53,7 @@ class AddPoolForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    console.log(this.state.text)
   }
 
   render() { 

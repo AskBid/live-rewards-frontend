@@ -8,6 +8,10 @@
   padding: 0;
 }
 
+.invisible {
+  display: none;
+}
+
 a {
 	color: #fff;
 }
@@ -110,9 +114,7 @@ button:hover {
 }
 
 .messages {
-  opacity: 90%;
-  position: absolute;
-  top: 4vh;
+  opacity: 75%;
 }
 
 .autocomplete {

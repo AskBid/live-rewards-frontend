@@ -37,7 +37,7 @@ const AutoComplete = ({
     const isHighlighted = false
     if ( suggestions.length > 0 ) {
       return (
-      	<div className={`w-100 d-block-flex autocomplete border rounded pl-3 pt-2 ${isVisbile ? null : 'invisible'}`}>
+      	<div className={`w-100 d-block-flex autocomplete border rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}>
 	        <ul>
 	        	{suggestions.map( (ticker, idx) => (
 		          <AutoCompleteItem 
@@ -67,6 +67,26 @@ const AutoComplete = ({
     }
   }
 
+  const keyboardNavigation = e => {
+    if (e.key === "ArrowDown") {
+      isVisbile
+	      ? setCursor(c => (c < suggestions.length - 1 ? c + 1 : c))
+	      : showSuggestion();
+    }
+
+    if (e.key === "ArrowUp") {
+      setCursor(c => (c > 0 ? c - 1 : 0));
+    }
+
+    if (e.key === "Escape") {
+      hideSuggestion();
+    }
+
+    if (e.key === "Enter" && cursor > 0) {
+      hideSuggestion();
+    }
+  };
+
 	return (
 		<fieldset className='col w-100 p-0 pl-2 pr-2' ref={searchContainer}>
 	    <input
@@ -77,6 +97,7 @@ const AutoComplete = ({
 	      className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
 	      onChange={handleTextChange}
 	      onClick={showSuggestion}
+	      onKeyDown={keyboardNavigation}
 	      autocomplete="off">
 	    </input>
 	    <div className='position-absolute w-100'>
@@ -89,9 +110,4 @@ const AutoComplete = ({
 
 export default AutoComplete;		
 
-/*
-{suggestions && suggestions.map(item => {
-  return <li className={`decoration-none ${isHighlighted}`} onClick={() => this.selectSuggestion(item)}>
-    <b>{item.slice(0,text.length)}</b>{item.slice(text.length)}
-  </li>
-})}*/
+

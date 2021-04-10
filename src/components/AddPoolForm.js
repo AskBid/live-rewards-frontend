@@ -6,7 +6,8 @@ import { getTickers } from '../actions/pool.actions'
 class AddPoolForm extends Component {
 
   state = {
-    ticker: ''
+    ticker: '',
+    suggestions: []
   }
 
   componentDidMount() {
@@ -15,9 +16,31 @@ class AddPoolForm extends Component {
   }
 
   handleTickerInputChange = (e) => {
+    const value = e.target.value;
+    let suggestions = [];
+    if (value.length > 0) {
+      //matches to string starting with the value, 'i' is for case insenstitive.
+      const regex = new RegExp(`^${value}`, 'i')
+      suggestions = this.props.tickers.sort().filter(tick => tick.test(regex))
+    }
     this.setState({
-      ticker: e.target.value
+      ticker: e.target.value,
+      suggestions
     })
+  }
+
+  renderSuggestions = () => {
+    const { suggestions } = this.state;
+    if ( suggestions.length === 0 ) {
+      return null;
+    } 
+    return (
+      <div className='d-block-flex position-absolute autocomplete border rounded pl-3 pt-2'>
+        <ul>
+          {suggestions && tickers.slice(0,200).map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+    )
   }
 
   buttonActivation = () => {
@@ -66,11 +89,7 @@ class AddPoolForm extends Component {
           className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
           onChange={this.handleTickerInputChange}>
         </input>
-        <div className='d-block-flex position-absolute autocomplete border rounded pl-3 pt-2'>
-          <ul>
-            {tickers && tickers.slice(0,200).map(item => <li>{item}</li>)}
-          </ul>
-        </div>
+        {}
       </fieldset>
       <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
         type='Submit'

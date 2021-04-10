@@ -42,7 +42,6 @@ const AutoComplete = ({
       return (
       	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}
       		ref={searchResultDivRef}
-      		style={{overflow:'scroll'}}
       	>
 	        <ul ref={searchResultRef}>
 	        	{suggestions.map( (ticker, idx) => (
@@ -110,7 +109,6 @@ const AutoComplete = ({
    		if (listItems[cursor]) {
    			const height = searchResultDivRef.current.offsetHeight
    			const location = listItems[cursor].offsetTop
-   			// debugger
    			if (((location - scroll) > (height-10)) || ((location - scroll) < 0)) {
    				setScroll(location)
    				scrollIntoView(location)
@@ -131,7 +129,7 @@ const AutoComplete = ({
 	      onKeyDown={keyboardNavigation}
 	      autocomplete="off">
 	    </input>
-	    <div className='position-absolute w-100'>
+	    <div className='position-absolute w-100 pr-2'>
 	    	{renderSuggestions()}
         {addressChecksMessage()}
       </div>

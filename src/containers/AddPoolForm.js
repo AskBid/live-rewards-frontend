@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTickers } from '../actions/pool.actions'
+import AutoComplete from '../components/AutoComplete'
 
 class AddPoolForm extends Component {
 
   state = {
     text: '',
-    suggestions: []
+    suggestions: [],
+    cursor: -1
   }
 
   componentDidMount() {
@@ -15,7 +17,7 @@ class AddPoolForm extends Component {
     !this.props.tickers && this.props.getTickers()
   }
 
-  handleTickerInputChange = (e) => {
+  handleTextChange = (e) => {
     const value = e.target.value;
     let suggestions = [];
     if (value.length > 0) {
@@ -27,22 +29,6 @@ class AddPoolForm extends Component {
       text: e.target.value,
       suggestions
     })
-  }
-
-  renderSuggestions = () => {
-    const { suggestions } = this.state;
-    if ( suggestions.length === 0 ) {
-      return null;
-    } 
-    return (
-      <div className='d-block-flex position-absolute autocomplete border rounded pl-3 pt-2'>
-        <ul>
-          {suggestions && suggestions.map(item => {
-            return <li className='decoration-none' onClick={() => this.selectSuggestion(item)}>{item}</li>
-          })}
-        </ul>
-      </div>
-    )
   }
 
   selectSuggestion = (value) => {
@@ -81,8 +67,6 @@ class AddPoolForm extends Component {
   }
 
   render() { 
-    const tickers = this.props.tickers
-    const ticker = this.state.text
     return (
     <React.Fragment>
     <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={this.handleSubmit}>
@@ -91,18 +75,10 @@ class AddPoolForm extends Component {
           Hide
         </button>
       </div>
-      <fieldset className='col w-100 d-inline-flex p-0 pl-2'>
-        <input
-          value={ticker}
-          type="text"
-          name="pool"
-          placeholder="TICKR or pool1cuxntl7p... (If empty, will pick a random Pool)"
-          className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
-          onChange={this.handleTickerInputChange}
-          autocomplete="off">
-        </input>
-        {this.renderSuggestions()}
-      </fieldset>
+      <AutoComplete 
+        suggestions={this.state.suggestions}
+        handleTickerInputChange={this.handleTickerInputChange} 
+        text={this.state.text}/>
       <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
         type='Submit'
         disabled={!this.buttonActivation()}>

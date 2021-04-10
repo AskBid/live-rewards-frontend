@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from "react-redux"
-import AddPoolForm from '../components/AddPoolForm'
+import AddPoolForm from './AddPoolForm'
 import DefaultPoolControlBar from '../components/DefaultPoolControlBar'
 import { addUserStake } from '../actions/stake_address.actions'
 

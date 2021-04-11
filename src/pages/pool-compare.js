@@ -14,7 +14,10 @@ function PoolCompare({match}) {
 	         	{// only to pass hisotry.location down the components
 	         	}
 	        	<Route path='/pool-compare' component={PoolCompareControlBar} />
-	    			<Route path='/pool-compare' component={UserPoolsBucket} />
+	    			<Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id'
+	    				component={UserPoolsBucket} />
+	    			<Route path='/pool-compare/users/:username/pools/new' 
+	    				component={UserPoolsBucket} />
 	    		</Router>
 	        </div>
 	        <div className='col'></div>

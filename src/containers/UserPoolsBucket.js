@@ -8,7 +8,7 @@ class UserPoolsBucket extends Component {
 
   componentDidMount() {
     if (!this.props.history.location.pathname.includes('/pools/new')) {
-      const { username, epoch_stake_id } = this.props.params
+      const { username, epoch_stake_id } = this.props.match.params
       this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
     }
   }

@@ -22,7 +22,7 @@ export default function projectedStakeReducer(state = initialState, action) {
   		return {
   			...state,
   			loading: false,
-  			list: ...action.payload
+  			list: [...action.payload]
   		}
 
   	case REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE:
@@ -30,7 +30,7 @@ export default function projectedStakeReducer(state = initialState, action) {
   			...state,
   			loading: false,
   		}
-  		
+
     default:
       return state;
   }

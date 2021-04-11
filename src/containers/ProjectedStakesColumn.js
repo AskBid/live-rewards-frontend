@@ -8,6 +8,13 @@ import { groupBy } from 'underscore';
 class ProjectedStakesColumn extends Component {
 
   componentDidMount() {
+    const getUrlEpochStake = (epoch_stake_id) => {
+      const epoch_stake = this.props.epoch_stakes.filter((epoch_stake) => {
+        return epoch_stake.id === epoch_stake_id
+      })[0]
+      !epoch_stake && this.props.getEpochStake(epoch_stake_id)
+    }
+
     if (!this.props.history.location.pathname.includes('/pools/new')) {
       const { username, epoch_stake_id } = this.props.match.params
       !this.props.epoch_stake && 
@@ -15,11 +22,6 @@ class ProjectedStakesColumn extends Component {
       !this.props.projected_stakes && 
         this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
     }
-  }
-
-  getUrlEpochStake = (epoch_stake_id) => {
-    epoch_stake = epoch_stakes.filter((epoch_stake) epoch_stake.id === epoch_stake_id)
-    !epoch_stake && getEpochStake(epoch_stake_id)
   }
 
   deployEpochs = () => {
@@ -49,15 +51,17 @@ class ProjectedStakesColumn extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPoolCompareUserEpochStakes: (username, epoch_stake_id) => dispatch(getPoolCompareUserEpochStakes(username, epoch_stake_id))
+    getPoolCompareUserEpochStakes: (username, epoch_stake_id) => {
+      return dispatch(getPoolCompareUserEpochStakes(username, epoch_stake_id))
+    },
     getEpochStake: (epoch_stake_id) => dispatch(getEpochStake(epoch_stake_id))
   }
 }
 
 const mapStateToProps = store => {
   return {
-    epoch_stakes: store.epoch_stakes.list
-    epoch_stake: store.epoch_stakes.epoch_stake
+    epoch_stakes: store.epoch_stakes.list,
+    epoch_stake: store.epoch_stakes.epoch_stake,
     projected_stakes: store.projected_stakes.list
   }
 }

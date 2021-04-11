@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { userEpochStakes } from '../actions/epoch_stake.actions';
+import { getPoolCompareUserEpochStakes } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import { groupBy } from 'underscore';
 
 class UserPoolsBucket extends Component {
 
   componentDidMount() {
+    const { user, epoch_stake_id } = this.props.params
+    this.props.getPoolCompareUserEpochStakes(user, epoch_stake_id)
   }
 
   deployEpochs = () => {
@@ -33,6 +35,7 @@ class UserPoolsBucket extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
+    getPoolCompareUserEpochStakes: () => dispatch(getPoolCompareUserEpochStakes())
   }
 }
 

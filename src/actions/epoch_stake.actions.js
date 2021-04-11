@@ -8,7 +8,7 @@ import { authHeader } from '../helpers/auth-header'
 export const userEpochStakes = (username) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`http://localhost:3001/users/${username}/epoch_stake`, {
+		return fetch(`http://localhost:3001/users/${username}/epoch_stakes`, {
 	  	method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',

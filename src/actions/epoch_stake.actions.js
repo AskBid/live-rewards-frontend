@@ -53,6 +53,7 @@ export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 				}
 			})
 	  	.then(json => { 
+	  		console.log(json)
 	  		dispatch({
 	  			type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES_SUCCESS, 
 	  			payload: json

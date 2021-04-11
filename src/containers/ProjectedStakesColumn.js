@@ -4,9 +4,10 @@ import { getPoolCompareUserEpochStakes } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import { groupBy } from 'underscore';
 
-class UserPoolsBucket extends Component {
+class ProjectedStakesColumn extends Component {
 
   componentDidMount() {
+    debugger
     if (!this.props.history.location.pathname.includes('/pools/new')) {
       const { username, epoch_stake_id } = this.props.match.params
       this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
@@ -43,8 +44,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = store => {
   return {
+    epoch_stakes: store.epoch_stakes
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPoolsBucket);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectedStakesColumn);
 

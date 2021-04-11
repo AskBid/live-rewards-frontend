@@ -1,6 +1,6 @@
 import React from 'react'
 import PoolCompareControlBar from '../containers/PoolCompareControlBar'
-import UserPoolsBucket from '../containers/UserPoolsBucket'
+import ProjectedStakesColumn from '../containers/ProjectedStakesColumn'
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 
 function PoolCompare({match}) {
@@ -15,9 +15,9 @@ function PoolCompare({match}) {
 	         	}
 	        	<Route path='/pool-compare' component={PoolCompareControlBar} />
 	    			<Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id'
-	    				component={UserPoolsBucket} />
+	    				component={ProjectedStakesColumn} />
 	    			<Route path='/pool-compare/users/:username/pools/new' 
-	    				component={UserPoolsBucket} />
+	    				component={ProjectedStakesColumn} />
 	    		</Router>
 	        </div>
 	        <div className='col'></div>

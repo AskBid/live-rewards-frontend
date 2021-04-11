@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { getPoolCompareUserEpochStakes } from '../actions/epoch_stake.actions';
+import { getPoolCompareUserEpochStakes } from '../actions/projected_stake.actions';
 import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import { groupBy } from 'underscore';

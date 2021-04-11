@@ -12,6 +12,25 @@ const initialState = {
 export default function projectedStakeReducer(state = initialState, action) {
   switch (action.type) {
 
+  	case REQUEST_USER_POOL_HASHES_EPOCH_STAKES:
+  		return {
+  			...state,
+  			loading: true
+  		}
+
+  	case REQUEST_USER_POOL_HASHES_EPOCH_STAKES_SUCCESS:
+  		return {
+  			...state,
+  			loading: false,
+  			list: ...action.payload
+  		}
+
+  	case REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE:
+  		return {
+  			...state,
+  			loading: false,
+  		}
+  		
     default:
       return state;
   }

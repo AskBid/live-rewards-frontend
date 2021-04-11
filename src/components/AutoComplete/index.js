@@ -8,7 +8,7 @@ const AutoComplete = ({
 		selectSuggestion
 	}) => {
 
-	const [isVisbile, setVisiblity] = useState(false);
+	const [isVisible, setVisiblity] = useState(false);
 	const [cursor, setCursor] = useState(-1);
 	const [scroll, setScroll] = useState(0);
 
@@ -24,6 +24,10 @@ const AutoComplete = ({
     };
   }, []);
 
+  useEffect(() => {
+  	!isVisible && showSuggestion()
+  }, [text])
+
   const handleClickOutside = event => {
     if (
       searchContainer.current &&
@@ -38,26 +42,26 @@ const AutoComplete = ({
 
 	const renderSuggestions = () => {
     const isHighlighted = false
-    if ( suggestions.length > 0 ) {
-      return (
-      	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisbile ? null : 'invisible'}`}
-      		ref={searchResultDivRef}
-      	>
-	        <ul ref={searchResultRef}>
-	        	{suggestions.map( (ticker, idx) => (
-		          <AutoCompleteItem 
-		          	key={idx}
-		            // onSelectItem={hideSuggestion}
-		            selectSuggestion={selectSuggestion}
-		            isHighlighted={cursor === idx ? true : false}
-		            ticker={ticker}
-		            text={text}
-		          />))
-	        	}
-	        </ul>
-	      </div>
-	    )
-    } 
+    return (
+    	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisible ? null : 'invisible'}`}
+    		ref={searchResultDivRef}
+    	>
+        <ul ref={searchResultRef}>
+        	{(suggestions.length > 0) ?
+        	suggestions.map( (ticker, idx) => (
+	          <AutoCompleteItem 
+	          	key={idx}
+	            // onSelectItem={hideSuggestion}
+	            selectSuggestion={selectSuggestion}
+	            isHighlighted={cursor === idx ? true : false}
+	            ticker={ticker}
+	            text={text}
+	          />))
+        		: <li className='text-muted pl-2'>No matches found...</li>
+        	}
+        </ul>
+      </div>
+    )
   }
 
   const addressChecksMessage = () => {
@@ -75,21 +79,24 @@ const AutoComplete = ({
 
   const keyboardNavigation = e => {
     if (e.key === "ArrowDown") {
-      isVisbile
+      isVisible
 	      ? setCursor(c => (c < suggestions.length - 1 ? c + 1 : 0))
 	      : showSuggestion();
     }
 
     if (e.key === "ArrowUp") {
       setCursor(c => (c > 0 ? c - 1 : suggestions.length - 1));
+      showSuggestion();
     }
 
     if (e.key === "Escape") {
       hideSuggestion();
     }
 
-    if (e.key === "Enter" && cursor > 0) {
-      selectSuggestion(suggestions[cursor])
+    if (e.key === "Enter") {
+      (cursor > 0) && selectSuggestion(suggestions[cursor]);
+      hideSuggestion();
+      setCursor(-1);
     }
   };
 

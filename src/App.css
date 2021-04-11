@@ -123,7 +123,7 @@ button:hover {
   width: 100%;
   top: 45px;
   z-index: 5;
-  overflow-y: visible;
+  overflow-y: scroll;
 }
 
 ul {

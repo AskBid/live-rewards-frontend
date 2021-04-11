@@ -7,7 +7,10 @@ import {
   ADD_USER_STAKE_FAILURE,
   DELETE_USER_STAKE_REQUEST,
   DELETE_USER_STAKE_SUCCESS,
-  DELETE_USER_STAKE_FAILURE
+  DELETE_USER_STAKE_FAILURE,
+  REQUEST_EPOCH_STAKE,
+  REQUEST_EPOCH_STAKE_SUCCESS,
+  REQUEST_EPOCH_STAKE_FAILURE
 } from '../actions'
 
 const initialState = {
@@ -76,6 +79,25 @@ export default function epochStakeReducer(state = initialState, action) {
       return {
         ...state,
         deleting_addr_id: undefined
+      }
+
+    case REQUEST_EPOCH_STAKE:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case REQUEST_EPOCH_STAKE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        epoch_stake: action.payload
+      }
+    
+    case REQUEST_EPOCH_STAKE_FAILURE:
+      return {
+        ...state,
+        loading: false
       }
 
     default:

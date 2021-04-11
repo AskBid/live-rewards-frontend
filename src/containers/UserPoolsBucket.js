@@ -7,8 +7,10 @@ import { groupBy } from 'underscore';
 class UserPoolsBucket extends Component {
 
   componentDidMount() {
-    const { username, epoch_stake_id } = this.props.params
-    this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
+    if (!this.props.history.location.pathname.includes('/pools/new')) {
+      const { username, epoch_stake_id } = this.props.params
+      this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
+    }
   }
 
   deployEpochs = () => {

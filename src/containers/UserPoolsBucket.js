@@ -7,8 +7,8 @@ import { groupBy } from 'underscore';
 class UserPoolsBucket extends Component {
 
   componentDidMount() {
-    const { user, epoch_stake_id } = this.props.params
-    this.props.getPoolCompareUserEpochStakes(user, epoch_stake_id)
+    const { username, epoch_stake_id } = this.props.params
+    this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
   }
 
   deployEpochs = () => {
@@ -35,7 +35,7 @@ class UserPoolsBucket extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPoolCompareUserEpochStakes: () => dispatch(getPoolCompareUserEpochStakes())
+    getPoolCompareUserEpochStakes: (username, epoch_stake_id) => dispatch(getPoolCompareUserEpochStakes(username, epoch_stake_id))
   }
 }
 

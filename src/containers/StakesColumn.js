@@ -43,8 +43,6 @@ class StakesColumn extends Component {
           }
         </div>
         {this.deployEpochs()}
-        {//(!this.props.loading && this.deployEpochs()) || this.dummyTabs() 
-        }
       </React.Fragment>
     )
   }

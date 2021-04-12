@@ -7,7 +7,6 @@ import { authHeader } from '../helpers/auth-header'
 
 export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 	return (dispatch) => {
-		debugger
 		dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES})
 		return fetch(`http://localhost:3001/users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}`, {
 			method: 'GET',

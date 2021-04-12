@@ -20,6 +20,7 @@ const StakeTab = ({stake, buttonsOff}) => {
   })
   const dispatch = useDispatch()
   const ticker = stake.pool_hash.pool && stake.pool_hash.pool.ticker
+
   const buttons = () => {
     return (
       <React.Fragment>
@@ -53,13 +54,13 @@ const StakeTab = ({stake, buttonsOff}) => {
 
         {!buttonsOff ? buttons() : <div style={{width:'1.2em'}}></div>}
 
-        <div className='col d-flex flex-row flex-wrap m-0 p-0'>
+        <div className='col d-flex flex-row flex-wrap m-0 p-1'>
           <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto'>
             <h2 className='text-dark mt-auto mb-auto mr-auto ml-auto'>
               {ticker}
             </h2>
           </div>
-          <div className='container col-8'>
+          <div className='container col'>
             <div className='ml-auto'>
               <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white mt-auto mb-auto'>
                 <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>rewards:</div>
@@ -80,8 +81,8 @@ const StakeTab = ({stake, buttonsOff}) => {
               <div className='row text-dark rounded d-flex flex-row text-muted flex-nowrap'>
                 <div className='col-sm text-right pr-1 text-nowrap'>blocks:</div>
                 <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10'>
+                  <small className='text-monospace'>{`${numeral(stake.estimated_blocks).format('0,0.0')}/`}</small>
                   <strong className='text-monospace'>{stake.blocks}</strong>
-                  <small>{`/${numeral(stake.estimated_blocks).format('0,0.0')}`}</small>
                 </div>
               </div>
               <div class="dropdown-divider m-0"></div>

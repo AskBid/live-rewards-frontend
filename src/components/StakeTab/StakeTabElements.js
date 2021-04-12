@@ -41,7 +41,7 @@ export const PoolIcon = styled(FaSwimmingPool)`
 	padding: 0px;
 `
 
-export const AddrLabel = styled.span`
+export const AddrLabel = styled.div`
 	color: rgba(40, 40, 40, 0.3);
 	font-size: 0.7em;
 	position: absolute;

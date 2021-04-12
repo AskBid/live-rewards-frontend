@@ -43,7 +43,7 @@ const AutoComplete = ({
 	const renderSuggestions = () => {
     const isHighlighted = false
     return (
-    	<div className={`w-100 d-block-flex autocomplete border shadow-sm rounded pl-1 pt-2 ${isVisible ? null : 'invisible'}`}
+    	<div className={`autocomplete-div w-100 d-block-flex border shadow-sm rounded pl-1 pt-2 ${isVisible ? null : 'invisible'}`}
     		ref={searchResultDivRef}
     	>
         <ul ref={searchResultRef}>
@@ -136,7 +136,7 @@ const AutoComplete = ({
 	      onKeyDown={keyboardNavigation}
 	      autocomplete="off">
 	    </input>
-	    <div className='position-absolute w-100 pr-2'>
+	    <div className='position-absolute w-100 pr-2' style={{'z-index':'99'}}>
 	    	{renderSuggestions()}
         {addressChecksMessage()}
       </div>

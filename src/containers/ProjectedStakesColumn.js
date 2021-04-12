@@ -3,24 +3,18 @@ import { connect } from "react-redux";
 import { getPoolCompareUserEpochStakes } from '../actions/projected_stake.actions';
 import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
-import { groupBy } from 'underscore';
 
 class ProjectedStakesColumn extends Component {
 
   componentDidMount() {
-    const getUrlEpochStake = (epoch_stake_id) => {
-      const epoch_stake = this.props.epoch_stakes.filter((epoch_stake) => {
-        return epoch_stake.id === epoch_stake_id
-      })[0]
-      !epoch_stake && this.props.getEpochStake(epoch_stake_id)
-    }
-
     if (!this.props.history.location.pathname.includes('/pools/new')) {
       const { username, epoch_stake_id } = this.props.match.params
-      !this.props.epoch_stake && 
-        getUrlEpochStake(epoch_stake_id)
-      !this.props.projected_stakes && 
-        this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
+      if (!this.props.epoch_stake) {
+        const epoch_stake = this.props.epoch_stakes.filter((epoch_stake) => epoch_stake.id === epoch_stake_id)[0]
+        !epoch_stake && this.props.getEpochStake(epoch_stake_id)
+      }
+      this.props.projected_stakes && (!this.props.projected_stakes[0] && 
+        this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id))
     }
   }
 
@@ -28,9 +22,6 @@ class ProjectedStakesColumn extends Component {
   }
 
   render() {
-    console.log(this.props.epoch_stake)
-    console.log(this.props.epoch_stakes)
-    console.log(this.props.projected_stakes)
     return (
       <React.Fragment>
         <div className="d-flex flex-wrap">

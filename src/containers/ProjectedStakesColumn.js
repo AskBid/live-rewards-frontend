@@ -53,7 +53,7 @@ class ProjectedStakesColumn extends Component {
             </div>
           }
         </div>
-        {epoch_stake && <EpochTab epochno={epoch_stake.epochno} stakes={[epoch_stake]} />}
+        {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonsOff={true} />}
         {this.deployProjectedEpochStakes()}
       </React.Fragment>
     )

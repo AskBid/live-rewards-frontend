@@ -1,7 +1,7 @@
 import React from 'react'
 import StakeTab from './StakeTab'
 
-const EpochTab = ({epochno, stakes}) => {
+const EpochTab = ({epochno, stakes, buttonsOff}) => {
   return (
       <div className='text-light bg-white bg-gradient rounded pt-3 shadow mb-5'>
         <div className='row m-auto pr-2 pl-2 d-flex flex-row'>
@@ -15,7 +15,7 @@ const EpochTab = ({epochno, stakes}) => {
                 <p className='text-muted sm'>29/Mar</p>
             </div>
           </div>
-          {stakes.map(stake => <StakeTab stake={stake} />)}
+          {stakes.map(stake => <StakeTab stake={stake} buttonsOff={buttonsOff}/>)}
         </div>
         <div className="progress mt-2" style={{height: "3px"}}>
           <div className="progress-bar bg-info" role={'progressbar'} style={{width: '60%'}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>

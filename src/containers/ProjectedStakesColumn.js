@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getPoolCompareUserEpochStakes } from '../actions/projected_stake.actions';
 import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
+import StakeTab from '../components/StakeTab';
 
 class ProjectedStakesColumn extends Component {
 
@@ -21,15 +22,7 @@ class ProjectedStakesColumn extends Component {
   deployProjectedEpochStakes = () => {
     return (
       <div className="d-flex flex-wrap">
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
-        <div className="m-3 p-5 border rounded bg-white">Epoch Stake </div>                             
+        {this.props.projected_stakes.map((stake) => <StakeTab stake={stake} buttonsOff={true}/>)}                           
       </div>
     )
   }

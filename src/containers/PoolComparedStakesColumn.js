@@ -5,7 +5,7 @@ import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import StakeTab from '../components/StakeTab';
 
-class ProjectedStakesColumn extends Component {
+class PoolComparedStakesColumn extends Component {
 
   componentDidMount() {
     const { username, epoch_stake_id } = this.props.match.params
@@ -71,5 +71,5 @@ const mapStateToProps = store => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectedStakesColumn);
+export default connect(mapStateToProps, mapDispatchToProps)(PoolComparedStakesColumn);
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import PoolCompareControlBar from '../containers/PoolCompareControlBar'
-import ProjectedStakesColumn from '../containers/ProjectedStakesColumn'
+import PoolComparedStakesColumn from '../containers/PoolComparedStakesColumn'
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 
 function PoolCompare({match}) {
@@ -11,7 +11,7 @@ function PoolCompare({match}) {
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto">
 	        	<PoolCompareControlBar />
-	    			<ProjectedStakesColumn />
+	    			<PoolComparedStakesColumn />
 	        </div>
 	        <div className='col'></div>
 	      </div>

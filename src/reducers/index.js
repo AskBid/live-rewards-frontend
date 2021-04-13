@@ -4,7 +4,7 @@ import sessionReducer from './session.reducer';
 import alertReducer from './alert.reducer';
 import epochStakeReducer from './epoch_stake.reducer';
 import poolReducer from './pool.reducer';
-import projectedStakesReducer from './projected_stake.reducer';
+import poolComparedStakesReducer from './pool_compared_stake.reducer';
 
 export default combineReducers({
   users: userReducer,
@@ -12,5 +12,5 @@ export default combineReducers({
   alert: alertReducer,
   epoch_stakes: epochStakeReducer,
   pools: poolReducer,
-  projected_stakes: projectedStakesReducer
+  pool_compared_stakes: poolComparedStakesReducer
 })

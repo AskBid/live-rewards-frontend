@@ -1,7 +1,6 @@
 import React from 'react'
 import PoolCompareControlBar from '../containers/PoolCompareControlBar'
 import PoolComparedStakesColumn from '../containers/PoolComparedStakesColumn'
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 
 function PoolCompare({match}) {
     return (

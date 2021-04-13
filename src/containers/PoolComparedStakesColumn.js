@@ -4,6 +4,7 @@ import { getPoolCompareUserEpochStakes } from '../actions/projected_stake.action
 import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import StakeTab from '../components/StakeTab';
+import { withRouter } from "react-router-dom";
 
 class PoolComparedStakesColumn extends Component {
 
@@ -65,11 +66,11 @@ const mapStateToProps = store => {
   return {
     epoch_stakes: store.epoch_stakes.list,
     epoch_stake: store.epoch_stakes.epoch_stake,
-    projected_stakes: store.projected_stakes.list,
+    pool_compared_stakes: store.pool_compared_stakes.list,
     loading: store.epoch_stakes.loading,
     alert: store.alert
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PoolComparedStakesColumn);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PoolComparedStakesColumn));
 

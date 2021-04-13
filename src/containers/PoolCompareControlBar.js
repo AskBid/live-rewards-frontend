@@ -10,9 +10,9 @@ class PoolCompareControlBar extends Component {
   render() { return (
   	<div className='row mt-4 mb-5 mr-auto ml-auto'>
   		<Switch>
-  			<Route path={`/pool-compare/users/:username/epoch_stakes/:epoch_stakes_id/pools/new`} 
+  			<Route path={`/pool-compare/users/:username/epoch_stakes/:epoch_stake_id/pools/new`} 
           render={(props) => <AddPoolForm {...props} />} />
-		  	<Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stakes_id'>
+		  	<Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id'>
 		  		<DefaultPoolControlBar/>
 		  	</Route>
   		</Switch>

@@ -33,6 +33,23 @@ export default function projectedStakeReducer(state = initialState, action) {
   			...state,
   			loading: false,
   		}
+    case ADD_USER_POOL_HASH:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case ADD_USER_POOL_HASH_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      }
+
+    case ADD_USER_POOL_HASH_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      }
 
     default:
       return state;

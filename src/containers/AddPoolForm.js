@@ -55,10 +55,11 @@ class AddPoolForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    const username = this.props.match.params.username
     const ticker = (this.state.text === '') ? 
       this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
-    this.props.addUserPoolHash(this.props.match.params.username, ticker)
-      .then(res => getComparedEpochStake(res.user_id, res.pool_hash_id))
+    this.props.addUserPoolHash(username, ticker)
+      .then(res => this.props.getComparedEpochStake(res.user_pool_hash_id))
       .catch(err => console.log(err))
   }
 
@@ -93,7 +94,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getTickers: () => dispatch(getTickers()),
     addUserPoolHash: (username, ticker) => dispatch(addUserPoolHash(username, ticker)),
-    getComparedEpochStake: (user_id, pool_hash_id) => dispatch(getComparedEpochStake(user_id, pool_hash_id))
+    getComparedEpochStake: (user_pool_hash_id) => dispatch(getComparedEpochStake(user_pool_hash_id))
   }
 }
 

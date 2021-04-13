@@ -9,6 +9,7 @@ import {
 	REQUEST_USER_POOL_HASH_SUCCESS,
 	REQUEST_USER_POOL_HASH_FAILURE,
 	ERROR,
+	SUCCESS,
 	CLEAR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
@@ -77,7 +78,6 @@ export const addUserPoolHash = (username, ticker) => {
 
 export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
 	return (dispatch) => {
-		debugger
 		dispatch({type: REQUEST_USER_POOL_HASH})
 		return fetch(`http://localhost:3001/user_pool_hashes/${user_pool_hash_id}?epoch_stake_id=${epoch_stake_id}`, {
 			method: 'GET',
@@ -89,19 +89,22 @@ export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
 				if (res.ok) {
 					return res.json()
 				} else {
-					return res.json().then(json => Promise.reject(json))
+					return res.json().then(json => Promise.reject(json.error))
 				}
 			})
 	  	.then(json => {
-	  		debugger
 	  		dispatch({
 	  			type: REQUEST_USER_POOL_HASH_SUCCESS, 
 	  			payload: json
 	  		});
+	  		dispatch({
+	  			type: SUCCESS, 
+	  			message: `You are now following ${json[0].pool_hash.pool.ticker} pool.`
+	  		})
 	  	})
 			.catch(err => {
-				debugger
 				dispatch({type: REQUEST_USER_POOL_HASH_FAILURE})
+				dispatch({type: ERROR, message: err.toString()})
 			})
 	}
 }

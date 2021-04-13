@@ -4,7 +4,10 @@ import {
   REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE,
   ADD_USER_POOL_HASH,
   ADD_USER_POOL_HASH_SUCCESS,
-  ADD_USER_POOL_HASH_FAILURE
+  ADD_USER_POOL_HASH_FAILURE,
+  REQUEST_USER_POOL_HASH,
+  REQUEST_USER_POOL_HASH_SUCCESS,
+  REQUEST_USER_POOL_HASH_FAILURE
 } from '../actions'
 
 const initialState = {
@@ -33,6 +36,7 @@ export default function projectedStakeReducer(state = initialState, action) {
   			...state,
   			loading: false,
   		}
+
     case ADD_USER_POOL_HASH:
       return {
         ...state,
@@ -49,6 +53,25 @@ export default function projectedStakeReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
+      }
+
+    case REQUEST_USER_POOL_HASH:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case REQUEST_USER_POOL_HASH_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        list: [...state.list, ...action.payload]
+      }
+
+    case REQUEST_USER_POOL_HASH_FAILURE:
+      return {
+        ...state,
+        loading: false
       }
 
     default:

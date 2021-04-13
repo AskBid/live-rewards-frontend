@@ -10,6 +10,7 @@ import {
 } from './StakeTabElements'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteStakeAddress } from '../../actions/stake_address.actions';
+import { deleteUserPoolHash } from '../../actions/pool_compared_stake.actions';
 import { Link } from 'react-router-dom'
 import { calcROS } from '../../helpers/calc-ros'
 

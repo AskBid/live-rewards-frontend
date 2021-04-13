@@ -59,11 +59,11 @@ export const addUserPoolHash = (username, ticker) => {
 			.then(json => {
 				dispatch({
 	  			type: ADD_USER_POOL_HASH_SUCCESS,
-	  			payload: json
 	  		});
 	  		dispatch({
 	  			type: CLEAR
 	  		});
+	  		return json
 			})
 			.catch(err => {
 				dispatch({type: ADD_USER_POOL_HASH_FAILURE});

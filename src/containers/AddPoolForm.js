@@ -57,6 +57,8 @@ class AddPoolForm extends Component {
     const ticker = (this.state.text === '') ? 
       this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
     this.props.addUserPoolHash(this.props.match.params.username, ticker)
+      .then(res => console.log(res)) // need to create action to show new user_pool_hash
+      .catch(err => console.log(err))
   }
 
   render() { 

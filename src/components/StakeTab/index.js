@@ -13,7 +13,7 @@ import { deleteStakeAddress } from '../../actions/stake_address.actions';
 import { Link } from 'react-router-dom'
 import { calcROS } from '../../helpers/calc-ros'
 
-const StakeTab = ({stake, buttonsOff}) => { 
+const StakeTab = ({stake, buttonsOff, compareTab}) => { 
 
   const user = useSelector(state => state.sessions.user)
   const deleting = useSelector(state => {
@@ -25,20 +25,32 @@ const StakeTab = ({stake, buttonsOff}) => {
   const buttons = () => {
     return (
       <React.Fragment>
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          dispatch(deleteStakeAddress(user, stake.stake_address.id))
-        }}>
-          <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
-            <CloseIcon /> 
-          </DeleteBtn>
-        </form>
+        {if (compareTab) {
+            <form onSubmit={(e) => {
+              e.preventDefault()
+              dispatch({type: 'placeholder'})
+            }}>
+              <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
+                <CloseIcon /> 
+              </DeleteBtn>
+            </form>
+          } else {
+            <form onSubmit={(e) => {
+              e.preventDefault()
+              dispatch(deleteStakeAddress(user, stake.stake_address.id))
+            }}>
+              <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
+                <CloseIcon /> 
+              </DeleteBtn>
+            </form>
 
-        <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
-          <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-            <PoolIcon /> 
-          </PoolBtn>
-        </Link>
+            <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
+              <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+                <PoolIcon /> 
+              </PoolBtn>
+            </Link>
+          }
+        }
       </React.Fragment>
     )
   }

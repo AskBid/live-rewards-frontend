@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTickers } from '../actions/pool.actions'
 import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
+import { getComparedEpochStake } from '../actions/pool_compared_stake.actions';
 import AutoComplete from '../components/AutoComplete'
 
 class AddPoolForm extends Component {
@@ -57,7 +58,7 @@ class AddPoolForm extends Component {
     const ticker = (this.state.text === '') ? 
       this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
     this.props.addUserPoolHash(this.props.match.params.username, ticker)
-      .then(res => console.log(res)) // need to create action to show new user_pool_hash
+      .then(res => getComparedEpochStake(res.user_id, res.pool_hash_id))
       .catch(err => console.log(err))
   }
 
@@ -91,7 +92,8 @@ class AddPoolForm extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     getTickers: () => dispatch(getTickers()),
-    addUserPoolHash: (username, ticker) => dispatch(addUserPoolHash(username, ticker))
+    addUserPoolHash: (username, ticker) => dispatch(addUserPoolHash(username, ticker)),
+    getComparedEpochStake: (user_id, pool_hash_id) => dispatch(getComparedEpochStake(user_id, pool_hash_id))
   }
 }
 

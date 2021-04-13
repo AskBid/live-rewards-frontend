@@ -75,7 +75,7 @@ export const addUserPoolHash = (username, ticker) => {
 	}
 }
 
-export const getComparedEpochStake = () => {
+export const getComparedEpochStake = (user_id, pool_hash_id) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_POOL_HASH})
 		return fetch(`http://localhost:3001/`, {

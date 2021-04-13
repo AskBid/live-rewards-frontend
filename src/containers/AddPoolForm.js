@@ -54,7 +54,9 @@ class AddPoolForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.addUserPoolHash(this.props.match.params.username, this.state.text)
+    const ticker = (this.state.text === '') ? 
+      this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
+    this.props.addUserPoolHash(this.props.match.params.username, ticker)
   }
 
   render() { 

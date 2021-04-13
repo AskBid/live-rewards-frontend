@@ -1,7 +1,8 @@
 import { 
   REQUEST_USER_POOL_HASHES_EPOCH_STAKES,
 	REQUEST_USER_POOL_HASHES_EPOCH_STAKES_SUCCESS,
-	REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE
+	REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE,
+	ERROR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 
@@ -18,7 +19,7 @@ export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 				if (res.ok) {
 					return res.json()
 				} else {
-					return res.json.then(json => Promise.reject())
+					return res.json().then(json => Promise.reject(json))
 				}
 			})
 	  	.then(json => {
@@ -28,8 +29,8 @@ export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 	  		});
 	  	})
 			.catch(err => {
-				debugger
 				dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE})
+				dispatch({type: ERROR, message: err.error.toString()})
 			})
 	}
 }

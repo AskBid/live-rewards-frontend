@@ -5,6 +5,9 @@ import {
 	ADD_USER_POOL_HASH,
 	ADD_USER_POOL_HASH_SUCCESS,
 	ADD_USER_POOL_HASH_FAILURE,
+	REQUEST_USER_POOL_HASH,
+	REQUEST_USER_POOL_HASH_SUCCESS,
+	REQUEST_USER_POOL_HASH_FAILURE,
 	ERROR,
 	CLEAR
 } from '.'
@@ -68,6 +71,34 @@ export const addUserPoolHash = (username, ticker) => {
 			.catch(err => {
 				dispatch({type: ADD_USER_POOL_HASH_FAILURE});
 				dispatch({type: ERROR, message: err.toString()})
+			})
+	}
+}
+
+export const getComparedEpochStake = () => {
+	return (dispatch) => {
+		dispatch({type: REQUEST_USER_POOL_HASH})
+		return fetch(`http://localhost:3001/`, {
+			method: 'GET',
+	    headers: {
+	    	'Content-Type': 'application/json',
+	    	"Accept": "application/json"
+	    }
+	  }).then(res => {
+				if (res.ok) {
+					return res.json()
+				} else {
+					return res.json.then(json => Promise.reject())
+				}
+			})
+	  	.then(json => {
+	  		dispatch({
+	  			type: REQUEST_USER_POOL_HASH_SUCCESS, 
+	  			payload: json
+	  		});
+	  	})
+			.catch(err => {
+				dispatch({type: REQUEST_USER_POOL_HASH_FAILURE})
 			})
 	}
 }

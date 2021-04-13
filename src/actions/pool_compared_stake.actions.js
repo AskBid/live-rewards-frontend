@@ -89,7 +89,7 @@ export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
 				if (res.ok) {
 					return res.json()
 				} else {
-					return res.json.then(json => Promise.reject())
+					return res.json().then(json => Promise.reject())
 				}
 			})
 	  	.then(json => {

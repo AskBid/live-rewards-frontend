@@ -24,7 +24,7 @@ export const userEpochStakes = (username) => {
 				if (res.ok) {
 					return res.json()
 				} else {
-					return res.json.then(json => Promise.reject())
+					return res.json().then(json => Promise.reject())
 				}
 			})
 	  	.then(json => { 
@@ -52,7 +52,7 @@ export const getEpochStake = (epoch_stake_id) => {
 				if (res.ok) {
 					return res.json()
 				} else {
-					return res.json.then(json => Promise.reject())
+					return res.json().then(json => Promise.reject())
 				}
 			})
 	  	.then(json => {

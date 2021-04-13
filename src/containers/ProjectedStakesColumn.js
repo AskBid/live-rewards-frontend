@@ -8,15 +8,10 @@ import StakeTab from '../components/StakeTab';
 class ProjectedStakesColumn extends Component {
 
   componentDidMount() {
-    if (!this.props.history.location.pathname.includes('/pools/new')) {
-      const { username, epoch_stake_id } = this.props.match.params
-      if (!this.props.epoch_stake) {
-        const epoch_stake = this.props.epoch_stakes.filter((epoch_stake) => epoch_stake.id === epoch_stake_id)[0]
-        !epoch_stake && this.props.getEpochStake(epoch_stake_id)
-      }
-      this.props.projected_stakes && (!this.props.projected_stakes[0] && 
-        this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id))
-    }
+    const { username, epoch_stake_id } = this.props.match.params
+    this.props.epoch_stakes.filter((epoch_stake) => epoch_stake.id === epoch_stake_id)[0] ||
+      this.props.getEpochStake(epoch_stake_id)
+    this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
   }
 
   deployProjectedEpochStakes = () => {
@@ -46,8 +41,12 @@ class ProjectedStakesColumn extends Component {
             </div>
           }
         </div>
+        <h4 className='text-muted'>Actual:</h4>
         {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonsOff={true} />}
-        {this.deployProjectedEpochStakes()}
+        <h4 className='text-muted'>Compared:</h4>
+        <div className='text-muted rounded pt-3 pl-2 pr-2 pb-1 shadow' style={{background:'#fffff6'}}>
+          {this.deployProjectedEpochStakes()}
+        </div>
       </React.Fragment>
     )
   }

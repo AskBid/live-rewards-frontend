@@ -10,15 +10,8 @@ function PoolCompare({match}) {
 	        <div className='col'>
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto">
-	        <Router>
-	         	{// only to pass hisotry.location down the components
-	         	}
-	        	<Route path='/pool-compare' component={PoolCompareControlBar} />
-	    			<Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id'
-	    				component={ProjectedStakesColumn} />
-	    			<Route path='/pool-compare/users/:username/pools/new' 
-	    				component={ProjectedStakesColumn} />
-	    		</Router>
+	        	<PoolCompareControlBar />
+	    			<ProjectedStakesColumn />
 	        </div>
 	        <div className='col'></div>
 	      </div>

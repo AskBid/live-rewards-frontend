@@ -28,6 +28,7 @@ export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 	  		});
 	  	})
 			.catch(err => {
+				debugger
 				dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE})
 			})
 	}

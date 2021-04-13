@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { getPoolCompareUserEpochStakes } from '../actions/projected_stake.actions';
+import { getPoolCompareUserEpochStakes } from '../actions/pool_compared_stake.actions';
 import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import StakeTab from '../components/StakeTab';
@@ -18,7 +18,7 @@ class PoolComparedStakesColumn extends Component {
   deployProjectedEpochStakes = () => {
     return (
       <div className="d-flex flex-wrap">
-        {this.props.projected_stakes.map((stake) => <StakeTab stake={stake} buttonsOff={true}/>)}                           
+        {this.props.pool_compared_stakes.map((stake) => <StakeTab stake={stake} buttonsOff={true}/>)}                           
       </div>
     )
   }

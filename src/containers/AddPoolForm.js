@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTickers } from '../actions/pool.actions'
+import { addUserPoolHash } from '../actions/pool.actions'
 import AutoComplete from '../components/AutoComplete'
 
 class AddPoolForm extends Component {
@@ -53,7 +54,7 @@ class AddPoolForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state.text)
+    this.props.addUserPoolHash(this.props.match.params.username, this.state.text)
   }
 
   render() { 
@@ -85,7 +86,8 @@ class AddPoolForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTickers: (ticker) => dispatch(getTickers(ticker))
+    getTickers: () => dispatch(getTickers()),
+    addUserPoolHash: (username, ticker) => dispatch(addUserPoolHash(username, ticker))
   }
 }
 

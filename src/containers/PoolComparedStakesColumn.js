@@ -45,6 +45,7 @@ class PoolComparedStakesColumn extends Component {
             }
           </div>
           Actual:
+          {(this.props.loading && !epoch_stake) && <h1 className='mt-3 mb-5'>Loading...</h1>}
         </h4>
         {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonsOff={true} />}
         <h4 className='text-muted'>

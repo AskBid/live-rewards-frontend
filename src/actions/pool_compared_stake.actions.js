@@ -111,3 +111,38 @@ export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
 			})
 	}
 }
+
+export const deleteUserPoolHash = (user_pool_hash_id) => {
+	return (dispatch) => {
+		dispatch({
+			type: DELETE_USER_POOL_HASH,
+			payload: user_pool_hash_id
+		})
+		return fetch(`http://localhost:3001/user_pool_hashes/${user_pool_hash_id}`, {
+			method: 'DELETE',
+	    headers: {
+	    	'Content-Type': 'application/json',
+	    	...authHeader()
+	    }
+		}).then(res => {
+			if (res.ok) {
+				return res.json()
+			} else {
+				return res.json().then(json => Promise.reject(json.error))
+			}
+			})
+			.then(json => {
+				dispatch({
+	  			type: DELETE_USER_POOL_HASH_SUCCESS,
+	  			payload: json
+	  		});
+	  		dispatch({
+	  			type: CLEAR
+	  		});
+			})
+			.catch(err => {
+				dispatch({type: DELETE_USER_POOL_HASH_FAILURE})
+				dispatch({type: ERROR, message: err.toString()})
+			})
+	}
+}

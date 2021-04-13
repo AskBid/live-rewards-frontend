@@ -18,7 +18,9 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
 
   const user = useSelector(state => state.sessions.user)
   const deleting = useSelector(state => {
-    return stake.stake_address.id === state.epoch_stakes.deleting_addr_id
+    return compareTab ? 
+      stake.stake_address.id === state.pool_compared_stakes.deleting_user_pool_hash_id :
+      stake.stake_address.id === state.epoch_stakes.deleting_addr_id
   })
   const dispatch = useDispatch()
   const ticker = stake.pool_hash.pool && stake.pool_hash.pool.ticker
@@ -49,7 +51,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
       <React.Fragment>
         <form onSubmit={(e) => {
           e.preventDefault()
-          dispatch({type: 'placeholder'})
+          dispatch(deleteUserPoolHash())
         }}>
           <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
             <CloseIcon /> 

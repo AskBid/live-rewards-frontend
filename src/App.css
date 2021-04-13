@@ -113,6 +113,22 @@ button:hover {
   z-index: 5;
 }
 
+.spinner1 {
+  position: absolute;
+  background: rgba(255,255,255,0.5);
+  min-width: 200px;
+  min-height: 100px;
+  z-index: 5;
+}
+
+.spinner2 {
+  position: absolute;
+  background: rgba(255, 253, 227, 0.5);
+  min-width: 200px;
+  min-height: 100px;
+  z-index: 5;
+}
+
 .down {
   position: static;
 }

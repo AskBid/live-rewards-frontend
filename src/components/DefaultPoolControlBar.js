@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { withRouter } from "react-router-dom";
 
-const DefaultPoolControlBar = () => {
-  const user = useSelector( state => state.sessions.user )
-
+const DefaultPoolControlBar = ({match}) => {
+  const { username, epoch_stake_id } = match.params
+  
   return (
-    <>
-      <Link to={`/pool-compare/users/${user}/pools/new`}>
+    <React.Fragment>
+      <Link to={`/pool-compare/users/${username}/epoch_stakes/${epoch_stake_id}/pools/new`}>
         <button className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto' type='Submit'>
           Add Pool to Compare
         </button>
@@ -27,8 +27,8 @@ const DefaultPoolControlBar = () => {
       <button className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto' type='Submit'>
         ¥
       </button>
-    </>
+    </React.Fragment>
   )
 }
 
-export default DefaultPoolControlBar
+export default withRouter(DefaultPoolControlBar)

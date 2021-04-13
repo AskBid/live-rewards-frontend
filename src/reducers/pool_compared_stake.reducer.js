@@ -77,19 +77,19 @@ export default function projectedStakeReducer(state = initialState, action) {
     case DELETE_USER_POOL_HASH:
       return {
         ...state,
-        loading: true
+        deleting_user_pool_hash_id: action.payload
       }
 
     case DELETE_USER_POOL_HASH_SUCCESS:
       return {
         ...state,
-        loading: true
+        deleting_user_pool_hash_id: undefined
       }
 
     case DELETE_USER_POOL_HASH_FAILURE:
       return {
         ...state,
-        loading: true
+        deleting_user_pool_hash_id: undefined
       }
 
     default:

@@ -5,7 +5,8 @@ import {
 	ADD_USER_POOL_HASH,
 	ADD_USER_POOL_HASH_SUCCESS,
 	ADD_USER_POOL_HASH_FAILURE,
-	ERROR
+	ERROR,
+	CLEAR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 
@@ -40,7 +41,7 @@ export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 
 export const addUserPoolHash = (username, ticker) => {
 	return (dispatch) => {
-		dispatch({type: REQUEST_POOL_TICKERS})
+		dispatch({type: ADD_USER_POOL_HASH})
 		return fetch(`http://localhost:3001//users/${username}/user_pool_hashes`, {
 			method: 'POST',
 	    headers: {
@@ -57,7 +58,7 @@ export const addUserPoolHash = (username, ticker) => {
 			})
 			.then(json => {
 				dispatch({
-	  			type: REQUEST_POOL_TICKERS_SUCCESS,
+	  			type: ADD_USER_POOL_HASH_SUCCESS,
 	  			payload: json
 	  		});
 	  		dispatch({
@@ -65,6 +66,7 @@ export const addUserPoolHash = (username, ticker) => {
 	  		});
 			})
 			.catch(err => {
+				dispatch({type: ADD_USER_POOL_HASH_FAILURE});
 				dispatch({type: ERROR, message: err.toString()})
 			})
 	}

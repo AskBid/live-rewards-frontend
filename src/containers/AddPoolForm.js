@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTickers } from '../actions/pool.actions'
-import { addUserPoolHash } from '../actions/pool.actions'
+import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
 import AutoComplete from '../components/AutoComplete'
 
 class AddPoolForm extends Component {

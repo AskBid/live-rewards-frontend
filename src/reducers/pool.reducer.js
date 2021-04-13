@@ -1,5 +1,4 @@
 import {
-	REQUEST_POOL_TICKERS,
 	REQUEST_POOL_TICKERS_SUCCESS
 } from '../actions'
 

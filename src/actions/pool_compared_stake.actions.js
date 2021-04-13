@@ -75,10 +75,11 @@ export const addUserPoolHash = (username, ticker) => {
 	}
 }
 
-export const getComparedEpochStake = (user_id, pool_hash_id) => {
+export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
 	return (dispatch) => {
+		debugger
 		dispatch({type: REQUEST_USER_POOL_HASH})
-		return fetch(`http://localhost:3001/`, {
+		return fetch(`http://localhost:3001/user_pool_hashes/${user_pool_hash_id}?epoch_stake_id=${epoch_stake_id}`, {
 			method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -92,12 +93,14 @@ export const getComparedEpochStake = (user_id, pool_hash_id) => {
 				}
 			})
 	  	.then(json => {
+	  		debugger
 	  		dispatch({
 	  			type: REQUEST_USER_POOL_HASH_SUCCESS, 
 	  			payload: json
 	  		});
 	  	})
 			.catch(err => {
+				debugger
 				dispatch({type: REQUEST_USER_POOL_HASH_FAILURE})
 			})
 	}

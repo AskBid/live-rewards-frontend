@@ -37,15 +37,19 @@ export const getTickers = () => {
 	}
 }
 
-export const addUserPoolHash = () => {
+export const addUserPoolHash = (username, ticker) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_POOL_TICKERS})
-		return fetch(`http://localhost:3001/pools/tickers`, {
-			method: 'GET',
+		return fetch(`http://localhost:3001//users/:user_username/user_pool_hashes`, {
+			method: 'POST',
 	    headers: {
 	    	'Content-Type': 'application/json',
-	    	"Accept": "application/json"
-	    }
+	    	...authHeader()
+	    },
+	    body: JSON.stringify({
+	    	username,
+	    	ticker
+	    })
 		}).then(res => {
 			if (res.ok) {
 				return res.json()

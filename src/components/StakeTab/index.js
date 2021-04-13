@@ -22,35 +22,38 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
   const dispatch = useDispatch()
   const ticker = stake.pool_hash.pool && stake.pool_hash.pool.ticker
 
-  const buttons = () => {
+  const stakeTabButtons = () => {
     return (
       <React.Fragment>
-        {if (compareTab) {
-            <form onSubmit={(e) => {
-              e.preventDefault()
-              dispatch({type: 'placeholder'})
-            }}>
-              <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
-                <CloseIcon /> 
-              </DeleteBtn>
-            </form>
-          } else {
-            <form onSubmit={(e) => {
-              e.preventDefault()
-              dispatch(deleteStakeAddress(user, stake.stake_address.id))
-            }}>
-              <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
-                <CloseIcon /> 
-              </DeleteBtn>
-            </form>
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            dispatch(deleteStakeAddress(user, stake.stake_address.id))
+          }}>
+            <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
+              <CloseIcon /> 
+            </DeleteBtn>
+          </form>
 
-            <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
-              <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-                <PoolIcon /> 
-              </PoolBtn>
-            </Link>
-          }
-        }
+          <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
+            <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+              <PoolIcon /> 
+            </PoolBtn>
+          </Link>
+      </React.Fragment>
+    )
+  }
+
+  const compareTabButtons = () => {
+    return (
+      <React.Fragment>
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          dispatch({type: 'placeholder'})
+        }}>
+          <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
+            <CloseIcon /> 
+          </DeleteBtn>
+        </form>
       </React.Fragment>
     )
   }
@@ -68,7 +71,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
       
       <div className='flex-row d-flex w-100'>
 
-        {!buttonsOff ? buttons() : <div style={{width:'1.2em'}}></div>}
+        {!buttonsOff ? (compareTab ? compareTabButtons() : stakeTabButtons()) : <div style={{width:'1.2em'}}></div>}
 
         <div className='col d-flex flex-row flex-wrap m-0 p-1'>
           <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto' style={{'min-width':'7em'}}>
@@ -88,9 +91,9 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
               </div>
               <div class="dropdown-divider m-0"></div>  
               <div className='row text-dark rounded d-flex flex-row flex-nowrap'>
-                <div className='col-sm text-right pr-1 text-nowrap text-muted'>staked:</div>
+                <div className='col-sm text-right pr-1 text-nowrap text-muted'>{compareTab ? 'Pool size:' : 'staked:'}</div>
                 <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>
-                  ₳{ numeral((parseInt(stake.amount)/1000000)).format('0,0') }
+                  ₳{ numeral(compareTab ? stake.pool_hash.size : (parseInt(stake.amount)/1000000)).format('0,0') }
                 </div>
               </div>
               <div class="dropdown-divider m-0"></div>

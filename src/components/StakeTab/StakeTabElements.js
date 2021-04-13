@@ -6,7 +6,7 @@ export const DeleteBtn = styled.button `
 	border: none;
 	border-radius: 3px 0px 0px 3px;
 	color: white;
-	min-width: 28px;
+	min-width: 18px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: rgba(245, 81, 66, 0.8);
@@ -16,11 +16,11 @@ export const DeleteBtn = styled.button `
 `;
 
 export const PoolBtn = styled.button `
-	background: rgba(74,217,228,0.2);
+	background: rgba(74,217,228,0.4);
 	border: none;
 	border-radius: 0px 0px 0px 0px;
 	color: white;
-	min-width: 28px;
+	min-width: 30px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: rgba(74,217,228,0.9);

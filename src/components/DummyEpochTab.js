@@ -24,7 +24,7 @@ const dummyEpochByEpoch = {
 const DummyEpochTab = ({epochno, stakes, buttonsOff}) => {
   return (
   	<div style={{opacity:'50%'}}>
-  		<h4 className='text-muted text-center'>Dummy Tab sample:</h4>
+  		<h4 className='text-muted text-center'>Sample:</h4>
 			<EpochTab key={259} epochno={259} stakes={[dummyEpochByEpoch]} buttonsOff={true}/>
 		</div>
 	)

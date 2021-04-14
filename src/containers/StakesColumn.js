@@ -37,7 +37,7 @@ class StakesColumn extends Component {
           <React.Fragment>
             <span className='text-danger'>You are not <b>Logged In</b>.</span>
             <br/><br/>
-            <span className='text-info'>You can still add up to 1 <b>Stake Address</b> but pool-compare fucntionalities will not work if you are not logged in.</span>
+            <span className='text-info'>You can still add up to 1 <b>Stake Address</b>. Pool-Compare fucntionalities will not work. Login for full functionalities.</span>
           </React.Fragment>
         )
       }

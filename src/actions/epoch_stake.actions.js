@@ -7,7 +7,8 @@ import {
 	REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE,
 	REQUEST_EPOCH_STAKE,
 	REQUEST_EPOCH_STAKE_SUCCESS,
-	REQUEST_EPOCH_STAKE_FAILURE
+	REQUEST_EPOCH_STAKE_FAILURE,
+	CLEAR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 
@@ -62,9 +63,6 @@ export const getEpochStake = (epoch_stake_id) => {
 	  		dispatch({
 	  			type: REQUEST_EPOCH_STAKE_SUCCESS, 
 	  			payload: json
-	  		});
-	  		dispatch({
-	  			type: CLEAR
 	  		});
 	  	})
 			.catch(err => {

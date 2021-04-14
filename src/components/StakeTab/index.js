@@ -51,7 +51,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
       <React.Fragment>
         <form onSubmit={(e) => {
           e.preventDefault()
-          dispatch(deleteUserPoolHash())
+          dispatch(deleteUserPoolHash(stake.user_pool_hash_id))
         }}>
           <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
             <CloseIcon /> 
@@ -62,8 +62,6 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
   }
 
   return (
-    <>
-    
     <div className='col bg-light rounded border border-secondary ml-3 mr-3 mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'>
       <AddrLabel className="text-monospace">...{stake.stake_address.view && stake.stake_address.view.slice(-7)}</AddrLabel>
       <SpinnerDiv className='d-flex justify-content-center'>
@@ -119,7 +117,6 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
         </div>
       </div>
     </div>
-    </>
   )
 }
 

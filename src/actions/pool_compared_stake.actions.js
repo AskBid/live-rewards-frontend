@@ -104,9 +104,6 @@ export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
 	  			payload: json
 	  		});
 	  		dispatch({
-	  			type: CLEAR
-	  		});
-	  		dispatch({
 	  			type: SUCCESS, 
 	  			message: `You are now following ${json[0].pool_hash.pool.ticker} pool.`
 	  		})

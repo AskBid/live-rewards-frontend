@@ -5,11 +5,12 @@ import EpochTab from '../components/EpochTab';
 import DummyEpochTab from '../components/DummyEpochTab';
 import { groupBy } from 'underscore';
 import { Link } from 'react-router-dom'
+import { addUserStake } from '../actions/stake_address.actions'
 
 class StakesColumn extends Component {
 
   componentDidMount() {
-    this.props.userEpochStakes(this.props.username)
+    this.props.username && this.props.userEpochStakes(this.props.username)
   }
 
   deployEpochs = () => {
@@ -32,7 +33,11 @@ class StakesColumn extends Component {
 
       const loggedOutMessage = () => {
         return (
-          <span className='text-danger'>You are not <b>Logged In</b>.</span>
+          <React.Fragment>
+            <span className='text-danger'>You are not <b>Logged In</b>.</span>
+            <br/><br/>
+            <span className='text-info'>You can still add up to 1 <b>Stake Address</b> but pool-compare fucntionalities will not work if you are not logged in.</span>
+          </React.Fragment>
         )
       }
 
@@ -40,6 +45,10 @@ class StakesColumn extends Component {
         return (
           <span className='text-danger'>You haven't entered any <b>Stake Address</b>.</span>
         )
+      }
+
+      const onClickLink = () => {
+        addUserStake('undefined', '')
       }
 
       return (
@@ -52,7 +61,7 @@ class StakesColumn extends Component {
             <br/><br/>
             If you don't know how to find your stake address, please visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
             <br/><br/>
-            To follow a random stake click <Link to={`/howto`} className='hardlink grey'>Random Stake!</Link>.
+            To follow a random stake click <Link onClick={onClickLink} className='hardlink grey'>Random Stake!</Link>.
           </p>
           </div>
           <DummyEpochTab/>
@@ -88,7 +97,8 @@ class StakesColumn extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    userEpochStakes: (username) => dispatch(userEpochStakes(username))
+    userEpochStakes: (username) => dispatch(userEpochStakes(username)),
+    addUserStake: (user, address) => dispatch(addUserStake(user, address))
   }
 }
 

@@ -12,7 +12,7 @@ const dummyEpochByEpoch = {
 	id: 6800125,
 	pool_hash: {
 		id: 1262,
-		pool: {id: 3187, ticker: "LUNA", url: "https://luna-pool.com/pool_metadata.json"},
+		pool: {id: 3187, ticker: "POOL", url: "https://luna-pool.com/pool_metadata.json"},
 		view: "pool1kffetqjt06qvk4995tz3e3q9h3c8cdq9eedrz8qr3ynnc63qckz"
 	},
 	stake_address: {
@@ -24,7 +24,7 @@ const dummyEpochByEpoch = {
 const DummyEpochTab = ({epochno, stakes, buttonsOff}) => {
   return (
   	<div style={{opacity:'50%'}}>
-  		<h4 className='text-muted text-center'>Dummy sample:</h4>
+  		<h4 className='text-muted text-center'>Dummy Tab sample:</h4>
 			<EpochTab key={259} epochno={259} stakes={[dummyEpochByEpoch]} buttonsOff={true}/>
 		</div>
 	)

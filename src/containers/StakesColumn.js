@@ -35,8 +35,9 @@ class StakesColumn extends Component {
         return (
           <React.Fragment>
             <span className='text-danger'>You are not <b>Logged In</b>.</span>
-            <br/><br/>
-            <span className='text-info'>You can still add up to 1 <b>Stake Address</b>. Pool-Compare fucntionalities will not work. Login for full functionalities.</span>
+            <br/>
+            <Link to={`/login`} className='hardlink grey'>Login</Link> or <Link to={`/signup`} className='hardlink grey'>Register</Link> for full functionalities.
+            <br/>
           </React.Fragment>
         )
       }
@@ -60,15 +61,14 @@ class StakesColumn extends Component {
           <div className='text-muted rounded pt-2 pl-2 pr-2 pb-2 mb-5 shadow' style={{background:'rgba(255, 255, 255,0.5)'}}>
             <p className='text-muted mb-4 mt-2 ml-5 mr-5'>
             {this.props.username ? loggedInMessage() : loggedOutMessage()}
-            <br/><br/>
-            To view your rewards for the last 3 epochs add your <b>Stake Address</b> by clicking <Link to={`/live-rewards/users/${this.props.username}/user_stakes/new`} className='hardlink'>here</Link>.
-            <br/><br/>
+            <br/>
+            To view your rewards for the last epochs add your <b>Stake Address</b> by clicking <Link to={`/live-rewards/users/${this.props.username}/user_stakes/new`} className='hardlink'>here</Link>.
+            <br/>
             If you don't know how to find your stake address, please visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
-            <br/><br/>
-            To follow a random stake click <Link onClick={onClickLink} className='hardlink grey'>Random Stake!</Link>.
+            <br/>
+            To add a random stake address you don't own click <Link onClick={onClickLink} className='hardlink grey'>Random Stake!</Link>.
           </p>
           </div>
-          <DummyEpochTab/>
         </React.Fragment>
       )
     }

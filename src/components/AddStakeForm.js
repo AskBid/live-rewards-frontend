@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 
-const AddStakeForm = ({addUserStake, match}) => {
+const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
+
   const [address, setAddress] = useState('')
 
   const handleAddressInputChange = (e) => {
@@ -33,7 +34,7 @@ const AddStakeForm = ({addUserStake, match}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addUserStake(match.params.username, address)
+    user ? addUserStake(match.params.username, address) : unregisteredEpochStakes(address)
   }
 
   return (

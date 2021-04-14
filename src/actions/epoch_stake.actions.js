@@ -75,7 +75,7 @@ export const getEpochStake = (epoch_stake_id) => {
 export const unregisteredEpochStakes = (stake_address) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`http://localhost:3001/epoch_stakes/${stake_address}`, {
+		return fetch(`http://localhost:3001/stake_addresses/${stake_address}-/epoch_stakes`, {
 	  	method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',

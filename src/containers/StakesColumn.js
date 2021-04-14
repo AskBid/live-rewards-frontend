@@ -27,16 +27,36 @@ class StakesColumn extends Component {
 
   textIfEmpty = () => {
     if (this.props.epoch_stakes.length === 0) {
-      return (
-        <div className='text-muted rounded pt-2 pl-2 pr-2 pb-4 shadow' style={{background:'rgba(255, 255, 255,0.5)'}}>
+
+      const loggedOutMessage = () => {
+        return (
           <p className='text-muted mb-5 mt-4 ml-5 mr-5'>
-            You haven't entered any <b>Stake Address</b>.<br/><br/>
+            <span className='text-danger'>You are not <b>Logged In</b>.<br/><br/></span>
             To view your rewards for the last 3 epochs add your <b>Stake Address</b> by clicking <Link to={`/live-rewards/users/${this.props.username}/user_stakes/new`} className='hardlink'>here</Link>.
             <br/><br/>
             If you don't know how to find your stake address see visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
             <br/><br/>
             To follow a random stake click <Link to={`/howto`} className='hardlink grey'>Random Stake!</Link>.
           </p>
+        )
+      }
+
+      const loggedInMessage = () => {
+        return (
+          <p className='text-muted mb-5 mt-4 ml-5 mr-5'>
+            <span className='text-danger'>You haven't entered any <b>Stake Address</b>.</span><br/><br/>
+            To view your rewards for the last 3 epochs add your <b>Stake Address</b> by clicking <Link to={`/live-rewards/users/${this.props.username}/user_stakes/new`} className='hardlink'>here</Link>.
+            <br/><br/>
+            If you don't know how to find your stake address, please visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
+            <br/><br/>
+            To follow a random stake click <Link to={`/howto`} className='hardlink grey'>Random Stake!</Link>.
+          </p>
+        )
+      }
+
+      return (
+        <div className='text-muted rounded pt-2 pl-2 pr-2 pb-4 shadow' style={{background:'rgba(255, 255, 255,0.5)'}}>
+          {this.props.username ? loggedInMessage() : loggedOutMessage()}
         </div>
       )
     }

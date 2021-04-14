@@ -23,6 +23,21 @@ class PoolComparedStakesColumn extends Component {
     )
   }
 
+  textIfEmpty = () => {
+    if (this.props.loading_compared_stakes) {
+      return (
+         <h2 className='text-muted m-5'>Loading...</h2>
+      )
+    } else if (this.props.pool_compared_stakes.length === 0) {
+      return (
+        <p className='text-muted m-5'>
+          You are not following any pools.<br/>
+          To compare your stake with other pools, follow a pool by using the form on top of the page or by clicking <a href={this.props.location.pathname + '/pools/new'}>here</a>.
+        </p>
+      )
+    }
+  }
+
   render() {
     const epoch_stake = this.props.epoch_stake
     return (
@@ -45,7 +60,7 @@ class PoolComparedStakesColumn extends Component {
             }
           </div>
           Actual:
-          {(this.props.loading && !epoch_stake) && <h1 className='mt-3 mb-5'>Loading...</h1>}
+          {(this.props.loading && !epoch_stake) && <h2 className='text-muted m-5'>Loading...</h2>}
         </h4>
         {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonsOff={true} />}
         <h4 className='text-muted'>
@@ -59,6 +74,7 @@ class PoolComparedStakesColumn extends Component {
           Compared:
         </h4>
         <div className='text-muted rounded pt-3 pl-2 pr-2 pb-1 shadow' style={{background:'rgba(235, 255, 254,0.5)'}}>
+          {this.textIfEmpty()}
           {this.deployProjectedEpochStakes()}
         </div>
       </React.Fragment>

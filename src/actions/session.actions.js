@@ -3,7 +3,8 @@ import {
 	LOGIN_REQUEST_SUCCESS,
 	LOGIN_REQUEST_FAILURE,
 	LOGOUT,
-	ERROR
+	ERROR,
+	CLEAR_EPOCH_STAKES
 } from '.'
 
 export const login = (formData) => {
@@ -25,6 +26,9 @@ export const login = (formData) => {
 	  		dispatch({
 	  			type: LOGIN_REQUEST_SUCCESS,
 	  			user: user.username
+	  		})
+	  		dispatch({
+	  			type: CLEAR_EPOCH_STAKES
 	  		})
 	  		return user
 	  	})

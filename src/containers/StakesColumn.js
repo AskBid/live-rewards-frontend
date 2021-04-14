@@ -5,7 +5,7 @@ import EpochTab from '../components/EpochTab';
 import DummyEpochTab from '../components/DummyEpochTab';
 import { groupBy } from 'underscore';
 import { Link } from 'react-router-dom'
-import { addUserStake } from '../actions/stake_address.actions'
+import { unregisteredEpochStakes } from '../actions/epoch_stake.actions'
 
 class StakesColumn extends Component {
 
@@ -48,7 +48,11 @@ class StakesColumn extends Component {
       }
 
       const onClickLink = () => {
-        addUserStake('undefined', '')
+        this.props.username if {
+          addUserStake(this.props.username, '')
+        } else {
+          unregisteredEpochStakes('')
+        }
       }
 
       return (
@@ -98,7 +102,7 @@ class StakesColumn extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     userEpochStakes: (username) => dispatch(userEpochStakes(username)),
-    addUserStake: (user, address) => dispatch(addUserStake(user, address))
+    unregisteredEpochStakes: (address) => dispatch(unregisteredEpochStakes(address))
   }
 }
 

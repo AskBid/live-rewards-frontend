@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from "react-redux"
 import AddStakeForm from '../components/AddStakeForm'
 import DefaultControlBar from '../components/DefaultControlBar'
@@ -11,13 +11,18 @@ class LiveRewardsControlBar extends Component {
   render() { 
     return (
     	<div className='row mt-4 mb-5 mr-auto ml-auto'>
-    		<Switch>
-    			<Route path={`/live-rewards/users/:username/user_stakes/new`} 
-            render={(props) => <AddStakeForm {...this.props} {...props}/>} />
-  		  	<Route path='/live-rewards'>
-  		  		<DefaultControlBar/>
-  		  	</Route>
-    		</Switch>
+        {this.props.epoch_stakes.length === 0 
+          ?
+          <Route path={`/live-rewards`} render={(props) => <AddStakeForm {...this.props} {...props} hideHide={true}/>} />
+          :
+      		<Switch>
+      			<Route path={`/live-rewards/users/:username/user_stakes/new`} 
+              render={(props) => <AddStakeForm {...this.props} {...props}/>} />
+    		  	<Route path='/live-rewards'>
+    		  		<DefaultControlBar/>
+    		  	</Route>
+      		</Switch>
+        }
     	</div>
   )}
 }
@@ -31,7 +36,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    user: state.sessions.user
+    user: state.sessions.user,
+    epoch_stakes: state.epoch_stakes.list
   }
 }
 

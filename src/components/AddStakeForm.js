@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 
-const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
+const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes, hideHide}) => {
 
   const [address, setAddress] = useState('')
 
@@ -40,11 +40,13 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
   return (
     <>
     <div className='d-flex d-inline-flex w-100 mr-auto ml-auto'>
-      <Link to='/live-rewards' className=''>
-        <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' type='Submit'>
-          Hide
-        </button>
-      </Link>
+      {!hideHide &&
+        <Link to='/live-rewards' className=''>
+          <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' type='Submit'>
+            Hide
+          </button>
+        </Link>
+      }
       <form className='row d-inline-flex w-100 mr-auto ml-auto' onSubmit={handleSubmit}>
         <fieldset className='col w-100 d-inline-flex p-0 pl-2'>
           <input

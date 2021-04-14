@@ -33,9 +33,18 @@ a:hover {
 .hardlink {
   color: blue;
   text-decoration: underline;
-}.hardlink:hover {
+  font-weight: bold;
+}
+.hardlink:hover {
   color: #99f;
   text-decoration: underline;
+  font-weight: bold;
+}
+.grey {
+  color: darkgrey;
+}
+.grey:hover {
+  color: lightgrey;
 }
 
 .logo {

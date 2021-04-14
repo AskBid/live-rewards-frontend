@@ -11,7 +11,7 @@ import { addUserStake } from '../actions/stake_address.actions'
 class StakesColumn extends Component {
 
   componentDidMount() {
-    this.props.username && this.props.userEpochStakes(this.props.username)
+    (this.props.username && (this.props.epoch_stakes.length === 0)) && this.props.userEpochStakes(this.props.username)
   }
 
   deployEpochs = () => {
@@ -22,7 +22,6 @@ class StakesColumn extends Component {
         .map(str => parseInt(str))
         .sort((a,b) => a + b)
         .reverse()
-      console.log(epoch_stakes_by_epoch)
       return ordered_keys.map(epochno => {
         return <EpochTab key={epochno} epochno={epochno} stakes={epoch_stakes_by_epoch[epochno]} />
       })
@@ -79,7 +78,7 @@ class StakesColumn extends Component {
     return (
       <React.Fragment>
         { this.props.alert.message &&
-          <div className={`w-100 d-flex justify-content-center`}>
+          <div className={`w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
           <div className={`alert ${this.props.alert.type} w-75`}>
             {this.props.alert.message.split('<b>').splice(0,1)}
             <b>{this.props.alert.message.split('<b>').splice(1,1)}</b>
@@ -104,7 +103,8 @@ const mapDispatchToProps = dispatch => {
   return {
     userEpochStakes: (username) => dispatch(userEpochStakes(username)),
     addUserStake: (user, address) => dispatch(addUserStake(user, address)),
-    unregisteredEpochStakes: (address) => dispatch(unregisteredEpochStakes(address))
+    unregisteredEpochStakes: (address) => dispatch(unregisteredEpochStakes(address)),
+    closeAlert: () => dispatch({type: 'ALERT_CLEAR'})
   }
 }
 

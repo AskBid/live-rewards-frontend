@@ -40,11 +40,11 @@ class PoolComparedStakesColumn extends Component {
 
   render() {
     const epoch_stake = this.props.epoch_stake
-    debugger
+
     return (
       <React.Fragment>
         { this.props.alert.message &&
-          <div className={`w-100 d-flex justify-content-center`}>
+          <div className={`w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
           <div className={`alert ${this.props.alert.type} w-75`}>
             {this.props.alert.message.split('<b>').splice(0,1)}
             <b>{this.props.alert.message.split('<b>').splice(1,1)}</b>
@@ -88,7 +88,8 @@ const mapDispatchToProps = dispatch => {
     getPoolCompareUserEpochStakes: (username, epoch_stake_id) => {
       return dispatch(getPoolCompareUserEpochStakes(username, epoch_stake_id))
     },
-    getEpochStake: (epoch_stake_id) => dispatch(getEpochStake(epoch_stake_id))
+    getEpochStake: (epoch_stake_id) => dispatch(getEpochStake(epoch_stake_id)),
+    closeAlert: () => dispatch({type: 'ALERT_CLEAR'})
   }
 }
 

@@ -32,6 +32,9 @@ export const userEpochStakes = (username) => {
 	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
 	  			payload: json
 	  		});
+	  		dispatch({
+	  			type: CLEAR
+	  		});
 	  	})
 			.catch(err => {
 				dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE})
@@ -59,6 +62,9 @@ export const getEpochStake = (epoch_stake_id) => {
 	  		dispatch({
 	  			type: REQUEST_EPOCH_STAKE_SUCCESS, 
 	  			payload: json
+	  		});
+	  		dispatch({
+	  			type: CLEAR
 	  		});
 	  	})
 			.catch(err => {

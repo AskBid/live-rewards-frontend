@@ -9,7 +9,8 @@ import {
 	REQUEST_EPOCH_STAKE_SUCCESS,
 	REQUEST_EPOCH_STAKE_FAILURE,
 	CLEAR_EPOCH_STAKES,
-	CLEAR
+	CLEAR,
+	ERROR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 
@@ -74,8 +75,9 @@ export const getEpochStake = (epoch_stake_id) => {
 
 export const unregisteredEpochStakes = (stake_address) => {
 	return (dispatch) => {
+		stake_address = stake_address === '' ? 'random' : stake_address;
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`http://localhost:3001/stake_addresses/${stake_address}-/epoch_stakes`, {
+		return fetch(`http://localhost:3001/stake_addresses/${stake_address}/epoch_stakes`, {
 	  	method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -100,6 +102,7 @@ export const unregisteredEpochStakes = (stake_address) => {
 	  	})
 			.catch(err => {
 				dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE})
+				dispatch({type: ERROR, message: 'Address was not found.'})
 			})
 	}
 }

@@ -93,7 +93,7 @@ class StakesColumn extends Component {
             </div>
           }
         </div>
-        {!this.props.loading && this.textIfEmpty()}
+        {(this.props.epoch_stakes.length === 0) && this.textIfEmpty()}
         {this.deployEpochs()}
       </React.Fragment>
     )

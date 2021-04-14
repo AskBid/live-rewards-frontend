@@ -43,6 +43,7 @@ export const login = (formData) => {
 export const logout = () => {
 	return (dispatch) => {
 		localStorage.removeItem('user')
+		dispatch({type: CLEAR_EPOCH_STAKES})
 		dispatch({type: LOGOUT})
 	}
 }

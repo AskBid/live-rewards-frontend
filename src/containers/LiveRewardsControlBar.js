@@ -35,4 +35,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(LiveRewardsControlBar)
+export default connect(mapStateToProps, mapDispatchToProps)(LiveRewardsControlBar)

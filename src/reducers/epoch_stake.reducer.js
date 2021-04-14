@@ -102,7 +102,9 @@ export default function epochStakeReducer(state = initialState, action) {
       }
 
     case CLEAR_EPOCH_STAKES:
-      return {}
+      return {
+        list: []
+      }
 
     default:
       return state;

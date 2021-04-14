@@ -40,6 +40,7 @@ class PoolComparedStakesColumn extends Component {
 
   render() {
     const epoch_stake = this.props.epoch_stake
+    debugger
     return (
       <React.Fragment>
         { this.props.alert.message &&

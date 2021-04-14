@@ -128,21 +128,31 @@ export const deleteUserPoolHash = (user_pool_hash_id) => {
 	    	...authHeader()
 	    }
 		}).then(res => {
+			debugger
 			if (res.ok) {
+				debugger
 				return res.json()
 			} else {
+				debugger
 				return res.json().then(json => Promise.reject(json.error))
 			}
 			})
 			.then(json => {
+				debugger
 				dispatch({
-	  			type: DELETE_USER_POOL_HASH_SUCCESS
+	  			type: DELETE_USER_POOL_HASH_SUCCESS,
+	  			payload: user_pool_hash_id
 	  		});
 	  		dispatch({
 	  			type: CLEAR
 	  		});
+	  		debugger
+	  		dispatch({
+	  			message: json.toString()
+	  		}) 
 			})
 			.catch(err => {
+				debugger
 				dispatch({type: DELETE_USER_POOL_HASH_FAILURE})
 				dispatch({type: ERROR, message: err.toString()})
 			})

@@ -84,9 +84,13 @@ export default function projectedStakeReducer(state = initialState, action) {
       }
 
     case DELETE_USER_POOL_HASH_SUCCESS:
+      const list = state.list.filter(compared_stake => {
+        return compared_stake.user_pool_hash_id != action.payload
+      })
       return {
         ...state,
-        deleting_user_pool_hash_id: undefined
+        deleting_user_pool_hash_id: undefined,
+        list
       }
 
     case DELETE_USER_POOL_HASH_FAILURE:

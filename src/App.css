@@ -31,8 +31,10 @@ a:hover {
 }
 
 .hardlink {
+  color: blue;
   text-decoration: underline;
 }.hardlink:hover {
+  color: #99f;
   text-decoration: underline;
 }
 

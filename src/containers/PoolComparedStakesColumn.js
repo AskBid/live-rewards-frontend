@@ -4,7 +4,7 @@ import { getPoolCompareUserEpochStakes } from '../actions/pool_compared_stake.ac
 import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import StakeTab from '../components/StakeTab';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class PoolComparedStakesColumn extends Component {
 
@@ -32,7 +32,7 @@ class PoolComparedStakesColumn extends Component {
       return (
         <p className='text-muted m-5'>
           You are not following any pools.<br/>
-          To compare your stake with other pools, follow a pool by using the form on top of the page or by clicking <a href={this.props.location.pathname + '/pools/new'}>here</a>.
+          To compare your stake with other pools, follow a pool by using the form on top of the page or by clicking <Link to={this.props.location.pathname + '/pools/new'} className='hardlink'>here</Link>.
         </p>
       )
     }

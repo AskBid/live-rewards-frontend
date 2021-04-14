@@ -39,7 +39,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
 
           <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
             <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-              <PoolIcon /> 
+              <PoolIcon size={25}/> 
             </PoolBtn>
           </Link>
       </React.Fragment>

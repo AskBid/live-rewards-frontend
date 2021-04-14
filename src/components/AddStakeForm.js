@@ -34,7 +34,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes, hideH
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    user ? addUserStake(match.params.username, address) : unregisteredEpochStakes(address)
+    user ? addUserStake(user, address) : unregisteredEpochStakes(address)
   }
 
   return (

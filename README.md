@@ -1,3 +1,5 @@
+This repo is the front-end of this other repo [Live-Rewards](https://github.com/AskBid/live-rewards).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

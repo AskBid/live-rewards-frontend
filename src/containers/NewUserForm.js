@@ -24,11 +24,7 @@ class NewUserForm extends Component {
     fetchOnSubmit = (e) => {
       e.preventDefault()
       this.props.register(this.state)
-        .then((res) => {
-          if (JSON.stringify(this.props.errors) === '{}') {
-            this.props.history.push(`/signin`)
-          }
-        })
+        .then((res) => this.props.history.push(`/signin`))
         .catch((err) => console.log(err))
     }
 

@@ -21,13 +21,16 @@ export default function userReducer(state = initialState, action) {
   	case REGISTER_REQUEST_SUCCESS:
   		return {
   			...state,
-  			registering: false,
-  			errors: action.errors
+  			registering: false
   		}
 
   	case REGISTER_REQUEST_FAILURE:
-  		// const errors = action.errors
-  		return { ...state }
+  		debugger
+  		return { 
+        ...state,
+        registering: false,
+        errors: {...action.errors}
+      }
 
     default:
       return state;

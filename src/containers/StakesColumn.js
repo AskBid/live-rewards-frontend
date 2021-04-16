@@ -38,7 +38,7 @@ class StakesColumn extends Component {
             <br/>
             <Link to={`/login`} className='hardlink grey'>Login</Link> or <Link to={`/signup`} className='hardlink grey'>Register</Link> for full functionalities.
             <br/>
-            You can still add 1 <b>Stake Address</b> to see the last epochs rewards.
+            You can still add 1 <b>Stake Address</b> to check your latest rewards.
             <br/>
           </React.Fragment>
         )
@@ -46,7 +46,7 @@ class StakesColumn extends Component {
 
       const loggedInMessage = () => {
         return (
-          <span className='text-danger'>You haven't entered any <b>Stake Address</b>.</span>
+          <span className='text-info'>Enter your <b>Stake Address</b> to check your latest rewards.</span>
         )
       }
 

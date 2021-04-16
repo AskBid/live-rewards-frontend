@@ -14,7 +14,6 @@ export const register = (formData) => {
 	    headers: { 'Content-Type': 'application/json' },
 	    body: JSON.stringify(formData)
 	  }).then(res => {
-	  		debugger
 	  		if (res.ok) {
 					return res.json()
 				} else {
@@ -31,12 +30,11 @@ export const register = (formData) => {
 	  		})
 	  	})
 			.catch(errors => {
-				debugger
 				dispatch({
 	  			type: REGISTER_REQUEST_FAILURE,
 	  			errors: errors
 	  		});
-				// dispatch({type: ERROR, message: err})
+	  		return Promise.reject()
 			})
 	}
 }

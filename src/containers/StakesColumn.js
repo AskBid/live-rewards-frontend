@@ -11,7 +11,8 @@ import { addUserStake } from '../actions/stake_address.actions'
 class StakesColumn extends Component {
 
   componentDidMount() {
-    (this.props.username && (this.props.epoch_stakes.length === 0)) && this.props.userEpochStakes(this.props.username)
+    (this.props.username && (this.props.epoch_stakes.length === 0)) && 
+      this.props.userEpochStakes(this.props.username)
   }
 
   deployEpochs = () => {

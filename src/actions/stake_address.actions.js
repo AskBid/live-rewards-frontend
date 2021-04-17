@@ -13,7 +13,7 @@ import { authHeader } from '../helpers/auth-header'
 export const addUserStake = (user, address) => {
 	return (dispatch) => {
 		dispatch({type: ADD_USER_STAKE_REQUEST})
-		return fetch(`http://localhost:3001/users/${user}/user_stakes`, {
+		return fetch(`http://${process.env.REACT_APP_API_URL}/users/${user}/user_stakes`, {
 			method: 'POST',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const deleteStakeAddress = (user, addr_id) => {
 			type: DELETE_USER_STAKE_REQUEST,
 			payload: addr_id
 		})
-		return fetch(`http://localhost:3001/users/${user}/user_stakes/${addr_id}`, {
+		return fetch(`http://${process.env.REACT_APP_API_URL}/users/${user}/user_stakes/${addr_id}`, {
 			method: 'DELETE',
 	    headers: {
 	    	'Content-Type': 'application/json',

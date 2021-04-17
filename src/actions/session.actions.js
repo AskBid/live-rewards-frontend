@@ -10,7 +10,7 @@ import {
 export const login = (formData) => {
 	return (dispatch) => {
 		dispatch({type: LOGIN_REQUEST})
-		return fetch("http://localhost:3001/login", {
+		return fetch(`http://${process.env.REACT_APP_API_URL}/login`, {
 	  	method: 'POST',
 	    headers: { 'Content-Type': 'application/json' },
 	    body: JSON.stringify(formData)

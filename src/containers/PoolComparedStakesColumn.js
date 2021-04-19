@@ -10,8 +10,7 @@ class PoolComparedStakesColumn extends Component {
 
   componentDidMount() {
     const { username, epoch_stake_id } = this.props.match.params
-    this.props.epoch_stakes.filter((epoch_stake) => epoch_stake.id === epoch_stake_id)[0] ||
-      this.props.getEpochStake(epoch_stake_id)
+    this.props.epoch_stakes.filter((epoch_stake) => epoch_stake.id === epoch_stake_id)[0] || this.props.getEpochStake(epoch_stake_id)
     this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
   }
 

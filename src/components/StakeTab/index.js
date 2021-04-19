@@ -14,6 +14,7 @@ import { deleteUserPoolHash } from '../../actions/pool_compared_stake.actions';
 import { Link } from 'react-router-dom'
 import { calcROS } from '../../helpers/calc-ros'
 import { ValueRow } from '../ValueRow'
+import { CLEAR_EPOCH_STAKES } from '../../actions'
 
 const StakeTab = ({stake, buttonsOff, compareTab}) => { 
 
@@ -67,14 +68,14 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
       <React.Fragment>
           <form onSubmit={(e) => {
             e.preventDefault()
-            dispatch(deleteStakeAddress(user, stake.stake_address.id))
+            dispatch({type: CLEAR_EPOCH_STAKES})
           }}>
             <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
               <CloseIcon /> 
             </DeleteBtn>
           </form>
 
-          <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
+          <Link to={`/not-available`}>
             <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
               <PoolIcon size={25}/> 
             </PoolBtn>
@@ -115,7 +116,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
               </div>
 
               {<ValueRow 
-                label={ 'your stake:' }
+                label={ 'stake:' }
                 symbol={ '₳' }
                 value={ numeral(parseInt(stake.amount) / 1000000).format('0,0') }
               />}

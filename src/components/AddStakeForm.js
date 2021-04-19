@@ -52,7 +52,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes, hideH
           <input
             type="text"
             name="stake_address"
-            placeholder="stake1ux026n9gx9ygv... (If empty, will pick a random address)"
+            placeholder="stake1ux026n9gx9ygv...       (If empty, will pick a random address)"
             className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded'
             onChange={handleAddressInputChange}>
           </input>

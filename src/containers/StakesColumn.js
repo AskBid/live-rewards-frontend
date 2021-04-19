@@ -35,11 +35,9 @@ class StakesColumn extends Component {
       const loggedOutMessage = () => {
         return (
           <React.Fragment>
-            <span className='text-danger'>You are not <b>Logged In</b>.</span>
+            <Link to={`/login`} className='hardlink'>Login</Link> or <Link to={`/signup`} className='hardlink'>Register</Link> for full functionalities.
             <br/>
-            <Link to={`/login`} className='hardlink grey'>Login</Link> or <Link to={`/signup`} className='hardlink grey'>Register</Link> for full functionalities.
-            <br/>
-            You can still add 1 <b>Stake Address</b> to check your latest rewards.
+            <span className='text-info'>Or you can still add one <b>Stake Address</b> to check your latest rewards.</span>
             <br/>
           </React.Fragment>
         )

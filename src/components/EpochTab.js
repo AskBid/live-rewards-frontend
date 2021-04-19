@@ -7,7 +7,7 @@ const EpochTab = ({epochno, stakes, buttonsOff}) => {
         <div className='row m-auto pr-2 pl-2 d-flex flex-row'>
           <div className='mt-auto mb-auto ml-5 mr-1 d-flex flex-row flex-wrap'>
             <div className='col ml-1 mr-1'>
-              <h8 className='text-muted ml-auto mr-auto text-center d-flex justify-content-center'>epoch</h8>
+              <h6 className='text-muted ml-auto mr-auto text-center d-flex justify-content-center'>epoch</h6>
               <h1 className='text-muted ml-auto mr-auto text-center'>{epochno}</h1>
             </div>
             <div className='col ml-1 mr-1 bg-light rounded'>

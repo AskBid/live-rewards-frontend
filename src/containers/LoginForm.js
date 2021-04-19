@@ -66,10 +66,10 @@ class LoginForm extends Component {
                 </input>
               </fieldset>
             </div>
-            <div class="row mb-5 ml-2 mr-2 mt-3">
-                <div class="col-8 d-flex"><button className='h-1 border-0 rounded-pill ml-auto mr-auto' 
+            <div className="row mb-5 ml-2 mr-2 mt-3">
+                <div className="col-8 d-flex"><button className='h-1 border-0 rounded-pill ml-auto mr-auto' 
                   style={{width:'100%',display:'inline'}} type='Submit'>Login</button></div>
-                <div class="col-4 d-flex">
+                <div className="col-4 d-flex">
                   <Link to="/Signup" className='ml-auto mr-auto mt-auto mb-auto text-primary hardlink'>Register</Link>
                 </div>
             </div>

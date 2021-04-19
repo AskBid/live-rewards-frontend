@@ -90,14 +90,14 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
                   </h4>
                 </div>
               </div>
-              <div class="dropdown-divider m-0"></div>  
+              <div className="dropdown-divider m-0"></div>  
               <div className='row text-dark rounded d-flex flex-row flex-nowrap'>
                 <div className='col-sm text-right pr-1 text-nowrap text-muted'>{compareTab ? 'Pool size:' : 'staked:'}</div>
                 <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>
                   ₳{ numeral(compareTab ? stake.pool_hash.size : (parseInt(stake.amount)/1000000)).format('0,0') }
                 </div>
               </div>
-              <div class="dropdown-divider m-0"></div>
+              <div className="dropdown-divider m-0"></div>
               <div className='row text-dark rounded d-flex flex-row text-muted flex-nowrap'>
                 <div className='col-sm text-right pr-1 text-nowrap'>blocks:</div>
                 <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>
@@ -105,7 +105,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
                   <strong className='text-monospace'>{stake.blocks}</strong>
                 </div>
               </div>
-              <div class="dropdown-divider m-0"></div>
+              <div className="dropdown-divider m-0"></div>
               <div className='row text-dark rounded d-flex flex-row text-muted flex-nowrap'>
                 <div className='col-sm text-right pr-1 text-nowrap'>ROS:</div>
                 <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>

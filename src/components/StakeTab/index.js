@@ -13,6 +13,7 @@ import { deleteStakeAddress } from '../../actions/stake_address.actions';
 import { deleteUserPoolHash } from '../../actions/pool_compared_stake.actions';
 import { Link } from 'react-router-dom'
 import { calcROS } from '../../helpers/calc-ros'
+import { ValueRow } from '../ValueRow'
 
 const StakeTab = ({stake, buttonsOff, compareTab}) => { 
 
@@ -61,6 +62,27 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
     )
   }
 
+  const unregisteredTabButtons = () => {
+    return (
+      <React.Fragment>
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            dispatch(deleteStakeAddress(user, stake.stake_address.id))
+          }}>
+            <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
+              <CloseIcon /> 
+            </DeleteBtn>
+          </form>
+
+          <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
+            <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+              <PoolIcon size={25}/> 
+            </PoolBtn>
+          </Link>
+      </React.Fragment>
+    )
+  }
+
   return (
     <div className='col bg-light rounded border border-secondary ml-3 mr-3 mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'>
       <AddrLabel className="text-monospace">...{stake.stake_address.view && stake.stake_address.view.slice(-7)}</AddrLabel>
@@ -82,6 +104,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
           </div>
           <div className='container col'>
             <div className='ml-auto'>
+
               <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white mt-auto mb-auto'>
                 <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>rewards:</div>
                 <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{'min-width':'8.5em'}}>
@@ -90,28 +113,33 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
                   </h4>
                 </div>
               </div>
-              <div className="dropdown-divider m-0"></div>  
-              <div className='row text-dark rounded d-flex flex-row flex-nowrap'>
-                <div className='col-sm text-right pr-1 text-nowrap text-muted'>{compareTab ? 'Pool size:' : 'staked:'}</div>
-                <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>
-                  ₳{ numeral(compareTab ? stake.pool_hash.size : (parseInt(stake.amount)/1000000)).format('0,0') }
-                </div>
-              </div>
-              <div className="dropdown-divider m-0"></div>
-              <div className='row text-dark rounded d-flex flex-row text-muted flex-nowrap'>
-                <div className='col-sm text-right pr-1 text-nowrap'>blocks:</div>
-                <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>
-                  <small className='text-monospace'>{`${numeral(stake.estimated_blocks).format('0,0.0')}/ `}</small>
-                  <strong className='text-monospace'>{stake.blocks}</strong>
-                </div>
-              </div>
-              <div className="dropdown-divider m-0"></div>
-              <div className='row text-dark rounded d-flex flex-row text-muted flex-nowrap'>
-                <div className='col-sm text-right pr-1 text-nowrap'>ROS:</div>
-                <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>
-                  {numeral(calcROS(stake.amount/1000000, stake.calc_rewards)).format('0,0.00')}%
-                </div>
-              </div>
+
+              {<ValueRow 
+                label={ 'your stake:' }
+                symbol={ '₳' }
+                value={ numeral(parseInt(stake.amount) / 1000000).format('0,0') }
+              />}
+
+              {stake.pool_hash.size ? 
+                <ValueRow 
+                  label={ 'pool size:' }
+                  symbol={ '₳' }
+                  value={ numeral(stake.pool_hash.size).format('0,0') }
+                /> : null
+              }
+
+              {<ValueRow 
+                label={ 'blocks:' }
+                symbol={<small className='text-monospace'>{`${numeral(stake.estimated_blocks).format('0,0.0')}/ `}</small>}
+                value={<strong className='text-monospace'>{stake.blocks}</strong>}
+              />}
+
+              {<ValueRow 
+                label={ 'ROS:' }
+                symbol={numeral(calcROS(stake.amount/1000000, stake.calc_rewards)).format('0,0.00')}
+                value={'%'}
+              />}
+
             </div>
           </div>
         </div>

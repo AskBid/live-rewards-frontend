@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const ValueRow = ({value, label}) => {
+export const ValueRow = ({symbol, value, label}) => {
+
   return (
     <React.Fragment>
     <div className="dropdown-divider m-0"></div>  
@@ -9,7 +10,7 @@ export const ValueRow = ({value, label}) => {
         {label}
       </div>
       <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>
-        {value}
+        {symbol}{value}
       </div>
     </div>
     </React.Fragment>

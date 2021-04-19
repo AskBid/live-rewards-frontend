@@ -43,23 +43,25 @@ const EpochTab = ({epochno, stakes, buttonsOff}) => {
             <div className='col ml-1 mr-1 bg-light rounded align-self-center p-0' style={{'min-width':'13em'}}>
                 <div className='container pt-2 pr-3 pl-3 pb-2 flex-md-column justify-content-between'>
                   <div className='row'>
-                    <div className='col-6 min-vw-10 pl-auto pr-auto text-right text-muted text-nowrap reward-label'>
+                    <div className='col min-vw-10 pl-auto pr-auto text-center text-muted text-nowrap reward-label'>
                       rewards:
                     </div>
-                    <div className='col min-vw-10 pl-auto pr-auto text-muted text-right text-nowrap'>
+                  </div>
+                  <div className='row mb-2 mt-0'>
+                    <div className='col min-vw-10 pl-auto pr-auto text-muted text-center text-nowrap'>
                       <b>{ epoch_status()['rewards'] }</b>
                     </div>
                   </div>
                   <div className='row'>
-                    <span className='col-6 min-vw-10 pl-auto pr-auto text-right text-muted text-nowrap reward-label'>
+                    <span className='col min-vw-10 pl-auto pr-auto text-center text-muted text-nowrap reward-label'>
                       delivery:
                     </span>
                   </div>
                   <div className='row'>
-                    <div className='date col text-monospace min-vw-10 pl-auto pr-auto text-right text-muted text-center text-nowrap'>
+                    <div className='date col min-vw-10 pl-auto pr-auto text-right text-muted text-center text-nowrap'>
                       {epoch_end_date(epochno).date}
                     </div>
-                    <div className='date col text-monospace min-vw-10 pl-auto pr-auto text-right text-muted text-center text-nowrap'>
+                    <div className='date col min-vw-10 pl-auto pr-auto text-right text-muted text-center text-nowrap'>
                       {epoch_end_date(epochno).time}
                     </div>
                   </div>

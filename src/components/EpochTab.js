@@ -1,12 +1,17 @@
 import React from 'react'
 import StakeTab from './StakeTab'
+import Moment from 'moment'
 
 const EpochTab = ({epochno, stakes, buttonsOff}) => {
 
+  const epoch_end_date = (epochno) => {
+    const m = Moment('2020-08-13T21:44:51.000')
+    m.add(5 * (260-210), 'days')
+    return {date: m.format("ddd Do MMM"), time: m.format("hh:mmA")}
+  }
+
   const epoch_status = () => {
-
     const epoch_passed = stakes[0].epoch_info.current_epoch - epochno
-
     switch (epoch_passed) {
       case 0:
         return {
@@ -41,7 +46,7 @@ const EpochTab = ({epochno, stakes, buttonsOff}) => {
                     <div className='col-6 min-vw-10 pl-auto pr-auto text-right text-muted text-nowrap reward-label'>
                       rewards:
                     </div>
-                    <div className='min-vw-10 pl-auto pr-auto text-muted text-right text-nowrap'>
+                    <div className='col min-vw-10 pl-auto pr-auto text-muted text-right text-nowrap'>
                       <b>{ epoch_status()['rewards'] }</b>
                     </div>
                   </div>
@@ -49,9 +54,13 @@ const EpochTab = ({epochno, stakes, buttonsOff}) => {
                     <span className='col-6 min-vw-10 pl-auto pr-auto text-right text-muted text-nowrap reward-label'>
                       delivery:
                     </span>
-
-                    <div className='text-monospace min-vw-10 pl-auto pr-auto text-right text-muted text-center text-nowrap'>
-                      29/Mar
+                  </div>
+                  <div className='row'>
+                    <div className='date col text-monospace min-vw-10 pl-auto pr-auto text-right text-muted text-center text-nowrap'>
+                      {epoch_end_date(epochno).date}
+                    </div>
+                    <div className='date col text-monospace min-vw-10 pl-auto pr-auto text-right text-muted text-center text-nowrap'>
+                      {epoch_end_date(epochno).time}
                     </div>
                   </div>
                 </div>

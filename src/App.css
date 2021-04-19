@@ -164,4 +164,10 @@ ul {
 li {
   cursor: pointer;
 }
+
+.reward-label {
+  font-size: 0.9em;
+  opacity: 70%;
+  top: 0px;
+}
     

@@ -1,0 +1,26 @@
+{
+  "info": {
+    "url_png_icon_64x64": "http://blackswanpool.com/cigno64x64.png",
+    "url_png_logo": "http://blackswanpool.com/cigno.png",
+    "location": "London, England",
+    "social": {
+      "twitter_handle": "Vanamonde1",
+      "github_handle": "AskBid"
+    },
+    "company": {
+      "name": "SM ltd",
+      "city": "London",
+      "country": "England"
+    },
+    "about": {
+      "me": "Automotive Digital Modeller training Developer",
+      "server": "Dell Precision Tower 5810, Four Core HT, 32GB RAM, at my Home in London 100MB up/down"
+    }
+  },
+  "my-pool-ids": [
+    "c70d35ffc108348294aac06f8f2fc65eae8bef2c4723c535ebc0830a"
+  ],
+  "telegram-admin-handle": [
+    "Sergio046"
+  ]
+}

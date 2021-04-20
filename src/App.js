@@ -29,7 +29,7 @@ function App() {
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={Signup}/>
         <Route path='/users/:username' component={User}/>
-        <Route path='/' exact component={Home}/>
+        <Route path='/' component={Home}/>
       </Switch>
     </Router>
   );

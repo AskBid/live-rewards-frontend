@@ -1,11 +1,11 @@
 import React from 'react'
 
-function IntroSchema({epochno}) {
+function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight}) {
     return (
     	<div className="row mt-3 d-flex flex-nowrap align-content-stretch align-content-center">
 
-    		<div className="text-right mt-auto mb-auto col mr-3">
-      		explanations
+    		<div className={`text-right text-${colorLeft} mt-auto mb-auto col mr-3`}>
+      		{textLeft}
       	</div>	        	
 
       	<div className="">
@@ -35,8 +35,8 @@ function IntroSchema({epochno}) {
 		      </div>
       	</div>
 
-      	<div className="text-left col ml-3 mt-auto mb-auto">
-      		check your <br/> rewards now!
+      	<div className={`text-left text-${colorRight} col ml-3 mt-auto mb-auto`}>
+      		{textRight}
       	</div>
 
     	</div>

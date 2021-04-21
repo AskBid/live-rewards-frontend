@@ -20,7 +20,7 @@ import { authHeader } from '../helpers/auth-header'
 export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES})
-		return fetch(`http://${process.env.REACT_APP_API_URL}/users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}`, {
+		return fetch(`https://${process.env.REACT_APP_API_URL}/users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}`, {
 			method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 export const addUserPoolHash = (username, ticker) => {
 	return (dispatch) => {
 		dispatch({type: ADD_USER_POOL_HASH})
-		return fetch(`http://${process.env.REACT_APP_API_URL}//users/${username}/user_pool_hashes`, {
+		return fetch(`https://${process.env.REACT_APP_API_URL}//users/${username}/user_pool_hashes`, {
 			method: 'POST',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ export const addUserPoolHash = (username, ticker) => {
 export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_POOL_HASH})
-		return fetch(`http://${process.env.REACT_APP_API_URL}/user_pool_hashes/${user_pool_hash_id}?epoch_stake_id=${epoch_stake_id}`, {
+		return fetch(`https://${process.env.REACT_APP_API_URL}/user_pool_hashes/${user_pool_hash_id}?epoch_stake_id=${epoch_stake_id}`, {
 			method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ export const deleteUserPoolHash = (user_pool_hash_id) => {
 			type: DELETE_USER_POOL_HASH,
 			payload: user_pool_hash_id
 		})
-		return fetch(`http://${process.env.REACT_APP_API_URL}/user_pool_hashes/${user_pool_hash_id}`, {
+		return fetch(`https://${process.env.REACT_APP_API_URL}/user_pool_hashes/${user_pool_hash_id}`, {
 			method: 'DELETE',
 	    headers: {
 	    	'Content-Type': 'application/json',

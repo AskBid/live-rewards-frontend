@@ -9,7 +9,7 @@ import {
 export const register = (formData) => {
 	return (dispatch) => {
 		dispatch({type: REGISTER_REQUEST})
-		return fetch(`http://${process.env.REACT_APP_API_URL}/users`, {
+		return fetch(`https://${process.env.REACT_APP_API_URL}/users`, {
 	  	method: 'POST',
 	    headers: { 'Content-Type': 'application/json' },
 	    body: JSON.stringify(formData)

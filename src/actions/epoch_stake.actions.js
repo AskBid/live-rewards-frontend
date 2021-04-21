@@ -17,7 +17,7 @@ import { authHeader } from '../helpers/auth-header'
 export const userEpochStakes = (username) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`${process.env.REACT_APP_API_URL}/users/${username}/epoch_stakes`, {
+		return fetch(`https://${process.env.REACT_APP_API_URL}/users/${username}/epoch_stakes`, {
 	  	method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',

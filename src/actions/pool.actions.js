@@ -9,7 +9,7 @@ import { authHeader } from '../helpers/auth-header'
 export const getTickers = () => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_POOL_TICKERS})
-		return fetch(`http://${process.env.REACT_APP_API_URL}/pools/tickers`, {
+		return fetch(`https://${process.env.REACT_APP_API_URL}/pools/tickers`, {
 			method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',

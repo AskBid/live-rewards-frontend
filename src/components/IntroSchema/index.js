@@ -1,11 +1,13 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import { LinkText } from './IntroSchemaElements'
 
 function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight}) {
     return (
     	<div className="row mt-3 d-flex flex-nowrap align-content-stretch align-content-center">
 
     		<div className={`text-right text-${colorLeft} mt-auto mb-auto col mr-3`}>
-      		{textLeft}
+      		<LinkText to='/live-rewards'>{textLeft}</LinkText>
       	</div>	        	
 
       	<div className="col">

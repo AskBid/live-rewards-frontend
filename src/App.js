@@ -2,16 +2,18 @@ import './App.css';
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import Sidebar from './components/Sidebar';
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import Home from './pages'
 import LiveRewards from './pages/live-rewards'
 import PoolCompare from './pages/pool-compare'
 import Signup from './pages/signup'
 import Login from './pages/login'
 import User from './pages/user'
+import { useSelector } from 'react-redux'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const user = useSelector(state => state.sessions.user)
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -30,7 +32,10 @@ function App() {
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={Signup}/>
         <Route path='/users/:username' component={User}/>
-        <Route path='/' component={Home}/>
+        <Route exact path="/">
+          {user ? <Redirect to="/live-rewards" /> : <Home />}
+        </Route>
+        <Route path='/intro' component={Home}/>
       </Switch>
     </Router>
   );

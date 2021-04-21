@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { SUCCESS } from '../actions'
 
 
 const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes, hideHide}) => {
 
   const [address, setAddress] = useState('')
+  const dispatch = useDispatch()
 
   const handleAddressInputChange = (e) => {
     setAddress(state => e.target.value)
@@ -34,7 +37,12 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes, hideH
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    user ? addUserStake(user, address) : unregisteredEpochStakes(address)
+    if (user) {
+      addUserStake(user, address)
+    } else {
+      unregisteredEpochStakes(address)
+      dispatch({type: SUCCESS, message: 'You can add only one stake if you are not logged in.'})
+    }
   }
 
   return (

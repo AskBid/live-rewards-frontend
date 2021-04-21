@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom'
 import { calcROS } from '../../helpers/calc-ros'
 import { ValueRow } from '../ValueRow'
 import { CLEAR_EPOCH_STAKES } from '../../actions'
+import { CLEAR } from '../../actions'
 
 const StakeTab = ({stake, tabType}) => { 
 
@@ -80,9 +81,10 @@ const StakeTab = ({stake, tabType}) => {
           <form onSubmit={(e) => {
             e.preventDefault()
             dispatch({type: CLEAR_EPOCH_STAKES})
+            dispatch({type: CLEAR})
           }}>
             <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
-              <CloseIcon /> 
+              <CloseIcon />
             </DeleteBtn>
           </form>
 

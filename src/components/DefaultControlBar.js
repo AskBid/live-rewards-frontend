@@ -9,7 +9,7 @@ const DefaultControlBar = () => {
   return (
     <>
       <Link to={`/live-rewards/users/${user}/user_stakes/new`}>
-        <button className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto' type='Submit'>
+        <button className='buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto' type='Submit'>
           Add Stake Address
         </button>
       </Link>

@@ -9,7 +9,7 @@ const DefaultPoolControlBar = ({match}) => {
   return (
     <React.Fragment>
       <Link to={`/pool-compare/users/${username}/epoch_stakes/${epoch_stake_id}/pools/new`}>
-        <button className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto' type='Submit'>
+        <button className='buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto' type='Submit'>
           Add Pool to Compare
         </button>
       </Link>

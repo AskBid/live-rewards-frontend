@@ -116,6 +116,10 @@ button:hover {
   color: #fff;
 }
 
+.selected-currency {
+  background: rgba(74, 217, 228, 0.55);
+}
+
 .spinner {
   position: absolute;
   background: rgba(255,255,255,0.5);

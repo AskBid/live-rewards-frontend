@@ -5,41 +5,42 @@ import { getPrice } from '../actions/session.actions'
 import { REQUEST_PRICE_SUCCESS } from '../actions'
 
 const CurrencySelector = () => {
-  const currency = useSelector( state => state.sessions.currency )
+  const currency = useSelector( state => Object.keys(state.sessions.currency)[0] )
   const dispatch = useDispatch()
 
   const switchCurrency = (e) => {
     dispatch(getPrice(e.target.id))
+    console.log(currency)
   }
 
   return (
     <>
       <button 
-        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        className={`${currency === 'ada' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
         onClick={() => dispatch({type: REQUEST_PRICE_SUCCESS, payload: {ada: 1}})}
         id='ada'>
         ₳
       </button>
       <button 
-        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        className={`${currency === 'usd' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
         onClick={switchCurrency}
         id='usd'>
         $
       </button>
       <button 
-        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        className={`${currency === 'eur' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
         onClick={switchCurrency}
         id='eur'>
         €
       </button>
       <button 
-        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        className={`${currency === 'gbp' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
         onClick={switchCurrency}
         id='gbp'>
         £
       </button>
       <button 
-        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        className={`${currency === 'jpy' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
         onClick={switchCurrency}
         id='jpy'>
         ¥

@@ -9,8 +9,10 @@ import {
 	SidebarRoute, 
 	SideBtnWrap
 } from './SidebarElements.js'
+import { useSelector } from 'react-redux'
 
 const Sidebar = ({isOpen,toggle}) => {
+  const user = useSelector( state => state.sessions.user )
 
   return (
     <SidebarContainer isOpen={isOpen} onClick={toggle}>
@@ -20,13 +22,14 @@ const Sidebar = ({isOpen,toggle}) => {
       <SidebarWrapper>
         <SidebarMenu>
           <SidebarLink to='/live-rewards' onClick={toggle}>Live Rewards</SidebarLink>
-          <SidebarLink to='/poolrace' onClick={toggle}>Pool Race</SidebarLink>
           <SidebarLink to='/howto' onClick={toggle}>How to</SidebarLink>
-          <SidebarLink to='/about' onClick={toggle}>About</SidebarLink>
           <SidebarLink to='/signup' onClick={toggle}>Sign up</SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to='/signin'>Sign in</SidebarRoute>
+          { user ?
+              <SidebarRoute to={`/users/${user}`}>@{user}</SidebarRoute>
+              :
+              <SidebarRoute to='/login'>Sign in</SidebarRoute> }
         </SideBtnWrap>
       </SidebarWrapper>
     </SidebarContainer>

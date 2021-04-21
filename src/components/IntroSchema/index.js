@@ -79,7 +79,7 @@ function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight, opaci
       	</div>
 
       	<div className={`text-left text-${colorRight} col ml-3 mt-auto mb-auto`}>
-      		{textRight}
+      		<b>{textRight}</b>
       	</div>
 
     	</div>

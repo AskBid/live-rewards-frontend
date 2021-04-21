@@ -1,4 +1,4 @@
-body {
+html, body {
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -13,6 +13,7 @@ body {
   /*background-color: #eee2dc;
   color: #222;
   /* color: #6f6974; */
+  height:100%;
 }
 
 code {

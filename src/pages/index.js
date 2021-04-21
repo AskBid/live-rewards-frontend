@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Home() {
 		const epochno = 260
     return (
-    	<div className="container-fluid mh-100">
+    	<div className="container-fluid h-100">
 	      <div className="row mb-5 h-100">
 	        <div className="col-lg-10 mr-auto ml-auto">
 	        	<div className="row mt-3 ml-auto mr-auto d-flex flex-row flex-wrap">

@@ -14,7 +14,8 @@ user = user ? user.username : undefined;
 const initialState = {
   submitting: false,
   user,
-  currency: {ada: 1}
+  currency: {ada: 1},
+  gecko_loading: false
 };
 
 export default function sessionReducer(state = initialState, action) {
@@ -43,13 +44,23 @@ export default function sessionReducer(state = initialState, action) {
       return {}
 
     case REQUEST_PRICE:
-      return {}
+      return {
+        ...state,
+        gecko_loading: true
+      }
 
     case REQUEST_PRICE_SUCCESS:
-      return {}
+      return {
+        ...state,
+        currency: action.payload
+        gecko_loading: false
+      }
 
     case REQUEST_PRICE_FAILURE:
-      return {}
+      return {
+        ...state,
+        gecko_loading: false
+      }
 
     default:
       return state;

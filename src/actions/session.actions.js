@@ -70,7 +70,7 @@ export const getPrice = (symbol) => {
 	  	.then((json) => {
 	  		dispatch({
 	  			type: REQUEST_PRICE_SUCCESS,
-	  			price: json.cardano
+	  			payload: json.cardano
 	  		})
 	  		return json.cardano
 	  	})

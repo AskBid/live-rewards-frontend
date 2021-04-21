@@ -3,6 +3,7 @@ import IntroSchema from '../components/IntroSchema';
 import { Link } from 'react-router-dom'
 
 function Home() {
+		const epochno = 260
     return (
     	<div className="container-fluid mh-100">
 	      <div className="row mb-5 h-100">
@@ -23,11 +24,11 @@ function Home() {
 		        	</div>
 
 	        		<div className="col-sm mt-3">
-	        			<IntroSchema epochno={262} textRight={'Rewards Delivery'} colorRight={'danger'}/>
-	        			<IntroSchema epochno={261} textRight={'Calculating Rewards'} colorRight={'danger'}/>
-	        			<IntroSchema epochno={260} textLeft={'check your rewards live!'} colorLeft={'highlight'} textRight={'Active Delegation'} colorRight={'primary'}/>
-	        			<IntroSchema epochno={259} textRight={'Stakes Snapshot'} colorRight={'primary'}/>
-	        			<IntroSchema epochno={258} textRight={'Sent Delegation'} colorRight={'primary'}/>
+	        			<IntroSchema epochno={epochno+2} textRight={'Rewards Delivery'} colorRight={'danger'}/>
+	        			<IntroSchema epochno={epochno+1} textRight={'Calculating Rewards'} colorRight={'danger'}/>
+	        			<IntroSchema epochno={epochno} textLeft={'check your rewards live!'} colorLeft={'highlight'} textRight={'Active Delegation'} colorRight={'primary'}/>
+	        			<IntroSchema epochno={epochno-1} textRight={'Stakes Snapshot'} colorRight={'primary'}/>
+	        			<IntroSchema epochno={epochno-2} textRight={'Sent Delegation'} colorRight={'primary'}/>
 		        	</div>	        	
 
 	        	</div>

@@ -29,8 +29,7 @@ class LoginForm extends Component {
           <form onSubmit={this.fetchOnSubmit}>
             { this.props.alert.message &&
               <div className={`alert ${this.props.alert.type}`}>
-                {this.props.alert.message.split('<b>').splice(0,1)}
-                <b>{this.props.alert.message.split('<b>').splice(1,1)}</b>
+                {this.props.alert.message}
               </div>
             }
             <h2 className='text-dark mb-4'>Login{'  '}

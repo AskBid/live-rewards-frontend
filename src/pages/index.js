@@ -12,7 +12,7 @@ function Home() {
 
 		        	<div className="col-lg text-center mr-5 mt-auto mb-auto">
 		        		<h1 className="text-dark text-center mt-5">
-		        			<span>Check <b>now</b> the <b>rewards</b> you'll receive in 2 epochs.</span>
+		        			<span>Check <b>now</b> the <b>rewards</b> you will receive in 2 epochs.</span>
 		        		</h1>
 		        		<div className="align-center mb-5" style={{height:'10vh'}}>
 		        			<Link to='/live-rewards'>

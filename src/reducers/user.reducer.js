@@ -25,7 +25,6 @@ export default function userReducer(state = initialState, action) {
   		}
 
   	case REGISTER_REQUEST_FAILURE:
-  		debugger
   		return { 
         ...state,
         registering: false,

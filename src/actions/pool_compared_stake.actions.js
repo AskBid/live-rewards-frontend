@@ -148,7 +148,6 @@ export const deleteUserPoolHash = (user_pool_hash_id) => {
 	  		}) 
 			})
 			.catch(err => {
-				debugger
 				dispatch({type: DELETE_USER_POOL_HASH_FAILURE})
 				dispatch({type: ERROR, message: err.toString()})
 			})

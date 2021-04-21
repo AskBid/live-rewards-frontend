@@ -6,7 +6,7 @@ const Navbar = ({toggle}) => {
     const user = useSelector( state => state.sessions.user )
     
     return (
-      <Nav>
+      <Nav className='position-fixed fixed-top'>
         <NavbarContainer>
           <NavLinkLogo to='/' exact>
   	        <h1>SWAN<span className='logo'>Pool</span></h1>

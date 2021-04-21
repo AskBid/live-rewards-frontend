@@ -8,7 +8,7 @@ function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight}) {
       		{textLeft}
       	</div>	        	
 
-      	<div className="">
+      	<div className="col">
       		<div className='text-light bg-white bg-gradient rounded p-0 shadow'>
 		        <div className='align-self-center justify-content-center row m-0 p-0 d-flex flex-row'>
 		          <div className='container align-self-center m-0 d-flex flex-column'>

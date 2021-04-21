@@ -175,4 +175,10 @@ li {
 .date {
   font-size: 1em;
 }
+
+.text-highlight {
+  color: #42c0c9;
+  font-size: 1.1em;
+  font-weight: bold;
+}
     

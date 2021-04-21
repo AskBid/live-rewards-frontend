@@ -21,7 +21,8 @@ function App() {
 
   return (
     <Router>
-      <Navbar toggle={toggle} />
+      <Navbar toggle={toggle}/>
+      <div style={{height:'80px'}}></div>
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
         <Route path='/live-rewards' component={LiveRewards}/>

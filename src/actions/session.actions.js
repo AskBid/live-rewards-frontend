@@ -51,7 +51,6 @@ export const logout = () => {
 	}
 }
 
-
 export const getPrice = (symbol) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_PRICE})
@@ -65,15 +64,15 @@ export const getPrice = (symbol) => {
 		  	if (res.ok) {
 		  		return res.json()
 		  	} else {
-		  		return res.json().then(gecko => Promise.reject(gecko.errors))
+		  		return res.json().then(geckoRes => Promise.reject(geckoRes))
 		  	}
 		  })
-	  	.then((user) => {
+	  	.then((json) => {
 	  		dispatch({
 	  			type: REQUEST_PRICE_SUCCESS,
-	  			user: user.username
+	  			price: json.cardano
 	  		})
-	  		return user
+	  		return json.cardano
 	  	})
 			.catch(err => {
 				dispatch({type: REQUEST_PRICE_FAILURE})

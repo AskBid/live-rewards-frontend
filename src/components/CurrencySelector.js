@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getPrice } from '../actions/session.actions'
 
 const CurrencySelector = () => {
   const currency = useSelector( state => state.sessions.currency )
+  const dispatch = useDispatch()
 
   const switchCurrency = (e) => {
-    // e.preventDefault()
     console.log(e.target.id)
+    dispatch(getPrice(e.target.id))
   }
 
   return (

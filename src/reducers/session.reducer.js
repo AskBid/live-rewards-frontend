@@ -1,8 +1,11 @@
 import { 
- LOGIN_REQUEST,
- LOGIN_REQUEST_SUCCESS,
- LOGIN_REQUEST_FAILURE,
- LOGOUT
+  LOGIN_REQUEST,
+  LOGIN_REQUEST_SUCCESS,
+  LOGIN_REQUEST_FAILURE,
+  REQUEST_PRICE,
+  REQUEST_PRICE_SUCCESS,
+  REQUEST_PRICE_FAILURE,
+  LOGOUT
 } from '../actions'
 
 let user = JSON.parse(localStorage.getItem('user'));
@@ -10,7 +13,8 @@ user = user ? user.username : undefined;
 
 const initialState = {
   submitting: false,
-  user
+  user,
+  currency: {ada: 1}
 };
 
 export default function sessionReducer(state = initialState, action) {
@@ -36,6 +40,15 @@ export default function sessionReducer(state = initialState, action) {
       }
 
     case LOGOUT:
+      return {}
+
+    case REQUEST_PRICE:
+      return {}
+
+    case REQUEST_PRICE_SUCCESS:
+      return {}
+
+    case REQUEST_PRICE_FAILURE:
       return {}
 
     default:

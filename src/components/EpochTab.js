@@ -75,7 +75,7 @@ const EpochTab = ({epochno, stakes, buttonsOff}) => {
                       delivery:
                     </span>
                   </div>
-                  <div className='row'>
+                  <div className='row d-flex flex-column'>
                     <div className='date col min-vw-10 pl-auto pr-auto text-right text-muted text-center text-nowrap'>
                       {epoch_end_date.date}
                     </div>

@@ -24,7 +24,7 @@ class StakesColumn extends Component {
         .sort((a,b) => a + b)
         .reverse()
       return ordered_keys.map(epochno => {
-        return <EpochTab key={epochno} epochno={epochno} stakes={epoch_stakes_by_epoch[epochno]} />
+        return <EpochTab key={epochno} epochno={epochno} stakes={epoch_stakes_by_epoch[epochno]} tabType={'live-rewards'} />
       })
     } else { return undefined }
   }

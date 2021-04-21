@@ -17,7 +17,7 @@ class PoolComparedStakesColumn extends Component {
   deployProjectedEpochStakes = () => {
     return (
       <div className="d-flex flex-wrap">
-        {this.props.pool_compared_stakes.map((stake) => <StakeTab stake={stake} compareTab={true}/>)}                           
+        {this.props.pool_compared_stakes.map((stake) => <StakeTab stake={stake} tabType={'pool-compare'}/>)}                           
       </div>
     )
   }
@@ -62,7 +62,7 @@ class PoolComparedStakesColumn extends Component {
           Actual:
           {(this.props.loading && !epoch_stake) && <h2 className='text-muted m-5'>Loading...</h2>}
         </h4>
-        {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonsOff={true} />}
+        {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]}/>}
         <h4 className='text-muted'>
           <div className='d-flex justify-content-center'>
             {this.props.loading_compared_stakes && 

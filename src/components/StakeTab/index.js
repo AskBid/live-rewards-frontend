@@ -16,13 +16,13 @@ import { calcROS } from '../../helpers/calc-ros'
 import { ValueRow } from '../ValueRow'
 import { CLEAR_EPOCH_STAKES } from '../../actions'
 
-const StakeTab = ({stake, buttonsOff, compareTab}) => { 
+const StakeTab = ({stake, tabType}) => { 
 
   const user = useSelector(state => state.sessions.user)
   const currency = useSelector(state => state.sessions.currency.symbol)
   const price = useSelector(state => state.sessions.currency.price)
   const deleting = useSelector(state => {
-    return compareTab ? 
+    return tabType === 'pool-compare' ?
       stake.stake_address.id === state.pool_compared_stakes.deleting_user_pool_hash_id :
       stake.stake_address.id === state.epoch_stakes.deleting_addr_id
   })
@@ -95,6 +95,19 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
     )
   }
 
+  const whichButtons = () => {
+    switch (tabType) {
+      case 'live-rewards':
+        return stakeTabButtons()
+      case 'pool-compare':
+        return compareTabButtons()
+      case 'live-rewards-unregistered':
+        return unregisteredTabButtons()
+      default:
+        return <div style={{width:'1.2em'}}></div>
+    }
+  }
+
   return (
     <div className='col bg-light rounded border border-secondary ml-3 mr-3 mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'>
       <AddrLabel className="text-monospace">...{stake.stake_address.view && stake.stake_address.view.slice(-7)}</AddrLabel>
@@ -106,7 +119,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
       
       <div className='flex-row d-flex w-100'>
 
-        {!buttonsOff ? (compareTab ? compareTabButtons() : stakeTabButtons()) : <div style={{width:'1.2em'}}></div>}
+        { whichButtons() }
 
         <div className='col d-flex flex-row flex-wrap m-0 p-1'>
           <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto' style={{ minWidth:'7em'}}>
@@ -121,7 +134,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
                 <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>rewards:</div>
                 <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{ minWidth:'8.5em'}}>
                   <h4 className='mt-auto mb-auto pt-2 pb-2 text-monospace'>
-                    {symbols[currency]}{numeral(stake.calc_rewards).format('0,0')}
+                    {symbols[currency]}{numeral(stake.calc_rewards*price).format('0,0')}
                   </h4>
                 </div>
               </div>
@@ -129,14 +142,14 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
               {<ValueRow 
                 label={ 'stake:' }
                 symbol={symbols[currency]}
-                value={ numeral(parseInt(stake.amount) / 1000000).format('0,0') }
+                value={ numeral(parseInt(stake.amount*price) / 1000000).format('0,0') }
               />}
 
               {stake.pool_hash.size ? 
                 <ValueRow 
                   label={ 'pool size:' }
                   symbol={symbols[currency]}
-                  value={ numeral(stake.pool_hash.size).format('0,0') }
+                  value={ numeral(stake.pool_hash.size*price).format('0,0') }
                 /> : null
               }
 

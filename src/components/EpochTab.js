@@ -2,7 +2,7 @@ import React from 'react'
 import StakeTab from './StakeTab'
 import Moment from 'moment'
 
-const EpochTab = ({epochno, stakes, buttonsOff}) => {
+const EpochTab = ({epochno, stakes, tabType}) => {
 
   const epoch_end_date = ((epochno) => {
     const reward_pay = Moment('2020-08-13T21:44:51.000')
@@ -87,7 +87,7 @@ const EpochTab = ({epochno, stakes, buttonsOff}) => {
             </div>
           </div>
           </div>
-          {stakes.map(stake => <StakeTab stake={stake} buttonsOff={buttonsOff} key={stake.id}/>)}
+          {stakes.map(stake => <StakeTab stake={stake} tabType={tabType} key={stake.id}/>)}
         </div>
         <div className="progress mt-2" style={{height: "4.5px", opacity: `${epoch_status.opacity}`}}>
           <div className={`progress-bar bg-${epoch_status.color}`} role={'progressbar'} style={{width: `${epoch_end_date.epoch_progress}%`}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>

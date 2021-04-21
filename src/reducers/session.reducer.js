@@ -52,7 +52,7 @@ export default function sessionReducer(state = initialState, action) {
     case REQUEST_PRICE_SUCCESS:
       return {
         ...state,
-        currency: action.payload
+        currency: action.payload,
         gecko_loading: false
       }
 

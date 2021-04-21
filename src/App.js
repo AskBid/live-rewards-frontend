@@ -9,6 +9,7 @@ import PoolCompare from './pages/pool-compare'
 import Signup from './pages/signup'
 import Login from './pages/login'
 import User from './pages/user'
+import Howto from './pages/howto'
 import { useSelector } from 'react-redux'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -31,6 +32,7 @@ function App() {
         <Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id' component={PoolCompare}/>
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={Signup}/>
+        <Route path='/howto' component={Howto}/>
         <Route path='/users/:username' component={User}/>
         <Route exact path="/">
           {user ? <Redirect to="/live-rewards" /> : <Home />}

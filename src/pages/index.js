@@ -21,6 +21,7 @@ function Home() {
 		        				</button>
 		        			</Link>
 		        		</div>
+		        		<div style={{height:'100px'}}></div>
 		        	</div>
 
 	        		<div className="col-sm mt-3 mb-5">

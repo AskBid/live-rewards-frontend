@@ -172,7 +172,7 @@ li {
 
 .reward-label {
   font-size: 13px;
-  opacity: 50%;
+  color: rgba(100,100,100,0.4);
 }
 
 .date {

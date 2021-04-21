@@ -61,7 +61,7 @@ const EpochTab = ({epochno, stakes, tabType}) => {
             <div className='col ml-1 mr-1 bg-light rounded align-self-center p-0'>
                 <div className='container pt-2 pr-3 pl-3 pb-2 flex-md-column justify-content-between' style={{width:'23vw'}}>
                   <div className='row'>
-                    <div className='col min-vw-10 pl-auto pr-auto text-center text-muted text-nowrap reward-label'>
+                    <div className='col min-vw-10 pl-auto pr-auto text-center text-nowrap reward-label'>
                       rewards:
                     </div>
                   </div>
@@ -71,7 +71,7 @@ const EpochTab = ({epochno, stakes, tabType}) => {
                     </div>
                   </div>
                   <div className='row'>
-                    <span className='col min-vw-10 pl-auto pr-auto text-center text-muted text-nowrap reward-label'>
+                    <span className='col min-vw-10 pl-auto pr-auto text-center text-nowrap reward-label'>
                       delivery:
                     </span>
                   </div>

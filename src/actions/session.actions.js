@@ -13,7 +13,7 @@ import {
 export const login = (formData) => {
 	return (dispatch) => {
 		dispatch({type: LOGIN_REQUEST})
-		return fetch(`https://${process.env.REACT_APP_API_URL}/login`, {
+		return fetch(`${process.env.REACT_APP_API_URL}/login`, {
 	  	method: 'POST',
 	    headers: { 'Content-Type': 'application/json' },
 	    body: JSON.stringify(formData)

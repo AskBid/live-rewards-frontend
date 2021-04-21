@@ -14,6 +14,8 @@ html, body {
   color: #222;
   /* color: #6f6974; */
   height:100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {

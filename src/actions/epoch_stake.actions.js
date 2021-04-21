@@ -17,7 +17,7 @@ import { authHeader } from '../helpers/auth-header'
 export const userEpochStakes = (username) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`https://${process.env.REACT_APP_API_URL}/users/${username}/epoch_stakes`, {
+		return fetch(`${process.env.REACT_APP_API_URL}/users/${username}/epoch_stakes`, {
 	  	method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export const userEpochStakes = (username) => {
 export const getEpochStake = (epoch_stake_id) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_EPOCH_STAKE})
-		return fetch(`https://${process.env.REACT_APP_API_URL}/epoch_stakes/${epoch_stake_id}`, {
+		return fetch(`${process.env.REACT_APP_API_URL}/epoch_stakes/${epoch_stake_id}`, {
 			method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export const unregisteredEpochStakes = (stake_address) => {
 	return (dispatch) => {
 		stake_address = stake_address === '' ? 'random' : stake_address;
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`https://${process.env.REACT_APP_API_URL}/stake_addresses/${stake_address}/epoch_stakes`, {
+		return fetch(`${process.env.REACT_APP_API_URL}/stake_addresses/${stake_address}/epoch_stakes`, {
 	  	method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',

@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 function Home() {
 		const epochno = 261
     return (
-    	<div className="container-fluid h-100">
-	      <div className="row mb-5 h-100">
-	        <div className="col-lg-10 mr-auto ml-auto">
+    	<div className="container-fluid">
+	      <div className="row mb-5">
+	        <div className=" col-lg-10 mr-auto ml-auto">
 	        	<div className="row mt-3 ml-auto mr-auto d-flex flex-row flex-wrap">
 
 		        	<div className="col-lg text-center mr-5 mt-auto mb-auto">
@@ -23,7 +23,7 @@ function Home() {
 		        		</div>
 		        	</div>
 
-	        		<div className="col-sm mt-3">
+	        		<div className="col-sm mt-3 mb-5">
 	        			<IntroSchema 
 	        				opacity={'40%'} 
 	        				current_epoch={epochno} 
@@ -57,7 +57,6 @@ function Home() {
 	        				textRight={'Sent Delegation'} 
 	        				colorRight={'primary'}/>
 		        	</div>	        	
-
 	        	</div>
 	        </div>
 	      </div>

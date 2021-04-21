@@ -41,7 +41,9 @@ export default function sessionReducer(state = initialState, action) {
       }
 
     case LOGOUT:
-      return {}
+      return {
+        currency: {price: 1, symbol: 'ada'}
+      }
 
     case REQUEST_PRICE:
       return {

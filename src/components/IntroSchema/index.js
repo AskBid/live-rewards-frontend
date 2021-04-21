@@ -1,8 +1,49 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { LinkText } from './IntroSchemaElements'
+import Moment from 'moment'
 
-function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight, opacity}) {
+function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight, opacity, current_epoch}) {
+
+	const epoch_end_date = ((epochno) => {
+    const epoch_end = Moment('2020-08-13T21:44:51.000')
+    epoch_end.add(5 * ((epochno) - 210), 'days')
+
+    const sec_left = epoch_end.unix() - Moment().unix()
+    const five_days_sec = 432000
+    const epoch_progress = sec_left > 0 ? ((five_days_sec-sec_left) / five_days_sec) * 100 : 100
+
+    return epoch_progress
+  })(epochno)
+
+  const epoch_status = (() => {
+    const epoch_passed = current_epoch - epochno
+    if (epoch_passed < 0) {
+    	return {
+        color: 'danger',
+        opacity: '25%'
+      }
+    }
+        
+    switch (epoch_passed) {
+      case 0:
+        return {
+          color: 'warning',
+          opacity: '45%'
+        }
+      case 1:
+        return {
+          color: 'info',
+          opacity: '55%'
+        }
+      default:
+        return {
+          color: 'info',
+          opacity: '90%'
+        }
+    }
+  })()
+
     return (
     	<div className="row mt-3 d-flex flex-nowrap align-content-stretch align-content-center">
 
@@ -31,8 +72,8 @@ function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight, opaci
 		            </div>
 		          </div>
 		        </div>
-		        <div className="progress mt-0" style={{height: "4.5px", opacity: "90"}}>
-		          <div className="progress-bar bg-info" role={'progressbar'} style={{width: `60%`}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
+		        <div className="progress mt-0" style={{height: "4.5px", opacity: `${epoch_status.opacity}`}}>
+		          <div className={`progress-bar bg-${epoch_status.color}`} role={'progressbar'} style={{width: `${epoch_end_date}%`}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
 		        </div>
 		      </div>
       	</div>

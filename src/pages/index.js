@@ -24,11 +24,38 @@ function Home() {
 		        	</div>
 
 	        		<div className="col-sm mt-3">
-	        			<IntroSchema opacity={'40%'} epochno={epochno+2} textRight={'Rewards Delivery'} colorRight={'danger'}/>
-	        			<IntroSchema opacity={'70%'} epochno={epochno+1} textRight={'Calculating Rewards'} colorRight={'danger'}/>
-	        			<IntroSchema opacity={'100%'} epochno={epochno} textLeft={'check your rewards live!'} colorLeft={'highlight'} textRight={'Active Delegation'} colorRight={'primary'}/>
-	        			<IntroSchema opacity={'100%'} epochno={epochno-1} textRight={'Stakes Snapshot'} colorRight={'primary'}/>
-	        			<IntroSchema opacity={'100%'} epochno={epochno-2} textRight={'Sent Delegation'} colorRight={'primary'}/>
+	        			<IntroSchema 
+	        				opacity={'40%'} 
+	        				current_epoch={epochno} 
+	        				epochno={epochno+2} 
+	        				textRight={'Rewards Delivery'} 
+	        				colorRight={'danger'}/>
+	        			<IntroSchema 
+	        				opacity={'70%'} 
+	        				current_epoch={epochno} 
+	        				epochno={epochno+1} 
+	        				textRight={'Calculating Rewards'} 
+	        				colorRight={'danger'}/>
+	        			<IntroSchema 
+	        				opacity={'100%'} 
+	        				current_epoch={epochno} 
+	        				epochno={epochno} 
+	        				textLeft={'check your rewards live!'} 
+	        				colorLeft={'highlight'} 
+	        				textRight={'Active Delegation'} 
+	        				colorRight={'primary'}/>
+	        			<IntroSchema 
+	        				opacity={'100%'} 
+	        				current_epoch={epochno} 
+	        				epochno={epochno-1} 
+	        				textRight={'Stakes Snapshot'} 
+	        				colorRight={'primary'}/>
+	        			<IntroSchema 
+	        				opacity={'100%'} 
+	        				current_epoch={epochno} 
+	        				epochno={epochno-2} 
+	        				textRight={'Sent Delegation'} 
+	        				colorRight={'primary'}/>
 		        	</div>	        	
 
 	        	</div>

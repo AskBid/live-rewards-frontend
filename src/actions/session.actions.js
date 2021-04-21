@@ -4,7 +4,10 @@ import {
 	LOGIN_REQUEST_FAILURE,
 	LOGOUT,
 	ERROR,
-	CLEAR_EPOCH_STAKES
+	CLEAR_EPOCH_STAKES,
+	REQUEST_PRICE,
+	REQUEST_SUCCESS,
+	REQUEST_FAILURE
 } from '.'
 
 export const login = (formData) => {

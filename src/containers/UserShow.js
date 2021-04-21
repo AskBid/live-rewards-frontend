@@ -7,6 +7,7 @@ class NewUserForm extends Component {
     actionOnSubmit = (e) => {
       e.preventDefault()
       this.props.logout()
+      this.props.history.push('/live-rewards')
     }
 
     render() {

@@ -54,11 +54,11 @@ const EpochTab = ({epochno, stakes, buttonsOff}) => {
         <div className='align-self-center justify-content-center row m-auto pr-2 pl-2 d-flex flex-row'>
           <div className='pb-3 pt-0 pl-0 pr-0 align-self-center'>
           <div className='align-self-center mt-auto mb-auto ml-4 mr-1 d-flex flex-row flex-wrap'>
-            <div className='col ml-1 mr-1 align-self-center'>
+            <div className='col ml-1 mr-1 align-self-center' style={{width: '6em' }}>
               <h6 className='text-muted ml-auto mr-auto mb-0 text-center d-flex justify-content-center'>epoch</h6>
               <h1 className='text-muted ml-auto mr-auto text-center'>{epochno}</h1>
             </div>
-            <div className='col ml-1 mr-1 bg-light rounded align-self-center p-0' style={{'min-width':'13em'}}>
+            <div className='col ml-1 mr-1 bg-light rounded align-self-center p-0' style={{minWidth:'14em'}}>
                 <div className='container pt-2 pr-3 pl-3 pb-2 flex-md-column justify-content-between'>
                   <div className='row'>
                     <div className='col min-vw-10 pl-auto pr-auto text-center text-muted text-nowrap reward-label'>
@@ -87,7 +87,7 @@ const EpochTab = ({epochno, stakes, buttonsOff}) => {
             </div>
           </div>
           </div>
-          {stakes.map(stake => <StakeTab stake={stake} buttonsOff={buttonsOff}/>)}
+          {stakes.map(stake => <StakeTab stake={stake} buttonsOff={buttonsOff} key={stake.id}/>)}
         </div>
         <div className="progress mt-2" style={{height: "4.5px", opacity: `${epoch_status.opacity}`}}>
           <div className={`progress-bar bg-${epoch_status.color}`} role={'progressbar'} style={{width: `${epoch_end_date.epoch_progress}%`}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>

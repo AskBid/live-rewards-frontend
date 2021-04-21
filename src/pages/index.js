@@ -15,7 +15,7 @@ function Home() {
 		        		</h1>
 		        		<div className="align-center mb-5" style={{height:'10vh'}}>
 		        			<Link to='/live-rewards'>
-		        				<button className="m-0 mt-4 mb-4" style={{'min-width':'250px'}}>
+		        				<button className="m-0 mt-4 mb-4" style={{minWidth:'250px'}}>
 		        					<b>Live-Rewards</b>
 		        				</button>
 		        			</Link>

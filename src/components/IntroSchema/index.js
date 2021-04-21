@@ -14,7 +14,7 @@ function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight}) {
       		<div className='text-light bg-white bg-gradient rounded p-0 shadow'>
 		        <div className='align-self-center justify-content-center row m-0 p-0 d-flex flex-row'>
 		          <div className='container align-self-center m-0 d-flex flex-column'>
-		            <div style={{opacity:'60%', 'min-width': '12vw'}}>
+								<div style={{ opacity: '60%', minWidth: '12vw'}}>
 			            <div className="reward-label row text-muted text-left pl-1">day 5</div>
 			            <div className="dropdown-divider m-0"></div>  
 			            <div className="reward-label row text-muted text-left pl-1">day 4</div>

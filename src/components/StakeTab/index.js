@@ -98,7 +98,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
         {!buttonsOff ? (compareTab ? compareTabButtons() : stakeTabButtons()) : <div style={{width:'1.2em'}}></div>}
 
         <div className='col d-flex flex-row flex-wrap m-0 p-1'>
-          <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto' style={{'min-width':'7em'}}>
+          <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto' style={{ minWidth:'7em'}}>
             <h2 className='text-dark mt-auto mb-auto mr-auto ml-auto'>
               {ticker}
             </h2>
@@ -108,7 +108,7 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
 
               <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white mt-auto mb-auto'>
                 <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>rewards:</div>
-                <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{'min-width':'8.5em'}}>
+                <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{ minWidth:'8.5em'}}>
                   <h4 className='mt-auto mb-auto pt-2 pb-2 text-monospace'>
                     ₳{numeral(stake.calc_rewards).format('0,0')}
                   </h4>

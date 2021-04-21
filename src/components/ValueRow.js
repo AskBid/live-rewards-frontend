@@ -9,7 +9,7 @@ export const ValueRow = ({symbol, value, label}) => {
       <div className='col-sm text-right pr-1 text-nowrap text-muted'>
         {label}
       </div>
-      <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{'min-width':'8.5em'}}>
+      <div className='col-sm text-right pr-1 text-monospace text-muted text-nowrap min-vw-10' style={{minWidth:'8.5em'}}>
         {symbol}{value}
       </div>
     </div>

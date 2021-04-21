@@ -65,7 +65,7 @@ class StakesColumn extends Component {
             <br/>
             If you don't know how to find your stake address, please visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
             <br/>
-            To add a random stake address click -> <Link onClick={onClickLink} className='hardlink grey'>Random Stake!</Link>.
+            To add a random stake address click -> <a onClick={onClickLink} className='hardlink grey' style={{cursor:'pointer'}}>Random Stake!</a>.
           </p>
           </div>
         </React.Fragment>

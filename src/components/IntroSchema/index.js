@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { LinkText } from './IntroSchemaElements'
 
-function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight}) {
+function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight, opacity}) {
     return (
     	<div className="row mt-3 d-flex flex-nowrap align-content-stretch align-content-center">
 
@@ -10,7 +10,7 @@ function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight}) {
       		<LinkText to='/live-rewards'>{textLeft}</LinkText>
       	</div>	        	
 
-      	<div className="col">
+      	<div className="col"  style={{opacity:`${opacity}`}}>
       		<div className='text-light bg-white bg-gradient rounded p-0 shadow'>
 		        <div className='align-self-center justify-content-center row m-0 p-0 d-flex flex-row'>
 		          <div className='container align-self-center m-0 d-flex flex-column'>

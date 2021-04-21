@@ -14,7 +14,7 @@ user = user ? user.username : undefined;
 const initialState = {
   submitting: false,
   user,
-  currency: {ada: 1},
+  currency: {price: 1, symbol: 'ada'},
   gecko_loading: false
 };
 

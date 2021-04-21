@@ -5,7 +5,7 @@ import { getPrice } from '../actions/session.actions'
 import { REQUEST_PRICE_SUCCESS } from '../actions'
 
 const CurrencySelector = () => {
-  const currency = useSelector( state => Object.keys(state.sessions.currency)[0] )
+  const currency = useSelector( state => state.sessions.currency.symbol )
   const dispatch = useDispatch()
 
   const switchCurrency = (e) => {

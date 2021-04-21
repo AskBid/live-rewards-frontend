@@ -19,6 +19,7 @@ import { CLEAR_EPOCH_STAKES } from '../../actions'
 const StakeTab = ({stake, buttonsOff, compareTab}) => { 
 
   const user = useSelector(state => state.sessions.user)
+  const currency = useSelector(state => state.sessions.currency)
   const deleting = useSelector(state => {
     return compareTab ? 
       stake.stake_address.id === state.pool_compared_stakes.deleting_user_pool_hash_id :
@@ -26,6 +27,15 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
   })
   const dispatch = useDispatch()
   const ticker = stake.pool_hash.pool && stake.pool_hash.pool.ticker
+
+  const symbols = {
+    ada: '₳',
+    usd: '$',
+    eur: '€',
+    gbp: '£',
+    jpy: '¥',
+    btc: '฿'
+  }
 
   const stakeTabButtons = () => {
     return (

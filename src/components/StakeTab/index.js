@@ -16,6 +16,7 @@ import { calcROS } from '../../helpers/calc-ros'
 import { ValueRow } from '../ValueRow'
 import { CLEAR_EPOCH_STAKES } from '../../actions'
 import { CLEAR } from '../../actions'
+import { ERROR } from '../../actions'
 
 const StakeTab = ({stake, tabType}) => { 
 
@@ -88,11 +89,9 @@ const StakeTab = ({stake, tabType}) => {
             </DeleteBtn>
           </form>
 
-          <Link to={`/not-available`}>
-            <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-              <PoolIcon size={25}/> 
-            </PoolBtn>
-          </Link>
+          <PoolBtn onClick={() => dispatch({type: ERROR, message: '<b>Pool Compare functionality is only available if you Login.'})} className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+            <PoolIcon size={25}/> 
+          </PoolBtn>
       </React.Fragment>
     )
   }

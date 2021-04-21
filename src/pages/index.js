@@ -3,7 +3,7 @@ import IntroSchema from '../components/IntroSchema';
 import { Link } from 'react-router-dom'
 
 function Home() {
-		const epochno = 260
+		const epochno = 261
     return (
     	<div className="container-fluid h-100">
 	      <div className="row mb-5 h-100">

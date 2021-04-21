@@ -26,7 +26,30 @@ const CurrencySelector = () => {
         id='usd'>
         $
       </button>
-      {/* €£¥ */}
+      <button 
+        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        onClick={switchCurrency}
+        id='eur'>
+        €
+      </button>
+      <button 
+        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        onClick={switchCurrency}
+        id='gbp'>
+        £
+      </button>
+      <button 
+        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        onClick={switchCurrency}
+        id='jpy'>
+        ¥
+      </button>
+      {/*<button 
+        className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
+        onClick={switchCurrency}
+        id='btc'>
+        ฿
+      </button>*/}
     </>
   )
 }

@@ -19,7 +19,8 @@ import { CLEAR_EPOCH_STAKES } from '../../actions'
 const StakeTab = ({stake, buttonsOff, compareTab}) => { 
 
   const user = useSelector(state => state.sessions.user)
-  const currency = useSelector(state => state.sessions.currency)
+  const currency = useSelector(state => state.sessions.currency.symbol)
+  const price = useSelector(state => state.sessions.currency.price)
   const deleting = useSelector(state => {
     return compareTab ? 
       stake.stake_address.id === state.pool_compared_stakes.deleting_user_pool_hash_id :
@@ -120,21 +121,21 @@ const StakeTab = ({stake, buttonsOff, compareTab}) => {
                 <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>rewards:</div>
                 <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{ minWidth:'8.5em'}}>
                   <h4 className='mt-auto mb-auto pt-2 pb-2 text-monospace'>
-                    ₳{numeral(stake.calc_rewards).format('0,0')}
+                    {symbols[currency]}{numeral(stake.calc_rewards).format('0,0')}
                   </h4>
                 </div>
               </div>
 
               {<ValueRow 
                 label={ 'stake:' }
-                symbol={ '₳' }
+                symbol={symbols[currency]}
                 value={ numeral(parseInt(stake.amount) / 1000000).format('0,0') }
               />}
 
               {stake.pool_hash.size ? 
                 <ValueRow 
                   label={ 'pool size:' }
-                  symbol={ '₳' }
+                  symbol={symbols[currency]}
                   value={ numeral(stake.pool_hash.size).format('0,0') }
                 /> : null
               }

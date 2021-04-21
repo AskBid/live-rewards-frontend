@@ -17,7 +17,7 @@ const CurrencySelector = () => {
     <>
       <button 
         className={`${currency === 'ada' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
-        onClick={() => dispatch({type: REQUEST_PRICE_SUCCESS, payload: {ada: 1}})}
+        onClick={() => dispatch({type: REQUEST_PRICE_SUCCESS, payload: {symbol: 'ada', price: 1}})}
         id='ada'>
         ₳
       </button>

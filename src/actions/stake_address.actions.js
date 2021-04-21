@@ -49,7 +49,7 @@ export const deleteStakeAddress = (user, addr_id) => {
 			type: DELETE_USER_STAKE_REQUEST,
 			payload: addr_id
 		})
-		return fetch(`http://${process.env.REACT_APP_API_URL}/users/${user}/user_stakes/${addr_id}`, {
+		return fetch(`https://${process.env.REACT_APP_API_URL}/users/${user}/user_stakes/${addr_id}`, {
 			method: 'DELETE',
 	    headers: {
 	    	'Content-Type': 'application/json',

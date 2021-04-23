@@ -16,31 +16,31 @@ const CurrencySelector = () => {
   return (
     <>
       <button 
-        className={`${currency === 'ada' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
+        className={`${currency === 'ada' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
         onClick={() => dispatch({type: REQUEST_PRICE_SUCCESS, payload: {symbol: 'ada', price: 1}})}
         id='ada'>
         ₳
       </button>
       <button 
-        className={`${currency === 'usd' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
+        className={`${currency === 'usd' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
         onClick={switchCurrency}
         id='usd'>
         $
       </button>
       <button 
-        className={`${currency === 'eur' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
+        className={`${currency === 'eur' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
         onClick={switchCurrency}
         id='eur'>
         €
       </button>
       <button 
-        className={`${currency === 'gbp' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
+        className={`${currency === 'gbp' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
         onClick={switchCurrency}
         id='gbp'>
         £
       </button>
       <button 
-        className={`${currency === 'jpy' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto`}
+        className={`${currency === 'jpy' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
         onClick={switchCurrency}
         id='jpy'>
         ¥

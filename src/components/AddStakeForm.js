@@ -50,7 +50,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes, hideH
     <div className='d-flex d-inline-flex w-100 mr-auto ml-auto'>
       {!hideHide &&
         <Link to='/live-rewards' className=''>
-          <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' type='Submit'>
+          <button className='col buttonsbar border-0 text-nowrap rounded m-1' type='Submit'>
             Hide
           </button>
         </Link>
@@ -65,7 +65,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes, hideH
             onChange={handleAddressInputChange}>
           </input>
         </fieldset>
-        <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
+        <button className='col-auto border-0 text-nowrap rounded-pill m-1 w-auto'
           type='Submit'
           disabled={!buttonActivation()}>
           Submit Address

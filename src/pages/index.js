@@ -10,7 +10,7 @@ function Home() {
 	        <div className=" col-lg-10 mr-auto ml-auto">
 	        	<div className="row mt-3 ml-auto mr-auto d-flex flex-row flex-wrap">
 
-		        	<div className="col-lg text-center mr-5 p-0 mt-auto mb-auto">
+		        	<div className="col-lg text-center p-0 mt-auto mb-auto">
 		        		<h1 className="text-dark text-center mt-5">
 		        			<span>Check <b>now</b> the <b>rewards</b> you will receive in 2 epochs.</span>
 		        		</h1>
@@ -21,7 +21,6 @@ function Home() {
 		        				</button>
 		        			</Link>
 		        		</div>
-		        		<div style={{height:'100px'}}></div>
 		        	</div>
 
 	        		<div className="col-sm mt-3 mb-5">

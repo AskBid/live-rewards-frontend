@@ -47,11 +47,11 @@ function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight, opaci
     return (
     	<div className="row mt-3 d-flex flex-nowrap align-content-stretch align-content-center">
 
-    		<div className={`text-right text-${colorLeft} mt-auto mb-auto col mr-3`}>
+    		<div className={`text-right text-${colorLeft} mt-auto mb-auto col-4 mr-3`}>
       		<LinkText to='/live-rewards'>{textLeft}</LinkText>
       	</div>	        	
 
-      	<div className="col"  style={{opacity:`${opacity}`}}>
+      	<div className="col-4"  style={{opacity:`${opacity}`}}>
       		<div className='text-light bg-white bg-gradient rounded p-0 shadow'>
 		        <div className='align-self-center justify-content-center row m-0 p-0 d-flex flex-row'>
 		          <div className='container align-self-center m-0 d-flex flex-column'>
@@ -78,7 +78,7 @@ function IntroSchema({epochno, textRight, textLeft, colorLeft, colorRight, opaci
 		      </div>
       	</div>
 
-      	<div className={`text-left text-${colorRight} col ml-3 mt-auto mb-auto`}>
+      	<div className={`text-left text-${colorRight} col-4 ml-3 mt-auto mb-auto`}>
       		<b>{textRight}</b>
       	</div>
 

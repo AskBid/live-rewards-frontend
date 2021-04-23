@@ -17,6 +17,9 @@ import { ValueRow } from '../ValueRow'
 import { CLEAR_EPOCH_STAKES } from '../../actions'
 import { CLEAR } from '../../actions'
 import { ERROR } from '../../actions'
+import ReactTooltip from "react-tooltip";
+import Tooltip from 'react-bootstrap/Tooltip'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
 const StakeTab = ({stake, tabType}) => { 
 
@@ -109,6 +112,19 @@ const StakeTab = ({stake, tabType}) => {
     }
   }
 
+  const estimatedBlocks = props => (
+    <Tooltip {...props}>
+      Those are the estimated blocks this pool should produce based on pool_stake/total_stakes.
+      Luck can affect this as much as pool performance.
+    </Tooltip>
+  );
+
+  const actualBlocks = props => (
+    <Tooltip {...props}>
+      Those are the blocks effectively produced from the pool at this point.
+    </Tooltip>
+  );
+
   return (
     <div className='col bg-light rounded border border-secondary ml-3 mr-3 mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'>
       <AddrLabel className="text-monospace">...{stake.stake_address.view && stake.stake_address.view.slice(-7)}</AddrLabel>
@@ -134,9 +150,13 @@ const StakeTab = ({stake, tabType}) => {
               <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white mt-auto mb-auto'>
                 <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>rewards:</div>
                 <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{ minWidth:'8.5em'}}>
-                  <h4 className='mt-auto mb-auto pt-2 pb-2 text-monospace'>
-                    {symbols[currency]}{numeral(stake.calc_rewards*price).format('0,0')}
+                  
+                  <h4 className='mt-auto mb-auto pt-2 pb-2 text-monospace' data-tip data-for="registerTip">
+                    {symbols[currency]}{stake.calc_rewards*price < 100 ? numeral(stake.calc_rewards*price).format('0,0.0') : numeral(stake.calc_rewards*price).format('0,0')}
                   </h4>
+                  {/*<ReactTooltip id="registerTip" effect="solid">
+                    Tooltip for the register button
+                  </ReactTooltip>*/}
                 </div>
               </div>
 
@@ -146,19 +166,30 @@ const StakeTab = ({stake, tabType}) => {
                 value={ numeral(parseInt(stake.amount*price) / 1000000).format('0,0') }
               />}
 
-              {stake.pool_hash.size ? 
-                <ValueRow 
-                  label={ 'pool size:' }
-                  symbol={symbols[currency]}
-                  value={ numeral(stake.pool_hash.size*price).format('0,0') }
-                /> : null
+              {stake.pool_hash.size ?
+                  <ValueRow 
+                    label={ 'pool size:' }
+                    symbol={symbols[currency]}
+                    value={ numeral(stake.pool_hash.size*price).format('0,0') }
+                  /> 
+                : null
               }
 
-              {<ValueRow 
-                label={ 'blocks:' }
-                symbol={<small className='text-monospace'>{`${numeral(stake.estimated_blocks).format('0,0.0')}/ `}</small>}
-                value={<strong className='text-monospace'>{stake.blocks}</strong>}
-              />}
+              {
+                <ValueRow 
+                  label={ 'blocks:' }
+                  symbol={
+                    <OverlayTrigger placement='top' overlay={estimatedBlocks}>
+                      <small className='text-monospace'>{`${numeral(stake.estimated_blocks).format('0,0.0')}/ `}</small>
+                    </OverlayTrigger>
+                  }
+                  value={
+                    <OverlayTrigger placement='top' overlay={actualBlocks}>
+                      <strong className='text-monospace'>{stake.blocks}</strong>
+                    </OverlayTrigger>
+                  }
+                />
+              }
 
               {<ValueRow 
                 label={ 'ROS:' }

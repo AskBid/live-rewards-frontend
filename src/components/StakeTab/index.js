@@ -17,7 +17,6 @@ import { ValueRow } from '../ValueRow'
 import { CLEAR_EPOCH_STAKES } from '../../actions'
 import { CLEAR } from '../../actions'
 import { ERROR } from '../../actions'
-import ReactTooltip from "react-tooltip";
 import Tooltip from 'react-bootstrap/Tooltip'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
@@ -55,11 +54,13 @@ const StakeTab = ({stake, tabType}) => {
             </DeleteBtn>
           </form>
 
-          <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
-            <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-              <PoolIcon size={25}/> 
-            </PoolBtn>
-          </Link>
+          <OverlayTrigger placement='top' overlay={compareTip}>
+            <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
+              <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+                <PoolIcon size={25}/> 
+              </PoolBtn>
+            </Link>
+          </OverlayTrigger>
       </React.Fragment>
     )
   }
@@ -92,9 +93,11 @@ const StakeTab = ({stake, tabType}) => {
             </DeleteBtn>
           </form>
 
-          <PoolBtn onClick={() => dispatch({type: ERROR, message: '<b>Pool Compare functionality is only available if you Login.'})} className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-            <PoolIcon size={25}/> 
-          </PoolBtn>
+          <OverlayTrigger placement='top' overlay={compareTip}>
+            <PoolBtn onClick={() => dispatch({type: ERROR, message: 'Pool Compare functionality is only available if you Login.'})} className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+              <PoolIcon size={25}/> 
+            </PoolBtn>
+          </OverlayTrigger>
       </React.Fragment>
     )
   }
@@ -113,15 +116,21 @@ const StakeTab = ({stake, tabType}) => {
   }
 
   const estimatedBlocks = props => (
-    <Tooltip {...props}>
+    <Tooltip {...props} style={{opacity:'70%', ...props.style}}>
       Those are the estimated blocks this pool should produce based on pool_stake/total_stakes.
       Luck can affect this as much as pool performance.
     </Tooltip>
   );
 
   const actualBlocks = props => (
-    <Tooltip {...props}>
+    <Tooltip {...props} style={{opacity:'70%', ...props.style}}>
       Those are the blocks effectively produced from the pool at this point.
+    </Tooltip>
+  );
+
+  const compareTip = props => (
+    <Tooltip {...props} style={{opacity:'60%', ...props.style}}>
+      Compare this epoch stake with other pools.
     </Tooltip>
   );
 

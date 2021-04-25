@@ -1,9 +1,20 @@
 import React from 'react'
 import IntroSchema from '../components/IntroSchema';
 import { Link } from 'react-router-dom'
+import Moment from 'moment'
 
 function Home() {
-		const epochno = 261
+
+		const epochno = (() => {
+	    // const epoch_end = Moment('2020-08-13T21:44:51.000')
+	    // epoch_start.subtract(5, 'days')
+	    const now = Moment().unix()
+	    const epoch_210 = Moment('2020-08-13T21:44:51.000').unix()
+	    const diff = now - epoch_210
+	    const epochs = diff / (5*60*60*24)
+	    return 210 + (Math.ceil(epochs))
+	  })()
+
     return (
     	<div className="container-fluid">
 	      <div className="row mb-5">

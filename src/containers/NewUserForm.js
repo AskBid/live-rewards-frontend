@@ -62,7 +62,7 @@ class NewUserForm extends Component {
             </fieldset>
             <fieldset className='ml-auto mr-auto w-100'>
               <label htmlFor="email" className="block">
-                Email (?)
+                Email (OPTIONAL)
                 <span className="text-danger">{this.props.errors.email ? ` ${this.props.errors.email.join(', ')}` : null}</span>
               </label>
               <input

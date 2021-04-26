@@ -24,9 +24,9 @@ const AutoComplete = ({
     };
   }, []);
 
-  useEffect(() => {
-  	!isVisible && showSuggestion()
-  }, [text])
+  // useEffect(() => {
+  	// !isVisible && showSuggestion()
+  // }, [text])
 
   const handleClickOutside = event => {
     if (
@@ -41,7 +41,7 @@ const AutoComplete = ({
   const showSuggestion = () => setVisiblity(true);
 
 	const renderSuggestions = () => {
-    const isHighlighted = false
+    // const isHighlighted = false
     return (
     	<div className={`autocomplete-div w-100 d-block-flex border shadow-sm rounded pl-1 pt-2 ${isVisible ? null : 'invisible'}`}
     		ref={searchResultDivRef}
@@ -136,7 +136,7 @@ const AutoComplete = ({
 	      onKeyDown={keyboardNavigation}
 	      autocomplete="off">
 	    </input>
-	    <div className='position-absolute w-100 pr-2' style={{'z-index':'99'}}>
+	    <div className='position-absolute w-100 pr-2' style={{'z-index':'99'}} onClick={() => hideSuggestion()}>
 	    	{renderSuggestions()}
         {addressChecksMessage()}
       </div>

@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import AddPoolForm from '../containers/AddPoolForm'
 import chart_delegation_flows from '../helpers/chart_delegation_flows'
-// import * as d3 from 'd3';
+import { getDelegationFlow } from '../actions/delegation_flows.actions'
+import { useSelector, useDispatch } from 'react-redux'
 
 function DelegationFlows() {
+		const dispatch = useDispatch()
 		useEffect(() => {
-	    
+	    dispatch(getDelegationFlow())
 	  }, []);
 
     return (

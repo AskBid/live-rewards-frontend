@@ -4,7 +4,7 @@ import {
   REQUEST_DELEGATION_FLOW_FAILURE,
 } from '.'
 
-export const userEpochStakes = (epoch_no) => {
+export const getDelegationFlow = (epoch_no) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_DELEGATION_FLOW})
 		return fetch(`${process.env.REACT_APP_API_URL}/epoch_delegations_flows/${epoch_no}`, {

@@ -1,6 +1,15 @@
-let ticker_limit = 50000000
+
+export default function prova() {
+  console.log('run')
+  prova2()
+}
+
+function prova2() {
+  console.log('run 2?')
+}
 
 function draw(edfJSON, range) {
+  let ticker_limit = 50000000
   console.log(edfJSON )
   let filtered_edfJSON = {...edfJSON}
   if (range) { filtered_edfJSON = filterPools(edfJSON) }

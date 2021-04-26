@@ -10,6 +10,7 @@ import Signup from './pages/signup'
 import Login from './pages/login'
 import User from './pages/user'
 import Howto from './pages/howto'
+import DelegationFlows from './pages/delegation-flows'
 import { useSelector } from 'react-redux'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -29,6 +30,7 @@ function App() {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
         <Route path='/live-rewards' component={LiveRewards}/>
+        <Route path='/delegation-flows' component={DelegationFlows}/>
         <Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id' component={PoolCompare}/>
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={Signup}/>

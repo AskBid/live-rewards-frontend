@@ -68,11 +68,13 @@ class AddPoolForm extends Component {
     return (
     <React.Fragment>
       <div className='d-flex d-inline-flex w-100 mr-auto ml-auto'>
-        <div>
-          <button onClick={this.hideButton} className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1'>
-            Hide
-          </button>
-        </div>
+        {!this.props.noHideButton && (
+          <div>
+            <button onClick={this.hideButton} className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1'>
+              Hide
+            </button>
+          </div>)
+        }
         <form className='row d-inline-flex w-100 mr-auto ml-auto'
           onSubmit={this.handleSubmit}>
           <AutoComplete 

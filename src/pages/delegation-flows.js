@@ -17,7 +17,7 @@ function DelegationFlows() {
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto">
 	        	<div className='row mt-4 mb-5 mr-auto ml-auto'>
-	        		<AddPoolForm />
+	        		<AddPoolForm noHideButton={true} />
 				  	</div>
 	        	<div className='chart-container'></div>
 	        </div>

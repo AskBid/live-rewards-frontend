@@ -1,4 +1,7 @@
 
+import * as d3 from 'd3';
+import numeral from 'numeral';
+
 export default function prova() {
   console.log('run')
   prova2()
@@ -398,9 +401,9 @@ function rad_to_deg(radians) {
 }
 
 function filterPools(edfJSON) {
-  let poolsize_min = $( "#slider-range" ).slider( "values", 0 ) 
-  let poolsize_max = $( "#slider-range" ).slider( "values", 1 ) 
-  ticker_limit = poolsize_min + ((poolsize_max - poolsize_min)/2)
+  let poolsize_min = 400 
+  let poolsize_max = 5000000000000 
+  // ticker_limit = poolsize_min + ((poolsize_max - poolsize_min)/2)
   let new_edfJSON = {}
   let excluded = {size: 0, from: {}, ticker: 'Filtered Pools', pool_id: null}
   let accepted_sum = 0

@@ -1,6 +1,7 @@
 import React from 'react'
 import PoolCompareControlBar from '../containers/PoolCompareControlBar'
 import chart_delegation_flows from '../helpers/chart_delegation_flows'
+// import * as d3 from 'd3';
 
 function DelegationFlows({match}) {
 

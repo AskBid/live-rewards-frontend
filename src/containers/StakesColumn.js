@@ -16,7 +16,6 @@ class StakesColumn extends Component {
     if (!this.props.username && (this.props.epoch_stakes.length === 0)) {
       this.props.unregisteredEpochStakes('')
     }
-    console.log('didMount')
   }
 
   deployEpochs = () => {

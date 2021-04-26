@@ -77,7 +77,6 @@ export const unregisteredEpochStakes = (stake_address) => {
 	return (dispatch) => {
 		stake_address = stake_address === '' ? 'random' : stake_address;
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		console.log('inside unregisteredEpochStakes')
 		return fetch(`${process.env.REACT_APP_API_URL}/stake_addresses/${stake_address}/epoch_stakes`, {
 	  	method: 'GET',
 	    headers: {
@@ -92,7 +91,6 @@ export const unregisteredEpochStakes = (stake_address) => {
 				}
 			})
 	  	.then(json => { 
-	  		console.log(json)
 	  		dispatch({type: CLEAR_EPOCH_STAKES})
 	  		dispatch({
 	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 

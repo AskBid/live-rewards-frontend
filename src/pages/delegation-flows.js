@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 function DelegationFlows() {
 		const dispatch = useDispatch()
+		const delegation_flow = useSelector( state => state.delegation_flow.delegation_flow )
 		useEffect(() => {
 	    dispatch(getDelegationFlow())
 	  }, []);
@@ -18,6 +19,7 @@ function DelegationFlows() {
 	        <div className="col-lg-10 mr-auto ml-auto">
 	        	<div className='row mt-4 mb-5 mr-auto ml-auto'>
 	        		<AddPoolForm noHideButton={true} />
+	        		{console.log(delegation_flow)}
 				  	</div>
 	        	<div className='chart-container'></div>
 	        </div>

@@ -2,20 +2,11 @@
 import * as d3 from 'd3';
 import numeral from 'numeral';
 
-export default function prova() {
-  console.log('run')
-  prova2()
-}
-
-function prova2() {
-  console.log('run 2?')
-}
-
-function draw(edfJSON, range) {
+export default function draw(edfJSON, ticker) {
   let ticker_limit = 50000000
   console.log(edfJSON )
   let filtered_edfJSON = {...edfJSON}
-  if (range) { filtered_edfJSON = filterPools(edfJSON) }
+  if (ticker) { filtered_edfJSON = filterPools(ticker) }
   console.log(filtered_edfJSON )
   const arc = d3.arc();
   const ribbon = d3.ribbonArrow();
@@ -47,7 +38,7 @@ function draw(edfJSON, range) {
     return outer_rad + rad_addition
   }
 
-  let tab_width = document.getElementsByClassName("delegation_tab")[0].offsetWidth;
+  let tab_width = 0;
   let chart_top_padding = 80;
   let gap_to_fix_position_when_on_small_width = 0;
 

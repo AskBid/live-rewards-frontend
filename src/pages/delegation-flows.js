@@ -1,9 +1,12 @@
-import React from 'react'
-import PoolCompareControlBar from '../containers/PoolCompareControlBar'
+import React, { useEffect } from 'react'
+import AddPoolForm from '../containers/AddPoolForm'
 import chart_delegation_flows from '../helpers/chart_delegation_flows'
 // import * as d3 from 'd3';
 
-function DelegationFlows({match}) {
+function DelegationFlows() {
+		useEffect(() => {
+	    
+	  }, []);
 
     return (
       <div className="container-fluid mh-100">
@@ -11,8 +14,10 @@ function DelegationFlows({match}) {
 	        <div className='col'>
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto">
-	        	<PoolCompareControlBar />
-	        	{chart_delegation_flows()}
+	        	<div className='row mt-4 mb-5 mr-auto ml-auto'>
+	        		<AddPoolForm />
+				  	</div>
+	        	<div className='chart-container'></div>
 	        </div>
 	        <div className='col'></div>
 	      </div>

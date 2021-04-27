@@ -30,7 +30,7 @@ function App() {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
         <Route path='/live-rewards' component={LiveRewards}/>
-        <Route path='/delegation-flows' component={DelegationFlows}/>
+        <Route path='/delegation-flows/epochs/:epoch_no/pools/:ticker' component={DelegationFlows}/>
         <Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id' component={PoolCompare}/>
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={Signup}/>

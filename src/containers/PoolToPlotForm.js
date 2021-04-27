@@ -6,7 +6,7 @@ import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
 import { getComparedEpochStake } from '../actions/pool_compared_stake.actions';
 import AutoComplete from '../components/AutoComplete'
 
-class AddPoolForm extends Component {
+class PoolToPlotForm extends Component {
 
   state = {
     text: '',
@@ -47,10 +47,6 @@ class AddPoolForm extends Component {
     } else { 
       return (ticker.includes("pool1") && ticker.length === 56) || (ticker.length < 6 && ticker.length > 2)
     }
-  }
-
-  hideButton = () => {
-    this.props.history.goBack()
   }
 
   handleSubmit = (e) => {
@@ -105,6 +101,6 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPoolForm)
+export default connect(mapStateToProps, mapDispatchToProps)(PoolToPlotForm)
 
 

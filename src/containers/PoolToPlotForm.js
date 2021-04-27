@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getTickers } from '../actions/pool.actions'
+import { getDelegationFlow } from '../actions/delegation_flows.actions'
 import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
 import { getComparedEpochStake } from '../actions/pool_compared_stake.actions';
 import AutoComplete from '../components/AutoComplete'
+import chart_delegation_flows from '../helpers/chart_delegation_flows'
 
 class PoolToPlotForm extends Component {
 
@@ -15,8 +16,11 @@ class PoolToPlotForm extends Component {
   }
 
   componentDidMount() {
-    // avoid to fetch tickers every time component is mounted?
-    !this.props.tickers && this.props.getTickers()
+    this.props.getDelegationFlow(this.props.match.params.epoch_no)
+      .then(res => {
+        res && chart_delegation_flows(res, 4, this.props.svg)
+      })
+    // !this.props.tickers && this.props.getTickers()
   }
 
   handleTextChange = (e) => {
@@ -64,11 +68,11 @@ class PoolToPlotForm extends Component {
     return (
     <React.Fragment>
       <div className='d-flex d-inline-flex w-100 mr-auto ml-auto'>
-        <div>
-          <button onClick={this.hideButton} className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1'>
-            Hide
+        {/*<Link to={`/live-rewards`}>
+          <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' alt='Go Back'>
+            ⟵
           </button>
-        </div>
+        </Link>*/}
         <form className='row d-inline-flex w-100 mr-auto ml-auto'
           onSubmit={this.handleSubmit}>
           <AutoComplete 
@@ -89,18 +93,12 @@ class PoolToPlotForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTickers: () => dispatch(getTickers()),
+    getDelegationFlow: (epoch_no) => dispatch(getDelegationFlow(epoch_no)),
     addUserPoolHash: (username, ticker) => dispatch(addUserPoolHash(username, ticker)),
     getComparedEpochStake: (user_pool_hash_id, epoch_stake_id) => dispatch(getComparedEpochStake(user_pool_hash_id, epoch_stake_id))
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    tickers: state.pools.tickers
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PoolToPlotForm)
+export default connect(null, mapDispatchToProps)(PoolToPlotForm)
 
 

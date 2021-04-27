@@ -12,9 +12,9 @@ class StakesColumn extends Component {
 
   componentDidMount() {
     (this.props.username && (this.props.epoch_stakes.length === 0)) && 
-      this.props.userEpochStakes(this.props.username)
+      this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
     if (!this.props.username && (this.props.epoch_stakes.length === 0)) {
-      this.props.unregisteredEpochStakes('')
+      this.props.unregisteredEpochStakes('').catch(res => this.props.noServer())
     }
   }
 
@@ -103,7 +103,8 @@ const mapDispatchToProps = dispatch => {
     userEpochStakes: (username) => dispatch(userEpochStakes(username)),
     addUserStake: (user, address) => dispatch(addUserStake(user, address)),
     unregisteredEpochStakes: (address) => dispatch(unregisteredEpochStakes(address)),
-    closeAlert: () => dispatch({type: 'ALERT_CLEAR'})
+    closeAlert: () => dispatch({type: 'ALERT_CLEAR'}),
+    noServer: () => dispatch({type: 'ALERT_ERROR', message: 'server is temporarily OFFLINE. Sorry for the inconvenience.'})
   }
 }
 

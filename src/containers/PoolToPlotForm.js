@@ -17,10 +17,14 @@ class PoolToPlotForm extends Component {
 
   componentDidMount() {
     this.props.getDelegationFlow(this.props.match.params.epoch_no)
-      .then(res => {
-        res && chart_delegation_flows(res, 4, this.props.svg)
-      })
-    // !this.props.tickers && this.props.getTickers()
+      .then(res => this.props.tickersMap = this.getTickersFromDeleFlow(res))
+  }
+
+  getTickersFromDeleFlow = (deleFlow) => {
+    let obj = {}
+    Object.keys(deleFlow).each(pool_hash_id => {
+      obj = {...obj, [deleFlow[pool_hash_id].ticker]: pool_hash_id}
+    }) 
   }
 
   handleTextChange = (e) => {
@@ -99,6 +103,12 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(PoolToPlotForm)
+const mapStateToProps = state => {
+  return {
+    delegation_flow: state.delegation_flow.delegationFlow
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PoolToPlotForm)
 
 

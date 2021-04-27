@@ -41,6 +41,7 @@ export const userEpochStakes = (username) => {
 	  	})
 			.catch(err => {
 				dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE})
+				return Promise.reject(err)
 			})
 	}
 }
@@ -103,6 +104,7 @@ export const unregisteredEpochStakes = (stake_address) => {
 			.catch(err => {
 				dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE})
 				dispatch({type: ERROR, message: 'Address was not found.'})
+				return Promise.reject(err)
 			})
 	}
 }

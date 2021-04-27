@@ -2,11 +2,11 @@
 import * as d3 from 'd3';
 import numeral from 'numeral';
 
-export default function draw(edfJSON, ticker) {
+export default function draw(edfJSON, pool_hash_id, svgRef) {
   let ticker_limit = 50000000
   console.log(edfJSON )
   let filtered_edfJSON = {...edfJSON}
-  if (ticker) { filtered_edfJSON = filterPools(ticker) }
+  if (pool_hash_id) { filtered_edfJSON = filterPools(edfJSON, pool_hash_id) }
   console.log(filtered_edfJSON )
   const arc = d3.arc();
   const ribbon = d3.ribbonArrow();
@@ -14,10 +14,14 @@ export default function draw(edfJSON, ticker) {
   let edfARR = Object.keys(filtered_edfJSON)
   const delegation_color = '#69db8f';
   const filtered_pools_color = 'rgba(150,150,150,0.3)';
-
+  debugger
+  
+  d3.select(svgRef).append("circle").attr("cx",0).attr("cy",0).attr("r",200)
+  .style("fill", "#69b3a2");
   //positioning and proportions START
-  let width = document.getElementsByClassName("chart_container")[0].offsetWidth;
-  let height = document.getElementsByClassName("chart_container")[0].offsetHeight;
+
+  let width = svgRef.offsetWidth;
+  let height = svgRef.offsetHeight;
 
   let minimum_dimension = Math.min(width, height);
   let textRatio = 10 / 340;
@@ -269,29 +273,6 @@ export default function draw(edfJSON, ticker) {
       })
 
     })
-    .on("click", function(){
-      const ticker = d3.select(this).attr("tick")
-      const id = d3.select(this).attr("ph_id")
-      let tos = {}
-
-      const balance = calculate_balance(id, edfJSON, tos)
-
-      document.getElementById('select_pool_ticker').innerHTML = ticker;
-      document.getElementById('pool_size').innerHTML = `${numeral(edfJSON[id].size).format('0,0')} ₳`;
-      document.getElementById('pool_balance').innerHTML = `${numeral(balance).format('0,0')} ₳`;
-      if (balance < 0) {
-        d3.select('#pool_balance')
-        .style('color', 'red')
-      } else {
-        d3.select('#pool_balance')
-        .style('color', 'green')
-      }
-      document.getElementById('out').getElementsByTagName('span')[0].innerHTML = '';
-      document.getElementById('in').getElementsByTagName('span')[0].innerHTML = '';
-      // console.log(edfJSON[id].from)
-      deployFromTo(tos, 'out', edfJSON)
-      deployFromTo(edfJSON[id].from, 'in', edfJSON)
-    }); 
   }
 }
 
@@ -391,35 +372,24 @@ function rad_to_deg(radians) {
   return radians * (180/pi);
 }
 
-function filterPools(edfJSON) {
-  let poolsize_min = 400 
-  let poolsize_max = 5000000000000 
-  // ticker_limit = poolsize_min + ((poolsize_max - poolsize_min)/2)
-  let new_edfJSON = {}
-  let excluded = {size: 0, from: {}, ticker: 'Filtered Pools', pool_id: null}
-  let accepted_sum = 0
+function filterPools(edfJSON, pool_hash_id) {
+  let senders = {...edfJSON[pool_hash_id].from}
+  let new_edfJSON = {[pool_hash_id]: edfJSON[pool_hash_id]}
   Object.keys(edfJSON).forEach((k) => {
-    if (edfJSON[k].size < poolsize_max && edfJSON[k].size > poolsize_min) {
-      new_edfJSON[k] = edfJSON[k]
-      accepted_sum += edfJSON[k].size
-    } else {
-      Object.keys(edfJSON[k].from).forEach((key) => {
-        if (excluded.from[key]) {
-          excluded.from[key] += edfJSON[k].from[key]
-        } else {
-          const v = edfJSON[k].from[key]
-          excluded.from[key] = v
-        }
-      })
+    if ((k != pool_hash_id) && (receives_from_pool(edfJSON[k]) || senders[k])) {
+      new_edfJSON[k] = {...edfJSON[k], from: {...edfJSON[k].from[pool_hash_id]}}
     }
   })
-  Object.keys(excluded.from).forEach((k) => {
-    if (!new_edfJSON[k]) {
-      delete excluded.from[k]
-    }
-  })
-  excluded.size = accepted_sum / 10
-  new_edfJSON.excluded = excluded
+
+  function receives_from_pool(from) {
+    Object.keys(from).forEach((k) => {
+      if (k === pool_hash_id) {
+        return true
+      }
+    })
+    return false
+  }
+
   return new_edfJSON
 }
 

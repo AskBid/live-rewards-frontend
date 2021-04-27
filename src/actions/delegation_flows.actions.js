@@ -25,6 +25,7 @@ export const getDelegationFlow = (epoch_no) => {
 	  			type: REQUEST_DELEGATION_FLOW_SUCCESS, 
 	  			payload: json
 	  		});
+	  		return json
 	  	})
 			.catch(err => {
 				dispatch({type: REQUEST_DELEGATION_FLOW_FAILURE})

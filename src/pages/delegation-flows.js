@@ -11,7 +11,7 @@ function DelegationFlows() {
 		useEffect(() => {
 	    dispatch(getDelegationFlow()).then(res => {
 				// debugger
-	    	res && chart_delegation_flows(res, 99, svgRef)
+	    	res && chart_delegation_flows(res, 4, svgRef)
 	    })
 	  }, []);
 	  // console.log(delegation_flow)
@@ -22,8 +22,9 @@ function DelegationFlows() {
 	        <div className="container col-lg-10 h-100 d-flex flex-column">
 	        	<div className='row mt-4 mb-1'>
 	        		<AddPoolForm noHideButton={true} />
+	        		<h5 className='text-muted mt-4 text-center'>{`Delegations flows for ${'EDEN'} pool:`}</h5>
 				  	</div>
-	        	<svg ref={svgRef} className='border w-100 h-100' style={{minHeight:'400px', minWidth:'400px'}}></svg>
+	        	<svg ref={svgRef} className='w-100 h-100 mt-2' style={{minHeight:'600px', minWidth:'600px'}}></svg>
 	        </div>
 	        <div className='col'></div>
 	    </div>

@@ -3,11 +3,11 @@ import * as d3 from 'd3';
 import numeral from 'numeral';
 
 export default function draw(edfJSON, pool_hash_id, svgRef) {
-  let ticker_limit = 50000000
-  // console.log(edfJSON )
+  let ticker_limit = 5000
+  console.log(edfJSON )
   let filtered_edfJSON = {...edfJSON}
   if (pool_hash_id) { filtered_edfJSON = filterPools(edfJSON, pool_hash_id) }
-  // console.log(filtered_edfJSON )
+  console.log(filtered_edfJSON )
   const arc = d3.arc();
   const ribbon = d3.ribbonArrow();
   const sum_sizes = make_angular(filtered_edfJSON);
@@ -21,17 +21,19 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   let height = svg.clientHeight;
   svg = d3.select(svg)
   let minimum_dimension = Math.min(width, height);
-  let textRatio = 10 / 340;
+  let textRatio = 10 / 180;
 
   let zoom = 0.65;
   if (width < 700) {
     zoom = 0.90
   }
-  let inner_rad = parseInt(((minimum_dimension*zoom)/2))
+  let inner_rad = parseInt(((minimum_dimension*zoom)/2.9))
+  inner_rad = inner_rad < 200 ? 200 : inner_rad
   let ticker_size = `${parseInt(textRatio*inner_rad)}px`
-  let outer_rad = inner_rad + (inner_rad / 22)
+  let outer_rad = inner_rad + (inner_rad / 10)
   const max_outer_rad_addition = (outer_rad - inner_rad) * 0.5;
   let max_rad = outer_rad + max_outer_rad_addition
+
 
   let top_rad = (ph_id) => {
     const biggest_pool_guess = 80000000;
@@ -40,25 +42,24 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   }
   
   let center_translation_h = width/2;
-  let center_translation_v = height/2
-
+  let center_translation_v = (height/2)-20;
   //positioning and proportions END
 
   const pool_opacity = 0.6;
   const pool_stroke_width = 0.2;
   const pool_stroke_opacity = 0.6;
-  const ribbon_opacity = 0.4;
-  const ribbon_stroke_width = 0.1;
+  const ribbon_opacity = 0.6;
+  const ribbon_stroke_width = 0.4;
   const ribbon_stroke_opacity = 0.6;
 
-  // d3.select(svgRef).select('svg').remove()
+  d3.selectAll("svg > *").remove()
+  svg.append("circle").attr("cx",center_translation_h).attr("cy",center_translation_v).attr("r",inner_rad)
+  .style("fill", "rgba(255,255,255,0.6)");
 
   //https://github.com/d3/d3-scale-chromatic
   //https://bl.ocks.org/EfratVil/2bcc4bf35e28ae789de238926ee1ef05
   var color = d3.scaleOrdinal().domain(edfARR)
     .range(d3.schemeTableau10);
-
-  svg.attr("style", 'border: 1px solid black')
 
   let g = svg.append('g')
     .attr("transform", `translate(${center_translation_h}, ${center_translation_v})`);
@@ -356,18 +357,21 @@ function filterPools(edfJSON, pool_hash_id) {
   let senders = {...edfJSON[pool_hash_id].from}
   let new_edfJSON = {[pool_hash_id]: edfJSON[pool_hash_id]}
   Object.keys(edfJSON).forEach((k) => {
-    if ((k != pool_hash_id) && (receives_from_pool(edfJSON[k]) || senders[k])) {
-      new_edfJSON[k] = {...edfJSON[k], from: {...edfJSON[k].from[pool_hash_id]}}
+    // debugger
+    if ((k != pool_hash_id) && (receives_from_pool(edfJSON[k].from) || senders[k])) {
+      [k]new_edfJSON[k] = {...edfJSON[k], from: {[pool_hash_id]: edfJSON[k].from[pool_hash_id]}}
+      // debugger
     }
   })
 
   function receives_from_pool(from) {
+    let found = false
     Object.keys(from).forEach((k) => {
-      if (k === pool_hash_id) {
-        return true
+      if (k == pool_hash_id) {
+        found = true
       }
     })
-    return false
+    return found
   }
 
   return new_edfJSON

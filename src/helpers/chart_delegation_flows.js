@@ -4,10 +4,10 @@ import numeral from 'numeral';
 
 export default function draw(edfJSON, pool_hash_id, svgRef) {
   let ticker_limit = 50000000
-  console.log(edfJSON )
+  // console.log(edfJSON )
   let filtered_edfJSON = {...edfJSON}
   if (pool_hash_id) { filtered_edfJSON = filterPools(edfJSON, pool_hash_id) }
-  console.log(filtered_edfJSON )
+  // console.log(filtered_edfJSON )
   const arc = d3.arc();
   const ribbon = d3.ribbonArrow();
   const sum_sizes = make_angular(filtered_edfJSON);
@@ -16,10 +16,10 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   const filtered_pools_color = 'rgba(150,150,150,0.3)';
 
   //positioning and proportions START
-
-  let width = svgRef.offsetWidth;
-  let height = svgRef.offsetHeight;
-
+  let svg = svgRef.current
+  let width = svg.clientWidth;
+  let height = svg.clientHeight;
+  svg = d3.select(svg)
   let minimum_dimension = Math.min(width, height);
   let textRatio = 10 / 340;
 
@@ -38,23 +38,10 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
     const rad_addition = (filtered_edfJSON[ph_id].size / biggest_pool_guess) * max_outer_rad_addition;
     return outer_rad + rad_addition
   }
-
-  let tab_width = 0;
-  let chart_top_padding = 80;
-  let gap_to_fix_position_when_on_small_width = 0;
-
-  if (((width - (max_rad*2)) / 2) < 230) {
-    let addition = width < 800 ? 20 : 0
-    d3.select(".delegation_tab")
-      .style('margin-top', `${(max_rad*2)+(chart_top_padding/2)+addition}px`);
-      gap_to_fix_position_when_on_small_width = 40
-  } else {
-    d3.select(".delegation_tab")
-      .style('margin-top', '0px');
-  }
-
+  
   let center_translation_h = width/2;
-  let center_translation_v = max_rad + chart_top_padding + gap_to_fix_position_when_on_small_width
+  let center_translation_v = height/2
+
   //positioning and proportions END
 
   const pool_opacity = 0.6;
@@ -64,8 +51,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   const ribbon_stroke_width = 0.1;
   const ribbon_stroke_opacity = 0.6;
 
-  d3.select(svgRef).select('svg').remove()
-  let svg = d3.select(svgRef)
+  // d3.select(svgRef).select('svg').remove()
 
   //https://github.com/d3/d3-scale-chromatic
   //https://bl.ocks.org/EfratVil/2bcc4bf35e28ae789de238926ee1ef05

@@ -356,11 +356,17 @@ function rad_to_deg(radians) {
 function filterPools(edfJSON, pool_hash_id) {
   let senders = {...edfJSON[pool_hash_id].from}
   let new_edfJSON = {[pool_hash_id]: edfJSON[pool_hash_id]}
+  
   Object.keys(edfJSON).forEach((k) => {
-    // debugger
-    if ((k != pool_hash_id) && (receives_from_pool(edfJSON[k].from) || senders[k])) {
-      [k]new_edfJSON[k] = {...edfJSON[k], from: {[pool_hash_id]: edfJSON[k].from[pool_hash_id]}}
-      // debugger
+    const this_k_receives_from_pool = receives_from_pool(edfJSON[k].from)
+
+    if (k != pool_hash_id && this_k_receives_from_pool) {
+      new_edfJSON[k] = {...edfJSON[k], from: {[pool_hash_id]: edfJSON[k].from[pool_hash_id]}}
+    } 
+
+    if (k != pool_hash_id && senders[k]) {
+      const from_content = this_k_receives_from_pool ? {[pool_hash_id]: edfJSON[k].from[pool_hash_id]} : {}
+      new_edfJSON[k] = {...edfJSON[k], from: from_content}
     }
   })
 

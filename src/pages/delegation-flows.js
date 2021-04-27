@@ -10,24 +10,21 @@ function DelegationFlows() {
 	  const svgRef = useRef();
 		useEffect(() => {
 	    dispatch(getDelegationFlow()).then(res => {
-	    	debugger
+	    	delegation_flow && chart_delegation_flows(delegation_flow, 99, svgRef.current)
 	    })
 	  }, []);
 	  // console.log(delegation_flow)
     return (
-      <div className="container-fluid mh-100">
-	      <div className="row mb-5 h-100">
+      <div className="w-100 fill d-flex">
 	        <div className='col'>
 	        </div>
-	        <div className="col-lg-10 mr-auto ml-auto">
-	        	<div className='row mt-4 mb-5 mr-auto ml-auto'>
+	        <div className="container col-lg-10 h-100 d-flex flex-column">
+	        	<div className='row mt-4 mb-1'>
 	        		<AddPoolForm noHideButton={true} />
 				  	</div>
-				  	{delegation_flow && chart_delegation_flows(delegation_flow, 99, svgRef.current)}
-	        	<svg ref={svgRef} className='chart-container'></svg>
+	        	<svg ref={svgRef} className='w-100 h-100' style={{minHeight:'400px', minWidth:'400px'}}></svg>
 	        </div>
 	        <div className='col'></div>
-	      </div>
 	    </div>
     )
 }

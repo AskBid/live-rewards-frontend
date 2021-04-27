@@ -14,10 +14,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   let edfARR = Object.keys(filtered_edfJSON)
   const delegation_color = '#69db8f';
   const filtered_pools_color = 'rgba(150,150,150,0.3)';
-  debugger
-  
-  d3.select(svgRef).append("circle").attr("cx",0).attr("cy",0).attr("r",200)
-  .style("fill", "#69b3a2");
+
   //positioning and proportions START
 
   let width = svgRef.offsetWidth;
@@ -67,18 +64,15 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   const ribbon_stroke_width = 0.1;
   const ribbon_stroke_opacity = 0.6;
 
-  d3.select(".chart_container").select('svg').remove()
-  let svg = d3.select(".chart_container")
-    .append("svg")
+  d3.select(svgRef).select('svg').remove()
+  let svg = d3.select(svgRef)
 
   //https://github.com/d3/d3-scale-chromatic
   //https://bl.ocks.org/EfratVil/2bcc4bf35e28ae789de238926ee1ef05
   var color = d3.scaleOrdinal().domain(edfARR)
     .range(d3.schemeTableau10);
 
-  svg.attr("width", '100%')
-    .attr("height",  '100%')
-    .style("background", "#fff");
+  svg.attr("style", 'border: 1px solid black')
 
   let g = svg.append('g')
     .attr("transform", `translate(${center_translation_h}, ${center_translation_v})`);

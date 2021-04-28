@@ -5,7 +5,8 @@ const AutoComplete = ({
 		suggestions, 
 		text, 
 		handleTextChange,
-		selectSuggestion
+		selectSuggestion,
+    onClickOption
 	}) => {
 
 	const [isVisible, setVisiblity] = useState(false);
@@ -52,7 +53,7 @@ const AutoComplete = ({
 	          <AutoCompleteItem 
 	          	key={idx}
 	            // onSelectItem={hideSuggestion}
-	            selectSuggestion={selectSuggestion}
+	            selectSuggestion={onClickOption || selectSuggestion}
 	            isHighlighted={cursor === idx ? true : false}
 	            ticker={ticker}
 	            text={text}

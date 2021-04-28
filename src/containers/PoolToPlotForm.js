@@ -27,6 +27,9 @@ class PoolToPlotForm extends Component {
           tickersMap: tickersMap
         })
         chart_delegation_flows(res, tickersMap[this.props.match.params.ticker], this.props.svg)
+        this.setState({
+          suggestions: Object.keys(this.state.tickersMap).sort()
+        })
       })
   }
 
@@ -52,7 +55,7 @@ class PoolToPlotForm extends Component {
       //matches to string starting with the value, 'i' is for case insenstitive.
       const regex = new RegExp(`^${value}`, 'i')
       suggestions = Object.keys(this.state.tickersMap).sort().filter(tick => regex.test(tick))
-    }
+    } 
     this.setState({
       text: e.target.value,
       suggestions
@@ -76,7 +79,7 @@ class PoolToPlotForm extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    !(typeof(e) == 'string') && e.preventDefault()
     const ticker = (this.state.text === '') 
       ? 
       Object.keys(this.state.tickersMap)[Math.floor(Math.random() * Object.keys(this.state.tickersMap).length)]
@@ -103,7 +106,8 @@ class PoolToPlotForm extends Component {
             suggestions={this.state.suggestions}
             handleTextChange={this.handleTextChange} 
             selectSuggestion={this.selectSuggestion}
-            text={this.state.text}/>
+            text={this.state.text}
+            onClickOption={this.handleSubmit}/>
           <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
             type='Submit'
             disabled={!this.buttonActivation()}>

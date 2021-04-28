@@ -6,7 +6,8 @@ const AutoComplete = ({
 		text, 
 		handleTextChange,
 		selectSuggestion,
-    onClickOption
+    onClickOption,
+    placeholderOption
 	}) => {
 
 	const [isVisible, setVisiblity] = useState(false);
@@ -130,12 +131,13 @@ const AutoComplete = ({
 	      value={text}
 	      type="text"
 	      name="pool"
-	      placeholder="TICKR or pool1cuxntl7p...     (If empty, will pick a random Pool)"
+	      placeholder={placeholderOption || "TICKR or pool1cuxntl7p...     (If empty, will pick a random Pool)"}
 	      className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
 	      onChange={handleTextChange}
 	      onClick={showSuggestion}
 	      onKeyDown={keyboardNavigation}
-	      autocomplete="off">
+	      autocomplete="off"
+        style={{minWidth:'240px'}}>
 	    </input>
 	    <div className='position-absolute w-100 pr-2' style={{'z-index':'99'}} onClick={() => hideSuggestion()}>
 	    	{renderSuggestions()}

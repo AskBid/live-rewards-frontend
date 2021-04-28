@@ -112,7 +112,7 @@ class PoolToPlotForm extends Component {
           <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
             type='Submit'
             disabled={!this.buttonActivation()}>
-            Plot Pool Delegation Flow
+            Plot
           </button>
         </form>
       </div>

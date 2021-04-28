@@ -79,8 +79,7 @@ class StakesColumn extends Component {
         { this.props.alert.message &&
           <div className={`w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
           <div className={`alert ${this.props.alert.type} w-75`}>
-            {this.props.alert.message.split('<b>').splice(0,1)}
-            <b>{this.props.alert.message.split('<b>').splice(1,1)}</b>
+            {this.props.alert.message}
           </div>
           </div>
         }

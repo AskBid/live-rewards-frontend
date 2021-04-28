@@ -18,23 +18,27 @@ class PoolToPlotForm extends Component {
   }
 
   componentDidMount() {
-    (this.props.delegation_flow || this.props.epoch_no != this.props.match.params.epoch_no)
-    &&
-    this.props.getDelegationFlow(this.props.match.params.epoch_no)
-      .then(res => {
-        const tickersMap = this.getTickersFromDeleFlow(res)
-        this.setState({
-          tickersMap: tickersMap
+    if (!this.props.delegation_flow || this.props.epoch_no != this.props.match.params.epoch_no) {
+      this.props.getDelegationFlow(this.props.match.params.epoch_no)
+        .then(res => {
+          const tickersMap = this.getTickersFromDeleFlow(res)
+          this.setState({
+            tickersMap: tickersMap
+          })
+          this.setState({
+            suggestions: Object.keys(this.state.tickersMap).sort()
+          })
+          chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.props.match.params.ticker], this.props.svg)
         })
-        chart_delegation_flows(res, tickersMap[this.props.match.params.ticker], this.props.svg)
-        this.setState({
-          suggestions: Object.keys(this.state.tickersMap).sort()
-        })
-      })
+    } else if (this.props.svg) {
+      console.log('mountinted did')
+      chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.props.match.params.ticker], this.props.svg)
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.ticker !== this.state.ticker) {
+      console.log('update')
       this.state.ticker &&
       chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.state.ticker], this.props.svg)
     }
@@ -92,6 +96,7 @@ class PoolToPlotForm extends Component {
   }
 
   render() { 
+    // chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.props.match.params.ticker], this.props.svg)
     return (
     <React.Fragment>
       <div className='d-flex d-inline-fle w-100'>

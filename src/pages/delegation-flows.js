@@ -36,7 +36,8 @@ function DelegationFlows({history, match}) {
           </div>
         }
       </div>
-      {<svg ref={svgRef} className='w-100 h-100'></svg>}
+      <h1 className='w-100 h-100 text-center mt-5 text-dark'>Coming soon...</h1>
+      {/*{<svg ref={svgRef} className='w-100 h-100'></svg>}*/}
     </div>
   )
 }

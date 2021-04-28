@@ -12,19 +12,27 @@ class PoolToPlotForm extends Component {
   state = {
     text: '',
     suggestions: [],
-    cursor: -1
+    cursor: -1,
+    tickersMap: {}
   }
 
   componentDidMount() {
     this.props.getDelegationFlow(this.props.match.params.epoch_no)
-      .then(res => this.props.tickersMap = this.getTickersFromDeleFlow(res))
+      .then(res => {
+        const tickersMap = this.getTickersFromDeleFlow(res)
+        this.setState({
+          tickersMap: tickersMap
+        })
+        chart_delegation_flows(res, tickersMap[this.props.match.params.ticker], this.props.svg)
+      })
   }
 
   getTickersFromDeleFlow = (deleFlow) => {
     let obj = {}
-    Object.keys(deleFlow).each(pool_hash_id => {
+    Object.keys(deleFlow).forEach(pool_hash_id => {
       obj = {...obj, [deleFlow[pool_hash_id].ticker]: pool_hash_id}
     }) 
+    return obj
   }
 
   handleTextChange = (e) => {
@@ -33,7 +41,7 @@ class PoolToPlotForm extends Component {
     if (value.length > 0) {
       //matches to string starting with the value, 'i' is for case insenstitive.
       const regex = new RegExp(`^${value}`, 'i')
-      suggestions = this.props.tickers.sort().filter(tick => regex.test(tick))
+      suggestions = Object.keys(this.state.tickersMap).sort().filter(tick => regex.test(tick))
     }
     this.setState({
       text: e.target.value,
@@ -87,7 +95,7 @@ class PoolToPlotForm extends Component {
           <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
             type='Submit'
             disabled={!this.buttonActivation()}>
-            Follow Pool
+            Plot Pool Delegation Flow
           </button>
         </form>
       </div>
@@ -105,7 +113,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    delegation_flow: state.delegation_flow.delegationFlow
+    delegation_flow: state.delegation_flow.delegation_flow
   }
 }
 

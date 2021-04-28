@@ -24,12 +24,12 @@ export const getDelegationFlow = (epoch_no) => {
 	  	.then(json => { 
 	  		dispatch({
 	  			type: REQUEST_DELEGATION_FLOW_SUCCESS, 
-	  			payload: json
+	  			payload: json,
+	  			epoch_no: epoch_no
 	  		});
 	  		return json
 	  	})
 			.catch(err => {
-				// debugger
 				dispatch({type: REQUEST_DELEGATION_FLOW_FAILURE})
 				dispatch({type: ERROR, message: `could not fetch delegation flow for ${epoch_no}`})
 				return Promise.reject(`could not fetch delegation flow for ${epoch_no}`)

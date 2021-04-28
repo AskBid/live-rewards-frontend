@@ -18,6 +18,8 @@ class PoolToPlotForm extends Component {
   }
 
   componentDidMount() {
+    (this.props.delegation_flow || this.props.epoch_no != this.props.match.params.epoch_no)
+    &&
     this.props.getDelegationFlow(this.props.match.params.epoch_no)
       .then(res => {
         const tickersMap = this.getTickersFromDeleFlow(res)
@@ -123,7 +125,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    delegation_flow: state.delegation_flow.delegation_flow
+    delegation_flow: state.delegation_flow.delegation_flow,
+    epoch_no: state.delegation_flow.epoch_no
   }
 }
 

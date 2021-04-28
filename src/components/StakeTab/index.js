@@ -61,6 +61,14 @@ const StakeTab = ({stake, tabType}) => {
               </PoolBtn>
             </Link>
           </OverlayTrigger>
+
+          <OverlayTrigger placement='top' overlay={delegationFlowTip}>
+            <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${stake.pool_hash.pool.ticker}`}>
+              <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+                {/*<ChartIcon size={25}/> */}
+              </PoolBtn>
+            </Link>
+          </OverlayTrigger>
       </React.Fragment>
     )
   }
@@ -131,6 +139,12 @@ const StakeTab = ({stake, tabType}) => {
   const compareTip = props => (
     <Tooltip {...props} style={{opacity:'60%', ...props.style}}>
       Compare this epoch stake with other pools.
+    </Tooltip>
+  );
+
+  const delegationFlowTip = props => (
+    <Tooltip {...props} style={{opacity:'60%', ...props.style}}>
+      Look at the flow of delegations for this pool in this epoch.
     </Tooltip>
   );
 

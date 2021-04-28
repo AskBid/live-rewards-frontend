@@ -30,7 +30,7 @@ export const PoolBtn = styled.button `
 `;
 
 export const DeleFlowBtn = styled.button `
-	background: rgba(255,127,80,0.4);
+	background: rgba(255,195,20,0.4);
 	border: none;
 	border-radius: 0px 0px 0px 0px;
 	color: white;

@@ -95,11 +95,11 @@ class PoolToPlotForm extends Component {
     return (
     <React.Fragment>
       <div className='d-flex d-inline-flex w-100 mr-auto ml-auto'>
-        {/*<Link to={`/live-rewards`}>
+        <Link to={`/live-rewards`}>
           <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' alt='Go Back'>
             ⟵
           </button>
-        </Link>*/}
+        </Link>
         <form className='row d-inline-flex w-100 mr-auto ml-auto'
           onSubmit={this.handleSubmit}>
           <AutoComplete 

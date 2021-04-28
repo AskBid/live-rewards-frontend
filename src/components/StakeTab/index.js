@@ -6,7 +6,9 @@ import {
   CloseIcon, 
   PoolIcon, 
   AddrLabel, 
-  SpinnerDiv 
+  SpinnerDiv,
+  DeleFlowBtn,
+  DeleFlowIcon
 } from './StakeTabElements'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteStakeAddress } from '../../actions/stake_address.actions';
@@ -56,17 +58,17 @@ const StakeTab = ({stake, tabType}) => {
 
           <OverlayTrigger placement='top' overlay={compareTip}>
             <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
-              <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-                <PoolIcon size={25}/> 
+              <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto' style={{width:'2.3vw'}}>
+                <PoolIcon size={23}/> 
               </PoolBtn>
             </Link>
           </OverlayTrigger>
 
           <OverlayTrigger placement='top' overlay={delegationFlowTip}>
             <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${stake.pool_hash.pool.ticker}`}>
-              <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-                {/*<ChartIcon size={25}/> */}
-              </PoolBtn>
+              <DeleFlowBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+                <DeleFlowIcon size={23}/>
+              </DeleFlowBtn>
             </Link>
           </OverlayTrigger>
       </React.Fragment>
@@ -105,6 +107,14 @@ const StakeTab = ({stake, tabType}) => {
             <PoolBtn onClick={() => dispatch({type: ERROR, message: 'Pool Compare functionality is only available if you Login.'})} className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
               <PoolIcon size={25}/> 
             </PoolBtn>
+          </OverlayTrigger>
+
+          <OverlayTrigger placement='top' overlay={delegationFlowTip}>
+            <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${stake.pool_hash.pool.ticker}`}>
+              <DeleFlowBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+                <DeleFlowIcon size={23}/>
+              </DeleFlowBtn>
+            </Link>
           </OverlayTrigger>
       </React.Fragment>
     )

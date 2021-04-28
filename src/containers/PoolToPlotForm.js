@@ -30,6 +30,7 @@ class PoolToPlotForm extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.ticker !== this.state.ticker) {
+      this.state.ticker &&
       chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.state.ticker], this.props.svg)
     }
   }

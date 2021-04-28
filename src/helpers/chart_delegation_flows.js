@@ -4,14 +4,8 @@ import numeral from 'numeral';
 
 export default function draw(edfJSON, pool_hash_id, svgRef) {
   let ticker_limit = 5000
-  console.log(edfJSON )
-  let filtered_edfJSON = {...edfJSON}
-  if (pool_hash_id) { filtered_edfJSON = filterPools(edfJSON, pool_hash_id) }
-  console.log(filtered_edfJSON )
-  const arc = d3.arc();
-  const ribbon = d3.ribbonArrow();
-  const sum_sizes = make_angular(filtered_edfJSON);
-  let edfARR = Object.keys(filtered_edfJSON)
+  // console.log(edfJSON )
+
   const delegation_color = '#69db8f';
   const filtered_pools_color = 'rgba(150,150,150,0.3)';
 
@@ -29,6 +23,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   }
   let inner_rad = parseInt(((minimum_dimension*zoom)/2.9))
   inner_rad = inner_rad < 200 ? 200 : inner_rad
+
   let ticker_size = `${parseInt(textRatio*inner_rad)}px`
   let outer_rad = inner_rad + (inner_rad / 10)
   const max_outer_rad_addition = (outer_rad - inner_rad) * 0.5;
@@ -44,6 +39,26 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   let center_translation_h = width/2;
   let center_translation_v = (height/2)-20;
   //positioning and proportions END
+
+  if (!edfJSON[pool_hash_id]) {
+    d3.selectAll("svg > *").remove()
+    svg.append("text")
+      .attr("x", center_translation_h )
+      .attr("y", center_translation_v )
+      .attr("dy", ".35em")
+      .style("fill", "rgba(50,50,50,0.6)")
+      .text(`ticker NOT FOUND`)
+    svg.append("circle").attr("cx",center_translation_h).attr("cy",center_translation_v).attr("r",inner_rad)
+    .style("fill", "rgba(255,255,255,0.3)");
+    return null
+  }
+  let filtered_edfJSON = {...edfJSON}
+  filtered_edfJSON = filterPools(edfJSON, pool_hash_id)
+  console.log(filtered_edfJSON )
+  const arc = d3.arc();
+  const ribbon = d3.ribbonArrow();
+  const sum_sizes = make_angular(filtered_edfJSON);
+  let edfARR = Object.keys(filtered_edfJSON)
 
   const pool_opacity = 0.6;
   const pool_stroke_width = 0.2;

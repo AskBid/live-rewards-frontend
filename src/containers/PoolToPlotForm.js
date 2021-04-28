@@ -13,7 +13,8 @@ class PoolToPlotForm extends Component {
     text: '',
     suggestions: [],
     cursor: -1,
-    tickersMap: {}
+    tickersMap: {},
+    ticker: this.props.match.params.ticker
   }
 
   componentDidMount() {
@@ -25,6 +26,12 @@ class PoolToPlotForm extends Component {
         })
         chart_delegation_flows(res, tickersMap[this.props.match.params.ticker], this.props.svg)
       })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.ticker !== this.state.ticker) {
+      chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.state.ticker], this.props.svg)
+    }
   }
 
   getTickersFromDeleFlow = (deleFlow) => {
@@ -67,10 +74,15 @@ class PoolToPlotForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const ticker = (this.state.text === '') ? 
-      Object.keys(this.state.tickersMap)[Math.floor(Math.random() * Object.keys(this.state.tickersMap).length)] : 
+    const ticker = (this.state.text === '') 
+      ? 
+      Object.keys(this.state.tickersMap)[Math.floor(Math.random() * Object.keys(this.state.tickersMap).length)]
+      : 
       this.state.text
     this.props.history.push(`/delegation-flows/epochs/${this.props.match.params.epoch_no}/pools/${ticker}`)
+    this.setState({
+      ticker
+    })
   }
 
   render() { 

@@ -67,13 +67,10 @@ class PoolToPlotForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const username = this.props.match.params.username
-    const epoch_stake_id = this.props.match.params.epoch_stake_id
     const ticker = (this.state.text === '') ? 
-      this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
-    this.props.addUserPoolHash(username, ticker)
-      .then(res => this.props.getComparedEpochStake(res.user_pool_hash_id, epoch_stake_id))
-      .catch(err => console.log(err))
+      Object.keys(this.state.tickersMap)[Math.floor(Math.random() * Object.keys(this.state.tickersMap).length)] : 
+      this.state.text
+    this.props.history.push(`/delegation-flows/epochs/${this.props.match.params.epoch_no}/pools/${ticker}`)
   }
 
   render() { 

@@ -10,21 +10,28 @@ function DelegationFlows({history, match}) {
 
     return (
       <div className="w-100 fill d-flex">
-        <div className='col'>
-        </div>
-        <div className="container col-lg-10 h-100 d-flex flex-column">
-        	<div className='row mt-4 mb-1'>
-        		<PoolToPlotForm history={history} match={match} svg={svgRef} />
-                <div className='position-absolute mt-4 text-muted' style={{top:'50px'}}>
+        <div className='position-fixed w-100 mt-4 mb-1'>
+            <div className='col'>
+            </div>
+            <div className="container col-lg-10 h-100 d-flex flex-column">
+                <PoolToPlotForm history={history} match={match} svg={svgRef} />
+                <div className='mt-4 text-muted' style={{top:'50px'}}>
                     {/*<h5>Delegations flows</h5>*/}
-            		<h5>
+                    <h5>
                         Epoch: <b>{`${match.params.epoch_no}`}</b>
                     </h5>
                     <h5>
                         Pool: <b>{`${match.params.ticker}`}</b>
                     </h5>
                 </div>
-			</div>
+            </div>
+            <div className='col'>
+            </div>
+        </div>
+
+        <div className='col'>
+        </div>
+        <div className="container col-lg-10 h-100 d-flex flex-column">
             { alert.message &&
               <div className={`w-100 d-flex justify-content-center`} onClick={() => dispatch({type: 'ALERT_CLEAR'})} style={{cursor:'pointer'}}>
               <div className={`alert ${alert.type} w-75`}>
@@ -39,7 +46,7 @@ function DelegationFlows({history, match}) {
                 </div>
               }
             </div>
-        	<svg ref={svgRef} className='w-100 h-100 mt-2' style={{minHeight:'600px', minWidth:'600px'}}></svg>
+        	<svg ref={svgRef} className='w-100 h-100' style={{marginTop:'80px', minHeight:'600px', minWidth:'600px'}}></svg>
         </div>
         <div className='col'></div>
 	    </div>

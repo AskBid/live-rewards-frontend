@@ -94,7 +94,7 @@ class PoolToPlotForm extends Component {
   render() { 
     return (
     <React.Fragment>
-      <div className='d-flex d-inline-flex w-100 mr-auto ml-auto'>
+      <div className='d-flex d-inline-fle w-100'>
         <Link to={`/live-rewards`}>
           <button className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1' alt='Go Back'>
             ⟵
@@ -107,7 +107,8 @@ class PoolToPlotForm extends Component {
             handleTextChange={this.handleTextChange} 
             selectSuggestion={this.selectSuggestion}
             text={this.state.text}
-            onClickOption={this.handleSubmit}/>
+            onClickOption={this.handleSubmit}
+            placeholderOption={'TICKER (random pool if empty)'}/>
           <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
             type='Submit'
             disabled={!this.buttonActivation()}>

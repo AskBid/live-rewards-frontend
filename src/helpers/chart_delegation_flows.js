@@ -2,7 +2,7 @@
 import * as d3 from 'd3';
 import numeral from 'numeral';
 
-export default function draw(edfJSON, pool_hash_id, svgRef) {
+export default function draw(edfJSON, pool_hash_id, svgRef, width, height) {
   let ticker_limit = 5000
   // console.log(edfJSON )
 
@@ -10,10 +10,9 @@ export default function draw(edfJSON, pool_hash_id, svgRef) {
   const filtered_pools_color = 'rgba(150,150,150,0.3)';
 
   //positioning and proportions START
-  let svg = svgRef.current
-  let width = svg.clientWidth;
-  let height = svg.clientHeight;
-  svg = d3.select(svg)
+  // let width = svg.clientWidth;
+  // let height = svg.clientHeight;
+  let svg = d3.select(svgRef)
   let minimum_dimension = Math.min(width, height);
   let textRatio = 10 / 180;
 

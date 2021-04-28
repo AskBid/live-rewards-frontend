@@ -28,11 +28,20 @@ class PoolToPlotForm extends Component {
           this.setState({
             suggestions: Object.keys(this.state.tickersMap).sort()
           })
-          chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.props.match.params.ticker], this.props.svg)
+          chart_delegation_flows(
+            this.props.delegation_flow, 
+            this.state.tickersMap[this.props.match.params.ticker], 
+            this.props.svg.current,
+            this.props.svg.current.clientWidth,
+            this.props.svg.current.clientHeight)
         })
     } else if (this.props.svg) {
-      console.log('mountinted did')
-      chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.props.match.params.ticker], this.props.svg)
+      chart_delegation_flows(
+        this.props.delegation_flow, 
+        this.state.tickersMap[this.props.match.params.ticker], 
+        this.props.svg.current,
+        this.props.svg.current.clientWidth,
+        this.props.svg.current.clientHeight)
     }
   }
 
@@ -40,7 +49,12 @@ class PoolToPlotForm extends Component {
     if (prevState.ticker !== this.state.ticker) {
       console.log('update')
       this.state.ticker &&
-      chart_delegation_flows(this.props.delegation_flow, this.state.tickersMap[this.state.ticker], this.props.svg)
+      chart_delegation_flows(
+        this.props.delegation_flow, 
+        this.state.tickersMap[this.props.match.params.ticker], 
+        this.props.svg.current,
+        this.props.svg.current.clientWidth,
+        this.props.svg.current.clientHeight)
     }
   }
 

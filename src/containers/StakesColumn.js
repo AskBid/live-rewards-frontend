@@ -33,23 +33,6 @@ class StakesColumn extends Component {
   }
 
   textIfEmpty = () => {
-    const loggedOutMessage = () => {
-      return (
-        <React.Fragment>
-          <Link to={`/login`} className='hardlink'>Login</Link> or <Link to={`/signup`} className='hardlink'>Register</Link> for full functionalities.
-          <br/>
-          {/*<span className='text-info'>Or you can still add one <b>Stake Address</b> to check your latest rewards.</span>*/}
-          {/*<br/>*/}
-        </React.Fragment>
-      )
-    }
-
-    const loggedInMessage = () => {
-      return (
-        <span className='text-info'>Enter your <b>Stake Address</b> to check your latest rewards.</span>
-      )
-    }
-
     const onClickLink = () => {
       if (this.props.username) {
         this.props.addUserStake(this.props.username, '')
@@ -62,7 +45,7 @@ class StakesColumn extends Component {
       <React.Fragment>
         <div className='text-muted rounded pt-2 pl-2 pr-2 pb-2 mb-5 shadow' style={{background:'rgba(255, 255, 255,0.5)'}}>
           <p className='text-muted mb-3 mt-2 ml-5 mr-5'>
-          {this.props.username ? loggedInMessage() : loggedOutMessage()}
+          <span className='text-info'>Enter your <b>Stake Address</b> to check your latest rewards.</span>
           <br/>
           If you don't know how to find your stake address, please visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
           <br/>
@@ -77,10 +60,10 @@ class StakesColumn extends Component {
     return (
       <React.Fragment>
         { this.props.alert.message &&
-          <div className={`w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
-          <div className={`alert ${this.props.alert.type} w-75`}>
-            {this.props.alert.message}
-          </div>
+          <div className={`position-absolute mt-2 w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
+            <div className={`alert ${this.props.alert.type} w-75`}>
+              {this.props.alert.message}
+            </div>
           </div>
         }
         <div className='d-flex justify-content-center'>
@@ -90,8 +73,9 @@ class StakesColumn extends Component {
             </div>
           }
         </div>
-        {((this.props.epoch_stakes.length === 0) || !this.props.username) && this.textIfEmpty()}
+        {((this.props.epoch_stakes.length === 0) && this.props.username) && this.textIfEmpty()}
         {this.deployEpochs()}
+        <div style={{minHeight:'100px'}}></div>
       </React.Fragment>
     )
   }

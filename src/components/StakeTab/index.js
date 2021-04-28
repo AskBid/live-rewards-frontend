@@ -104,7 +104,7 @@ const StakeTab = ({stake, tabType}) => {
           </form>
 
           <OverlayTrigger placement='top' overlay={compareTip}>
-            <PoolBtn onClick={() => dispatch({type: ERROR, message: 'Pool Compare functionality is only available if you Login.'})} className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
+            <PoolBtn onClick={() => dispatch({type: ERROR, message: 'Pool Compare functionality is only available if you Login.'})} className='mt-auto p-0 mb-auto h-100 ml-auto' style={{width:'2.3vw'}}>
               <PoolIcon size={25}/> 
             </PoolBtn>
           </OverlayTrigger>

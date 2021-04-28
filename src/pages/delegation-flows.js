@@ -20,8 +20,16 @@ function DelegationFlows({history, match}) {
         <div className="container col-lg-10 h-100 d-flex flex-column">
         	<div className='row mt-4 mb-1'>
         		<PoolToPlotForm history={history} match={match} svg={svgRef} />
-        		<h5 className='text-muted mt-4 text-center'>Delegations flows for <b>{`${match.params.ticker}`}</b> pool:</h5>
-			  	</div>
+                <div className='position-absolute mt-4 text-muted' style={{top:'50px'}}>
+                    {/*<h5>Delegations flows</h5>*/}
+            		<h5>
+                        Epoch: <b>{`${match.params.epoch_no}`}</b>
+                    </h5>
+                    <h5>
+                        Pool: <b>{`${match.params.ticker}`}</b>
+                    </h5>
+                </div>
+			</div>
         	<svg ref={svgRef} className='w-100 h-100 mt-2' style={{minHeight:'600px', minWidth:'600px'}}></svg>
         </div>
         <div className='col'></div>

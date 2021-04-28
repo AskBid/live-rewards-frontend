@@ -14,7 +14,7 @@ class PoolToPlotForm extends Component {
     suggestions: [],
     cursor: -1,
     tickersMap: {},
-    ticker: this.props.match.params.ticker
+    ticker: this.props.ticker
   }
 
   componentDidMount() {
@@ -26,16 +26,16 @@ class PoolToPlotForm extends Component {
             tickersMap: tickersMap
           })
           this.setState({
-            suggestions: Object.keys(this.state.tickersMap).sort()
+            suggestions: Object.keys(tickersMap).sort()
           })
           chart_delegation_flows(
-            this.props.delegation_flow, 
-            this.state.tickersMap[this.props.match.params.ticker], 
+            res, 
+            tickersMap[this.props.match.params.ticker], 
             this.props.svg.current,
             this.props.svg.current.clientWidth,
             this.props.svg.current.clientHeight)
         })
-    } else if (this.props.svg) {
+    } else {
       chart_delegation_flows(
         this.props.delegation_flow, 
         this.state.tickersMap[this.props.match.params.ticker], 

@@ -83,11 +83,11 @@ function DelegationFlows({history, match}) {
       <div class="container">
         <div className='row'>
           <div className='col'>Pool Size:</div> 
-          <div className='col text-right'>{symbols[currency]}{numeral(parseInt(delegation_flow[pool_hash_id].size*price)).format('0,0')}</div>
+          <div className='col text-right text-info'>{symbols[currency]}{numeral(parseInt(delegation_flow[pool_hash_id].size*price)).format('0,0')}</div>
         </div>
         <div className='row'>
           <div className='col'>D.Balance:</div>
-          <div className='col text-right'>{symbols[currency]}{numeral(parseInt((from_sum-to_sum)*price)).format('0,0')}</div>
+          <div className={`col text-right text-${(from_sum-to_sum) < 0 ? 'danger' : 'primary'}`}>{symbols[currency]}{numeral(parseInt((from_sum-to_sum)*price)).format('0,0')}</div>
         </div>
       </div>
       </React.Fragment>
@@ -106,15 +106,15 @@ function DelegationFlows({history, match}) {
 
   return (
     <div className="w-100 fill d-flex flex-column">
-      <div className='position-fixed mt-4 ml-5 text-muted' style={{top:'100px'}}>
+      <div className='position-fixed mt-4 ml-5 text-muted p-2 rounded' style={{top:'100px', background:"rgba(250,250,250,0.6)"}}>
           <div class="container"> 
             <div className='row'>
       		    <div className='col'><h5>Epoch:</h5></div>
-              <div className='col text-right'><b>{`${match.params.epoch_no}`}</b></div>
+              <div className='col text-right text-dark'><b>{`${match.params.epoch_no}`}</b></div>
             </div>
             <div className='row'>
               <div className='col'><h5>Pool:</h5></div>
-              <div className='col text-right'><h5><b>{`${match.params.ticker}`}</b></h5></div>
+              <div className='col text-right text-info'><h5><b>{`${match.params.ticker}`}</b></h5></div>
             </div>
           </div>
           {delegation_flow && pool_hash_id && balances()}

@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loading: false,
-  delegation_flow: undefined
+  list: {}
 };
 
 export default function delegationFlow(state = initialState, action) {
@@ -22,8 +22,10 @@ export default function delegationFlow(state = initialState, action) {
   		return {
   			...state,
         loading: false,
-        delegation_flow: action.payload,
-        epoch_no: action.epoch_no
+        list: {
+          ...state.delegation_flows,
+          [action.epoch_no]: action.payload
+        }
   		}
 
   	case REQUEST_DELEGATION_FLOW_FAILURE:

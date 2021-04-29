@@ -149,7 +149,7 @@ function DelegationFlows({history, match}) {
 
   return (
     <div className="w-100 fill d-flex flex-column">
-      <div className='position-fixed mt-4 ml-5 text-muted p-2 rounded' style={{top:'100px', background:"rgba(250,250,250,0.6)"}}>
+      <div className='position-absolute text-muted ml-3 p-2 rounded' style={{top:'100px', background:"rgba(250,250,250,0.6)", overflowY:'scroll'}}>
           <div class="container"> 
             <div className='row'>
       		    <div className='col'><h5>Epoch:</h5></div>
@@ -178,7 +178,7 @@ function DelegationFlows({history, match}) {
       </div>
       <div className='w-100 h-100 d-flex flex-row'>
         <div className='filler'></div>
-        <svg ref={svgRef} className='w-100 h-100 chart'></svg>
+        <svg ref={svgRef} className='w-100 h-100 chart' style={{minWidth:'600px'}}></svg>
       </div>
     </div>
   )

@@ -19,7 +19,6 @@ export default function delegationFlow(state = initialState, action) {
   		}
 
   	case REQUEST_DELEGATION_FLOW_SUCCESS:
-      debugger
   		return {
   			...state,
         loading: false,

@@ -40,7 +40,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height) {
   //positioning and proportions END
 
   if (!edfJSON[pool_hash_id]) {
-    d3.selectAll("svg > *").remove()
+    d3.selectAll(".chart > *").remove()
     svg.append("text")
       .attr("x", center_translation_h )
       .attr("y", center_translation_v )
@@ -66,7 +66,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height) {
   const ribbon_stroke_width = 0.4;
   const ribbon_stroke_opacity = 0.6;
 
-  d3.selectAll("svg > *").remove()
+  d3.selectAll(".chart > *").remove()
   svg.append("circle").attr("cx",center_translation_h).attr("cy",center_translation_v).attr("r",inner_rad)
   .style("fill", "rgba(255,255,255,0.6)");
 

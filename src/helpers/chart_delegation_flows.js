@@ -2,7 +2,7 @@
 import * as d3 from 'd3';
 import numeral from 'numeral';
 
-export default function draw(edfJSON, pool_hash_id, svgRef, width, height) {
+export default function draw(edfJSON, pool_hash_id, svgRef, width, height, epoch_no, history) {
   let ticker_limit = 5000
   // console.log(edfJSON )
 
@@ -96,6 +96,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height) {
         return color(i); 
       }
     })
+    .style("cursor", 'pointer')
     .style("opacity", pool_opacity)
     .attr("d", function(d, i){
       const obj = filtered_edfJSON[d]
@@ -266,8 +267,11 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height) {
         path.style.fill = col
         path.style.stroke = col
       })
-
     })
+    .on("click", function(){
+      const ticker = d3.select(this).attr("tick")
+      history.push(`/delegation-flows/epochs/${epoch_no}/pools/${ticker}`)
+    }); 
   }
 }
 

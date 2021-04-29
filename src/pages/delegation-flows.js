@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PoolToPlotForm from '../containers/PoolToPlotForm'
 import { useSelector, useDispatch } from 'react-redux'
 import { getDelegationFlow } from '../actions/delegation_flows.actions'
@@ -26,9 +26,26 @@ function DelegationFlows({history, match}) {
         tickersMap[match.params.ticker], 
         svgRef.current,
         svgRef.current.clientWidth,
-        svgRef.current.clientHeight)
+        svgRef.current.clientHeight,
+        match.params.epoch_no,
+        history)
     }
   }, [delegation_flows]);
+
+  useEffect(() => {
+    const delegation_flow = delegation_flows[match.params.epoch_no]
+    if (delegation_flow) {
+      const tickersMap = getTickersFromDeleFlow(delegation_flow)
+      chart_delegation_flows(
+        delegation_flow, 
+        tickersMap[match.params.ticker], 
+        svgRef.current,
+        svgRef.current.clientWidth,
+        svgRef.current.clientHeight,
+        match.params.epoch_no,
+        history)
+    }
+  }, [match]);
 
   const getTickersFromDeleFlow = (deleFlow) => {
     // in future I should rething the delegation_flow object 

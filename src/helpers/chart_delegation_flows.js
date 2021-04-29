@@ -4,7 +4,6 @@ import numeral from 'numeral';
 
 export default function draw(edfJSON, pool_hash_id, svgRef, width, height, epoch_no, history) {
   let ticker_limit = 5000
-  console.log('render' + width)
   // console.log(edfJSON )
 
   const delegation_color = '#69db8f';

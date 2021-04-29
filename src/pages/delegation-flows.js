@@ -3,6 +3,8 @@ import PoolToPlotForm from '../containers/PoolToPlotForm'
 import { useSelector, useDispatch } from 'react-redux'
 import { getDelegationFlow } from '../actions/delegation_flows.actions'
 import chart_delegation_flows from '../helpers/chart_delegation_flows'
+import numeral from 'numeral'
+
 
 function DelegationFlows({history, match}) {
   const dispatch = useDispatch()
@@ -14,6 +16,9 @@ function DelegationFlows({history, match}) {
     height: window.innerHeight,
     width: window.innerWidth
   });
+  const [pool_hash_id, setPoolHashId] = useState();
+  const price = useSelector(state => state.sessions.currency.price)
+  const currency = useSelector(state => state.sessions.currency.symbol)
 
   useEffect(() => {
     if (!delegation_flow) {
@@ -23,10 +28,11 @@ function DelegationFlows({history, match}) {
 
   useEffect(() => {
     if (delegation_flow) {
-      const tickersMap = getTickersFromDeleFlow(delegation_flow)
+      const id_from_ticker = getTickersFromDeleFlow(delegation_flow)[match.params.ticker]
+      setPoolHashId(id_from_ticker)
       chart_delegation_flows(
         delegation_flow, 
-        tickersMap[match.params.ticker], 
+        id_from_ticker, 
         svgRef.current,
         svgRef.current.clientWidth,
         svgRef.current.clientHeight,
@@ -50,8 +56,42 @@ function DelegationFlows({history, match}) {
     }
   })
 
+  const symbols = {
+    ada: '₳',
+    usd: '$',
+    eur: '€',
+    gbp: '£',
+    jpy: '¥',
+    btc: '฿'
+  }
+
   const balances = () => {
-    const from = null
+    const from = delegation_flow[pool_hash_id].from
+    const from_sum = Object.values(from).reduce((a,b) => a+b)
+    const to = {}
+    Object.keys(delegation_flow).forEach((key) => {
+      Object.keys(delegation_flow[key].from).forEach((from_key)=>{
+        if (from_key === pool_hash_id) {
+          to[key] = delegation_flow[key].from[from_key]
+        }
+      })
+    })
+    const to_sum = Object.values(to).reduce((a,b) => a+b)
+
+    return (
+      <React.Fragment>
+      <div class="container">
+        <div className='row'>
+          <div className='col'>Pool Size:</div> 
+          <div className='col text-right'>{symbols[currency]}{numeral(parseInt(delegation_flow[pool_hash_id].size*price)).format('0,0')}</div>
+        </div>
+        <div className='row'>
+          <div className='col'>D.Balance:</div>
+          <div className='col text-right'>{symbols[currency]}{numeral(parseInt((from_sum-to_sum)*price)).format('0,0')}</div>
+        </div>
+      </div>
+      </React.Fragment>
+    )
   } 
 
   const getTickersFromDeleFlow = (deleFlow) => {
@@ -67,12 +107,17 @@ function DelegationFlows({history, match}) {
   return (
     <div className="w-100 fill d-flex flex-column">
       <div className='position-fixed mt-4 ml-5 text-muted' style={{top:'100px'}}>
-  		    <h5>
-              Epoch: <b>{`${match.params.epoch_no}`}</b>
-          </h5>
-          <h5>
-              Pool: <b>{`${match.params.ticker}`}</b>
-          </h5>
+          <div class="container"> 
+            <div className='row'>
+      		    <div className='col'><h5>Epoch:</h5></div>
+              <div className='col text-right'><b>{`${match.params.epoch_no}`}</b></div>
+            </div>
+            <div className='row'>
+              <div className='col'><h5>Pool:</h5></div>
+              <div className='col text-right'><h5><b>{`${match.params.ticker}`}</b></h5></div>
+            </div>
+          </div>
+          {delegation_flow && pool_hash_id && balances()}
       </div>
       { alert.message &&
         <div className={`w-100 d-flex justify-content-center`} onClick={() => dispatch({type: 'ALERT_CLEAR'})} style={{cursor:'pointer'}}>

@@ -7,7 +7,7 @@ import chart_delegation_flows from '../helpers/chart_delegation_flows'
 function DelegationFlows({history, match}) {
   const dispatch = useDispatch()
   const alert = useSelector( state => state.alert )
-  const delegation_flows = useSelector( state => state.delegation_flow.list )
+  const delegation_flow = useSelector( state => state.delegation_flow.list[match.params.epoch_no] )
   const loading = useSelector( state => state.delegation_flow.loading )
 	const svgRef = useRef();
   const [dimensions, setDimensions] = useState({ 
@@ -16,13 +16,12 @@ function DelegationFlows({history, match}) {
   });
 
   useEffect(() => {
-    if (!delegation_flows[match.params.epoch_no]) {
+    if (!delegation_flow) {
       dispatch(getDelegationFlow(match.params.epoch_no))
     }
   }, []);
 
   useEffect(() => {
-    const delegation_flow = delegation_flows[match.params.epoch_no]
     if (delegation_flow) {
       const tickersMap = getTickersFromDeleFlow(delegation_flow)
       chart_delegation_flows(
@@ -34,7 +33,7 @@ function DelegationFlows({history, match}) {
         match.params.epoch_no,
         history)
     }
-  }, [delegation_flows, match, dimensions]);
+  }, [delegation_flow, match, dimensions]);
 
   useEffect(() => {
     function handleResize() {
@@ -50,6 +49,10 @@ function DelegationFlows({history, match}) {
       window.removeEventListener('resize', handleResize)
     }
   })
+
+  const balances = () => {
+    const from = null
+  } 
 
   const getTickersFromDeleFlow = (deleFlow) => {
     // in future I should rething the delegation_flow object 

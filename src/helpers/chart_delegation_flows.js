@@ -4,6 +4,7 @@ import numeral from 'numeral';
 
 export default function draw(edfJSON, pool_hash_id, svgRef, width, height, epoch_no, history) {
   let ticker_limit = 5000
+  console.log('render' + width)
   // console.log(edfJSON )
 
   const delegation_color = '#69db8f';
@@ -53,7 +54,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height, epoch
   }
   let filtered_edfJSON = {...edfJSON}
   filtered_edfJSON = filterPools(edfJSON, pool_hash_id)
-  console.log(filtered_edfJSON )
+
   const arc = d3.arc();
   const ribbon = d3.ribbonArrow();
   const sum_sizes = make_angular(filtered_edfJSON);

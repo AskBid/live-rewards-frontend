@@ -12,6 +12,16 @@
   display: none;
 }
 
+.filler {
+  min-width: 250px;
+}
+
+@media screen and (min-width: 960px) {
+  .filler {
+    display:none;
+  }
+}
+
 a {
 	color: #fff;
 }

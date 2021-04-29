@@ -77,22 +77,65 @@ function DelegationFlows({history, match}) {
       })
     })
     const to_sum = Object.values(to).reduce((a,b) => a+b)
-
+    console.log(delegation_flow)
     return (
       <React.Fragment>
-      <div class="container">
-        <div className='row'>
-          <div className='col'>Pool Size:</div> 
-          <div className='col text-right text-info'>{symbols[currency]}{numeral(parseInt(delegation_flow[pool_hash_id].size*price)).format('0,0')}</div>
+        <div class="container">
+          <div className='row'>
+            <div className='col'>Pool Size:</div> 
+            <div className='col text-right text-info'>{symbols[currency]}{numeral(parseInt(delegation_flow[pool_hash_id].size*price)).format('0,0')}</div>
+          </div>
+          <div className='row'>
+            <div className='col'>D.Balance:</div>
+            <div className={`col text-right text-${(from_sum-to_sum) < 0 ? 'danger' : 'primary'}`}>{symbols[currency]}{numeral(parseInt((from_sum-to_sum)*price)).format('0,0')}</div>
+          </div>
         </div>
-        <div className='row'>
-          <div className='col'>D.Balance:</div>
-          <div className={`col text-right text-${(from_sum-to_sum) < 0 ? 'danger' : 'primary'}`}>{symbols[currency]}{numeral(parseInt((from_sum-to_sum)*price)).format('0,0')}</div>
+        <div class="container mt-1">
+          <div className='row'>
+            <div className='col text-right'></div>
+            <div className='col text-right'>in:</div>
+          </div>
+          {Object.keys(from) != 0 && Object.keys(from).map(key => {
+            if (key === 'new_delegation') {
+              return (
+                <div className='row'>
+                  <div className='col text-success'>{'New D.'}{' '}&#8594;</div>
+                  <div className='col text-right text-primary'>{symbols[currency]}{numeral(parseInt(from[key]*price)).format('0,0')}</div>
+                </div>
+              )
+            } else {
+              return from_value(delegation_flow[key].ticker, from[key])
+            }
+          })}
         </div>
-      </div>
+        <div class="container mt-1">
+          <div className='row'>
+            <div className='col text-right'></div>
+            <div className='col text-right'>out:</div>
+          </div>
+          {Object.keys(to) != 0 && Object.keys(to).map(key => to_value(delegation_flow[key].ticker, to[key]))}
+        </div>
       </React.Fragment>
     )
   } 
+
+  const from_value = (ticker, value) => {
+    return (
+      <div className='row'>
+        <div className='col text-primary'><b>{ticker}</b>{' '}&#8594;</div>
+        <div className='col text-right text-primary'>{symbols[currency]}{numeral(parseInt(value*price)).format('0,0')}</div>
+      </div>
+    )
+  }
+
+  const to_value = (ticker, value) => {
+    return (
+      <div className='row'>
+        <div className='col text-danger'><b>{ticker}</b>{' '}&#8592;</div>
+        <div className='col text-right text-danger'>{symbols[currency]}{numeral(parseInt(value*price)).format('0,0')}</div>
+      </div>
+    )
+  }
 
   const getTickersFromDeleFlow = (deleFlow) => {
     // in future I should rething the delegation_flow object 
@@ -133,7 +176,10 @@ function DelegationFlows({history, match}) {
           </div>
         }
       </div>
-      <svg ref={svgRef} className='w-100 h-100 chart'></svg>
+      <div className='w-100 h-100 d-flex flex-row'>
+        <div className='filler'></div>
+        <svg ref={svgRef} className='w-100 h-100 chart'></svg>
+      </div>
     </div>
   )
 }

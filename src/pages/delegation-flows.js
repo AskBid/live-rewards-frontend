@@ -7,33 +7,32 @@ import chart_delegation_flows from '../helpers/chart_delegation_flows'
 function DelegationFlows({history, match}) {
   const dispatch = useDispatch()
   const alert = useSelector( state => state.alert )
-  const delegation_flow = useSelector( state => state.alert )
+  const delegation_flows = useSelector( state => state.delegation_flow.list )
   const loading = useSelector( state => state.delegation_flow.loading )
 	const svgRef = useRef();
 
   useEffect(() => {
-    // if (!delegation_flow || this.props.epoch_no != this.props.match.params.epoch_no) {
+    if (!delegation_flows[match.params.epoch_no]) {
       dispatch(getDelegationFlow(match.params.epoch_no))
-        .then(res => {
-          const tickersMap = getTickersFromDeleFlow(res)
-          chart_delegation_flows(
-            res, 
-            tickersMap[match.params.ticker], 
-            svgRef.current,
-            svgRef.current.clientWidth,
-            svgRef.current.clientHeight)
-        })
-    // } else {
-    //   chart_delegation_flows(
-    //     this.props.delegation_flow, 
-    //     this.state.tickersMap[this.props.match.params.ticker], 
-    //     this.props.svg.current,
-    //     this.props.svg.current.clientWidth,
-    //     this.props.svg.current.clientHeight)
-    // }
+    }
   }, []);
 
+  useEffect(() => {
+    const delegation_flow = delegation_flows[match.params.epoch_no]
+    if (delegation_flow) {
+      const tickersMap = getTickersFromDeleFlow(delegation_flow)
+      chart_delegation_flows(
+        delegation_flow, 
+        tickersMap[match.params.ticker], 
+        svgRef.current,
+        svgRef.current.clientWidth,
+        svgRef.current.clientHeight)
+    }
+  }, [delegation_flows]);
+
   const getTickersFromDeleFlow = (deleFlow) => {
+    // in future I should rething the delegation_flow object 
+    // to avoid the search of ticker to find pool_hash_id
     let obj = {}
     Object.keys(deleFlow).forEach(pool_hash_id => {
       obj = {...obj, [deleFlow[pool_hash_id].ticker]: pool_hash_id}

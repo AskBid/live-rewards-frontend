@@ -36,7 +36,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height) {
   }
   
   let center_translation_h = width/2;
-  let center_translation_v = (height/2)-20;
+  let center_translation_v = (height/2)-40;
   //positioning and proportions END
 
   if (!edfJSON[pool_hash_id]) {

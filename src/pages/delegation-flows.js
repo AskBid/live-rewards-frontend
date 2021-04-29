@@ -1,16 +1,45 @@
 import React, { useEffect, useRef } from 'react'
 import PoolToPlotForm from '../containers/PoolToPlotForm'
 import { useSelector, useDispatch } from 'react-redux'
+import { getDelegationFlow } from '../actions/delegation_flows.actions'
+import chart_delegation_flows from '../helpers/chart_delegation_flows'
 
 function DelegationFlows({history, match}) {
   const dispatch = useDispatch()
   const alert = useSelector( state => state.alert )
+  const delegation_flow = useSelector( state => state.alert )
   const loading = useSelector( state => state.delegation_flow.loading )
 	const svgRef = useRef();
 
   useEffect(() => {
-    
+    // if (!delegation_flow || this.props.epoch_no != this.props.match.params.epoch_no) {
+      dispatch(getDelegationFlow(match.params.epoch_no))
+        .then(res => {
+          const tickersMap = getTickersFromDeleFlow(res)
+          chart_delegation_flows(
+            res, 
+            tickersMap[match.params.ticker], 
+            svgRef.current,
+            svgRef.current.clientWidth,
+            svgRef.current.clientHeight)
+        })
+    // } else {
+    //   chart_delegation_flows(
+    //     this.props.delegation_flow, 
+    //     this.state.tickersMap[this.props.match.params.ticker], 
+    //     this.props.svg.current,
+    //     this.props.svg.current.clientWidth,
+    //     this.props.svg.current.clientHeight)
+    // }
   }, []);
+
+  const getTickersFromDeleFlow = (deleFlow) => {
+    let obj = {}
+    Object.keys(deleFlow).forEach(pool_hash_id => {
+      obj = {...obj, [deleFlow[pool_hash_id].ticker]: pool_hash_id}
+    }) 
+    return obj
+  }
 
   return (
     <div className="w-100 fill d-flex flex-column">
@@ -36,8 +65,7 @@ function DelegationFlows({history, match}) {
           </div>
         }
       </div>
-      <h1 className='w-100 h-100 text-center mt-5 text-dark'>Coming soon...</h1>
-      {/*{<svg ref={svgRef} className='w-100 h-100'></svg>}*/}
+      <svg ref={svgRef} className='w-100 h-100'></svg>
     </div>
   )
 }

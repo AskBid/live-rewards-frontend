@@ -10,8 +10,10 @@ function DelegationFlows({history, match}) {
   const delegation_flows = useSelector( state => state.delegation_flow.list )
   const loading = useSelector( state => state.delegation_flow.loading )
 	const svgRef = useRef();
-  const [height, setHeight] = useState();
-  const [width, setWidth] = useState();
+  const [dimensions, setDimensions] = useState({ 
+    height: window.innerHeight,
+    width: window.innerWidth
+  });
 
   useEffect(() => {
     if (!delegation_flows[match.params.epoch_no]) {
@@ -32,22 +34,22 @@ function DelegationFlows({history, match}) {
         match.params.epoch_no,
         history)
     }
-  }, [delegation_flows, match]);
+  }, [delegation_flows, match, dimensions]);
 
   useEffect(() => {
-    const delegation_flow = delegation_flows[match.params.epoch_no]
-    if (delegation_flow) {
-      const tickersMap = getTickersFromDeleFlow(delegation_flow)
-      chart_delegation_flows(
-        delegation_flow, 
-        tickersMap[match.params.ticker], 
-        svgRef.current,
-        svgRef.current.clientWidth,
-        svgRef.current.clientHeight,
-        match.params.epoch_no,
-        history)
+    function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth
+      })
     }
-  }, [width, height]);
+
+    window.addEventListener('resize', handleResize)
+
+    return _ => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
 
   const getTickersFromDeleFlow = (deleFlow) => {
     // in future I should rething the delegation_flow object 

@@ -10,6 +10,25 @@ export default function poolReducer(state = {}, action) {
 				tickers: action.payload
 			}
 
+		case REQUEST_POOL_PERFORMANCES:
+			return {
+				...state,
+				loading: true
+			}
+
+		case REQUEST_POOL_PERFORMANCES_SUCCESS:
+			return {
+				...state,
+				pools_performances: action.payload,
+				loading: false
+			}
+
+		case REQUEST_POOL_PERFORMANCES_FAILURE:
+			return {
+				...state,
+				loading: false
+			}
+
 		default:
 			return state;
 	}

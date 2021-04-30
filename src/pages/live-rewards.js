@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import StakesColumn from '../containers/StakesColumn'
 import LiveRewardsControlBar from '../containers/LiveRewardsControlBar'
 
 function LiveRewards({match}) {
+		useEffect(() => {
+	    window.scrollTo(0, 0);
+	  }, []);
 
     return (
       <div className="container-fluid mh-100">

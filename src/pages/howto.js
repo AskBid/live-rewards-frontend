@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LoginForm from '../containers/LoginForm'
 import Image from '../assets/cardanoscan.png';
 import { Link } from 'react-router-dom'
 
 function Howto({history}) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="container">
       <div className="row mb-5">

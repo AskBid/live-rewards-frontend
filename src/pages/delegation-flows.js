@@ -21,6 +21,7 @@ function DelegationFlows({history, match}) {
   const currency = useSelector(state => state.sessions.currency.symbol)
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (!delegation_flow) {
       dispatch(getDelegationFlow(match.params.epoch_no))
     }

@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import UserShow from '../containers/UserShow'
 
 function User({history}) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className="container">
       <div className="row mb-5">

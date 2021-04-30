@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import IntroSchema from '../components/IntroSchema';
 import { Link } from 'react-router-dom'
 import Moment from 'moment'
 
 function Home() {
+		useEffect(() => {
+	    window.scrollTo(0, 0);
+	  }, []);
 
 		const epochno = (() => {
 	    // const epoch_end = Moment('2020-08-13T21:44:51.000')

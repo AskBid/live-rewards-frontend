@@ -22,6 +22,7 @@ const Sidebar = ({isOpen,toggle}) => {
       <SidebarWrapper>
         <SidebarMenu>
           <SidebarLink to='/live-rewards' onClick={toggle}>Live Rewards</SidebarLink>
+          <SidebarLink to='/pools' onClick={toggle}>Pools Gauge</SidebarLink>
           <SidebarLink to='/howto' onClick={toggle}>How to</SidebarLink>
           <SidebarLink to='/signup' onClick={toggle}>Sign up</SidebarLink>
         </SidebarMenu>

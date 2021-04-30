@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import Home from './pages'
 import LiveRewards from './pages/live-rewards'
+import PoolsGauge from './pages/pools-gauge'
 import PoolCompare from './pages/pool-compare'
 import Signup from './pages/signup'
 import Login from './pages/login'
@@ -30,6 +31,7 @@ function App() {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
         <Route path='/live-rewards' component={LiveRewards}/>
+        <Route path='/pools' component={PoolsGauge}/>
         <Route path='/delegation-flows/epochs/:epoch_no/pools/:ticker' component={DelegationFlows}/>
         <Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id' component={PoolCompare}/>
         <Route path='/login' component={Login}/>

@@ -31,7 +31,7 @@ export const getDelegationFlow = (epoch_no) => {
 	  	})
 			.catch(err => {
 				dispatch({type: REQUEST_DELEGATION_FLOW_FAILURE})
-				dispatch({type: ERROR, message: `could not fetch delegation flow for ${epoch_no}`})
+				dispatch({type: ERROR, message: `could not fetch delegation flow for ${epoch_no} - try a different epoch.`})
 				return Promise.reject(`could not fetch delegation flow for ${epoch_no}`)
 			})
 	}

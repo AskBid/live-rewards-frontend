@@ -42,13 +42,33 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height, epoch
   if (!edfJSON[pool_hash_id]) {
     d3.selectAll(".chart > *").remove()
     svg.append("text")
-      .attr("x", center_translation_h )
-      .attr("y", center_translation_v )
+      .attr("x", center_translation_h - (inner_rad/2) )
+      .attr("y", center_translation_v - (inner_rad/6) - 20)
       .attr("dy", ".35em")
       .style("fill", "rgba(50,50,50,0.6)")
       .text(`ticker NOT FOUND`)
+
+    svg.append("text")
+      .attr("x", center_translation_h -(inner_rad/2) )
+      .attr("y", center_translation_v - 20)
+      .attr("dy", ".35em")
+      .style("fill", "rgba(50,50,50,0.6)")
+      .text(`there are no delegations moves`)
+
+    svg.append("text")
+      .attr("x", center_translation_h - (inner_rad/2) )
+      .attr("y", center_translation_v + ((inner_rad/6)) - 20)
+      .attr("dy", ".35em")
+      .style("fill", "rgba(50,50,50,0.6)")
+      .text(`for this pool in epoch ${epoch_no}`)
+
     svg.append("circle").attr("cx",center_translation_h).attr("cy",center_translation_v).attr("r",inner_rad)
     .style("fill", "rgba(255,255,255,0.3)");
+
+    svg.append("circle").attr("cx",center_translation_h).attr("cy",center_translation_v).attr("r",inner_rad)
+    .style("stroke", "rgba(255,30,30,0.7)")
+    .style("fill", "rgba(255,30,30,0.0)");
+
     return null
   }
   let filtered_edfJSON = {...edfJSON}

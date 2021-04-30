@@ -162,7 +162,7 @@ function DelegationFlows({history, match}) {
           {delegation_flow && pool_hash_id && balances()}
       </div>
       { alert.message &&
-        <div className={`w-100 d-flex justify-content-center`} onClick={() => dispatch({type: 'ALERT_CLEAR'})} style={{cursor:'pointer'}}>
+        <div className={`m-5 w-100 d-flex justify-content-center`} onClick={() => dispatch({type: 'ALERT_CLEAR'})} style={{cursor:'pointer'}}>
           <div className={`alert ${alert.type} w-75`}>
             {alert.message}
           </div>

@@ -2,7 +2,12 @@ import {
 	REQUEST_POOL_TICKERS_SUCCESS
 } from '../actions'
 
-export default function poolReducer(state = {}, action) {
+const initialState = {
+  performances: [],
+  loading: false
+};
+
+export default function poolReducer(state = initialState, action) {
 	switch(action.type) {
 
 		case REQUEST_POOL_TICKERS_SUCCESS:
@@ -19,7 +24,7 @@ export default function poolReducer(state = {}, action) {
 		case REQUEST_POOL_PERFORMANCES_SUCCESS:
 			return {
 				...state,
-				pools_performances: action.payload,
+				performances: action.payload,
 				loading: false
 			}
 

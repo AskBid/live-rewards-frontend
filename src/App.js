@@ -26,23 +26,27 @@ function App() {
 
   return (
     <Router>
-      <Navbar toggle={toggle}/>
-      <div style={{height:'80px'}}></div>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Switch>
-        <Route path='/live-rewards' component={LiveRewards}/>
-        <Route path='/pools' component={PoolsGauge}/>
-        <Route path='/delegation-flows/epochs/:epoch_no/pools/:ticker' component={DelegationFlows}/>
-        <Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id' component={PoolCompare}/>
-        <Route path='/login' component={Login}/>
-        <Route path='/signup' component={Signup}/>
-        <Route path='/howto' component={Howto}/>
-        <Route path='/users/:username' component={User}/>
-        <Route exact path="/">
-          {user ? <Redirect to="/live-rewards" /> : <Home />}
-        </Route>
-        <Route path='/intro' component={Home}/>
-      </Switch>
+      <div className='h-100 d-flex flex-column align-items-center'>
+        <Navbar toggle={toggle}/>
+        <Sidebar isOpen={isOpen} toggle={toggle} />
+        <div className='bg-danger' style={{height:'80px'}}></div>
+        <div className='w-100 h-100 d-flex align-items-start'>
+          <Switch>
+            <Route path='/live-rewards' component={LiveRewards}/>
+            <Route path='/pools' component={PoolsGauge}/>
+            <Route path='/delegation-flows/epochs/:epoch_no/pools/:ticker' component={DelegationFlows}/>
+            <Route path='/pool-compare/users/:username/epoch_stakes/:epoch_stake_id' component={PoolCompare}/>
+            <Route path='/login' component={Login}/>
+            <Route path='/signup' component={Signup}/>
+            <Route path='/howto' component={Howto}/>
+            <Route path='/users/:username' component={User}/>
+            <Route exact path="/">
+              {user ? <Redirect to="/live-rewards" /> : <Home />}
+            </Route>
+            <Route path='/intro' component={Home}/>
+          </Switch>
+        </div>
+      </div>
     </Router>
   );
 };

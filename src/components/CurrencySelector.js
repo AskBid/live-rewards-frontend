@@ -15,7 +15,7 @@ const CurrencySelector = () => {
 
   return (
     <div className='justify-content-center'>
-    {/*col d-flex flex-wrap align-self-start justify-content-center */}
+      {/*<div className='text-muted ml-2' style={{fontSize:'0.9em', top:'10px'}}>rewards currency:</div>*/}
       <button 
         className={`${currency === 'ada' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded-pill m-1`}
         onClick={() => dispatch({type: REQUEST_PRICE_SUCCESS, payload: {symbol: 'ada', price: 1}})}

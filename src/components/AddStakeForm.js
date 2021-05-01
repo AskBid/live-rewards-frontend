@@ -55,12 +55,12 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
               type="text"
               name="stake_address"
               placeholder="stake1ux026n9gx9ygv...       (random if empty)"
-              className='h-100 w-100 p-2'
+              className='h-100 w-100 p-2 border border-primary rounded shadow-sm'
               onChange={handleAddressInputChange}
               style={{minWidth:'100px'}}>
             </input>
           </fieldset>
-          <button className='border-0 text-nowrap rounded-pill ml-1 mr-5'
+          <button className='border-0 text-nowrap rounded-pill ml-1 mr-5 shadow-sm'
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>

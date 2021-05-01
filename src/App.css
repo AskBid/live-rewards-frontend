@@ -99,7 +99,7 @@ button {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  margin-left: 5em;
+  /*margin-left: 5em;*/
   border: 1px solid #4ad9e4;
 }
 button:disabled {

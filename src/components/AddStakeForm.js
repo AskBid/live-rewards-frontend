@@ -48,19 +48,19 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
 
   return (
     <>
-      <div className='d-flex flex-wrap justify-content-between w-100 bg-info'>
-        <form className='col d-flex align-self-start flex-nowrap bg-danger w-100' onSubmit={handleSubmit}>
-          <fieldset className='col-8 p-1'>
+      <div className='d-flex flex-wrap justify-content-between w-100'>
+        <form className='d-inline-flex flex-grow-1' onSubmit={handleSubmit}>
+          <fieldset className='flex-grow-1 pt-1 pb-1'>
             <input
               type="text"
               name="stake_address"
               placeholder="stake1ux026n9gx9ygv...       (random if empty)"
-              className='w-100 border border-primary shadow-sm ml-1 mr-1 p-2 rounded'
+              className='h-100 w-100 p-2'
               onChange={handleAddressInputChange}
-              style={{minWidth:'200px'}}>
+              style={{minWidth:'100px'}}>
             </input>
           </fieldset>
-          <button className='col-4 border-0 text-nowrap rounded-pill m-1'
+          <button className='border-0 text-nowrap rounded-pill ml-1 mr-5'
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>

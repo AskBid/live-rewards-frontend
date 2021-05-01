@@ -19,16 +19,21 @@ function PoolsGauge({match}) {
 
   const deployPerformances = () => {
     const by_pool_hash = groupBy(performances, 'pool_hash_id')
+    // debugger
     return Object.keys(by_pool_hash).map((pool_hash_id) => {
     	return (
 	    	<div className='row' key={pool_hash_id}>
-	    		<div className='col'>{pool_hash_id}</div>
+	    		<div className='col text-monospace'>{pool_hash_id}</div>
 	    		<div className='col d-flex flex-inline'>
-	    			{by_pool_hash[pool_hash_id].map(epoch => <span className='text-nowrap'>{epoch.blocks_delta_pc}{' || '}</span>)}
+	    			{drawPoolGauge(by_pool_hash[pool_hash_id])}
 	    		</div>
 	    	</div>
     	)
     })
+  }
+
+  const drawPoolGauge = (pool_epoch_perfomances) => {
+  	return pool_epoch_perfomances.map(epoch => <span className='text-nowrap text-monospace'>{`${epoch.blocks_delta_pc}`.slice(0,5)}{' || '}</span>)
   }
 
   return (
@@ -36,7 +41,7 @@ function PoolsGauge({match}) {
       <div className="row mb-5 h-100">
         <div className='col'>
         </div>
-        <div className="col-lg-10 mr-auto ml-auto">
+        <div className="col-lg-10 mr-auto ml-auto text-monospace">
         	{deployPerformances()}
         </div>
         <div className='col'></div>

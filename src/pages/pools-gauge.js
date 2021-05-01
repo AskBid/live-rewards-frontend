@@ -27,8 +27,8 @@ function PoolsGauge({match}) {
     return Object.keys(by_pool_hash).map((pool_hash_id) => {
     	return (
 	    	<div className='row' key={pool_hash_id}>
-	    		<div className='col text-monospace'>{pools_map[pool_hash_id][0].ticker}</div>
-	    		<div className='col d-flex flex-inline'>
+	    		<div className='text-monospace bg-info'>{pools_map[pool_hash_id][0].ticker}</div>
+	    		<div className='col d-flex flex-inline bg-success'>
 	    			{drawPoolGauge(by_pool_hash[pool_hash_id])}
 	    		</div>
 	    	</div>
@@ -37,6 +37,7 @@ function PoolsGauge({match}) {
   }
 
   const drawPoolGauge = (pool_epoch_perfomances) => {
+
   	return pool_epoch_perfomances.map(epoch => <span className='text-nowrap text-monospace'>{`${epoch.blocks_delta_pc}`.slice(0,5)}{' || '}</span>)
   }
 

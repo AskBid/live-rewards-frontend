@@ -11,18 +11,7 @@ class LiveRewardsControlBar extends Component {
   render() { 
     return (
     	<div className='row mt-4 mr-auto ml-auto'>
-        {this.props.epoch_stakes.length === 0 && this.props.user
-          ?
-          <Route path={`/live-rewards`} render={(props) => <AddStakeForm {...this.props} {...props} hideHide={true}/>} />
-          :
-      		<Switch>
-      			<Route path={`/live-rewards/users/:username/user_stakes/new`} 
-              render={(props) => <AddStakeForm {...this.props} {...props}/>} />
-    		  	<Route path='/live-rewards'>
-    		  		<DefaultControlBar/>
-    		  	</Route>
-      		</Switch>
-        }
+        <AddStakeForm {...this.props}/>
     	</div>
   )}
 }

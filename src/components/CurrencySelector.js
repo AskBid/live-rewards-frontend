@@ -14,33 +14,33 @@ const CurrencySelector = () => {
   }
 
   return (
-    <>
+    <div className='col d-flex flex-wrap align-self-start justify-content-center bg-dark'>
       <button 
-        className={`${currency === 'ada' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
+        className={`${currency === 'ada' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1`}
         onClick={() => dispatch({type: REQUEST_PRICE_SUCCESS, payload: {symbol: 'ada', price: 1}})}
         id='ada'>
         ₳
       </button>
       <button 
-        className={`${currency === 'usd' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
+        className={`${currency === 'usd' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1`}
         onClick={switchCurrency}
         id='usd'>
         $
       </button>
       <button 
-        className={`${currency === 'eur' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
+        className={`${currency === 'eur' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1`}
         onClick={switchCurrency}
         id='eur'>
         €
       </button>
       <button 
-        className={`${currency === 'gbp' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
+        className={`${currency === 'gbp' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1`}
         onClick={switchCurrency}
         id='gbp'>
         £
       </button>
       <button 
-        className={`${currency === 'jpy' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1 w-auto`}
+        className={`${currency === 'jpy' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded m-1`}
         onClick={switchCurrency}
         id='jpy'>
         ¥
@@ -51,7 +51,7 @@ const CurrencySelector = () => {
         id='btc'>
         ฿
       </button>*/}
-    </>
+    </div>
   )
 }
 

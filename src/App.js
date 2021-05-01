@@ -30,7 +30,7 @@ function App() {
         <Navbar toggle={toggle}/>
         <Sidebar isOpen={isOpen} toggle={toggle} />
         <div className='bg-danger' style={{height:'80px'}}></div>
-        <div className='w-100 h-100 d-flex align-items-start'>
+        <div className='w-100 h-100 d-flex align-items-start justify-content-center'>
           <Switch>
             <Route path='/live-rewards' component={LiveRewards}/>
             <Route path='/pools' component={PoolsGauge}/>

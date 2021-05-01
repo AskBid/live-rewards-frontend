@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { getPoolPerformances } from '../actions/pool.actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { groupBy } from 'underscore'
+import * as d3 from 'd3'
+// import numeral from 'numeral';
 
 function PoolsGauge({match}) {
 	const performances = useSelector( state => state.pools.performances )
@@ -19,7 +21,6 @@ function PoolsGauge({match}) {
 
   const deployPerformances = () => {
     const by_pool_hash = groupBy(performances, 'pool_hash_id')
-    // debugger
     return Object.keys(by_pool_hash).map((pool_hash_id) => {
     	return (
 	    	<div className='row' key={pool_hash_id}>

@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   performances: [],
+  pools: [],
   loading: false
 };
 
@@ -27,7 +28,8 @@ export default function poolReducer(state = initialState, action) {
 		case REQUEST_POOL_PERFORMANCES_SUCCESS:
 			return {
 				...state,
-				performances: action.payload,
+				performances: action.payload.pool_epochs,
+				pools: action.payload.pools,
 				loading: false
 			}
 

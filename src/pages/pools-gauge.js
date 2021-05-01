@@ -7,6 +7,7 @@ import * as d3 from 'd3'
 
 function PoolsGauge({match}) {
 	const performances = useSelector( state => state.pools.performances )
+	const pools = useSelector( state => state.pools.pools )
 	const dispatch = useDispatch()
 
 	// const [isVisible, setVisiblity] = useState();
@@ -21,10 +22,12 @@ function PoolsGauge({match}) {
 
   const deployPerformances = () => {
     const by_pool_hash = groupBy(performances, 'pool_hash_id')
+    const pools_map = groupBy(pools, 'pool_hash_id')
+
     return Object.keys(by_pool_hash).map((pool_hash_id) => {
     	return (
 	    	<div className='row' key={pool_hash_id}>
-	    		<div className='col text-monospace'>{pool_hash_id}</div>
+	    		<div className='col text-monospace'>{pools_map[pool_hash_id][0].ticker}</div>
 	    		<div className='col d-flex flex-inline'>
 	    			{drawPoolGauge(by_pool_hash[pool_hash_id])}
 	    		</div>

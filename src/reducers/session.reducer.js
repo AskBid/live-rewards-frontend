@@ -80,7 +80,7 @@ export default function sessionReducer(state = initialState, action) {
     case REQUEST_LAST_UPDATE_SUCCESS:
       return {
         ...state,
-        lastUpdate: {...action.payload}
+        lastUpdate: {...action.payload.block}
       }
 
     case REQUEST_LAST_UPDATE_FAILURE:

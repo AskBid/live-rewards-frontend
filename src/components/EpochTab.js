@@ -1,8 +1,11 @@
 import React from 'react'
 import StakeTab from './StakeTab'
 import Moment from 'moment'
+import { useSelector } from 'react-redux'
 
 const EpochTab = ({epochno, stakes, tabType}) => {
+
+  const last_update = useSelector(state => state.sessions.lastUpdate)
 
   const epoch_end_date = ((epochno) => {
     const reward_pay = Moment('2020-08-13T21:44:51.000')
@@ -48,6 +51,14 @@ const EpochTab = ({epochno, stakes, tabType}) => {
         }
     }
   })()
+
+  const findProgressBarWidth = () => {
+    if ( last_update.epoch_no === epochno ) {
+      //431900 slots per epoch
+      return (last_update.epoch_slot_no / 431900)*100
+    } 
+    return epoch_end_date.epoch_progress
+  }
 
   const deploy_stakes = () => {
     return stakes.map(stake => {
@@ -98,7 +109,7 @@ const EpochTab = ({epochno, stakes, tabType}) => {
           {stakes && deploy_stakes()}
         </div>
         <div className="progress mt-2" style={{height: "8px", opacity: `${epoch_status.opacity}`,  borderRadius:'0px 0px 3px 3px'}}>
-          <div className={`progress-bar bg-${epoch_status.color}`} role={'progressbar'} style={{width: `${epoch_end_date.epoch_progress}%`, borderRadius:'0px 0px 3px 3px'}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
+          <div className={`progress-bar bg-${epoch_status.color}`} role={'progressbar'} style={{width: `${findProgressBarWidth()}%`, borderRadius:'0px 0px 3px 3px'}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
         </div>
       </div>
   )

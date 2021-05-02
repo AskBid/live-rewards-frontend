@@ -28,7 +28,6 @@ function App() {
 
   useEffect(() => {
     !currentEpoch && dispatch(getLastUpdate())
-    //431916 slots per epoch
   });
 
   return (

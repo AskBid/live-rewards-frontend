@@ -32,7 +32,6 @@ export const getLastUpdate = () => {
 			})
 	  	.then(json => {
 	  		const epochno = json.block.epoch_no
-	  		debugger
 	  		dispatch({
 	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
 	  			payload: [

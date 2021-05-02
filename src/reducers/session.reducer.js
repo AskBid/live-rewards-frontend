@@ -5,7 +5,10 @@ import {
   REQUEST_PRICE,
   REQUEST_PRICE_SUCCESS,
   REQUEST_PRICE_FAILURE,
-  LOGOUT
+  LOGOUT,
+  REQUEST_LAST_UPDATE,
+  REQUEST_LAST_UPDATE_SUCCESS,
+  REQUEST_LAST_UPDATE_FAILURE
 } from '../actions'
 
 let user = JSON.parse(localStorage.getItem('user'));
@@ -17,6 +20,7 @@ const initialState = {
   submitting: false,
   noUserPools,
   noUserStakeAddrs,
+  lastUpdate: {},
   user,
   currency: {price: 1, symbol: 'ada'},
   gecko_loading: false
@@ -66,6 +70,22 @@ export default function sessionReducer(state = initialState, action) {
       return {
         ...state,
         gecko_loading: false
+      }
+
+    case REQUEST_LAST_UPDATE:
+      return {
+        ...state
+      }
+
+    case REQUEST_LAST_UPDATE_SUCCESS:
+      return {
+        ...state,
+        lastUpdate: {...action.payload}
+      }
+
+    case REQUEST_LAST_UPDATE_FAILURE:
+      return {
+        ...state
       }
 
     default:

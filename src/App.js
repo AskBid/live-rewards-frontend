@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
@@ -12,11 +12,12 @@ import Login from './pages/login'
 import User from './pages/user'
 import Howto from './pages/howto'
 import DelegationFlows from './pages/delegation-flows'
-import { useSelector } from 'react-redux'
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector, useDispatch } from 'react-redux'
+import { getLastUpdate } from './actions/session.actions'
 
 function App() {
   const user = useSelector(state => state.sessions.user)
+  const dispatch = useDispatch()
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -24,7 +25,10 @@ function App() {
     setIsOpen(!isOpen);
   }
 
-  //431916 slots per epoch
+  useEffect(() => {
+    dispatch(getLastUpdate())
+    //431916 slots per epoch
+  });
 
   return (
     <Router>

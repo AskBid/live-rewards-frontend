@@ -7,8 +7,41 @@ import {
 	CLEAR_EPOCH_STAKES,
 	REQUEST_PRICE,
 	REQUEST_PRICE_SUCCESS,
-	REQUEST_PRICE_FAILURE
+	REQUEST_PRICE_FAILURE,
+  REQUEST_LAST_UPDATE,
+  REQUEST_LAST_UPDATE_SUCCESS,
+  REQUEST_LAST_UPDATE_FAILURE
 } from '.'
+
+export const getLastUpdate = () => {
+	return (dispatch) => {
+		dispatch({type: REQUEST_LAST_UPDATE})
+		return fetch(`${process.env.REACT_APP_API_URL}/updated`, {
+	  	method: 'GET',
+	    headers: {
+	    	'Content-Type': 'application/json',
+	    	"Accept": "application/json"
+	    }
+	  }).then(res => {
+				if (res.ok) {
+					return res.json()
+				} else {
+					return res.json().then(json => Promise.reject(json))
+				}
+			})
+	  	.then(json => {
+	  		dispatch({
+	  			type: REQUEST_LAST_UPDATE_SUCCESS, 
+	  			payload: json,
+	  		});
+	  		return json
+	  	})
+			.catch(err => {
+				dispatch({type: REQUEST_LAST_UPDATE_FAILURE})
+				return Promise.reject(`could not fetch latest DB update`)
+			})
+	}
+}
 
 export const login = (formData) => {
 	return (dispatch) => {

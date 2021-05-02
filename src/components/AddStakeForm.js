@@ -15,21 +15,21 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
   }
 
   const buttonActivation = () => {
-    const correct_address = address.includes("stake1") && address.length === 59
+    const correct_address = (address.includes("stake1") || address.includes("addr1")) && (address.length === 59 || address.length === 103)
     return address.length === 0 ? true : correct_address
   }
 
   const addressChecksMessage = () => {
-    if (!address.includes("stake1") && !address.includes("addr1")) {
-      return <div className='alert alert-info mt-4 position-absolute'>
-          {`The address should start with "stake1" or "addr1".`}
+    if (!address.includes("stake1") && !address.includes("addr1") && address.length > 2) {
+      return <div className='alert alert-info position-absolute'>
+          {`The address should start with`} <b>{`"stake1"`}</b> or <b>{`"addr1"`}</b>{`.`}
         </div>
     } else if (address.includes("addr1") && address.length !== 103 && address.length > 5) {
-      return <div className='alert alert-info mt-4 position-absolute'>
+      return <div className='alert alert-info position-absolute'>
           {`The address should be 103 letters long. count: ${address.length}/103`}
         </div>
     } else if (address.includes("stake1") && address.length !== 59 && address.length > 6) {
-      return <div className='alert alert-info mt-4 position-absolute'>
+      return <div className='alert alert-info position-absolute'>
           {`The address should be 59 letters long. count: ${address.length}/59`}
         </div>
     }
@@ -58,6 +58,9 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
               onChange={handleAddressInputChange}
               style={{minWidth:'100px'}}>
             </input>
+            <div className='d-flex justify-content-center flex-grow-1'> 
+              {addressChecksMessage()}
+            </div>
           </fieldset>
           <button className='border-0 text-nowrap rounded-pill ml-1 mr-5 shadow-sm'
             type='Submit'
@@ -68,9 +71,6 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
         </form>
         <CurrencySelector/>
         {/*{!user && messageIfNotLoggedIn()}*/}
-      </div>
-      <div className='d-flex row w-100 justify-content-center'> 
-        {addressChecksMessage()}
       </div>
     </>
   )

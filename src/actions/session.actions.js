@@ -10,6 +10,7 @@ import {
 	REQUEST_PRICE_FAILURE,
   REQUEST_LAST_UPDATE,
   REQUEST_LAST_UPDATE_SUCCESS,
+  REQUEST_USER_EPOCH_STAKES_SUCCESS,
   REQUEST_LAST_UPDATE_FAILURE
 } from '.'
 
@@ -30,9 +31,19 @@ export const getLastUpdate = () => {
 				}
 			})
 	  	.then(json => {
+	  		const epochno = json.block.epoch_no
+	  		debugger
+	  		dispatch({
+	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
+	  			payload: [
+					  {epoch_no: epochno, epoch_info: {current_epoch: epochno}},
+					  {epoch_no: epochno - 1, epoch_info: {current_epoch: epochno}},
+					  {epoch_no: epochno - 2, epoch_info: {current_epoch: epochno}}
+					]
+	  		});
 	  		dispatch({
 	  			type: REQUEST_LAST_UPDATE_SUCCESS, 
-	  			payload: json,
+	  			payload: json.block,
 	  		});
 	  		return json
 	  	})

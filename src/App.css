@@ -10,21 +10,21 @@
 
 @media screen and (max-width: 459px) {
   #intro {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/color_cubes_500v.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8)), url("./assets/color_cubes_500v.png");
     /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/hands_cubes_850h.png");*/
     /*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url("./assets/cute_cubes_850h.png");*/
     background-size: cover;
-    /*filter: hue-rotate(45deg);*/
+    filter: hue-rotate(45deg);
   }
 }
 
 @media screen and (min-width: 460px) {
   #intro {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/color_cubes_850h.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8)), url("./assets/color_cubes_850h.png");
     /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/hands_cubes_850h.png");*/
     /*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url("./assets/cute_cubes_850h.png");*/
     background-size: cover;
-    /*filter: hue-rotate(45deg);*/
+    filter: hue-rotate(45deg);
   }
 }
 

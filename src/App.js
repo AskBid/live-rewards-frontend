@@ -39,13 +39,13 @@ function App() {
         <div className='bg-black' style={{minHeight:'80px'}}></div>
         
         <div className='w-100 h-100 d-flex align-items-start justify-content-center'>
-        { 
+        {/*{ 
           <div className={`alert position-absolute mt-2 w-100 d-flex justify-content-center text-center`}>
             <div className={`alert alert-danger w-75`}>
               <b>UNDER MAINTENANCE... coming back soon.</b>
             </div>
           </div>
-        }
+        }*/}
           <Switch>
             <Route path='/live-rewards' component={LiveRewards}/>
             <Route path='/pools' component={PoolsGauge}/>

@@ -9,9 +9,9 @@ function Home() {
     return (
     	<div id="intro" className="row w-100 h-100 d-flex flex-xl-row align-items-center justify-content-center">
     		<div className="col"></div>
-      	<div className="col-5 text-center">
+      	<div className="col-lg-5 text-center">
       		<h1 className="text-white text-center">
-      			<span>Check <b>now</b> the <b>rewards</b> you will receive in 2 epochs.</span>
+      			Check <b>now</b> the <b>rewards</b> you will receive in 2 epochs.
       		</h1>
       		<div className="align-center" style={{height:'10vh'}}>
       			<Link to='/live-rewards'>

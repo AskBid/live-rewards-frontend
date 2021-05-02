@@ -8,14 +8,45 @@
   padding: 0;
 }
 
-#intro {
-  /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_254112864_xl-2015.jpg");*/
-  /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_110204134_xl-2015.jpg");*/
-  /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_104981926_xl-2015.jpg");*/
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_6517777_xl-2015.jpg");
-  /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_2044451_xl-2015.jpg");*/
-  /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/bg13.jpeg");*/
-  background-size: cover;
+@media screen and (min-width: 460px) {
+  #intro {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_254112864_xl-2015.jpg");
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_110204134_xl-2015.jpg");*/
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_104981926_xl-2015.jpg");*/
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_6517777_xl-2015.jpg");*/
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_2044451_xl-2015.jpg");*/
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/bg13.jpeg");*/
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #intro {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_110204134_xl-2015.jpg");
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_6517777_xl-2015.jpg");*/
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 1260px) {
+  #intro {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_6517777_xl-2015.jpg");
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 1660px) {
+  #intro {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_6517777_xl-2015.jpg");
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 3060px) {
+  #intro {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/Depositphotos_6517777_xl-2015.jpg");
+    background-size: cover;
+  }
 }
 
 .invisible {

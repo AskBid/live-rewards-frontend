@@ -9,10 +9,14 @@ import {
 } from '../actions'
 
 let user = JSON.parse(localStorage.getItem('user'));
+let noUserPools = user ? undefined : JSON.parse(localStorage.getItem('pools'));
+let noUserStakeAddrs = user ? undefined : JSON.parse(localStorage.getItem('addr'));
 user = user ? user.username : undefined;
 
 const initialState = {
   submitting: false,
+  noUserPools,
+  noUserStakeAddrs,
   user,
   currency: {price: 1, symbol: 'ada'},
   gecko_loading: false

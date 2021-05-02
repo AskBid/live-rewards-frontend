@@ -24,6 +24,8 @@ function App() {
     setIsOpen(!isOpen);
   }
 
+  //431916 slots per epoch
+
   return (
     <Router>
       <div className='h-100 d-flex flex-column align-items-center'>

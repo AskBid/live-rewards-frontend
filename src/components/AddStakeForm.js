@@ -20,18 +20,17 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
   }
 
   const addressChecksMessage = () => {
-    if (!address.includes("stake1") && address.length > 6 && !address.includes("addr1")) {
-      return <div className='alert alert-info mt-4 position-absolute'>{`The address should start with "stake1".`}</div>
-    } else if (address.length !== 59 && !address.includes("addr1") && address.length > 2) {
-      return <div className='alert alert-info mt-4 position-absolute'>{`The address should be 59 letters long. count: ${address.length}/59`}</div>
-    }
-    if (address.includes("addr1") && address.length === 103) {
-      return <div className='alert alert-info mt-4 position-absolute'>{`You entered a`}
-            <b>{` Wallet Address`}</b>
-            {`, to find its BECH32 `}<b>{`Stake Address`}</b>{` visit: `}<br/>
-          <a href={`https://cardanoscan.io/address/${address}`} target="_blank" rel="noreferrer">
-            {`https://cardanoscan.io/address/${address.slice(0,18)}...`}
-          </a>
+    if (!address.includes("stake1") && !address.includes("addr1")) {
+      return <div className='alert alert-info mt-4 position-absolute'>
+          {`The address should start with "stake1" or "addr1".`}
+        </div>
+    } else if (address.includes("addr1") && address.length !== 103 && address.length > 5) {
+      return <div className='alert alert-info mt-4 position-absolute'>
+          {`The address should be 103 letters long. count: ${address.length}/103`}
+        </div>
+    } else if (address.includes("stake1") && address.length !== 59 && address.length > 6) {
+      return <div className='alert alert-info mt-4 position-absolute'>
+          {`The address should be 59 letters long. count: ${address.length}/59`}
         </div>
     }
   }
@@ -54,7 +53,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
             <input
               type="text"
               name="stake_address"
-              placeholder="stake1ux026n9gx9ygv...       (random if empty)"
+              placeholder="stake1*** or addr1***   (random if empty)"
               className='h-100 w-100 p-2 border border-primary rounded shadow-sm'
               onChange={handleAddressInputChange}
               style={{minWidth:'100px'}}>

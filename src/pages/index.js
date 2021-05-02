@@ -15,12 +15,16 @@ function Home() {
       		</h1>
       		<div className="align-center" style={{height:'10vh'}}>
       			<Link to='/live-rewards'>
-      				<button className="m-0 mt-4 mb-4 shadow-sm" style={{minWidth:'250px'}}>
+      				<button className="intro m-0 mt-4 mb-4 shadow-sm" style={{minWidth:'250px'}}>
       					<b>Live-Rewards</b>
       				</button>
       			</Link>
       		</div>
-      		<div style={{height:'80px'}}></div>
+      		<div style={{height:'80px'}}>
+      			<p className="mt-5 text-white text-center">
+	      			<span>#Cardano #ADA</span>
+	      		</p>
+      		</div>
       	</div>
       	<div className="col bg-primary"></div>	        	
 	    </div>

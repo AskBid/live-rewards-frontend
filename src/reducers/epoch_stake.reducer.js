@@ -14,9 +14,17 @@ import {
   CLEAR_EPOCH_STAKES
 } from '../actions'
 
+import { current_epoch } from '../helpers/epoch_helpers'
+
+const initialListGuess = {
+  [current_epoch]: {},
+  [current_epoch - 1]: {},
+  [current_epoch - 2]: {},
+}
+
 const initialState = {
   loading: false,
-  list: []
+  list: initialListGuess
 };
 
 export default function epochStakeReducer(state = initialState, action) {

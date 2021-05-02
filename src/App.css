@@ -14,6 +14,7 @@
     /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/hands_cubes_850h.png");*/
     /*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url("./assets/cute_cubes_850h.png");*/
     background-size: cover;
+    /*filter: hue-rotate(45deg);*/
   }
 }
 
@@ -23,40 +24,7 @@
     /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/hands_cubes_850h.png");*/
     /*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url("./assets/cute_cubes_850h.png");*/
     background-size: cover;
-  }
-}
-
-@media screen and (min-width: 800px) {
-  #intro {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/color_cubes_1300h.png");
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/hands_cubes_1300h.png");*/
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url("./assets/cute_cubes_1300h.png");*/
-    background-size: cover;
-  }
-}
-
-@media screen and (min-width: 1260px) {
-  #intro {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/color_cubes_1700h.png");
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/hands_cubes_1700h.png");*/
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url("./assets/cute_cubes_1700h.png");*/
-    background-size: cover;
-  }
-}
-
-@media screen and (min-width: 1660px) {
-  #intro {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/color_cubes_3060h.png");
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/hands_cubes_3060h.png");*/
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url("./assets/cute_cubes_3060h.png");*/
-    background-size: cover;
-  }
-}
-
-@media screen and (min-width: 3060px) {
-  #intro {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("./assets/color_cubes_8000h.png");
-    background-size: cover;
+    /*filter: hue-rotate(45deg);*/
   }
 }
 

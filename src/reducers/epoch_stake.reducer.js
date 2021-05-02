@@ -16,11 +16,11 @@ import {
 
 import { current_epoch } from '../helpers/epoch_helpers'
 
-const initialListGuess = {
-  [current_epoch]: {},
-  [current_epoch - 1]: {},
-  [current_epoch - 2]: {},
-}
+const initialListGuess = [
+  {epoch_no: current_epoch},
+  {epoch_no: current_epoch - 1},
+  {epoch_no: current_epoch - 2}
+]
 
 const initialState = {
   loading: false,
@@ -56,6 +56,7 @@ export default function epochStakeReducer(state = initialState, action) {
       }
 
     case ADD_USER_STAKE_SUCCESS:
+      const epoch_stakes_by_epoch = groupBy(epoch_stakes, 'epoch_no')
       return {
         ...state,
         loading: false,

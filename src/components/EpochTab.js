@@ -58,7 +58,7 @@ const EpochTab = ({epochno, stakes, tabType}) => {
   }
 
   return (
-      <div className='text-light bg-white bg-gradient pt-4 shadow mt-5' style={{borderRadius:'40px 5px 3px 3px'}}>
+      <div className='text-light bg-white bg-gradient pt-4 shadow mt-5' style={{borderRadius:'10px 10px 3px 3px'}}>
         <div className='d-flex flex-lg-row flex-wrap'>
           <div className='container col pb-3 pt-0 pl-0 pr-0 align-self-center'>
             <div className='container align-self-center mt-auto mb-auto ml-auto mr-auto d-flex flex-row'>
@@ -97,8 +97,8 @@ const EpochTab = ({epochno, stakes, tabType}) => {
           </div>
           {stakes && deploy_stakes()}
         </div>
-        <div className="progress mt-2" style={{height: "4.5px", opacity: `${epoch_status.opacity}`}}>
-          <div className={`progress-bar bg-${epoch_status.color}`} role={'progressbar'} style={{width: `${epoch_end_date.epoch_progress}%`}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
+        <div className="progress mt-2" style={{height: "8px", opacity: `${epoch_status.opacity}`,  borderRadius:'0px 0px 3px 3px'}}>
+          <div className={`progress-bar bg-${epoch_status.color}`} role={'progressbar'} style={{width: `${epoch_end_date.epoch_progress}%`, borderRadius:'0px 0px 3px 3px'}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>
         </div>
       </div>
   )

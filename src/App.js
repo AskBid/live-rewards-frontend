@@ -46,10 +46,7 @@ function App() {
             <Route path='/signup' component={Signup}/>
             <Route path='/howto' component={Howto}/>
             <Route path='/users/:username' component={User}/>
-            <Route exact path="/">
-              {user ? <Redirect to="/live-rewards" /> : <Home />}
-            </Route>
-            <Route path='/intro' component={Home}/>
+            <Route path='/' component={Home}/>
           </Switch>
         </div>
       </div>

@@ -8,7 +8,7 @@ const Navbar = ({toggle}) => {
     return (
       <Nav className='position-fixed fixed-top shadow-sm'>
         <NavbarContainer>
-          <NavLinkLogo to='/intro' exact>
+          <NavLinkLogo to='/' exact>
   	        <h1>SWAN<span className='logo'>Pool</span></h1>
           </NavLinkLogo>
           <MobileIcon onClick={toggle}>

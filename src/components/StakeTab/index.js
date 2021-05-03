@@ -21,19 +21,27 @@ import { CLEAR } from '../../actions'
 import { ERROR } from '../../actions'
 import Tooltip from 'react-bootstrap/Tooltip'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Skeleton from 'react-loading-skeleton';
 
 const StakeTab = ({stake, tabType}) => { 
 
   const user = useSelector(state => state.sessions.user)
   const currency = useSelector(state => state.sessions.currency.symbol)
   const price = useSelector(state => state.sessions.currency.price)
+
+  const stake_address_id = stake.stake_address && stake.stake_address.id
+  const stake_address_view = stake.stake_address && stake.stake_address.view
+  const pool_hash_size = stake.pool_hash && stake.pool_hash.size
+
   const deleting = useSelector(state => {
-    return tabType === 'pool-compare' ?
-      stake.stake_address.id === state.pool_compared_stakes.deleting_user_pool_hash_id :
-      stake.stake_address.id === state.epoch_stakes.deleting_addr_id
+    if (stake_address_id) {
+      return tabType === 'pool-compare' ?
+        stake_address_id === state.pool_compared_stakes.deleting_user_pool_hash_id :
+        stake_address_id === state.epoch_stakes.deleting_addr_id
+    }
   })
   const dispatch = useDispatch()
-  const ticker = stake.pool_hash.pool && stake.pool_hash.pool.ticker
+  const ticker = stake.pool_hash && stake.pool_hash.pool && stake.pool_hash.pool.ticker
 
   const symbols = {
     ada: '₳',
@@ -49,7 +57,7 @@ const StakeTab = ({stake, tabType}) => {
       <React.Fragment>
           <form onSubmit={(e) => {
             e.preventDefault()
-            dispatch(deleteStakeAddress(user, stake.stake_address.id))
+            dispatch(deleteStakeAddress(user, stake_address_id))
           }}>
             <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
               <CloseIcon /> 
@@ -65,7 +73,7 @@ const StakeTab = ({stake, tabType}) => {
           </OverlayTrigger>
 
           <OverlayTrigger placement='top' overlay={delegationFlowTip}>
-            <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${stake.pool_hash.pool.ticker}`}>
+            <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`}>
               <DeleFlowBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
                 <DeleFlowIcon size={23}/>
               </DeleFlowBtn>
@@ -110,7 +118,7 @@ const StakeTab = ({stake, tabType}) => {
           </OverlayTrigger>
 
           <OverlayTrigger placement='top' overlay={delegationFlowTip}>
-            <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${stake.pool_hash.pool.ticker}`}>
+            <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`}>
               <DeleFlowBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
                 <DeleFlowIcon size={23}/>
               </DeleFlowBtn>
@@ -158,9 +166,11 @@ const StakeTab = ({stake, tabType}) => {
     </Tooltip>
   );
 
+  const rewards = `${symbols[currency]}${stake.calc_rewards*price < 100 ? numeral(stake.calc_rewards*price).format('0,0.0') : numeral(stake.calc_rewards*price).format('0,0')}`
+
   return (
     <div className='col bg-light rounded border border-secondary mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'>
-      <AddrLabel className="text-monospace">...{stake.stake_address.view && stake.stake_address.view.slice(-7)}</AddrLabel>
+      <AddrLabel className="text-monospace">...{stake_address_view && stake_address_view.slice(-7)}</AddrLabel>
       <SpinnerDiv className='d-flex justify-content-center'>
         {deleting && 
           <img className='mb-3 mt-0' alt='spinner' src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -174,7 +184,7 @@ const StakeTab = ({stake, tabType}) => {
         <div className='col d-flex flex-row flex-wrap m-0 p-1'>
           <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto' style={{ minWidth:'7em'}}>
             <h2 className='text-dark mt-auto mb-auto mr-auto ml-auto'>
-              {ticker}
+              {ticker || <Skeleton />}
             </h2>
           </div>
           <div className='container col'>
@@ -185,7 +195,7 @@ const StakeTab = ({stake, tabType}) => {
                 <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{ minWidth:'8.5em'}}>
                   
                   <h4 className='mt-auto mb-auto pt-2 pb-2 text-monospace' data-tip data-for="registerTip">
-                    {symbols[currency]}{stake.calc_rewards*price < 100 ? numeral(stake.calc_rewards*price).format('0,0.0') : numeral(stake.calc_rewards*price).format('0,0')}
+                    {stake.calc_rewards ? rewards : <Skeleton />}
                   </h4>
                   {/*<ReactTooltip id="registerTip" effect="solid">
                     Tooltip for the register button
@@ -199,11 +209,11 @@ const StakeTab = ({stake, tabType}) => {
                 value={ numeral(parseInt(stake.amount*price) / 1000000).format('0,0') }
               />}
 
-              {stake.pool_hash.size ?
+              {pool_hash_size ?
                   <ValueRow 
                     label={ 'pool size:' }
                     symbol={symbols[currency]}
-                    value={ numeral(stake.pool_hash.size*price).format('0,0') }
+                    value={ numeral(pool_hash_size*price).format('0,0') }
                   /> 
                 : null
               }

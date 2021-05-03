@@ -63,11 +63,11 @@ const EpochTab = ({epochno, stakes, tabType}) => {
 
   const deploy_stakes = () => {
     return stakes.map((stake, i) => {
-      if (stake.id) {
-        return <StakeTab stake={stake} tabType={tabType} key={stake.id}/>
-      } else {
-        return <div className='w-100' style={{minWidth:'2vw'}}><Skeleton height={120}/></div>
-      }
+      // if (stake.id) {
+      return <StakeTab stake={stake} tabType={tabType} key={stake.id}/>
+      // } else {
+      //   return <div className='w-100' style={{minWidth:'2vw'}}><Skeleton height={120}/></div>
+      // }
     })
   }
 

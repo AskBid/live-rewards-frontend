@@ -1,4 +1,4 @@
-
+  
 import * as d3 from 'd3';
 import numeral from 'numeral';
 
@@ -36,7 +36,7 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height, epoch
   }
   
   let center_translation_h = width/2;
-  let center_translation_v = (height/2)-40;
+  let center_translation_v = (height/2);
   //positioning and proportions END
 
   if (!edfJSON[pool_hash_id]) {

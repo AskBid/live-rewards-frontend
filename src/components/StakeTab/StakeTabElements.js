@@ -27,7 +27,6 @@ export const FuncBtn = styled.button `
 	border: none;
 	border-radius: 3px;
 	color: white;
-	min-height: 30px;
 	padding: 2px;
   &:hover {
     transition: all 0.2s ease-in-out;

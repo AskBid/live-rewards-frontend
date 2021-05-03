@@ -105,13 +105,24 @@ const StakeTab = ({stake, tabType}) => {
         <DeleteBtn type='Submit' className='w-100 shadow-sm text-center d-flex flex-column justify-content-center align-items-center' disabled={!stake.id}>
           <b className='position-absolute' style={{fontSize:'0.9em', top:'-1.5em'}}>Delete!</b>
           <CloseIcon size={10}/>
-        </DeleteBtn>        
-        <FuncBtn type='Submit' className='w-100 h-100 mt-2 shadow-sm' disabled={!stake.id}>
-          <PoolIcon size={20}/>
-        </FuncBtn>        
-        <FuncBtn type='Submit' className='w-100 h-100 mt-2 shadow-sm' disabled={!stake.id}>
-          <DeleFlowIcon size={20}/>
-        </FuncBtn>
+        </DeleteBtn>
+        
+        <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`} className='w-100 h-100 mt-2'>
+          <OverlayTrigger placement='top' overlay={compareTip}>     
+            <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id}>
+              <PoolIcon size={20}/>
+            </FuncBtn>
+          </OverlayTrigger>
+        </Link>
+        
+        <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`} className='w-100 h-100 mt-2 shadow-sm'> 
+          <OverlayTrigger placement='top' overlay={delegationFlowTip}>   
+          <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id}>
+            <DeleFlowIcon size={20}/>
+          </FuncBtn>
+          </OverlayTrigger>
+        </Link>
+        
       </div>
     )
   }
@@ -144,7 +155,8 @@ const StakeTab = ({stake, tabType}) => {
 
   const compareTip = props => (
     <Tooltip {...props} style={{opacity:'60%', ...props.style}}>
-      Compare this epoch stake with other pools.
+      {/*Compare this epoch stake with other pools.*/}
+      COMING SOON...
     </Tooltip>
   );
 

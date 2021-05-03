@@ -64,7 +64,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
   return (
     <>
       <div className='d-flex flex-wrap justify-content-between w-100'>
-        <form className='d-inline-flex flex-grow-1 justify-content-center align-items-center' onSubmit={handleSubmit}>
+        <form className='d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={handleSubmit}>
           <ButtonAddAddress className='text-nowrap rounded-pill mr-3 shadow-sm h-100'
             type='Submit'
             disabled={!buttonActivation()}
@@ -85,7 +85,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
             </div>
           </fieldset>
         </form>
-        <div id='filler' style={{minWidth:'100px'}}></div>
+        <div id='filler' style={{minWidth:'10vw'}}></div>
         <CurrencySelector/>
         {/*{!user && messageIfNotLoggedIn()}*/}
       </div>

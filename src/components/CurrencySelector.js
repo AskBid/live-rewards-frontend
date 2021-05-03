@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getPrice } from '../actions/session.actions'
 import { REQUEST_PRICE_SUCCESS } from '../actions'
 import Dropdown from 'react-bootstrap/Dropdown'
+import styled from 'styled-components'
 
 const CurrencySelector = () => {
   const currency = useSelector( state => state.sessions.currency.symbol )
@@ -14,9 +15,22 @@ const CurrencySelector = () => {
     console.log(e.target.id)
   }
 
-  return (
-    <div className='justify-content-center'>
+  const PriceDisplay = styled.div `
+    /*background: rgba(255,127,80,0.5);*/
+    background: rgba(255,255,255,0.5);
+    border: 2px solid #4ad9e4;
+    color: #fff;
+    min-width: 100px;
+    &:hover {
+      transition: all 0.05s ease-in-out;
+    }
+  `;
 
+  return (
+    <div className='d-flex flex-inline justify-content-center m-2'>
+      <PriceDisplay className='ml-2 mr-2 h-100 rounded d-flex justify-content-center align-items-center'>
+        <h5 className='p-0 m-0'>₳ = 1₳</h5>
+      </PriceDisplay>
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           Currency

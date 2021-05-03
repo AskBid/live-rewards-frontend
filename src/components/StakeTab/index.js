@@ -103,13 +103,14 @@ const StakeTab = ({stake, tabType}) => {
     return (
       <div className='d-flex flex-column justify-content-start align-items-start p-2'
         style={{minWidth:'55px',background:'none'}}>
-        <DeleteBtn type='Submit' className='w-100 text-center d-flex flex-column justify-content-center align-items-center'>
-          <CloseIcon size={10}/><div><b className='position-absolute' style={{fontSize:'0.9em', top:'-10px'}}>delete</b></div>
+        <DeleteBtn type='Submit' className='w-100 shadow-sm text-center d-flex flex-column justify-content-center align-items-center'>
+          <b className='position-absolute' style={{fontSize:'0.9em', top:'-10px'}}>delete</b>
+          <CloseIcon size={10}/>
         </DeleteBtn>        
-        <PoolBtn type='Submit' className='w-100 h-100 mt-2'>
+        <PoolBtn type='Submit' className='w-100 h-100 mt-2 shadow-sm'>
           <PoolIcon size={20}/>
         </PoolBtn>        
-        <PoolBtn type='Submit' className='w-100 h-100 mt-2'>
+        <PoolBtn type='Submit' className='w-100 h-100 mt-2 shadow-sm'>
           <DeleFlowIcon size={20}/>
         </PoolBtn>
       </div>

@@ -3,7 +3,7 @@ import { FaTimes, FaSwimmingPool, FaChartPie } from 'react-icons/fa'
 
 export const DeleteBtn = styled.button `
 	/*background: rgba(255,127,80,0.5);*/
-	background: rgba(74, 217, 228, 0.5);;
+	background: rgba(74, 217, 228, 0.2);;
 	border: none;
 	border-radius: 3px;
 	color: transparent;

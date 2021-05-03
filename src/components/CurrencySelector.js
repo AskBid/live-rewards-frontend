@@ -5,9 +5,12 @@ import { getPrice } from '../actions/session.actions'
 import { REQUEST_PRICE_SUCCESS } from '../actions'
 import Dropdown from 'react-bootstrap/Dropdown'
 import styled from 'styled-components'
+import Skeleton from 'react-loading-skeleton'
+import numeral from 'numeral'
 
 const CurrencySelector = () => {
   const currency = useSelector( state => state.sessions.currency )
+  const loading = useSelector( state => state.sessions.gecko_loading )
   const dispatch = useDispatch()
 
   const switchCurrency = (e) => {
@@ -37,8 +40,8 @@ const CurrencySelector = () => {
   return (
     <div className='d-flex flex-inline justify-content-center m-2'>
       <PriceDisplay className='ml-2 mr-2 h-100 text-monospace shadow-sm rounded d-flex justify-content-center align-items-center'>
-        <h5 className='p-0 m-0 text-nowrap'>
-          {currency.price ? `${symbols[currency.symbol]}${currency.price}` : '₳D₳'}
+        <h5 className='p-0 m-0 text-nowrap text-monospace'>
+          {loading ? <Skeleton /> : (currency.symbol != 'ada' ? `${symbols[currency.symbol]}${numeral(currency.price).format('0,0.00')}` : '₳D₳')}
         </h5>
       </PriceDisplay>
       <Dropdown className='shadow-sm'>

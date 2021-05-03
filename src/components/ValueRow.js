@@ -4,6 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 export const ValueRow = ({symbol, value, label, skeleton}) => {
   return (
     <React.Fragment>
+      {/*<div className="dropdown-divider m-0" style={{borderColor:'rgba(0, 123, 255, 0.45)'}}></div>  */}
       <div className="dropdown-divider m-0"></div>  
     {
       skeleton ? <Skeleton /> :

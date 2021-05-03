@@ -157,8 +157,8 @@ const StakeTab = ({stake, tabType}) => {
   const rewards = `${symbols[currency]}${stake.calc_rewards*price < 100 ? numeral(stake.calc_rewards*price).format('0,0.0') : numeral(stake.calc_rewards*price).format('0,0')}`
 
   return (
-    <div className='col bg-light rounded mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'
-    style={{border:"2px solid rgba(0, 113, 225, 0.4)", borderRadius:"5px"}}>
+    <div className='col rounded mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'
+    style={{border:"2px solid rgba(0, 113, 225, 0.4)", borderRadius:"5px", background:'rgb(247,246,246)'}}>
       <AddrLabel className="text-monospace">...{stake_address_view && stake_address_view.slice(-7)}</AddrLabel>
       <SpinnerDiv className='d-flex justify-content-center'>
         {deleting && 

@@ -11,7 +11,7 @@ const CurrencySelector = () => {
 
   const switchCurrency = (e) => {
     dispatch(getPrice(e.target.id))
-    console.log(currency)
+    console.log(e.target.id)
   }
 
   return (
@@ -19,13 +19,19 @@ const CurrencySelector = () => {
 
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Dropdown Button
+          Currency
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Item onClick={() => dispatch({type: REQUEST_PRICE_SUCCESS, payload: {symbol: 'ada', price: 1}})}>
+            ₳ - ADA Cardano
+          </Dropdown.Item>
+          <Dropdown.Item id='usd' onClick={switchCurrency}>$ - US Dollar</Dropdown.Item>
+          <Dropdown.Item id='eur' onClick={switchCurrency}>€ - Euro</Dropdown.Item>
+          <Dropdown.Item id='gbp' onClick={switchCurrency}>£ - Brittish Pound</Dropdown.Item>
+          <Dropdown.Item id='jpy' onClick={switchCurrency}>¥ - Japanese Yen</Dropdown.Item>
+          <Dropdown.Item disabled>฿ - Bitcoin</Dropdown.Item>
+          <Dropdown.Item disabled>Ξ - Ethereum</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 

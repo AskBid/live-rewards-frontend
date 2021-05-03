@@ -14,6 +14,11 @@ export const DeleteBtn = styled.button `
     color: red;
     border: none;
   }
+  &:disabled {
+  	background: rgba(200, 200, 200, 0.4);
+  	border: none;
+  	color: transparent;
+  }
 `;
 
 export const FuncBtn = styled.button `
@@ -29,6 +34,10 @@ export const FuncBtn = styled.button `
     background: rgba(0, 113, 235, 1);
     color: #e4e2ff;
     border: none;
+  }
+  &:disabled {
+  	background: rgba(200, 200, 200, 0.4);
+  	border: none;
   }
 `;
 

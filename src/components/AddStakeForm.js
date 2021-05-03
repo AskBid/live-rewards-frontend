@@ -85,7 +85,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
             </div>
           </fieldset>
         </form>
-        <div id='filler' style={{minWidth:'10vw'}}></div>
+        <div id='filler' style={{minWidth:'6vw'}}></div>
         <CurrencySelector/>
         {/*{!user && messageIfNotLoggedIn()}*/}
       </div>

@@ -48,7 +48,7 @@ const CurrencySelector = () => {
       </PriceDisplay>
       <Dropdown className='shadow-sm'>
         <Dropdown.Toggle id="dropdown-basic">
-          Currency
+          Change Currency
         </Dropdown.Toggle>
 
         <Dropdown.Menu>

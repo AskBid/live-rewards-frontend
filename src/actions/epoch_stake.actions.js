@@ -10,7 +10,8 @@ import {
 	REQUEST_EPOCH_STAKE_FAILURE,
 	CLEAR_EPOCH_STAKES,
 	CLEAR,
-	ERROR
+	ERROR,
+	RECORD_LAST_UPDATE
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 
@@ -33,8 +34,12 @@ export const userEpochStakes = (username) => {
 	  	.then(json => { 
 	  		dispatch({
 	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
-	  			payload: json
+	  			payload: json.epoch_stakes
 	  		});
+	  		dispatch({
+	  			type: RECORD_LAST_UPDATE,
+	  			payload: json.last_update
+	  		})
 	  		dispatch({
 	  			type: CLEAR
 	  		});
@@ -76,9 +81,9 @@ export const getEpochStake = (epoch_stake_id) => {
 
 export const unregisteredEpochStakes = (stake_address) => {
 	return (dispatch) => {
-		stake_address = stake_address === '' ? 'random' : stake_address;
+		const route = stake_address === '' ? `epoch_stakes` : `stake_addresses/${stake_address}/epoch_stakes`;
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`${process.env.REACT_APP_API_URL}/stake_addresses/${stake_address}/epoch_stakes`, {
+		return fetch(`${process.env.REACT_APP_API_URL}/${route}`, {
 	  	method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -88,15 +93,19 @@ export const unregisteredEpochStakes = (stake_address) => {
 				if (res.ok) {
 					return res.json()
 				} else {
-					return res.json().then(json => Promise.reject(json))
+					return res.json().then(json => {debugger; Promise.reject(json)})
 				}
 			})
 	  	.then(json => { 
-	  		dispatch({type: CLEAR_EPOCH_STAKES})
+	  		debugger
 	  		dispatch({
 	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
-	  			payload: json
+	  			payload: json.epoch_stakes
 	  		});
+	  		dispatch({
+	  			type: RECORD_LAST_UPDATE,
+	  			payload: json.last_update
+	  		})
 	  		dispatch({
 	  			type: CLEAR
 	  		});

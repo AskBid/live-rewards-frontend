@@ -64,8 +64,8 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
 
   return (
     <>
-      <div className='d-flex flex-wrap justify-content-between w-100'>
-        <form className='d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={handleSubmit}>
+      <div className='col-lg d-flex flex-wrap justify-content-between'>
+        <form className='w-50 d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={handleSubmit}>
           <ButtonAddAddress className='text-nowrap rounded-pill mr-3 shadow-sm h-100'
             type='Submit'
             disabled={!buttonActivation()}
@@ -78,15 +78,13 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
               name="stake_address"
               placeholder="stake1*** / addr1***   (random if empty)"
               className='h-100 w-100 p-2 border border-primary rounded shadow-sm'
-              onChange={handleAddressInputChange}
-              style={{minWidth:'100px'}}>
+              onChange={handleAddressInputChange}>
             </input>
             <div className='d-flex justify-content-end flex-grow-1'> 
               {addressChecksMessage()}
             </div>
           </fieldset>
         </form>
-        <div id='filler' style={{minWidth:'6vw'}}></div>
         <CurrencySelector/>
         {/*{!user && messageIfNotLoggedIn()}*/}
       </div>

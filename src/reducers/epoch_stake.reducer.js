@@ -11,7 +11,8 @@ import {
   REQUEST_EPOCH_STAKE,
   REQUEST_EPOCH_STAKE_SUCCESS,
   REQUEST_EPOCH_STAKE_FAILURE,
-  CLEAR_EPOCH_STAKES
+  CLEAR_EPOCH_STAKES,
+  RECORD_LAST_UPDATE
 } from '../actions'
 
 import { current_epoch } from '../helpers/epoch_helpers'
@@ -25,7 +26,8 @@ const initialListGuess = [
 
 const initialState = {
   loading: false,
-  list: initialListGuess
+  list: initialListGuess,
+  last_update: {}
 };
 
 export default function epochStakeReducer(state = initialState, action) {
@@ -114,6 +116,12 @@ export default function epochStakeReducer(state = initialState, action) {
       return {
         ...state,
         list: initialListGuess
+      }
+
+    case RECORD_LAST_UPDATE:
+      return {
+        ...state,
+        last_update: action.payload
       }
 
     default:

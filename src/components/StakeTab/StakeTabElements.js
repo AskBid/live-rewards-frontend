@@ -3,7 +3,7 @@ import { FaTimes, FaSwimmingPool, FaChartPie } from 'react-icons/fa'
 
 export const DeleteBtn = styled.button `
 	/*background: rgba(255,127,80,0.5);*/
-	background: rgba(74, 217, 228, 0.2);;
+	background: rgba(0, 123, 255, 0.2);;
 	border: none;
 	border-radius: 3px;
 	color: transparent;
@@ -16,9 +16,9 @@ export const DeleteBtn = styled.button `
   }
 `;
 
-export const PoolBtn = styled.button `
+export const FuncBtn = styled.button `
 	/*background: #6c757d;*/
-	background: rgba(74, 217, 228, 0.5);
+	background: rgba(0, 123, 255, 0.8);
 	border: none;
 	border-radius: 3px;
 	color: white;
@@ -26,21 +26,7 @@ export const PoolBtn = styled.button `
 	padding: 2px;
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: rgba(74, 217, 228, 1);
-    color: #e4e2ff;
-    border: none;
-  }
-`;
-
-export const DeleFlowBtn = styled.button `
-	background: rgba(255,195,20,0.4);
-	border: none;
-	border-radius: 0px 0px 0px 0px;
-	color: white;
-	min-width: 30px;
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background: rgba(255,127,80,0.9);
+    background: rgba(0, 113, 235, 1);
     color: #e4e2ff;
     border: none;
   }
@@ -68,13 +54,13 @@ export const DeleFlowIcon = styled(FaChartPie)`
 `
 
 export const AddrLabel = styled.div`
-	color: rgba(40, 40, 40, 0.3);
+	color: rgba(0, 123, 255, 0.45);
 	font-size: 0.7em;
 	position: absolute;
-	top: -13px;
+	top: -1.5em;
 	right: 0px;
 	&:hover {
-    color: rgba(245, 81, 66, 0.7);
+    color: rgba(0, 123, 255, 0.8);
     font-weight: bold;
     cursor: auto; 
   }

@@ -2,12 +2,11 @@ import React from 'react'
 import numeral from 'numeral'
 import { 
   DeleteBtn,
-  PoolBtn,
+  FuncBtn,
   CloseIcon, 
   PoolIcon, 
   AddrLabel, 
   SpinnerDiv,
-  DeleFlowBtn,
   DeleFlowIcon
 } from './StakeTabElements'
 import { useSelector, useDispatch } from 'react-redux'
@@ -54,7 +53,7 @@ const StakeTab = ({stake, tabType}) => {
   }
 
   const stakeTabButtons = () => {
-    return (
+    /*return (
       <React.Fragment>
           <form onSubmit={(e) => {
             e.preventDefault()
@@ -81,11 +80,11 @@ const StakeTab = ({stake, tabType}) => {
             </Link>
           </OverlayTrigger>
       </React.Fragment>
-    )
+    )*/
   }
 
   const compareTabButtons = () => {
-    return (
+    /*return (
       <React.Fragment>
         <form onSubmit={(e) => {
           e.preventDefault()
@@ -96,7 +95,7 @@ const StakeTab = ({stake, tabType}) => {
           </DeleteBtn>
         </form>
       </React.Fragment>
-    )
+    )*/
   }
 
   const unregisteredTabButtons = () => {
@@ -104,15 +103,15 @@ const StakeTab = ({stake, tabType}) => {
       <div className='d-flex flex-column justify-content-start align-items-start p-2'
         style={{minWidth:'55px',background:'none'}}>
         <DeleteBtn type='Submit' className='w-100 shadow-sm text-center d-flex flex-column justify-content-center align-items-center'>
-          <b className='position-absolute' style={{fontSize:'0.9em', top:'-10px'}}>delete</b>
+          <b className='position-absolute' style={{fontSize:'0.9em', top:'-1.5em'}}>Delete!</b>
           <CloseIcon size={10}/>
         </DeleteBtn>        
-        <PoolBtn type='Submit' className='w-100 h-100 mt-2 shadow-sm'>
+        <FuncBtn type='Submit' className='w-100 h-100 mt-2 shadow-sm'>
           <PoolIcon size={20}/>
-        </PoolBtn>        
-        <PoolBtn type='Submit' className='w-100 h-100 mt-2 shadow-sm'>
+        </FuncBtn>        
+        <FuncBtn type='Submit' className='w-100 h-100 mt-2 shadow-sm'>
           <DeleFlowIcon size={20}/>
-        </PoolBtn>
+        </FuncBtn>
       </div>
     )
   }
@@ -159,7 +158,7 @@ const StakeTab = ({stake, tabType}) => {
 
   return (
     <div className='col bg-light rounded mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'
-    style={{border:"2px solid #bcc4cc", borderRadius:"5px"}}>
+    style={{border:"2px solid rgba(0, 113, 225, 0.4)", borderRadius:"5px"}}>
       <AddrLabel className="text-monospace">...{stake_address_view && stake_address_view.slice(-7)}</AddrLabel>
       <SpinnerDiv className='d-flex justify-content-center'>
         {deleting && 

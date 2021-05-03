@@ -22,7 +22,14 @@ function Home() {
       		</div>
       		<div style={{height:'80px'}}>
       			<p className="mt-5 text-white text-center">
-	      			<span>#Cardano #ADA</span>
+              <br/>
+	      			<span>C</span>
+              <span style={{color:'transparent'}}>-----</span><span>₳</span>
+              <span style={{color:'transparent'}}>-----</span><span>R</span>
+              <span style={{color:'transparent'}}>-----</span><span>D</span>
+              <span style={{color:'transparent'}}>-----</span><span>₳</span>
+              <span style={{color:'transparent'}}>-----</span><span>N</span>
+              <span style={{color:'transparent'}}>-----</span><span>O</span>
 	      		</p>
       		</div>
       	</div>

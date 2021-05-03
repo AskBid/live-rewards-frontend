@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { SUCCESS } from '../actions'
 import CurrencySelector from './CurrencySelector'
+import styled from 'styled-components'
 
 
 const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
@@ -45,6 +46,20 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
     }
   }
 
+  const ButtonAddAddress = styled.button `
+    /*background: rgba(255,127,80,0.5);*/
+    background: #4ad9e4;
+    border: 1px solid #4ad9e4;
+    color: #fff;
+    padding: 0px 40px 0px 40px;
+    &:hover {
+      transition: all 0.2s ease-in-out;
+      background: white;
+      color: black;
+      border: 1px solid black;
+    }
+  `;
+
   return (
     <>
       <div className='d-flex flex-wrap justify-content-between w-100'>
@@ -53,7 +68,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
             <input
               type="text"
               name="stake_address"
-              placeholder="stake1*** or addr1***   (random if empty)"
+              placeholder="stake1*** / addr1***   (random if empty)"
               className='h-100 w-100 p-2 border border-primary rounded shadow-sm'
               onChange={handleAddressInputChange}
               style={{minWidth:'100px'}}>
@@ -62,12 +77,12 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
               {addressChecksMessage()}
             </div>
           </fieldset>
-          <button className='border-0 text-nowrap rounded-pill ml-1 mr-5 shadow-sm'
+          <ButtonAddAddress className='text-nowrap rounded-pill ml-3 mr-5 shadow-sm'
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
-            Submit Address
-          </button>
+            <b>Submit Your Address</b>
+          </ButtonAddAddress>
         </form>
         <CurrencySelector/>
         {/*{!user && messageIfNotLoggedIn()}*/}

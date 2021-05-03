@@ -101,13 +101,17 @@ const StakeTab = ({stake, tabType}) => {
 
   const unregisteredTabButtons = () => {
     return (
-      <div className='d-flex flex-column pr-0 pt-1 pb-1 pl-0 bg-secondary' style={{minWidth:'38px', borderRight:'1px solid rgba(2,2,2,0)'}}>
-        <DeleteBtn type='Submit' className='w-100 mt-auto p-0 mb-auto ml-auto mr-auto'>
-          <CloseIcon />
+      <div className='d-flex flex-column justify-content-start align-items-start p-2'
+        style={{minWidth:'55px',background:'none'}}>
+        <DeleteBtn type='Submit' className='w-100 text-center d-flex flex-column justify-content-center align-items-center'>
+          <CloseIcon size={10}/><div><b className='position-absolute' style={{fontSize:'0.9em', top:'-10px'}}>delete</b></div>
         </DeleteBtn>        
-        <DeleteBtn type='Submit' className='w-100 mt-auto p-0 mb-auto ml-auto mr-auto' style={{width:'1vw'}}>
-          <PoolIcon />
-        </DeleteBtn>
+        <PoolBtn type='Submit' className='w-100 h-100 mt-2'>
+          <PoolIcon size={20}/>
+        </PoolBtn>        
+        <PoolBtn type='Submit' className='w-100 h-100 mt-2'>
+          <DeleFlowIcon size={20}/>
+        </PoolBtn>
       </div>
     )
   }
@@ -153,7 +157,8 @@ const StakeTab = ({stake, tabType}) => {
   const rewards = `${symbols[currency]}${stake.calc_rewards*price < 100 ? numeral(stake.calc_rewards*price).format('0,0.0') : numeral(stake.calc_rewards*price).format('0,0')}`
 
   return (
-    <div className='col bg-light rounded border border-secondary mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'>
+    <div className='col bg-light rounded mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'
+    style={{border:"2px solid #bcc4cc", borderRadius:"5px"}}>
       <AddrLabel className="text-monospace">...{stake_address_view && stake_address_view.slice(-7)}</AddrLabel>
       <SpinnerDiv className='d-flex justify-content-center'>
         {deleting && 
@@ -171,7 +176,7 @@ const StakeTab = ({stake, tabType}) => {
               {ticker || <Skeleton />}
             </h2>
           </div>
-          <div className='container col mb-auto mt-auto'>
+          <div className='container col mb-auto mt-auto mr-1'>
             <div className='ml-auto mb-auto mt-auto'>
               
               {stake.id ? <RewardsRow rewards={rewards} /> : <h3><Skeleton /></h3>}

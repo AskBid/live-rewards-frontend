@@ -2,28 +2,31 @@ import styled from 'styled-components'
 import { FaTimes, FaSwimmingPool, FaChartPie } from 'react-icons/fa'
 
 export const DeleteBtn = styled.button `
-	background: none;
+	/*background: rgba(255,127,80,0.5);*/
+	background: rgba(74, 217, 228, 0.5);;
 	border: none;
 	border-radius: 3px;
-	color: white;
-	min-height: 30px;
+	color: transparent;
+	padding: 1.5px;
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: rgba(245, 81, 66, 0.8);
-    color: #e4e2ff;
+    background: red;
+    color: red;
     border: none;
   }
 `;
 
 export const PoolBtn = styled.button `
-	background: rgba(74,217,228,0.4);
+	/*background: #6c757d;*/
+	background: rgba(74, 217, 228, 0.5);
 	border: none;
-	border-radius: 0px 0px 0px 0px;
+	border-radius: 3px;
 	color: white;
-	min-width: 30px;
+	min-height: 30px;
+	padding: 2px;
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: rgba(74,217,228,0.9);
+    background: rgba(74, 217, 228, 1);
     color: #e4e2ff;
     border: none;
   }
@@ -44,9 +47,12 @@ export const DeleFlowBtn = styled.button `
 `;
 
 export const CloseIcon = styled(FaTimes)`
-	color: rgba(255, 250, 250, 0.9);
+	color: rgba(250, 250, 250, 0.9);
 	margin: 0px;
 	padding: 0px;
+	&:hover {
+    color: none;
+  }
 `
 
 export const PoolIcon = styled(FaSwimmingPool)`

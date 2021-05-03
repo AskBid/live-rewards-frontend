@@ -17,18 +17,12 @@ import { getLastUpdate } from './actions/session.actions'
 
 function App() {
   const user = useSelector(state => state.sessions.user)
-  const currentEpoch = useSelector(state => state.sessions.lastUpdate.epoch_no)
-  const dispatch = useDispatch()
 
   const [isOpen, setIsOpen] = useState(false)
 
   const toggle = () =>{
     setIsOpen(!isOpen);
   }
-
-  useEffect(() => {
-    !currentEpoch && dispatch(getLastUpdate())
-  });
 
   return (
     <Router>

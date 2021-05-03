@@ -8,50 +8,9 @@ import {
 	REQUEST_PRICE,
 	REQUEST_PRICE_SUCCESS,
 	REQUEST_PRICE_FAILURE,
-  REQUEST_LAST_UPDATE,
-  REQUEST_LAST_UPDATE_SUCCESS,
-  REQUEST_USER_EPOCH_STAKES_SUCCESS,
-  REQUEST_LAST_UPDATE_FAILURE
+  REQUEST_USER_EPOCH_STAKES_SUCCESS
 } from '.'
 
-export const getLastUpdate = () => {
-	return (dispatch) => {
-		dispatch({type: REQUEST_LAST_UPDATE})
-		return fetch(`${process.env.REACT_APP_API_URL}/updated`, {
-	  	method: 'GET',
-	    headers: {
-	    	'Content-Type': 'application/json',
-	    	"Accept": "application/json"
-	    }
-	  }).then(res => {
-				if (res.ok) {
-					return res.json()
-				} else {
-					return res.json().then(json => Promise.reject(json))
-				}
-			})
-	  	.then(json => {
-	  		const epochno = json.block.epoch_no
-	  		dispatch({
-	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
-	  			payload: [
-					  {epoch_no: epochno, epoch_info: {current_epoch: epochno}},
-					  {epoch_no: epochno - 1, epoch_info: {current_epoch: epochno}},
-					  {epoch_no: epochno - 2, epoch_info: {current_epoch: epochno}}
-					]
-	  		});
-	  		dispatch({
-	  			type: REQUEST_LAST_UPDATE_SUCCESS, 
-	  			payload: json.block,
-	  		});
-	  		return json
-	  	})
-			.catch(err => {
-				dispatch({type: REQUEST_LAST_UPDATE_FAILURE})
-				return Promise.reject(`could not fetch latest DB update`)
-			})
-	}
-}
 
 export const login = (formData) => {
 	return (dispatch) => {

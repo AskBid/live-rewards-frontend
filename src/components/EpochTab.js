@@ -6,7 +6,7 @@ import Skeleton from 'react-loading-skeleton';
 
 const EpochTab = ({epochno, stakes, tabType}) => {
 
-  const last_update = useSelector(state => state.sessions.lastUpdate)
+  // const last_update = useSelector(state => state.sessions.lastUpdate)
 
   const epoch_end_date = ((epochno) => {
     const reward_pay = Moment('2020-08-13T21:44:51.000')
@@ -54,10 +54,10 @@ const EpochTab = ({epochno, stakes, tabType}) => {
   })()
 
   const findProgressBarWidth = () => {
-    if ( last_update.epoch_no === epochno ) {
-      //431900 slots per epoch
-      return (last_update.epoch_slot_no / 431900)*100
-    } 
+    // if ( last_update.epoch_no === epochno ) {
+    //   //431900 slots per epoch
+    //   return (last_update.epoch_slot_no / 431900)*100
+    // } 
     return epoch_end_date.epoch_progress
   }
 

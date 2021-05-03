@@ -52,8 +52,9 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
     border: 1px solid #4ad9e4;
     color: #fff;
     padding: 0px 40px 0px 40px;
+    height: 30px;
     &:hover {
-      transition: all 0.2s ease-in-out;
+      transition: all 0.05s ease-in-out;
       background: white;
       color: black;
       border: 1px solid black;
@@ -63,8 +64,14 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
   return (
     <>
       <div className='d-flex flex-wrap justify-content-between w-100'>
-        <form className='d-inline-flex flex-grow-1' onSubmit={handleSubmit}>
-          <fieldset className='flex-grow-1 pt-1 pb-1'>
+        <form className='d-inline-flex flex-grow-1 justify-content-center align-items-center' onSubmit={handleSubmit}>
+          <ButtonAddAddress className='text-nowrap rounded-pill mr-3 shadow-sm h-100'
+            type='Submit'
+            disabled={!buttonActivation()}
+            style={{outline: 'none !important'}}>
+            <b>Submit Your Address</b>
+          </ButtonAddAddress>
+          <fieldset className='flex-grow-1'>
             <input
               type="text"
               name="stake_address"
@@ -77,13 +84,8 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
               {addressChecksMessage()}
             </div>
           </fieldset>
-          <ButtonAddAddress className='text-nowrap rounded-pill ml-3 mr-5 shadow-sm'
-            type='Submit'
-            disabled={!buttonActivation()}
-            style={{outline: 'none !important'}}>
-            <b>Submit Your Address</b>
-          </ButtonAddAddress>
         </form>
+        <div id='filler' style={{minWidth:'100px'}}></div>
         <CurrencySelector/>
         {/*{!user && messageIfNotLoggedIn()}*/}
       </div>

@@ -129,7 +129,7 @@ button {
 button.intro {
   border-radius: 30px;
   background: none ;
-  padding: 10px 22px;
+  /*padding: 10px 22px;*/
   color: #fff;
   outline: none;
   border: none;
@@ -150,6 +150,7 @@ button:hover.intro {
 button:disabled {
   background: #fff;
   color: #ccc;
+  border: 1px solid white;
 }
 button[disabled]:hover {
   background: #fff;

@@ -5,7 +5,7 @@ import { getPrice } from '../actions/session.actions'
 import { REQUEST_PRICE_SUCCESS } from '../actions'
 import Dropdown from 'react-bootstrap/Dropdown'
 import styled from 'styled-components'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import numeral from 'numeral'
 
 const CurrencySelector = () => {
@@ -36,13 +36,15 @@ const CurrencySelector = () => {
       transition: all 0.05s ease-in-out;
     }
   `;
-
+  console.log(loading)
   return (
     <div className='d-flex flex-inline justify-content-center m-2'>
       <PriceDisplay className='ml-2 mr-2 h-100 text-monospace shadow-sm rounded d-flex justify-content-center align-items-center'>
-        <h5 className='p-0 m-0 text-nowrap text-monospace'>
-          {loading ? <Skeleton /> : (currency.symbol != 'ada' ? `${symbols[currency.symbol]}${numeral(currency.price).format('0,0.00')}` : '₳D₳')}
-        </h5>
+        <SkeletonTheme color="rgba(0, 123, 255, 0.65)" highlightColor="rgba(40, 173, 255, 0.45)">
+          <h5 className='pl-2 pr-2 m-0 text-nowrap text-monospace'>
+            {loading ? <Skeleton  style={{minWidth:"50px"}}/> : (currency.symbol != 'ada' ? `${symbols[currency.symbol]}${numeral(currency.price).format('0,0.00')}` : '₳D₳')}
+          </h5>
+        </SkeletonTheme>
       </PriceDisplay>
       <Dropdown className='shadow-sm'>
         <Dropdown.Toggle id="dropdown-basic">

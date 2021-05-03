@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPrice } from '../actions/session.actions'
 import { REQUEST_PRICE_SUCCESS } from '../actions'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 const CurrencySelector = () => {
   const currency = useSelector( state => state.sessions.currency.symbol )
@@ -15,8 +16,20 @@ const CurrencySelector = () => {
 
   return (
     <div className='justify-content-center'>
-      {/*<div className='text-muted ml-2' style={{fontSize:'0.9em', top:'10px'}}>rewards currency:</div>*/}
-      <button 
+
+      <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          Dropdown Button
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+
+      {/*<button 
         className={`${currency === 'ada' ? 'selected-currency' : null} buttonsbar shadow-sm border-0 text-nowrap rounded-pill m-1`}
         onClick={() => dispatch({type: REQUEST_PRICE_SUCCESS, payload: {symbol: 'ada', price: 1}})}
         id='ada'>
@@ -46,7 +59,7 @@ const CurrencySelector = () => {
         id='jpy'>
         ¥
       </button>
-      {/*<button 
+      <button 
         className='buttonsbar border-0 text-nowrap rounded ml-1 mr-1 mb-0 w-auto'
         onClick={switchCurrency}
         id='btc'>

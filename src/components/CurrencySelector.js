@@ -7,12 +7,20 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import styled from 'styled-components'
 
 const CurrencySelector = () => {
-  const currency = useSelector( state => state.sessions.currency.symbol )
+  const currency = useSelector( state => state.sessions.currency )
   const dispatch = useDispatch()
 
   const switchCurrency = (e) => {
     dispatch(getPrice(e.target.id))
-    console.log(e.target.id)
+  }
+
+  const symbols = {
+    ada: '₳',
+    usd: '$',
+    eur: '€',
+    gbp: '£',
+    jpy: '¥',
+    btc: '฿'
   }
 
   const PriceDisplay = styled.div `
@@ -28,8 +36,10 @@ const CurrencySelector = () => {
 
   return (
     <div className='d-flex flex-inline justify-content-center m-2'>
-      <PriceDisplay className='ml-2 mr-2 h-100 rounded d-flex justify-content-center align-items-center'>
-        <h5 className='p-0 m-0'>₳ = 1₳</h5>
+      <PriceDisplay className='ml-2 mr-2 h-100 rounded d-flex justify-content-center align-items-center text-monospace'>
+        <h5 className='p-0 m-0 text-info text-nowrap'>
+          {currency.price ? `${symbols[currency.symbol]}${currency.price}` : '₳D₳'}
+        </h5>
       </PriceDisplay>
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">

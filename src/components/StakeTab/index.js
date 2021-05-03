@@ -16,6 +16,7 @@ import { deleteUserPoolHash } from '../../actions/pool_compared_stake.actions';
 import { Link } from 'react-router-dom'
 import { calcROS } from '../../helpers/calc-ros'
 import { ValueRow } from '../ValueRow'
+import { RewardsRow } from '../RewardsRow'
 import { CLEAR_EPOCH_STAKES } from '../../actions'
 import { CLEAR } from '../../actions'
 import { ERROR } from '../../actions'
@@ -187,62 +188,49 @@ const StakeTab = ({stake, tabType}) => {
               {ticker || <Skeleton />}
             </h2>
           </div>
-          <div className='container col'>
-            <div className='ml-auto'>
+          <div className='container col mb-auto mt-auto'>
+            <div className='ml-auto mb-auto mt-auto'>
+              
+              {stake.id ? <RewardsRow rewards={rewards} /> : <h3><Skeleton /></h3>}
 
-              <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white mt-auto mb-auto'>
-                <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>{stake.calc_rewards ? "rewards:" : <Skeleton />}</div>
-                <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{ minWidth:'8.5em'}}>
-                  
-                  <h4 className='mt-auto mb-auto pt-2 pb-2 text-monospace' data-tip data-for="registerTip">
-                    {stake.calc_rewards ? rewards : <Skeleton />}
-                  </h4>
-                  {/*<ReactTooltip id="registerTip" effect="solid">
-                    Tooltip for the register button
-                  </ReactTooltip>*/}
-                </div>
-              </div>
-
-              {<ValueRow 
+              <ValueRow 
                 label={ 'stake:' }
                 symbol={symbols[currency]}
                 value={ stake.amount ? numeral(parseInt(stake.amount*price) / 1000000).format('0,0') : undefined }
-              />}
+                skeleton={!stake.id}
+              />
 
-              {pool_hash_size ?
-                  <ValueRow 
-                    label={ 'pool size:' }
-                    symbol={symbols[currency]}
-                    value={ pool_hash_size ? numeral(pool_hash_size*price).format('0,0') : undefined}
-                  /> 
-                : null
-              }
-
-              {
+              { pool_hash_size ?
                 <ValueRow 
-                  label={ 'blocks:' }
-                  symbol={
-                    stake.estimated_blocks ?
-                    <OverlayTrigger placement='top' overlay={estimatedBlocks}>
-                      <small className='text-monospace'>{`${numeral(stake.estimated_blocks).format('0,0.0')}/ `}</small>
-                    </OverlayTrigger>
-                    : undefined
-                  }
-                  value={
-                    stake.blocks ?
-                    <OverlayTrigger placement='top' overlay={actualBlocks}>
-                      <strong className='text-monospace'>{stake.blocks}</strong>
-                    </OverlayTrigger>
-                    : undefined
-                  }
-                />
+                  label={ 'pool size:' }
+                  symbol={symbols[currency]}
+                  value={ pool_hash_size ? numeral(pool_hash_size*price).format('0,0') : undefined}
+                  skeleton={!stake.id}
+                /> : null
               }
 
-              {<ValueRow 
+              <ValueRow 
+                label={ 'blocks:' }
+                symbol={
+                  <OverlayTrigger placement='top' overlay={estimatedBlocks}>
+                    <small className='text-monospace'>{`${numeral(stake.estimated_blocks).format('0,0.0')}/ `}</small>
+                  </OverlayTrigger>
+                }
+                value={
+                  <OverlayTrigger placement='top' overlay={actualBlocks}>
+                    <strong className='text-monospace'>{stake.blocks}</strong>
+                  </OverlayTrigger>
+                }
+                skeleton={!stake.id}
+              />
+              
+              <ValueRow 
                 label={ 'ROS:' }
                 symbol={numeral(calcROS(stake.amount/1000000, stake.calc_rewards)).format('0,0.00')}
-                value={stake.calc_rewards ? "%" : undefined}
-              />}
+                value={"%"}
+                skeleton={!stake.id}
+              />
+              
 
             </div>
           </div>

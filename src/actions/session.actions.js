@@ -73,9 +73,9 @@ export const login = (formData) => {
 	  			type: LOGIN_REQUEST_SUCCESS,
 	  			user: user.username
 	  		})
-	  		// dispatch({
-	  		// 	type: CLEAR_EPOCH_STAKES
-	  		// })
+	  		dispatch({
+	  			type: CLEAR_EPOCH_STAKES
+	  		})
 	  		return user
 	  	})
 			.catch(err => {

@@ -50,6 +50,7 @@ export default function sessionReducer(state = initialState, action) {
 
     case LOGOUT:
       return {
+        lastUpdate: state.lastUpdate,
         currency: {price: 1, symbol: 'ada'}
       }
 

@@ -21,7 +21,7 @@ class LoginForm extends Component {
       e.preventDefault()
       this.props.login(this.state)
         .then(user => this.props.history.push(`/live-rewards`))
-        .catch(res => console.log)
+        .catch(res => console.log(res))
     }
 
     render() {

@@ -72,7 +72,7 @@ const EpochTab = ({epochno, stakes, tabType}) => {
   }
 
   return (
-      <div className='text-light bg-white bg-gradient pt-4 shadow mt-4 mb-5' style={{borderRadius:'10px 10px 3px 3px'}}>
+      <div className='text-light bg-white bg-gradient pt-4 shadow mt-5 mb-5' style={{borderRadius:'10px 10px 3px 3px'}}>
         <div className='d-flex flex-lg-row flex-wrap'>
           <div className='container col pb-3 pt-0 pl-0 pr-0 align-self-center'>
             <div className='container align-self-center mt-auto mb-auto ml-auto mr-auto d-flex flex-row'>

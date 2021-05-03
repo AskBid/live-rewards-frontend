@@ -67,14 +67,8 @@ const AddStakeForm = ({match}) => {
 
   return (
     <>
-      <div className='col-lg d-flex flex-wrap justify-content-between'>
+      <div className='col-lg d-flex flex-wrap justify-content-between mt-2'>
         <form className='w-50 d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={handleSubmit}>
-          <ButtonAddAddress className='text-nowrap rounded-pill mr-3 shadow-sm h-100'
-            type='Submit'
-            disabled={!buttonActivation()}
-            style={{outline: 'none !important'}}>
-            <b>Submit Your Address</b>
-          </ButtonAddAddress>
           <fieldset className='flex-grow-1'>
             <input
               type="text"
@@ -87,6 +81,12 @@ const AddStakeForm = ({match}) => {
               {addressChecksMessage()}
             </div>
           </fieldset>
+          <ButtonAddAddress className='text-nowrap rounded-pill ml-3 shadow-sm h-100'
+            type='Submit'
+            disabled={!buttonActivation()}
+            style={{outline: 'none !important'}}>
+            <b>Submit Your Address</b>
+          </ButtonAddAddress>
         </form>
         <CurrencySelector/>
         {/*{!user && messageIfNotLoggedIn()}*/}

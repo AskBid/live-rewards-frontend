@@ -29,7 +29,7 @@ function App() {
       <div className='h-100 d-flex flex-column align-items-center'>
         <Navbar toggle={toggle}/>
         <Sidebar isOpen={isOpen} toggle={toggle} />
-        <div className='bg-black' style={{minHeight:'80px'}}></div>
+        <div className='bg-black' style={{minHeight:'70px'}}></div>
         
         <div className='w-100 h-100 d-flex align-items-start justify-content-center'>
         {/*{ 

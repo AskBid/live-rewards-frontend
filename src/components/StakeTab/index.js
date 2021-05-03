@@ -191,7 +191,7 @@ const StakeTab = ({stake, tabType}) => {
             <div className='ml-auto'>
 
               <div className='row text-dark rounded d-flex flex-row flex-nowrap bg-white mt-auto mb-auto'>
-                <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>rewards:</div>
+                <div className='col-sm text-right pr-1 text-nowrap mt-auto mb-auto'>{stake.calc_rewards ? "rewards:" : <Skeleton />}</div>
                 <div className='col-sm mt-auto mb-auto text-right pr-1 text-info text-nowrap font-weight-bold min-vw-10' style={{ minWidth:'8.5em'}}>
                   
                   <h4 className='mt-auto mb-auto pt-2 pb-2 text-monospace' data-tip data-for="registerTip">
@@ -206,14 +206,14 @@ const StakeTab = ({stake, tabType}) => {
               {<ValueRow 
                 label={ 'stake:' }
                 symbol={symbols[currency]}
-                value={ numeral(parseInt(stake.amount*price) / 1000000).format('0,0') }
+                value={ stake.amount ? numeral(parseInt(stake.amount*price) / 1000000).format('0,0') : undefined }
               />}
 
               {pool_hash_size ?
                   <ValueRow 
                     label={ 'pool size:' }
                     symbol={symbols[currency]}
-                    value={ numeral(pool_hash_size*price).format('0,0') }
+                    value={ pool_hash_size ? numeral(pool_hash_size*price).format('0,0') : undefined}
                   /> 
                 : null
               }
@@ -222,14 +222,18 @@ const StakeTab = ({stake, tabType}) => {
                 <ValueRow 
                   label={ 'blocks:' }
                   symbol={
+                    stake.estimated_blocks ?
                     <OverlayTrigger placement='top' overlay={estimatedBlocks}>
                       <small className='text-monospace'>{`${numeral(stake.estimated_blocks).format('0,0.0')}/ `}</small>
                     </OverlayTrigger>
+                    : undefined
                   }
                   value={
+                    stake.blocks ?
                     <OverlayTrigger placement='top' overlay={actualBlocks}>
                       <strong className='text-monospace'>{stake.blocks}</strong>
                     </OverlayTrigger>
+                    : undefined
                   }
                 />
               }
@@ -237,7 +241,7 @@ const StakeTab = ({stake, tabType}) => {
               {<ValueRow 
                 label={ 'ROS:' }
                 symbol={numeral(calcROS(stake.amount/1000000, stake.calc_rewards)).format('0,0.00')}
-                value={'%'}
+                value={stake.calc_rewards ? "%" : undefined}
               />}
 
             </div>

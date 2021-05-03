@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import { FaTimes, FaSwimmingPool, FaChartPie } from 'react-icons/fa'
 
 export const DeleteBtn = styled.button `
-	background: rgba(245, 81, 66, 0.15);
+	background: none;
 	border: none;
-	border-radius: 3px 0px 0px 3px;
+	border-radius: 3px;
 	color: white;
-	min-width: 18px;
+	min-height: 30px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: rgba(245, 81, 66, 0.8);

@@ -101,45 +101,28 @@ const StakeTab = ({stake, tabType}) => {
 
   const unregisteredTabButtons = () => {
     return (
-      <React.Fragment>
-          <form onSubmit={(e) => {
-            e.preventDefault()
-            dispatch({type: CLEAR_EPOCH_STAKES})
-            dispatch({type: CLEAR})
-          }}>
-            <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
-              <CloseIcon />
-            </DeleteBtn>
-          </form>
-
-          <OverlayTrigger placement='top' overlay={compareTip}>
-            <PoolBtn onClick={() => dispatch({type: ERROR, message: 'Pool Compare functionality is only available if you Login.'})} className='mt-auto p-0 mb-auto h-100 ml-auto' style={{width:'2.3vw'}}>
-              <PoolIcon size={25}/> 
-            </PoolBtn>
-          </OverlayTrigger>
-
-          <OverlayTrigger placement='top' overlay={delegationFlowTip}>
-            <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`}>
-              <DeleFlowBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-                <DeleFlowIcon size={23}/>
-              </DeleFlowBtn>
-            </Link>
-          </OverlayTrigger>
-      </React.Fragment>
+      <div className='d-flex flex-column pr-0 pt-1 pb-1 pl-0 bg-secondary' style={{minWidth:'38px', borderRight:'1px solid rgba(2,2,2,0)'}}>
+        <DeleteBtn type='Submit' className='w-100 mt-auto p-0 mb-auto ml-auto mr-auto'>
+          <CloseIcon />
+        </DeleteBtn>        
+        <DeleteBtn type='Submit' className='w-100 mt-auto p-0 mb-auto ml-auto mr-auto' style={{width:'1vw'}}>
+          <PoolIcon />
+        </DeleteBtn>
+      </div>
     )
   }
 
   const whichButtons = () => {
-    switch (tabType) {
-      case 'live-rewards':
-        return stakeTabButtons()
-      case 'pool-compare':
-        return compareTabButtons()
-      case 'live-rewards-unregistered':
+    // switch (tabType) {
+    //   case 'live-rewards':
+    //     return stakeTabButtons()
+    //   case 'pool-compare':
+    //     return compareTabButtons()
+    //   case 'live-rewards-unregistered':
         return unregisteredTabButtons()
-      default:
-        return <div style={{width:'1.2em'}}></div>
-    }
+      // default:
+      //   return <div style={{width:'1.2em'}}></div>
+    // }
   }
 
   const estimatedBlocks = props => (

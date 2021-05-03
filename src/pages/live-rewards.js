@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import StakesColumn from '../containers/StakesColumn'
-import LiveRewardsControlBar from '../containers/LiveRewardsControlBar'
+import AddStakeForm from '../components/AddStakeForm'
 
 function LiveRewards({match}) {
 		useEffect(() => {
@@ -12,8 +12,8 @@ function LiveRewards({match}) {
 	      <div className="row mb-5 h-100">
 	        <div className='col'>
 	        </div>
-	        <div className="col-lg-10 mr-auto ml-auto">
-	        	<LiveRewardsControlBar/>
+	        <div className="col-lg-10 mr-auto ml-auto pt-3">
+	        	<AddStakeForm/>
 	          <StakesColumn/>
 	        </div>
 	        <div className='col'></div>

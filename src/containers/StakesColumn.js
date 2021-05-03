@@ -4,7 +4,7 @@ import { userEpochStakes } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import { groupBy } from 'underscore';
 import { Link } from 'react-router-dom'
-import { unregisteredEpochStakes } from '../actions/epoch_stake.actions'
+import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import { addUserStake } from '../actions/stake_address.actions'
 
 class StakesColumn extends Component {
@@ -15,7 +15,7 @@ class StakesColumn extends Component {
       this.props.username &&
         this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
       !this.props.username &&
-        this.props.unregisteredEpochStakes('').catch(res => this.props.noServer())
+        this.props.noUserEpochStakes('').catch(res => this.props.noServer())
     }
   }
 
@@ -61,7 +61,7 @@ class StakesColumn extends Component {
     return (
       <React.Fragment>
         { this.props.alert.message &&
-          <div className={`position-absolute mt-2 w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
+          <div className={`position-absolute mt-0 w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
             <div className={`alert ${this.props.alert.type} w-75`}>
               {this.props.alert.message}
             </div>
@@ -79,7 +79,7 @@ const mapDispatchToProps = dispatch => {
   return {
     userEpochStakes: (username) => dispatch(userEpochStakes(username)),
     addUserStake: (user, address) => dispatch(addUserStake(user, address)),
-    unregisteredEpochStakes: (address) => dispatch(unregisteredEpochStakes(address)),
+    noUserEpochStakes: (address) => dispatch(noUserEpochStakes(address)),
     closeAlert: () => dispatch({type: 'ALERT_CLEAR'}),
     noServer: () => dispatch({type: 'ALERT_ERROR', message: 'server is temporarily OFFLINE. Sorry for the inconvenience.'})
   }

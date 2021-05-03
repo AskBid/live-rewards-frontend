@@ -79,7 +79,7 @@ export const getEpochStake = (epoch_stake_id) => {
 	}
 }
 
-export const unregisteredEpochStakes = (stake_address) => {
+export const noUserEpochStakes = (stake_address) => {
 	return (dispatch) => {
 		const route = stake_address === '' ? `epoch_stakes` : `stake_addresses/${stake_address}/epoch_stakes`;
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})

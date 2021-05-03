@@ -26,8 +26,8 @@ const CurrencySelector = () => {
   const PriceDisplay = styled.div `
     /*background: rgba(255,127,80,0.5);*/
     background: rgba(255,255,255,0.5);
-    border: 2px solid #4ad9e4;
-    color: #fff;
+    border: 2px solid #007bff;
+    color: #007bff;
     min-width: 100px;
     &:hover {
       transition: all 0.05s ease-in-out;
@@ -36,13 +36,13 @@ const CurrencySelector = () => {
 
   return (
     <div className='d-flex flex-inline justify-content-center m-2'>
-      <PriceDisplay className='ml-2 mr-2 h-100 rounded d-flex justify-content-center align-items-center text-monospace'>
-        <h5 className='p-0 m-0 text-info text-nowrap'>
+      <PriceDisplay className='ml-2 mr-2 h-100 text-monospace shadow-sm rounded d-flex justify-content-center align-items-center'>
+        <h5 className='p-0 m-0 text-nowrap'>
           {currency.price ? `${symbols[currency.symbol]}${currency.price}` : '₳D₳'}
         </h5>
       </PriceDisplay>
-      <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown className='shadow-sm'>
+        <Dropdown.Toggle id="dropdown-basic">
           Currency
         </Dropdown.Toggle>
 

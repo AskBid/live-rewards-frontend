@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { userEpochStakes } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
-import DummyEpochTab from '../components/DummyEpochTab';
 import { groupBy } from 'underscore';
 import { Link } from 'react-router-dom'
 import { unregisteredEpochStakes } from '../actions/epoch_stake.actions'

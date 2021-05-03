@@ -2,6 +2,7 @@ import React from 'react'
 import StakeTab from './StakeTab'
 import Moment from 'moment'
 import { useSelector } from 'react-redux'
+import Skeleton from 'react-loading-skeleton';
 
 const EpochTab = ({epochno, stakes, tabType}) => {
 
@@ -61,10 +62,12 @@ const EpochTab = ({epochno, stakes, tabType}) => {
   }
 
   const deploy_stakes = () => {
-    return stakes.map(stake => {
+    return stakes.map((stake, i) => {
       if (stake.id) {
         return <StakeTab stake={stake} tabType={tabType} key={stake.id}/>
-      } else {}
+      } else {
+        return <div className='w-50'><Skeleton height={120}/></div>
+      }
     })
   }
 
@@ -106,7 +109,7 @@ const EpochTab = ({epochno, stakes, tabType}) => {
               </div>
             </div>
           </div>
-          {stakes && deploy_stakes()}
+          {deploy_stakes()}
         </div>
         <div className="progress mt-2" style={{height: "8px", opacity: `${epoch_status.opacity}`,  borderRadius:'0px 0px 3px 3px'}}>
           <div className={`progress-bar bg-${epoch_status.color}`} role={'progressbar'} style={{width: `${findProgressBarWidth()}%`, borderRadius:'0px 0px 3px 3px'}} aria-valuenow={"50"} aria-valuemin={"0"} aria-valuemax={"100"}></div>

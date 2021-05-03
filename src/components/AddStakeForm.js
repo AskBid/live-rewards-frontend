@@ -22,7 +22,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
 
   const addressChecksMessage = () => {
     if (!address.includes("stake1") && !address.includes("addr1") && address.length > 2) {
-      return <div className='alert alert-info position-absolute'>
+      return <div className='alert alert-danger position-absolute'>
           {`The address should start with`} <b>{`"stake1"`}</b> or <b>{`"addr1"`}</b>{`.`}
         </div>
     } else if (address.includes("addr1") && address.length !== 103 && address.length > 5) {
@@ -31,7 +31,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
         </div>
     } else if (address.includes("stake1") && address.length !== 59 && address.length > 6) {
       return <div className='alert alert-info position-absolute'>
-          {`The address should be 59 letters long. count: ${address.length}/59`}
+          {`The address should be 59 letters long. count: `}<b>{`${address.length}`}</b>{`/59`}
         </div>
     }
   }
@@ -51,7 +51,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
     background: #4ad9e4;
     border: 1px solid #4ad9e4;
     color: #fff;
-    padding: 0px 40px 0px 40px;
+    padding: 0px 2em 0px 2em;
     height: 30px;
     &:hover {
       transition: all 0.05s ease-in-out;
@@ -80,7 +80,7 @@ const AddStakeForm = ({addUserStake, match, user, unregisteredEpochStakes}) => {
               onChange={handleAddressInputChange}
               style={{minWidth:'100px'}}>
             </input>
-            <div className='d-flex justify-content-center flex-grow-1'> 
+            <div className='d-flex justify-content-end flex-grow-1'> 
               {addressChecksMessage()}
             </div>
           </fieldset>

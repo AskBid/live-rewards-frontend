@@ -159,7 +159,7 @@ const StakeTab = ({stake, tabType}) => {
   );
 
   return (
-    <div className='col bg-light rounded border border-secondary ml-3 mr-3 mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'>
+    <div className='col bg-light rounded border border-secondary mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'>
       <AddrLabel className="text-monospace">...{stake.stake_address.view && stake.stake_address.view.slice(-7)}</AddrLabel>
       <SpinnerDiv className='d-flex justify-content-center'>
         {deleting && 

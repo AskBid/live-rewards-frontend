@@ -10,11 +10,12 @@ import { addUserStake } from '../actions/stake_address.actions'
 class StakesColumn extends Component {
 
   componentDidMount() {
-    // (this.props.username && (this.props.epoch_stakes.length === 0)) && 
-    //   this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
-    // if (!this.props.username && (this.props.epoch_stakes.length === 0)) {
-    //   this.props.unregisteredEpochStakes('').catch(res => this.props.noServer())
-    // }
+    if (!this.props.epoch_stakes[0].id) {
+      this.props.username &&
+        this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
+      !this.props.username &&
+        this.props.unregisteredEpochStakes('').catch(res => this.props.noServer())
+    }
   }
 
   deployEpochs = () => {

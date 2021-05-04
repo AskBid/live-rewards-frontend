@@ -7,7 +7,7 @@ import { addUserStake } from '../actions/stake_address.actions'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import CurrencySelector from './CurrencySelector'
 import styled from 'styled-components'
-import BeatLoader from "react-spinners/BeatLoader";
+import BounceLoader from "react-spinners/BounceLoader";
 
 
 const AddStakeForm = ({match}) => {
@@ -77,7 +77,7 @@ const AddStakeForm = ({match}) => {
 
   return (
     <>
-      <div className='col-lg d-flex flex-wrap justify-content-between mt-2'>
+      <div className='col-lg d-flex flex-wrap justify-content-between mt-2 p-0'>
         <form className='w-50 d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={handleSubmit}>
           <fieldset className='flex-grow-1'>
             <input
@@ -95,7 +95,7 @@ const AddStakeForm = ({match}) => {
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
-            <div className="position-absolute">{loading && <BeatLoader color='#ffe9b7' size={18}/>}</div>
+            <div className="position-absolute" style={{top:'13px'}}>{loading && <BounceLoader color='#fff' size={23}/>}</div>
             <b> Submit Your Address</b>
           </ButtonAddAddress>
         </form>

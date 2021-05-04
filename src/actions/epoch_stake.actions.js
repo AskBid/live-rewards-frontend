@@ -18,18 +18,19 @@ import { authHeader } from '../helpers/auth-header'
 export const userEpochStakes = (username) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		fetchEpochStakes(`users/${username}/epoch_stakes`, dispatch)
+		return fetchEpochStakes(`users/${username}/epoch_stakes`, dispatch)
 	}
 }
 
 export const noUserEpochStakes = (stake_addresses) => {
 	return (dispatch) => {
+		debugger
 		const route = 
-			stake_addresses.lenght === 0 ? 
+			stake_addresses.length === 0 ? 
 			`epoch_stakes` : 
 			`epoch_stakes?stake_addresses=[${[...stake_addresses]}]`;
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		fetchEpochStakes(route, dispatch)
+		return fetchEpochStakes(route, dispatch)
 	}
 }
 

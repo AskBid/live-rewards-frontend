@@ -7,6 +7,7 @@ import { groupBy } from 'underscore';
 import { Link } from 'react-router-dom'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import { addUserStake } from '../actions/stake_address.actions'
+import { getAddrFromLocalStorage } from '../helpers/local_storage_methods'
 
 class StakesColumn extends Component {
 
@@ -14,9 +15,10 @@ class StakesColumn extends Component {
     if (!this.props.epoch_stakes[0].id) {
       this.props.username &&
         this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
-
-      // !this.props.username &&
-      //   this.props.noUserEpochStakes('').catch(res => this.props.noServer())
+      if (!this.props.username) {
+        const localStorageAddrs = getAddrFromLocalStorage()
+        this.props.noUserEpochStakes(localStorageAddrs).catch(res => {debugger; this.props.noServer()})
+      }
     }
   }
 
@@ -81,7 +83,7 @@ const mapDispatchToProps = dispatch => {
   return {
     userEpochStakes: (username) => dispatch(userEpochStakes(username)),
     addUserStake: (user, address) => dispatch(addUserStake(user, address)),
-    noUserEpochStakes: (address) => dispatch(noUserEpochStakes(address)),
+    noUserEpochStakes: (addresses) => dispatch(noUserEpochStakes(addresses)),
     closeAlert: () => dispatch({type: 'ALERT_CLEAR'}),
     noServer: () => dispatch({type: 'ALERT_ERROR', message: 'server is temporarily OFFLINE. Sorry for the inconvenience.'})
   }

@@ -6,5 +6,11 @@ export function addAddrToLocalStorage(epoch_stake) {
   localStorage.setItem('addrs', JSON.stringify(array_addr_ids));
 }
 
+export function getAddrFromLocalStorage() {
+	const addrs = JSON.parse(localStorage.getItem('addrs')) 
+	return addrs ? addrs : []
+}
+
+
 // let localStoragePools = user ? undefined : JSON.parse(localStorage.getItem('pools'));
 // let localStorageAddrs = user ? undefined : JSON.parse(localStorage.getItem('addrs'));

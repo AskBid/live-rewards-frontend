@@ -38,7 +38,7 @@ const CurrencySelector = () => {
   `;
   console.log(loading)
   return (
-    <div className='col-sm d-flex flex-inline flex-grow-1 justify-content-end m-2'>
+    <div className='col-sm d-flex flex-inline flex-grow-1 justify-content-end mt-2 ml-2 mb-2 mr-0 pr-0'>
       <PriceDisplay className='ml-2 mr-2 h-100 text-monospace shadow-sm rounded d-flex justify-content-center align-items-center'>
         <SkeletonTheme color="rgba(0, 123, 255, 0.65)" highlightColor="rgba(40, 173, 255, 0.45)">
           <h5 className='pl-2 pr-2 m-0 text-nowrap text-monospace'>

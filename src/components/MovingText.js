@@ -15,7 +15,7 @@ const MovingInstructions = () => {
       style={{fontSize:'0.8em'}}>
       <b>&uarr; Enter</b> one of your <b>receiving address</b> to see your <b>rewards</b>.
       <br/>
-      Below are the rewards of a Random wallet &darr; 
+      Below are the rewards of a random wallet &darr; 
     </MovingText>
   )
 }

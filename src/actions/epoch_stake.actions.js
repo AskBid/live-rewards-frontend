@@ -24,7 +24,10 @@ export const userEpochStakes = (username) => {
 
 export const noUserEpochStakes = (stake_addresses) => {
 	return (dispatch) => {
-		const route = stake_addresses === '' ? `epoch_stakes` : `epoch_stakes?stake_addresses=`;
+		const route = 
+			stake_addresses.lenght === 0 ? 
+			`epoch_stakes` : 
+			`epoch_stakes?stake_addresses=[${[...stake_addresses]}]`;
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
 		fetchEpochStakes(route, dispatch)
 	}

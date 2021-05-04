@@ -88,7 +88,8 @@ const EpochTab = ({epochno, stakes, tabType}) => {
                       </div>
                     </div>
                     <div className='row mb-2 mt-0'>
-                      <div className='col min-vw-10 pl-auto pr-auto text-muted text-center text-nowrap'>
+                      <div className={`col min-vw-10 pl-auto pr-auto text-${epoch_status.color} text-center text-nowrap`}
+                      style={{fontSize:'1.1em'}}>
                         <b>{ epoch_status.rewards }</b>
                       </div>
                     </div>

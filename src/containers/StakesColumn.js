@@ -14,8 +14,9 @@ class StakesColumn extends Component {
     if (!this.props.epoch_stakes[0].id) {
       this.props.username &&
         this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
-      !this.props.username &&
-        this.props.noUserEpochStakes('').catch(res => this.props.noServer())
+
+      // !this.props.username &&
+      //   this.props.noUserEpochStakes('').catch(res => this.props.noServer())
     }
   }
 

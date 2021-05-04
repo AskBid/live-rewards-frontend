@@ -45,12 +45,7 @@ const AddStakeForm = ({match}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (user) {
-      dispatch(addUserStake(user, address))
-    } else {
-      dispatch(noUserEpochStakes(address))
-      dispatch({type: SUCCESS, message: 'You can add only one stake if you are not logged in.'})
-    }
+    dispatch(addUserStake(user, address))
   }
 
   const ButtonAddAddress = styled.button `

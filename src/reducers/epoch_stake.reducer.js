@@ -39,14 +39,12 @@ export default function epochStakeReducer(state = initialState, action) {
         ...state,
         loading: true
   		}
-
   	case REQUEST_USER_EPOCH_STAKES_SUCCESS:
   		return {
   			...state,
         loading: false,
         list: action.payload
   		}
-
   	case REQUEST_USER_EPOCH_STAKES_FAILURE:
   		return { 
         ...state,
@@ -58,14 +56,14 @@ export default function epochStakeReducer(state = initialState, action) {
         ...state,
         loading: true
       }
-
     case ADD_USER_STAKE_SUCCESS:
+      const filtered_list = state.list.filter(spoch_stake => spoch_stake.id)
+      debugger
       return {
         ...state,
         loading: false,
-        list: [...state.list, ...action.payload]
+        list: [...filtered_list, ...action.payload]
       }
-
     case ADD_USER_STAKE_FAILURE:
       return { 
         ...state,
@@ -77,7 +75,6 @@ export default function epochStakeReducer(state = initialState, action) {
         ...state,
         deleting_addr_id: action.payload
       }
-
     case DELETE_USER_STAKE_SUCCESS:
       const list = state.list.filter((epoch_stake) => {
         return epoch_stake.stake_address.id != action.payload.addr_id
@@ -87,7 +84,6 @@ export default function epochStakeReducer(state = initialState, action) {
         deleting_addr_id: undefined,
         list
       }
-
     case DELETE_USER_STAKE_FAILURE:
       return {
         ...state,
@@ -99,14 +95,12 @@ export default function epochStakeReducer(state = initialState, action) {
         ...state,
         loading: true
       }
-
     case REQUEST_EPOCH_STAKE_SUCCESS:
       return {
         ...state,
         loading: false,
         epoch_stake: action.payload
       }
-    
     case REQUEST_EPOCH_STAKE_FAILURE:
       return {
         ...state,

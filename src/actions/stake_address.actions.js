@@ -10,6 +10,7 @@ import {
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 import { addAddrToLocalStorage } from '../helpers/local_storage_methods'
+import { deleteAddrFromLocalStorage } from '../helpers/local_storage_methods'
 
 export const addUserStake = (user, address) => {
 	const route = user ? `users/${user}/user_stakes` : 'user_stakes'
@@ -53,7 +54,12 @@ export const deleteStakeAddress = (user, addr_id) => {
 			payload: addr_id
 		})
 		
-		user ? fetchDelete(user, addr_id) : dispatch({type: DELETE_USER_STAKE_SUCCESS, payload: addr_id});
+		if (user) {
+			return fetchDelete(user, addr_id)
+		} else {
+			deleteAddrFromLocalStorage(addr_id)
+			dispatch({type: DELETE_USER_STAKE_SUCCESS, payload: addr_id});
+		} 
 
 		function fetchDelete(user, addr_id) {
 			return fetch(`${process.env.REACT_APP_API_URL}/users/${user}/user_stakes/${addr_id}`, {

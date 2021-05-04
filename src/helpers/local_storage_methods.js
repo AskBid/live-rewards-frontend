@@ -11,6 +11,7 @@ export function getAddrFromLocalStorage() {
 	return addrs ? addrs : []
 }
 
-
-// let localStoragePools = user ? undefined : JSON.parse(localStorage.getItem('pools'));
-// let localStorageAddrs = user ? undefined : JSON.parse(localStorage.getItem('addrs'));
+export function deleteAddrFromLocalStorage(addr_id) {
+	let addrs = JSON.parse(localStorage.getItem('addrs'))
+	localStorage.setItem('addrs', JSON.stringify(addrs.filter(id => id != addr_id)));
+}

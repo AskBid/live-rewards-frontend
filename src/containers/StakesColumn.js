@@ -15,10 +15,8 @@ class StakesColumn extends Component {
     if (!this.props.epoch_stakes[0].id) {
       this.props.username &&
         this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
-      if (!this.props.username) {
-        const localStorageAddrs = getAddrFromLocalStorage()
-        this.props.noUserEpochStakes(localStorageAddrs).catch(res => {debugger; this.props.noServer()})
-      }
+      !this.props.username &&
+        this.props.noUserEpochStakes(getAddrFromLocalStorage()).catch(res => this.props.noServer())
     }
   }
 
@@ -83,7 +81,7 @@ const mapDispatchToProps = dispatch => {
   return {
     userEpochStakes: (username) => dispatch(userEpochStakes(username)),
     addUserStake: (user, address) => dispatch(addUserStake(user, address)),
-    noUserEpochStakes: (addresses) => dispatch(noUserEpochStakes(addresses)),
+    noUserEpochStakes: (address) => dispatch(noUserEpochStakes(address)),
     closeAlert: () => dispatch({type: 'ALERT_CLEAR'}),
     noServer: () => dispatch({type: 'ALERT_ERROR', message: 'server is temporarily OFFLINE. Sorry for the inconvenience.'})
   }

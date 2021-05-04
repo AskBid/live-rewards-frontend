@@ -57,7 +57,7 @@ export default function epochStakeReducer(state = initialState, action) {
         loading: true
       }
     case ADD_USER_STAKE_SUCCESS:
-      const filtered_list = state.list.filter(spoch_stake => spoch_stake.id)
+      const filtered_list = state.list.filter(epoch_stake => epoch_stake.id)
       return {
         ...state,
         loading: false,

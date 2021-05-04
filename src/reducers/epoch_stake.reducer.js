@@ -13,7 +13,8 @@ import {
   REQUEST_EPOCH_STAKE_FAILURE,
   CLEAR_EPOCH_STAKES,
   RECORD_LAST_UPDATE,
-  REQUEST_STORAGE_NOUSER__EPOCH_STAKES_SUCCESS
+  REQUEST_STORAGE_NOUSER__EPOCH_STAKES_SUCCESS,
+  ZERO_EMPTY_STAKES
 } from '../actions'
 
 import { current_epoch } from '../helpers/epoch_helpers'
@@ -58,6 +59,7 @@ export default function epochStakeReducer(state = initialState, action) {
       }
     case ADD_USER_STAKE_SUCCESS:
       const filtered_list = state.list.filter(epoch_stake => epoch_stake.id)
+      //filters out dummy epoch stakes
       return {
         ...state,
         loading: false,
@@ -110,6 +112,12 @@ export default function epochStakeReducer(state = initialState, action) {
       return {
         ...state,
         list: initialListGuess
+      }
+
+    case ZERO_EMPTY_STAKES:
+      return {
+        ...state,
+        list: []
       }
 
     case RECORD_LAST_UPDATE:

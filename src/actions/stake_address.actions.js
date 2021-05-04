@@ -6,11 +6,13 @@ import {
 	DELETE_USER_STAKE_SUCCESS,
 	DELETE_USER_STAKE_FAILURE,
 	ERROR,
-	CLEAR
+	CLEAR,
+	ZERO_EMPTY_STAKES
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 import { addAddrToLocalStorage } from '../helpers/local_storage_methods'
 import { deleteAddrFromLocalStorage } from '../helpers/local_storage_methods'
+import { getAddrFromLocalStorage } from '../helpers/local_storage_methods'
 
 export const addUserStake = (user, address) => {
 	const route = user ? `users/${user}/user_stakes` : 'user_stakes'
@@ -31,7 +33,10 @@ export const addUserStake = (user, address) => {
 			}
 			})
 			.then(json => {
-				!user && addAddrToLocalStorage(json[0])
+				if (!user) { 
+					(getAddrFromLocalStorage().length < 1) && dispatch({type: ZERO_EMPTY_STAKES})
+					addAddrToLocalStorage(json[0])
+				}
 				dispatch({
 	  			type: ADD_USER_STAKE_SUCCESS,
 	  			payload: json

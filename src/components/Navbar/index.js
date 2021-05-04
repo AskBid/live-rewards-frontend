@@ -15,9 +15,9 @@ const Navbar = ({toggle}) => {
             <Bars />
           </MobileIcon>
           <NavMenu>
-            <NavLink to='/pools'>
+            {/*<NavLink to='/pools'>
               Pools Gauge
-            </NavLink>
+            </NavLink>*/}
           	<NavLink to='/live-rewards'>
               Live Rewards
             </NavLink>

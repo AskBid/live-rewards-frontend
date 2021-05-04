@@ -3,20 +3,20 @@ import { FaTimes, FaSwimmingPool, FaChartPie } from 'react-icons/fa'
 
 export const DeleteBtn = styled.button `
 	/*background: rgba(255,127,80,0.5);*/
-	background: rgba(0, 123, 255, 0.2);
-	border: none;
+	background: transparent;
+	border: 1px solid rgba(0, 123, 255, 0.4);
 	border-radius: 3px;
 	color: transparent;
-	padding: 1.5px;
+	padding: 0.5px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: red;
     color: red;
-    border: none;
+    border: 1px solid red;
   }
   &:disabled {
   	background: rgba(200, 200, 200, 0.4);
-  	border: none;
+  	border: 1px solid #eee;
   	color: transparent;
   }
 `;
@@ -41,7 +41,7 @@ export const FuncBtn = styled.button `
 `;
 
 export const CloseIcon = styled(FaTimes)`
-	color: rgba(250, 250, 250, 0.9);
+	color: rgba(0, 123, 255, 0.3);
 	margin: 0px;
 	padding: 0px;
 	&:hover {
@@ -53,6 +53,10 @@ export const PoolIcon = styled(FaSwimmingPool)`
 	color: rgba(255, 255, 255, 1);
 	margin: 0px;
 	padding: 0px;
+	&:disabled {
+  	background: rgba(200, 200, 200, 0.4);
+  	border: none;
+  }
 `
 
 export const DeleFlowIcon = styled(FaChartPie)`

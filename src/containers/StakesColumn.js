@@ -10,7 +10,6 @@ import { addUserStake } from '../actions/stake_address.actions'
 class StakesColumn extends Component {
 
   componentDidMount() {
-    debugger
     if (!this.props.epoch_stakes[0].id) {
       this.props.username &&
         this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())

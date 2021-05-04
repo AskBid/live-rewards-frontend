@@ -103,14 +103,20 @@ const StakeTab = ({stake, tabType}) => {
     return (
       <div className='d-flex flex-column justify-content-start align-items-start p-2'
         style={{minWidth:'55px',background:'none'}}>
-        <DeleteBtn type='Submit' className='w-100 shadow-sm text-center d-flex flex-column justify-content-center align-items-center' disabled={!stake.id || loading}>
-          <b className='position-absolute' style={{fontSize:'0.9em', top:'-1.5em'}}>Delete!</b>
-          <CloseIcon size={10}/>
-        </DeleteBtn>
+        <form onSubmit={(e) => {
+            e.preventDefault()
+            dispatch(deleteStakeAddress(user, stake_address_id))
+          }}
+          className='w-100'>
+          <DeleteBtn type='Submit' className='w-100 text-center d-flex flex-column justify-content-center align-items-center' disabled={!stake.id || loading || !stake_address_id}>
+            <b className='position-absolute' style={{fontSize:'0.9em', top:'-1.5em'}}>Delete!</b>
+            { !(!stake.id || loading || !stake_address_id) && <CloseIcon size={10}/> }
+          </DeleteBtn>
+        </form>
         
         <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`} className='w-100 h-100 mt-2'>
           <OverlayTrigger placement='top' overlay={compareTip}>     
-            <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id || loading}>
+            <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled>
               <PoolIcon size={20}/>
             </FuncBtn>
           </OverlayTrigger>

@@ -93,11 +93,10 @@ export const noUserEpochStakes = (stake_address) => {
 				if (res.ok) {
 					return res.json()
 				} else {
-					return res.json().then(json => {debugger; Promise.reject(json)})
+					return res.json().then(json => Promise.reject(json))
 				}
 			})
 	  	.then(json => { 
-	  		debugger
 	  		dispatch({
 	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
 	  			payload: json.epoch_stakes

@@ -122,7 +122,6 @@ const StakeTab = ({stake, tabType}) => {
             </FuncBtn>
           </OverlayTrigger>
         </Link>
-        {/*</Link>*/}
         
         <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`} className='w-100 h-100 mt-2 shadow-sm'> 
           <OverlayTrigger placement='bottom' overlay={delegationFlowTip}>   

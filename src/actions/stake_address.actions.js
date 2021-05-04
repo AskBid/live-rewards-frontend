@@ -11,9 +11,10 @@ import {
 import { authHeader } from '../helpers/auth-header'
 
 export const addUserStake = (user, address) => {
+	const route = user ? `users/${user}/user_stakes` ? 'user_stakes'
 	return (dispatch) => {
 		dispatch({type: ADD_USER_STAKE_REQUEST})
-		return fetch(`${process.env.REACT_APP_API_URL}/users/${user}/user_stakes`, {
+		return fetch(`${process.env.REACT_APP_API_URL}/${route}`, {
 			method: 'POST',
 	    headers: {
 	    	'Content-Type': 'application/json',

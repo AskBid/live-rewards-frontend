@@ -7,6 +7,7 @@ import { addUserStake } from '../actions/stake_address.actions'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import CurrencySelector from './CurrencySelector'
 import styled from 'styled-components'
+import BeatLoader from "react-spinners/BeatLoader";
 
 
 const AddStakeForm = ({match}) => {
@@ -14,6 +15,7 @@ const AddStakeForm = ({match}) => {
   const [address, setAddress] = useState('')
   const user = useSelector(state => state.sessions.user)
   const epoch_stakes = useSelector(state => state.epoch_stakes.list)
+  const loading = useSelector(state => state.epoch_stakes.loading)
   const dispatch = useDispatch()
 
   const handleAddressInputChange = (e) => {
@@ -89,11 +91,12 @@ const AddStakeForm = ({match}) => {
               {addressChecksMessage()}
             </div>
           </fieldset>
-          <ButtonAddAddress className='text-nowrap rounded-pill ml-3 shadow-sm h-100'
+          <ButtonAddAddress className='text-nowrap rounded-pill ml-3 shadow-sm h-100 d-flex justify-content-center align-items-center'
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
-            <b>Submit Your Address</b>
+            <div className="position-absolute">{loading && <BeatLoader color='#ffe9b7' size={18}/>}</div>
+            <b> Submit Your Address</b>
           </ButtonAddAddress>
         </form>
         <CurrencySelector/>

@@ -36,6 +36,10 @@ const AddStakeForm = ({match}) => {
       return <div className='alert alert-info position-absolute'>
           {`The address should be 59 letters long. count: `}<b>{`${address.length}`}</b>{`/59`}
         </div>
+    } else if (address.length < 5 && address.length > 0) {
+      return <div className='alert alert-info position-absolute'>
+          {`The address is too `}<b>{`short`}</b>{` to be correct.`}
+        </div>
     }
   }
 

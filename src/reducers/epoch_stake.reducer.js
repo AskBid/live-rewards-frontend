@@ -12,7 +12,8 @@ import {
   REQUEST_EPOCH_STAKE_SUCCESS,
   REQUEST_EPOCH_STAKE_FAILURE,
   CLEAR_EPOCH_STAKES,
-  RECORD_LAST_UPDATE
+  RECORD_LAST_UPDATE,
+  REQUEST_STORAGE_NOUSER__EPOCH_STAKES_SUCCESS
 } from '../actions'
 
 import { current_epoch } from '../helpers/epoch_helpers'

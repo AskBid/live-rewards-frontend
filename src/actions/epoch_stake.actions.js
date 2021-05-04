@@ -18,76 +18,50 @@ import { authHeader } from '../helpers/auth-header'
 export const userEpochStakes = (username) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`${process.env.REACT_APP_API_URL}/users/${username}/epoch_stakes`, {
-	  	method: 'GET',
-	    headers: {
-	    	'Content-Type': 'application/json',
-	    	"Accept": "application/json"
-	    }
-	  }).then(res => {
-				if (res.ok) {
-					return res.json()
-				} else {
-					return res.json().then(json => Promise.reject(json))
-				}
-			})
-	  	.then(json => { 
-	  		dispatch({
-	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
-	  			payload: json.epoch_stakes
-	  		});
-	  		dispatch({
-	  			type: RECORD_LAST_UPDATE,
-	  			payload: json.last_update
-	  		})
-	  		dispatch({
-	  			type: CLEAR
-	  		});
-	  	})
-			.catch(err => {
-				dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE})
-				dispatch({type: ERROR, message: 'Address was not found.'})
-				return Promise.reject(err)
-			})
+		fetchEpochStakes(`users/${username}/epoch_stakes`, dispatch)
 	}
 }
 
-export const noUserEpochStakes = (stake_address) => {
+export const noUserEpochStakes = (stake_addresses) => {
 	return (dispatch) => {
-		const route = stake_address === '' ? `epoch_stakes` : `stake_addresses/${stake_address}/epoch_stakes`;
+		const route = stake_addresses === '' ? `epoch_stakes` : `epoch_stakes?stake_addresses=`;
 		dispatch({type: REQUEST_USER_EPOCH_STAKES})
-		return fetch(`${process.env.REACT_APP_API_URL}/${route}`, {
-	  	method: 'GET',
-	    headers: {
-	    	'Content-Type': 'application/json',
-	    	"Accept": "application/json"
-	    }
-	  }).then(res => {
-				if (res.ok) {
-					return res.json()
-				} else {
-					return res.json().then(json => Promise.reject(json))
-				}
-			})
-	  	.then(json => { 
-	  		dispatch({
-	  			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
-	  			payload: json.epoch_stakes
-	  		});
-	  		dispatch({
-	  			type: RECORD_LAST_UPDATE,
-	  			payload: json.last_update
-	  		})
-	  		dispatch({
-	  			type: CLEAR
-	  		});
-	  	})
-			.catch(err => {
-				dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE})
-				dispatch({type: ERROR, message: 'Address was not found.'})
-				return Promise.reject(err)
-			})
+		fetchEpochStakes(route, dispatch)
 	}
+}
+
+function fetchEpochStakes(route, dispatch) {
+	return fetch(`${process.env.REACT_APP_API_URL}/${route}`, {
+  	method: 'GET',
+    headers: {
+    	'Content-Type': 'application/json',
+    	"Accept": "application/json"
+    }
+  }).then(res => {
+		if (res.ok) {
+			return res.json()
+		} else {
+			return res.json().then(json => Promise.reject(json))
+		}
+	})
+	.then(json => { 
+		dispatch({
+			type: REQUEST_USER_EPOCH_STAKES_SUCCESS, 
+			payload: json.epoch_stakes
+		});
+		dispatch({
+			type: RECORD_LAST_UPDATE,
+			payload: json.last_update
+		})
+		dispatch({
+			type: CLEAR
+		});
+	})
+	.catch(err => {
+		dispatch({type: REQUEST_USER_EPOCH_STAKES_FAILURE})
+		dispatch({type: ERROR, message: 'Address was not found.'})
+		return Promise.reject(err)
+	})
 }
 
 export const getEpochStake = (epoch_stake_id) => {

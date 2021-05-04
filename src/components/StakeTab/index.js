@@ -116,7 +116,7 @@ const StakeTab = ({stake, tabType}) => {
         
         <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`} className='w-100 h-100 mt-2'>
           <OverlayTrigger placement='top' overlay={compareTip}>     
-            <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled>
+            <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id || loading}>
               <PoolIcon size={20}/>
             </FuncBtn>
           </OverlayTrigger>
@@ -148,27 +148,26 @@ const StakeTab = ({stake, tabType}) => {
   }
 
   const estimatedBlocks = props => (
-    <Tooltip {...props} style={{opacity:'70%', ...props.style}}>
-      Those are the estimated blocks this pool should produce based on pool_stake/total_stakes.
-      Luck can affect this as much as pool performance.
+    <Tooltip {...props} style={{opacity:'80%', ...props.style}}>
+      Estimated blocks.
     </Tooltip>
   );
 
   const actualBlocks = props => (
-    <Tooltip {...props} style={{opacity:'70%', ...props.style}}>
-      Those are the blocks effectively produced from the pool at this point.
+    <Tooltip {...props} style={{opacity:'80%', ...props.style}}>
+      Blocks produced.
     </Tooltip>
   );
 
   const compareTip = props => (
-    <Tooltip {...props} style={{opacity:'60%', ...props.style}}>
+    <Tooltip {...props} style={{opacity:'80%', ...props.style}}>
       {/*Compare this epoch stake with other pools.*/}
-      COMING SOON...
+      Pool-Compare <br/> COMING SOON...
     </Tooltip>
   );
 
   const delegationFlowTip = props => (
-    <Tooltip {...props} style={{opacity:'60%', ...props.style}}>
+    <Tooltip {...props} style={{opacity:'80%', ...props.style}}>
       Look at the flow of delegations for this pool in this epoch.
     </Tooltip>
   );

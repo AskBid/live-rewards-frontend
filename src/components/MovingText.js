@@ -1,25 +1,23 @@
-import React, { useState } from "react";
-import { useSpring, animated } from "react-spring";
-
-const MovingText = ({ text }) => {
-  const [key, setKey] = useState(1);
-
-  const scrolling = useSpring({
-    from: { transform: "translate(60%,0)" },
-    to: { transform: "translate(-60%,0)" },
-    config: { duration: 20000 },
-    reset: true,
-    //reverse: key % 2 == 0,
-    onRest: () => {
-      setKey(key + 1);
-    }
-  });
-
+import React from 'react'
+import MovingText from 'react-moving-text'
+ 
+const MovingInstructions = () => {
   return (
-    <div key={key}>
-      <animated.div style={scrolling}>{text}</animated.div>);
-    </div>
-  );
-};
+    <MovingText
+      type="shakeVertical"
+      duration="8000ms"
+      delay="2s"
+      direction="normal"
+      timing="linear"
+      iteration="5"
+      fillMode="none"
+      className='w-100 text-primary text-center position-absolute'
+      style={{fontSize:'0.8em'}}>
+      <b>&uarr; Enter</b> one of your <b>receiving address</b> to see your <b>rewards</b>.
+      <br/>
+      Random wallet's rewards below &darr; 
+    </MovingText>
+  )
+}
 
-export default MovingText;
+export default MovingInstructions

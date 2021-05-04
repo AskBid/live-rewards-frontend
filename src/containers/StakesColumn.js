@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { userEpochStakes } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
+import MovingText from '../components/MovingText';
 import { groupBy } from 'underscore';
 import { Link } from 'react-router-dom'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
@@ -67,6 +68,7 @@ class StakesColumn extends Component {
           </div>
         }
         {((this.props.epoch_stakes.length === 0) && this.props.username) && this.textIfEmpty()}
+        {!this.props.username && <MovingText/>}
         {this.deployEpochs()}
         <div style={{minHeight:'100px'}}></div>
       </React.Fragment>

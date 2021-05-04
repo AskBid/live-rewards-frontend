@@ -9,6 +9,7 @@ import {
 	CLEAR
 } from '.'
 import { authHeader } from '../helpers/auth-header'
+import { addAddrToLocalStorage } from '../helpers/local_storage_methods'
 
 export const addUserStake = (user, address) => {
 	const route = user ? `users/${user}/user_stakes` : 'user_stakes'
@@ -29,6 +30,7 @@ export const addUserStake = (user, address) => {
 			}
 			})
 			.then(json => {
+				!user && addAddrToLocalStorage(json[0])
 				dispatch({
 	  			type: ADD_USER_STAKE_SUCCESS,
 	  			payload: json

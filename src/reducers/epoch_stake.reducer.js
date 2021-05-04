@@ -58,7 +58,6 @@ export default function epochStakeReducer(state = initialState, action) {
       }
     case ADD_USER_STAKE_SUCCESS:
       const filtered_list = state.list.filter(spoch_stake => spoch_stake.id)
-      debugger
       return {
         ...state,
         loading: false,
@@ -73,11 +72,11 @@ export default function epochStakeReducer(state = initialState, action) {
     case DELETE_USER_STAKE_REQUEST:
       return {
         ...state,
-        deleting_addr_id: action.payload
+        deleting_addr_id: action.payload.addr_id
       }
     case DELETE_USER_STAKE_SUCCESS:
       const list = state.list.filter((epoch_stake) => {
-        return epoch_stake.stake_address.id != action.payload.addr_id
+        return epoch_stake.stake_address.id != action.payload
       })
       return {
         ...state,

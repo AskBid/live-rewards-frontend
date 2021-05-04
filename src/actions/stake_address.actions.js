@@ -50,31 +50,37 @@ export const deleteStakeAddress = (user, addr_id) => {
 			type: DELETE_USER_STAKE_REQUEST,
 			payload: addr_id
 		})
-		return fetch(`${process.env.REACT_APP_API_URL}/users/${user}/user_stakes/${addr_id}`, {
-			method: 'DELETE',
-	    headers: {
-	    	'Content-Type': 'application/json',
-	    	...authHeader()
-	    }
-		}).then(res => {
-			if (res.ok) {
-				return res.json()
-			} else {
-				return res.json().then(json => Promise.reject(json.error))
-			}
-			})
-			.then(json => {
-				dispatch({
-	  			type: DELETE_USER_STAKE_SUCCESS,
-	  			payload: json
-	  		});
-	  		dispatch({
-	  			type: CLEAR
-	  		});
-			})
-			.catch(err => {
-				dispatch({type: DELETE_USER_STAKE_FAILURE})
-				dispatch({type: ERROR, message: err.toString()})
-			})
+		
+		user ? fetchDelete(user, addr_id) : dispatch({type: DELETE_USER_STAKE_SUCCESS, payload: addr_id});
+
+		function fetchDelete(user, addr_id) {
+			return fetch(`${process.env.REACT_APP_API_URL}/users/${user}/user_stakes/${addr_id}`, {
+					method: 'DELETE',
+			    headers: {
+			    	'Content-Type': 'application/json',
+			    	...authHeader()
+			    }
+				}).then(res => {
+					if (res.ok) {
+						return res.json()
+					} else {
+						return res.json().then(json => Promise.reject(json.error))
+					}
+					})
+					.then(json => {
+						dispatch({
+			  			type: DELETE_USER_STAKE_SUCCESS,
+			  			payload: json.addr_id
+			  		});
+			  		dispatch({
+			  			type: CLEAR
+			  		});
+					})
+					.catch(err => {
+						dispatch({type: DELETE_USER_STAKE_FAILURE})
+						dispatch({type: ERROR, message: err.toString()})
+					})
+		}
 	}
 }
+

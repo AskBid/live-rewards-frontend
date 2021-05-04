@@ -10,7 +10,7 @@ import {
 
 let user = JSON.parse(localStorage.getItem('user'));
 let noUserPools = user ? undefined : JSON.parse(localStorage.getItem('pools'));
-let noUserStakeAddrs = user ? undefined : JSON.parse(localStorage.getItem('addr'));
+let noUserStakeAddrs = user ? undefined : JSON.parse(localStorage.getItem('addrs'));
 user = user ? user.username : undefined;
 
 const initialState = {

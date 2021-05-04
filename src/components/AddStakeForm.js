@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { SUCCESS } from '../actions'
+import { ERROR } from '../actions'
 import { addUserStake } from '../actions/stake_address.actions'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import CurrencySelector from './CurrencySelector'
@@ -12,6 +13,7 @@ const AddStakeForm = ({match}) => {
 
   const [address, setAddress] = useState('')
   const user = useSelector(state => state.sessions.user)
+  const epoch_stakes = useSelector(state => state.epoch_stakes.list)
   const dispatch = useDispatch()
 
   const handleAddressInputChange = (e) => {
@@ -45,7 +47,14 @@ const AddStakeForm = ({match}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(addUserStake(user, address))
+    if (epoch_stakes.length < 9) {
+      dispatch(addUserStake(user, address))
+    } else {
+      dispatch({
+        type: ERROR, 
+        message: "You have too many Addresses already. Delete one of them before adding a new one."
+      })
+    }
   }
 
   const ButtonAddAddress = styled.button `

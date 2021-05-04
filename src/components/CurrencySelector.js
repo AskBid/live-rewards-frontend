@@ -42,7 +42,7 @@ const CurrencySelector = () => {
       <PriceDisplay className='ml-2 mr-2 h-100 text-monospace shadow-sm rounded d-flex justify-content-center align-items-center'>
         <SkeletonTheme color="rgba(0, 123, 255, 0.65)" highlightColor="rgba(40, 173, 255, 0.45)">
           <h5 className='pl-2 pr-2 m-0 text-nowrap text-monospace'>
-            {loading ? <Skeleton  style={{minWidth:"50px"}}/> : (currency.symbol != 'ada' ? `${symbols[currency.symbol]}${numeral(currency.price).format('0,0.00')}` : '₳D₳')}
+            {loading ? <Skeleton  style={{minWidth:"50px"}}/> : (currency.symbol != 'ada' ? `${symbols[currency.symbol]}${numeral(currency.price).format('0,0.00')}` : '₳1.00')}
           </h5>
         </SkeletonTheme>
       </PriceDisplay>

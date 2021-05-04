@@ -117,7 +117,7 @@ const StakeTab = ({stake, tabType}) => {
         </Link>
         
         <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`} className='w-100 h-100 mt-2 shadow-sm'> 
-          <OverlayTrigger placement='top' overlay={delegationFlowTip}>   
+          <OverlayTrigger placement='bottom' overlay={delegationFlowTip}>   
           <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id || loading}>
             <DeleFlowIcon size={20}/>
           </FuncBtn>

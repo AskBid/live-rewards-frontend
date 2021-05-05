@@ -65,14 +65,14 @@ const StakeTab = ({stake}) => {
           className='w-100'>
           <DeleteBtn type='Submit' className='w-100 text-center d-flex flex-column justify-content-center align-items-center' disabled={!stake.id || loading || !stake_address_id}>
             <b className='position-absolute' style={{fontSize:'0.9em', top:'-1.5em'}}>Delete!</b>
-            { !(!stake.id || loading || !stake_address_id) && <CloseIcon size={10}/> }
+            { !(!stake.id || loading || !stake_address_id) && <CloseIcon size={14}/> }
           </DeleteBtn>
         </form>
         
         <Link to={`/pool-compare/epoch_stakes/${stake.id}`} className='w-100 h-100 mt-2'>
           <OverlayTrigger placement='top' overlay={compareTip}>     
             <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id || loading}>
-              <PoolIcon size={20}/>
+              <PoolIcon size={20}/>{/*<br/><div style={{fontSize:'0.8em'}}>Pool-Compare</div>*/}
             </FuncBtn>
           </OverlayTrigger>
         </Link>
@@ -104,13 +104,13 @@ const StakeTab = ({stake}) => {
   const compareTip = props => (
     <Tooltip {...props} style={{opacity:'80%', ...props.style}}>
       {/*Compare this epoch stake with other pools.*/}
-      Pool-Compare <br/> COMING SOON...
+      Pool-Compare <br/> this epoch stake
     </Tooltip>
   );
 
   const delegationFlowTip = props => (
     <Tooltip {...props} style={{opacity:'80%', ...props.style}}>
-      Look at the flow of delegations for this pool in this epoch.
+      Look at the flow of delegations for this pool.
     </Tooltip>
   );
 

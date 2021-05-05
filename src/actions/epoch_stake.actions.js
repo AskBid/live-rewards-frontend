@@ -24,7 +24,6 @@ export const userEpochStakes = (username) => {
 
 export const noUserEpochStakes = (stake_address_ids) => {
 	return (dispatch) => {
-		debugger
 		const route = 
 			stake_address_ids.length === 0 ? 
 			`epoch_stakes` : 

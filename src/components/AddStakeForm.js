@@ -6,8 +6,8 @@ import { ERROR } from '../actions'
 import { addUserStake } from '../actions/stake_address.actions'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import CurrencySelector from './CurrencySelector'
-import styled from 'styled-components'
 import BounceLoader from "react-spinners/BounceLoader";
+import ButtonAddAddress from './ButtonAddElement.js'
 
 
 const AddStakeForm = ({match}) => {
@@ -59,22 +59,6 @@ const AddStakeForm = ({match}) => {
     }
   }
 
-  const ButtonAddAddress = styled.button `
-    /*background: rgba(255,127,80,0.5);*/
-    /*border: 1px solid #4ad9e4;*/
-    background: rgba(0, 123, 255, 1);
-    border: 1px solid rgba(0, 123, 255, 1);
-    color: #fff;
-    padding: 0px 2em 0px 2em;
-    height: 30px;
-    &:hover {
-      transition: all 0.05s ease-in-out;
-      background: #4ad9e4;
-      color: white;
-      border: 1px solid transparent;
-    }
-  `;
-
   return (
     <>
       <div className='col-lg d-flex flex-wrap justify-content-between mt-2 p-0'>
@@ -100,7 +84,6 @@ const AddStakeForm = ({match}) => {
           </ButtonAddAddress>
         </form>
         <CurrencySelector/>
-        {/*{!user && messageIfNotLoggedIn()}*/}
       </div>
     </>
   )

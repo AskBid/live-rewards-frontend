@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PoolCompareControlBar from '../containers/PoolCompareControlBar'
 import PoolComparedStakesColumn from '../containers/PoolComparedStakesColumn'
+import AddPoolForm from '../containers/AddPoolForm'
 
 function PoolCompare({match}) {
 		useEffect(() => {
@@ -13,7 +14,7 @@ function PoolCompare({match}) {
 	        <div className='col'>
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto">
-	        	<PoolCompareControlBar />
+	        	<AddPoolForm />
 	    			{/*<PoolComparedStakesColumn />*/}
 	        </div>
 	        <div className='col'></div>

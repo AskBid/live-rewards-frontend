@@ -126,13 +126,13 @@ const AutoComplete = ({
   }, [cursor]);
 
 	return (
-		<fieldset className='col w-100 p-0 pl-2 pr-2' ref={searchContainer}>
+		<fieldset className='flex-grow-1' ref={searchContainer}>
 	    <input
 	      value={text}
 	      type="text"
 	      name="pool"
 	      placeholder={placeholderOption || "TICKR or pool1cuxntl7p...     (If empty, will pick a random Pool)"}
-	      className='w-100 border border-primary shadow-sm ml-1 mr-1 mt-auto mb-auto p-2 rounded '
+	      className='h-100 w-100 p-2 border border-primary rounded shadow-sm'
 	      onChange={handleTextChange}
 	      onClick={showSuggestion}
 	      onKeyDown={keyboardNavigation}

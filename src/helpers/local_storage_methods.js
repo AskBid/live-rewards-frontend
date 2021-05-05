@@ -16,20 +16,20 @@ export function deleteAddrFromLocalStorage(addr_id) {
 	localStorage.setItem('addrs', JSON.stringify(addrs.filter(id => id != addr_id)));
 }
 
-export function addPoolToLocalStorage(epoch_stake) {
-	let array_pool_ids = JSON.parse(localStorage.getItem('pools'))
-	array_pool_ids = array_addr_ids ? 
-		[...array_pool_ids, epoch_stake.stake_address.id] : 
-		[epoch_stake.stake_address.id]
-  localStorage.setItem('pools', JSON.stringify(array_addr_ids));
-}
+// export function addPoolToLocalStorage(epoch_stake) {
+// 	let array_pool_ids = JSON.parse(localStorage.getItem('pools'))
+// 	array_pool_ids = array_addr_ids ? 
+// 		[...array_pool_ids, epoch_stake.stake_address.id] : 
+// 		[epoch_stake.stake_address.id]
+//   localStorage.setItem('pools', JSON.stringify(array_addr_ids));
+// }
 
-export function getPoolsFromLocalStorage() {
-	const pools = JSON.parse(localStorage.getItem('pools')) 
-	return addrs ? addrs : []
-}
+// export function getPoolsFromLocalStorage() {
+// 	const pools = JSON.parse(localStorage.getItem('pools')) 
+// 	return addrs ? addrs : []
+// }
 
-export function deletePoolFromLocalStorage(addr_id) {
-	let addrs = JSON.parse(localStorage.getItem('pools'))
-	localStorage.setItem('pools', JSON.stringify(addrs.filter(id => id != addr_id)));
-}
+// export function deletePoolFromLocalStorage(addr_id) {
+// 	let addrs = JSON.parse(localStorage.getItem('pools'))
+// 	localStorage.setItem('pools', JSON.stringify(addrs.filter(id => id != addr_id)));
+// }

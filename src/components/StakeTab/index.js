@@ -115,7 +115,7 @@ const StakeTab = ({stake, tabType}) => {
           </DeleteBtn>
         </form>
         
-        <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`} className='w-100 h-100 mt-2'>
+        <Link to={`/pool-compare/epoch_stakes/${stake.id}`} className='w-100 h-100 mt-2'>
           <OverlayTrigger placement='top' overlay={compareTip}>     
             <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id || loading}>
               <PoolIcon size={20}/>

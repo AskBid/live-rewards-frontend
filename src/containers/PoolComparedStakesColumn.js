@@ -7,6 +7,7 @@ import StakeTab from '../components/StakeTab';
 import { withRouter, Link } from "react-router-dom";
 import numeral from 'numeral';
 import { REQUEST_EPOCH_STAKE_SUCCESS } from '../actions'
+import BeatLoader from "react-spinners/BeatLoader";
 
 class PoolComparedStakesColumn extends Component {
 
@@ -41,6 +42,7 @@ class PoolComparedStakesColumn extends Component {
                 <div className='container col pb-3 pt-0 pl-0 pr-0 align-self-center'>
                   <div className='container w-100 text-primary text-center mt-auto mb-auto ml-auto mr-auto d-flex align-self-center flex-column'>
                     <p className='mb-0'>Delegating with <b>{stake.pool_hash.pool.ticker}</b> rather than <b>{this.props.epoch_stake.pool_hash.pool.ticker}</b></p>
+                    <p className='mb-0'><u>estimated</u> rewards difference:</p>
                     <br/>
                     <p className={`border border-${color} text-${color} pt-2 pb-2 align-self-center text-white text-monospace rounded w-50`} style={{opacity:'60%'}}>
                       {difference > 0 ? '+' : '' }
@@ -66,7 +68,9 @@ class PoolComparedStakesColumn extends Component {
   textIfEmpty = () => {
     if (this.props.loading_compared_stakes) {
       return (
-         <h2 className='text-muted m-5'>Loading...</h2>
+        <div className="position-absolute w-100 h-100 d-flex justify-content-center align-self-center" style={{zIndex:'100',top:'50%'}}>
+          <BeatLoader className='position-absolute w-100 h-100 text-center' color='#999' size={30} style={{zIndex:'100'}}/>
+        </div>
       )
     } else if (this.props.pool_compared_stakes.length === 0) {
       return (
@@ -84,7 +88,7 @@ class PoolComparedStakesColumn extends Component {
     return (
       <React.Fragment>
         { this.props.alert.message &&
-          <div className={`w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
+          <div className={`position-absolute w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
             <div className={`alert ${this.props.alert.type} w-75`}>
               {this.props.alert.message}
             </div>

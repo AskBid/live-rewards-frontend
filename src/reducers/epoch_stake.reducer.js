@@ -29,7 +29,8 @@ const initialListGuess = [
 const initialState = {
   loading: false,
   list: initialListGuess,
-  last_update: {}
+  last_update: {},
+  epoch_stake: {epoch_no: epochno, epoch_info: {current_epoch: epochno}}
 };
 
 export default function epochStakeReducer(state = initialState, action) {

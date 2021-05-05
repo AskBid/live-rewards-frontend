@@ -6,7 +6,7 @@ import { ERROR } from '../actions'
 import { addUserStake } from '../actions/stake_address.actions'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import CurrencySelector from './CurrencySelector'
-import BounceLoader from "react-spinners/BounceLoader";
+import SquareLoader from "react-spinners/SquareLoader";
 import {ButtonAdd} from './ButtonAddElement.js'
 
 
@@ -79,7 +79,7 @@ const AddStakeForm = ({match}) => {
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
-            <div className="position-absolute" style={{top:'13px'}}>{loading && <BounceLoader color='#fff' size={23}/>}</div>
+            <div className="position-absolute" style={{top:'13px'}}>{loading && <SquareLoader color='#fff' size={23}/>}</div>
             <b> Submit Your Address</b>
           </ButtonAdd>
         </form>

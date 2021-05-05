@@ -5,7 +5,7 @@ import { getTickers } from '../actions/pool.actions'
 import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
 import AutoComplete from '../components/AutoComplete'
 import { ButtonAdd, ButtonNav } from '../components/ButtonAddElement.js'
-import BounceLoader from "react-spinners/BounceLoader";
+import SquareLoader from "react-spinners/SquareLoader";
 import CurrencySelector from '../components/CurrencySelector'
 
 class AddPoolForm extends Component {
@@ -87,7 +87,7 @@ class AddPoolForm extends Component {
             type='Submit'
             disabled={!this.buttonActivation()}
             style={{outline: 'none !important'}}>
-            <div className="position-absolute" style={{top:'13px'}}>{this.props.loading && <BounceLoader color='#fff' size={23}/>}</div>
+            <div className="position-absolute" style={{top:'13px'}}>{this.props.loading && <SquareLoader color='#fff' size={23}/>}</div>
             <b> Follow Pool</b>
           </ButtonAdd>
         </form>
@@ -107,7 +107,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     tickers: state.pools.tickers,
-    loading: state.pools.loading,
+    loading: state.pool_compared_stakes.loading,
     user: state.sessions.user
   }
 }

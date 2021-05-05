@@ -24,7 +24,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Skeleton from 'react-loading-skeleton';
 import BeatLoader from "react-spinners/BeatLoader";
 
-const StakeTab = ({stake, tabType}) => { 
+const StakeTab = ({stake}) => { 
 
   const user = useSelector(state => state.sessions.user)
   const currency = useSelector(state => state.sessions.currency.symbol)
@@ -36,11 +36,11 @@ const StakeTab = ({stake, tabType}) => {
   const pool_hash_size = stake.pool_hash && stake.pool_hash.size
 
   const deleting = useSelector(state => {
-    if (stake_address_id) {
-      return tabType === 'pool-compare' ?
-        stake_address_id === state.pool_compared_stakes.deleting_user_pool_hash_id :
-        stake_address_id === state.epoch_stakes.deleting_addr_id
-    }
+    // if (stake_address_id) {
+    //   return tabType === 'pool-compare' ?
+    //     stake_address_id === state.pool_compared_stakes.deleting_user_pool_hash_id :
+    //     stake_address_id === state.epoch_stakes.deleting_addr_id
+    // }
   })
   const dispatch = useDispatch()
   const ticker = stake.pool_hash && stake.pool_hash.pool && stake.pool_hash.pool.ticker
@@ -54,53 +54,7 @@ const StakeTab = ({stake, tabType}) => {
     btc: '฿'
   }
 
-  const stakeTabButtons = () => {
-    /*return (
-      <React.Fragment>
-          <form onSubmit={(e) => {
-            e.preventDefault()
-            dispatch(deleteStakeAddress(user, stake_address_id))
-          }}>
-            <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
-              <CloseIcon /> 
-            </DeleteBtn>
-          </form>
-
-          <OverlayTrigger placement='top' overlay={compareTip}>
-            <Link to={`/pool-compare/users/${user}/epoch_stakes/${stake.id}`}>
-              <PoolBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto' style={{width:'2.3vw'}}>
-                <PoolIcon size={23}/> 
-              </PoolBtn>
-            </Link>
-          </OverlayTrigger>
-
-          <OverlayTrigger placement='top' overlay={delegationFlowTip}>
-            <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`}>
-              <DeleFlowBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-3' style={{width:'2.3vw'}}>
-                <DeleFlowIcon size={23}/>
-              </DeleFlowBtn>
-            </Link>
-          </OverlayTrigger>
-      </React.Fragment>
-    )*/
-  }
-
-  const compareTabButtons = () => {
-    /*return (
-      <React.Fragment>
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          dispatch(deleteUserPoolHash(stake.user_pool_hash_id))
-        }}>
-          <DeleteBtn type='Submit' className='mt-auto p-0 mb-auto h-100 ml-auto mr-auto' style={{width:'1vw'}}>
-            <CloseIcon /> 
-          </DeleteBtn>
-        </form>
-      </React.Fragment>
-    )*/
-  }
-
-  const unregisteredTabButtons = () => {
+  const buttons = () => {
     return (
       <div className='d-flex flex-column justify-content-start align-items-start p-2'
         style={{minWidth:'55px',background:'none'}}>
@@ -133,19 +87,6 @@ const StakeTab = ({stake, tabType}) => {
         
       </div>
     )
-  }
-
-  const whichButtons = () => {
-    // switch (tabType) {
-    //   case 'live-rewards':
-    //     return stakeTabButtons()
-    //   case 'pool-compare':
-    //     return compareTabButtons()
-    //   case 'live-rewards-unregistered':
-        return unregisteredTabButtons()
-      // default:
-      //   return <div style={{width:'1.2em'}}></div>
-    // }
   }
 
   const estimatedBlocks = props => (
@@ -187,7 +128,7 @@ const StakeTab = ({stake, tabType}) => {
       
       <div className='flex-row d-flex w-100'>
 
-        { whichButtons() }
+        { buttons() }
 
         <div className='col d-flex flex-row flex-wrap m-0 p-1'>
           <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto' style={{ minWidth:'7em'}}>

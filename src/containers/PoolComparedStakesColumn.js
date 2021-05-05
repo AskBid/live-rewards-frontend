@@ -16,8 +16,20 @@ class PoolComparedStakesColumn extends Component {
 
   deployProjectedEpochStakes = () => {
     return (
-      <div className="d-flex flex-wrap">
-        {this.props.pool_compared_stakes.map((stake) => <StakeTab stake={stake}/>)}                           
+      <div className='flex-grow-1 d-flex flex-row flex-wrap'>
+          {this.props.pool_compared_stakes.map((stake) => {
+            return (
+              <div className='d-flex flex-row flex-grow-1'>
+                <div className='col text-primary'>
+                  Delegating with <b>{stake.pool_hash.pool.ticker} </b> 
+                  rather than <b>{this.props.epoch_stake.pool_hash.pool.ticker}</b>
+                </div>
+                <div className='col-auto'>
+                  <StakeTab stake={stake}/>
+                </div> 
+              </div>
+            )
+          })}
       </div>
     )
   }
@@ -59,7 +71,7 @@ class PoolComparedStakesColumn extends Component {
         </div>
         {(this.props.loading && !epoch_stake) && <h2 className='text-muted m-5'>Loading...</h2>}
         {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]}/>}
-        <div className='text-muted rounded pt-3 pl-2 pr-2 pb-1 mt-0 mb-5 shadow' style={{background:'rgba(235, 255, 254,0.5)'}}>
+        <div className='text-muted bg-white rounded pt-3 pl-0 pr-0 pb-1 mt-0 mb-5 shadow'>
           {this.textIfEmpty()}
           {this.deployProjectedEpochStakes()}
         </div>

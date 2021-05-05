@@ -83,23 +83,27 @@ function DelegationFlows({history, match}) {
         <div class="container">
           <div className='row text-nowrap'>
             <div className='col'>Pool Size:</div> 
-            <div className='col text-right text-info'>{symbols[currency]}{numeral(parseInt(delegation_flow[pool_hash_id].size*price)).format('0,0')}</div>
+            <div className='col text-right text-info'>
+              <b>{symbols[currency]}{numeral(parseInt(delegation_flow[pool_hash_id].size*price)).format('0,0')}</b>
+            </div>
           </div>
-          <div className='row text-nowrap'>
-            <div className='col'>D.Balance:</div>
-            <div className={`col text-right text-${(from_sum-to_sum) < 0 ? 'danger' : 'primary'}`}>{symbols[currency]}{numeral(parseInt((from_sum-to_sum)*price)).format('0,0')}</div>
+          <div className='row text-nowrap mt-1'>
+            <div className='col' style={{fontSize:'0.8em'}}>balance:</div> 
+            <div className={`col text-right text-${(from_sum-to_sum) < 0 ? 'danger' : 'primary'}`} style={{fontSize:'0.8em'}}>
+              ({(from_sum-to_sum) > 0 ? '+' : null}{numeral(parseInt((from_sum-to_sum)*price)).format('0,0')})
+            </div>
           </div>
         </div>
         <div class="container mt-1">
           <div className='row text-nowrap'>
             <div className='col text-right'></div>
-            <div className='col text-right'>in:</div>
+            <div className='col text-right mt-4 text-primary'><b>New Delegations From:</b></div>
           </div>
           {Object.keys(from) != 0 && Object.keys(from).map(key => {
             if (key === 'new_delegation') {
               return (
                 <div className='row text-nowrap'>
-                  <div className='col text-success'>{'New D.'}{' '}&#8594;</div>
+                  <div className='col text-success text-primary'><i className='text-primary'>{'New Wallets'}</i>{' '}<span className='text-primary'>&#8594;</span></div>
                   <div className='col text-right text-primary'>{symbols[currency]}{numeral(parseInt(from[key]*price)).format('0,0')}</div>
                 </div>
               )
@@ -111,7 +115,7 @@ function DelegationFlows({history, match}) {
         <div class="container mt-1">
           <div className='row text-nowrap'>
             <div className='col text-right'></div>
-            <div className='col text-right'>out:</div>
+            <div className='col text-right mt-4 text-danger'><b>Delegation that Left to:</b></div>
           </div>
           {Object.keys(to) != 0 && Object.keys(to).map(key => to_value(delegation_flow[key].ticker, to[key]))}
         </div>

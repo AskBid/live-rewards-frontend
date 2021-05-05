@@ -68,7 +68,7 @@ class PoolComparedStakesColumn extends Component {
   textIfEmpty = () => {
     if (this.props.loading_compared_stakes) {
       return (
-        <div className="position-absolute w-100 h-100 d-flex justify-content-center align-self-center" style={{zIndex:'100',top:'50%'}}>
+        <div className="position-absolute w-100 h-100 d-flex justify-content-center align-self-center" style={{zIndex:'100',top:'70px'}}>
           <BeatLoader className='position-absolute w-100 h-100 text-center' color='#999' size={30} style={{zIndex:'100'}}/>
         </div>
       )

@@ -6,7 +6,8 @@ import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
 import AutoComplete from '../components/AutoComplete'
 import { ButtonAdd, ButtonNav } from '../components/ButtonAddElement.js'
 import SquareLoader from "react-spinners/SquareLoader";
-import CurrencySelector from '../components/CurrencySelector'
+import CurrencySelector from '../components/CurrencySelector';
+import { ERROR } from '../actions'
 
 class AddPoolForm extends Component {
 
@@ -65,7 +66,12 @@ class AddPoolForm extends Component {
     e.preventDefault()
     const epoch_stake_id = this.props.match.params.epoch_stake_id
     const ticker = (this.state.text === '') ? this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
-    this.props.addUserPoolHash(this.props.user, ticker, epoch_stake_id)
+    debugger
+    if (this.props.pools.length > 2) {
+      this.props.addUserPoolHash(this.props.user, ticker, epoch_stake_id)
+    } else {
+      this.props.errorMessage('You are following too many Pools. Unfollow one of them before following a new one.')
+    }
   }
 
   render() { 
@@ -101,6 +107,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getTickers: () => dispatch(getTickers()),
     addUserPoolHash: (username, ticker, epoch_stake_id) => dispatch(addUserPoolHash(username, ticker, epoch_stake_id)),
+    errorMessage: (message) => dispatch({type: ERROR, message})
   }
 }
 
@@ -108,7 +115,8 @@ const mapStateToProps = state => {
   return {
     tickers: state.pools.tickers,
     loading: state.pool_compared_stakes.loading,
-    user: state.sessions.user
+    user: state.sessions.user,
+    pools: state.pool_compared_stakes.list
   }
 }
 

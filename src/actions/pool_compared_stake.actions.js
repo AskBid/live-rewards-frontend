@@ -54,11 +54,10 @@ function fetchComparedEpochStakes(route, dispatch) {
 			})
 }
 
-export const addUserPoolHash = (username, ticker, epoch_stake_id) => {
+export const addUserPoolHash = (user, ticker, epoch_stake_id) => {
 	return (dispatch) => {
 		dispatch({type: ADD_USER_POOL_HASH})
-		debugger
-		return fetch(`${process.env.REACT_APP_API_URL}/users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}`, {
+		return fetch(`${process.env.REACT_APP_API_URL}/${user ? `users/${user}/` : '' }user_pool_hashes?epoch_stake_id=${epoch_stake_id}`, {
 			method: 'POST',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -73,6 +72,7 @@ export const addUserPoolHash = (username, ticker, epoch_stake_id) => {
 			}
 			})
 			.then(json => {
+				//to local sotrage: json[0].pool_hash.id
 				dispatch({
 	  			type: ADD_USER_POOL_HASH_SUCCESS,
 	  			payload: json

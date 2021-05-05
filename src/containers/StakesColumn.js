@@ -12,7 +12,7 @@ import { getAddrFromLocalStorage } from '../helpers/local_storage_methods'
 class StakesColumn extends Component {
 
   componentDidMount() {
-    if (!this.props.epoch_stakes[0].id) {
+    if (this.props.epoch_stakes && !this.props.epoch_stakes[0].id) {
       this.props.username &&
         this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
       !this.props.username &&
@@ -38,18 +38,15 @@ class StakesColumn extends Component {
     const onClickLink = () => {
       if (this.props.username) {
         this.props.addUserStake(this.props.username, '')
-      } else {
-        this.props.unregisteredEpochStakes('')
       }
     }
-
     return (
       <React.Fragment>
         <div className='text-muted rounded pt-2 pl-2 pr-2 pb-2 mb-5 shadow' style={{background:'rgba(255, 255, 255,0.5)'}}>
           <p className='text-muted mb-3 mt-2 ml-5 mr-5'>
-          <span className='text-info'>Enter your <b>Stake Address</b> to check your latest rewards.</span>
+          <span className='text-primary'>Enter your <b>Stake Address</b> to check your latest rewards.</span>
           <br/>
-          If you don't know how to find your stake address, please visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
+          If you don't know how to find your address, please visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
           <br/>
           To add a random stake address click -> <a onClick={onClickLink} className='hardlink grey' style={{cursor:'pointer'}}>Random Stake!</a>.
         </p>

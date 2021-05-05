@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import AutoCompleteItem from "./AutoCompleteItem";
 
-const AutoComplete = ({ 
+const AutoComplete = ({
 		suggestions, 
 		text, 
 		handleTextChange,
@@ -27,7 +27,7 @@ const AutoComplete = ({
   }, []);
 
   // useEffect(() => {
-  	// !isVisible && showSuggestion()
+  // !isVisible && showSuggestion()
   // }, [text])
 
   const handleClickOutside = event => {

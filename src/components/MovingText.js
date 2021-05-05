@@ -1,7 +1,8 @@
 import React from 'react'
 import MovingText from 'react-moving-text'
  
-const MovingInstructions = () => {
+const MovingInstructions = ({textElement}) => {
+
   return (
     <MovingText
       type="shakeVertical"
@@ -13,9 +14,7 @@ const MovingInstructions = () => {
       fillMode="none"
       className='w-100 text-primary text-center position-absolute'
       style={{fontSize:'0.8em'}}>
-      <b>&uarr; Enter</b> one of your <b>receiving address</b> to see your <b>rewards</b>.
-      <br/>
-      Below are the rewards of a random wallet <b>&darr;</b> 
+      {textElement}
     </MovingText>
   )
 }

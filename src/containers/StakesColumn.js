@@ -20,6 +20,16 @@ class StakesColumn extends Component {
     }
   }
 
+  movingText = () => {
+    return (
+      <>
+      <b>&uarr; Enter</b> one of your <b>receiving address</b> to see your <b>rewards</b>.
+      <br/>
+      Below are the rewards of a random wallet <b>&darr;</b> 
+      </>
+    )
+  }
+
   deployEpochs = () => {
     const { epoch_stakes } = this.props
     if (!!epoch_stakes.length) {
@@ -66,7 +76,7 @@ class StakesColumn extends Component {
           </div>
         }
         {((this.props.epoch_stakes.length === 0) && this.props.username) && this.textIfEmpty()}
-        {!this.props.username && !(getAddrFromLocalStorage().length > 0) && <MovingText/>}
+        {!this.props.username && !(getAddrFromLocalStorage().length > 0) && <MovingText textElement={this.movingText()}/>}
         {this.deployEpochs()}
         <div style={{minHeight:'100px'}}></div>
       </React.Fragment>

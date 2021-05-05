@@ -13,7 +13,7 @@ function PoolCompare({match}) {
 	      <div className="row mb-5 h-100">
 	        <div className='col'>
 	        </div>
-	        <div className="col-lg-10 mr-auto ml-auto">
+	        <div className="col-lg-10 mr-auto ml-auto pt-3">
 	        	<AddPoolForm />
 	    			{/*<PoolComparedStakesColumn />*/}
 	        </div>

@@ -45,7 +45,7 @@ const AutoComplete = ({
 	const renderSuggestions = () => {
     // const isHighlighted = false
     return (
-    	<div className={`autocomplete-div w-100 d-block-flex border shadow-sm rounded pl-1 pt-2 ${isVisible ? null : 'invisible'}`}
+    	<div className={`autocomplete-div d-block-flex border shadow-sm rounded pl-1 pt-2 ${isVisible ? null : 'invisible'}`}
     		ref={searchResultDivRef}
     	>
         <ul ref={searchResultRef}>
@@ -59,7 +59,7 @@ const AutoComplete = ({
 	            ticker={ticker}
 	            text={text}
 	          />))
-        		: <li className='text-muted pl-2'>No matches found...</li>
+        		: <li className='text-muted pl-2 pr-3'>No matches found...</li>
         	}
         </ul>
       </div>
@@ -139,7 +139,7 @@ const AutoComplete = ({
 	      autocomplete="off"
         style={{minWidth:'240px'}}>
 	    </input>
-	    <div className='position-absolute w-100 pr-2' style={{'z-index':'99'}} onClick={() => hideSuggestion()}>
+	    <div className='position-absolute pr-2' style={{'z-index':'99'}} onClick={() => hideSuggestion()}>
 	    	{renderSuggestions()}
         {addressChecksMessage()}
       </div>

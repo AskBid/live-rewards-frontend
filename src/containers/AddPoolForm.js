@@ -5,7 +5,7 @@ import { getTickers } from '../actions/pool.actions'
 import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
 import { getComparedEpochStake } from '../actions/pool_compared_stake.actions';
 import AutoComplete from '../components/AutoComplete'
-import ButtonAddPool from '../components/ButtonAddElement.js'
+import { ButtonAdd, ButtonNav } from '../components/ButtonAddElement.js'
 import BounceLoader from "react-spinners/BounceLoader";
 import CurrencySelector from '../components/CurrencySelector'
 
@@ -70,43 +70,25 @@ class AddPoolForm extends Component {
   render() { 
     return (
     <React.Fragment>
-      {/*<div className='d-flex d-inline-flex w-100 mr-auto ml-auto'>
-        <div>
-          <button onClick={this.hideButton} className='col buttonsbar border-0 text-nowrap rounded mt-auto mb-auto ml-1 mr-1'>
-            Hide
-          </button>
-        </div>
-        <form className='row d-inline-flex w-100 mr-auto ml-auto'
-          onSubmit={this.handleSubmit}>
-          <AutoComplete 
-            suggestions={this.state.suggestions}
-            handleTextChange={this.handleTextChange} 
-            selectSuggestion={this.selectSuggestion}
-            text={this.state.text}/>
-          <button className='col-auto border-0 text-nowrap rounded-pill ml-1 mr-1 mt-auto mb-auto w-auto'
-            type='Submit'
-            disabled={!this.buttonActivation()}>
-            Follow Pool
-          </button>
-        </form>
-      </div>*/}
       <div className='col-lg d-flex flex-wrap justify-content-between mt-2 p-0'>
         <form className='w-50 d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={this.handleSubmit}>
-          <fieldset className='flex-grow-1'>
-            <AutoComplete 
-            suggestions={this.state.suggestions}
-            handleTextChange={this.handleTextChange} 
-            selectSuggestion={this.selectSuggestion}
-            text={this.state.text}/>
-            
-          </fieldset>
-          <ButtonAddPool className='text-nowrap rounded-pill ml-3 shadow-sm h-100 d-flex justify-content-center align-items-center'
+          <Link to={`/live-rewards`}>
+            <ButtonNav className='shadow-sm border-0 text-nowrap rounded mr-2 ml-0 d-flex justify-content-center align-items-center' alt='Go Back'>
+              <b>⟵</b>
+            </ButtonNav>
+          </Link>
+          <AutoComplete 
+          suggestions={this.state.suggestions}
+          handleTextChange={this.handleTextChange} 
+          selectSuggestion={this.selectSuggestion}
+          text={this.state.text}/>
+          <ButtonAdd className='text-nowrap rounded-pill ml-3 shadow-sm h-100 d-flex justify-content-center align-items-center'
             type='Submit'
             disabled={!this.buttonActivation()}
             style={{outline: 'none !important'}}>
             <div className="position-absolute" style={{top:'13px'}}>{this.props.loading && <BounceLoader color='#fff' size={23}/>}</div>
             <b> Follow Pool</b>
-          </ButtonAddPool>
+          </ButtonAdd>
         </form>
         <CurrencySelector/>
       </div>

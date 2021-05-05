@@ -7,7 +7,7 @@ import { addUserStake } from '../actions/stake_address.actions'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import CurrencySelector from './CurrencySelector'
 import BounceLoader from "react-spinners/BounceLoader";
-import ButtonAddAddress from './ButtonAddElement.js'
+import {ButtonAdd} from './ButtonAddElement.js'
 
 
 const AddStakeForm = ({match}) => {
@@ -75,13 +75,13 @@ const AddStakeForm = ({match}) => {
               {addressChecksMessage()}
             </div>
           </fieldset>
-          <ButtonAddAddress className='text-nowrap rounded-pill ml-3 shadow-sm h-100 d-flex justify-content-center align-items-center'
+          <ButtonAdd className='text-nowrap rounded-pill ml-3 shadow-sm h-100 d-flex justify-content-center align-items-center'
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
             <div className="position-absolute" style={{top:'13px'}}>{loading && <BounceLoader color='#fff' size={23}/>}</div>
             <b> Submit Your Address</b>
-          </ButtonAddAddress>
+          </ButtonAdd>
         </form>
         <CurrencySelector/>
       </div>

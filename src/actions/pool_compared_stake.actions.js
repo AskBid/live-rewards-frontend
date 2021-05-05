@@ -20,7 +20,13 @@ import { authHeader } from '../helpers/auth-header'
 export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES})
-		return fetch(`${process.env.REACT_APP_API_URL}/users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}`, {
+		const route = username ? `users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}` : null
+		return fetchComparedEpochStakes(route, dispatch)
+	}
+}
+
+function fetchComparedEpochStakes(route, dispatch) {
+	return fetch(`${process.env.REACT_APP_API_URL}/${route}`, {
 			method: 'GET',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -46,13 +52,13 @@ export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
 				dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES_FAILURE})
 				dispatch({type: ERROR, message: err.error.toString()})
 			})
-	}
 }
 
-export const addUserPoolHash = (username, ticker) => {
+export const addUserPoolHash = (username, ticker, epoch_stake_id) => {
 	return (dispatch) => {
 		dispatch({type: ADD_USER_POOL_HASH})
-		return fetch(`${process.env.REACT_APP_API_URL}//users/${username}/user_pool_hashes`, {
+		debugger
+		return fetch(`${process.env.REACT_APP_API_URL}/users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}`, {
 			method: 'POST',
 	    headers: {
 	    	'Content-Type': 'application/json',

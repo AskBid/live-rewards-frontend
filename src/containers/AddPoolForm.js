@@ -64,13 +64,11 @@ class AddPoolForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const username = this.props.match.params.username
     const epoch_stake_id = this.props.match.params.epoch_stake_id
-    const ticker = (this.state.text === '') ? 
-      this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
-    this.props.addUserPoolHash(username, ticker)
-      .then(res => this.props.getComparedEpochStake(res.user_pool_hash_id, epoch_stake_id))
-      .catch(err => console.log(err))
+    const ticker = (this.state.text === '') ? this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
+    this.props.addUserPoolHash(this.props.user, ticker, epoch_stake_id)
+      // .then(res => this.props.getComparedEpochStake(res.user_pool_hash_id, ))
+      // .catch(err => console.log(err))
   }
 
   render() { 
@@ -105,7 +103,7 @@ class AddPoolForm extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     getTickers: () => dispatch(getTickers()),
-    addUserPoolHash: (username, ticker) => dispatch(addUserPoolHash(username, ticker)),
+    addUserPoolHash: (username, ticker, epoch_stake_id) => dispatch(addUserPoolHash(username, ticker, epoch_stake_id)),
     getComparedEpochStake: (user_pool_hash_id, epoch_stake_id) => dispatch(getComparedEpochStake(user_pool_hash_id, epoch_stake_id))
   }
 }
@@ -113,7 +111,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     tickers: state.pools.tickers,
-    loading: state.pools.loading
+    loading: state.pools.loading,
+    user: state.sessions.user
   }
 }
 

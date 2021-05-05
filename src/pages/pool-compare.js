@@ -24,7 +24,7 @@ function PoolCompare({match}) {
 	        <div className='col'>
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto pt-3">
-	        	<AddPoolForm />
+	        	<AddPoolForm match={match}/>
 	        	<MovingText textElement={movingText()} />
 	    			<PoolComparedStakesColumn />
 	        </div>

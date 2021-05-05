@@ -14,7 +14,7 @@ function PoolCompare({match}) {
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto">
 	        	<PoolCompareControlBar />
-	    			<PoolComparedStakesColumn />
+	    			{/*<PoolComparedStakesColumn />*/}
 	        </div>
 	        <div className='col'></div>
 	      </div>

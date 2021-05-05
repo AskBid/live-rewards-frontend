@@ -66,7 +66,7 @@ class StakesColumn extends Component {
           </div>
         }
         {((this.props.epoch_stakes.length === 0) && this.props.username) && this.textIfEmpty()}
-        {!this.props.username && <MovingText/>}
+        {!this.props.username && !(getAddrFromLocalStorage().length > 0) && <MovingText/>}
         {this.deployEpochs()}
         <div style={{minHeight:'100px'}}></div>
       </React.Fragment>

@@ -19,7 +19,11 @@ class AddPoolForm extends Component {
 
   componentDidMount() {
     // avoid to fetch tickers every time component is mounted?
-    !this.props.tickers && this.props.getTickers()
+    !this.props.tickers && this.props.getTickers().then((ts) => {
+      this.setState({
+        suggestions: ts.slice(Math.random(this.props.tickers.length-101), 100)
+      })
+    })
   }
 
   handleTextChange = (e) => {
@@ -29,6 +33,8 @@ class AddPoolForm extends Component {
       //matches to string starting with the value, 'i' is for case insenstitive.
       const regex = new RegExp(`^${value}`, 'i')
       suggestions = this.props.tickers.sort().filter(tick => regex.test(tick))
+    } else {
+      suggestions = this.props.tickers.slice(Math.random(this.props.tickers.length-101), 100)
     }
     this.setState({
       text: e.target.value,
@@ -39,7 +45,7 @@ class AddPoolForm extends Component {
   selectSuggestion = (value) => {
     this.setState({
       text: value,
-      suggestions: []
+      suggestions: this.props.tickers.slice(Math.random(this.props.tickers.length-101), 100)
     })
   }
 

@@ -33,6 +33,7 @@ export const getTickers = () => {
 	  		dispatch({
 	  			type: CLEAR
 	  		});
+	  		return json
 			})
 			.catch(err => {
 				dispatch({type: ERROR, message: err.toString()})

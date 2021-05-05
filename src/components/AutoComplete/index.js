@@ -46,7 +46,7 @@ const AutoComplete = ({
     // const isHighlighted = false
     return (
     	<div className={`autocomplete-div d-block-flex border shadow-sm rounded pl-1 pt-2 ${isVisible ? null : 'invisible'}`}
-    		ref={searchResultDivRef}
+    		ref={searchResultDivRef} style={{minWidth:'200px'}}
     	>
         <ul ref={searchResultRef}>
         	{(suggestions.length > 0) ?
@@ -136,8 +136,7 @@ const AutoComplete = ({
 	      onChange={handleTextChange}
 	      onClick={showSuggestion}
 	      onKeyDown={keyboardNavigation}
-	      autocomplete="off"
-        style={{minWidth:'240px'}}>
+	      autocomplete="off">
 	    </input>
 	    <div className='position-absolute pr-2' style={{'z-index':'99'}} onClick={() => hideSuggestion()}>
 	    	{renderSuggestions()}

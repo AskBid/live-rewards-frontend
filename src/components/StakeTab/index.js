@@ -24,7 +24,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Skeleton from 'react-loading-skeleton';
 import BeatLoader from "react-spinners/BeatLoader";
 
-const StakeTab = ({stake}) => { 
+const StakeTab = ({stake, buttonType}) => { 
 
   const user = useSelector(state => state.sessions.user)
   const currency = useSelector(state => state.sessions.currency.symbol)
@@ -54,30 +54,43 @@ const StakeTab = ({stake}) => {
     btc: '฿'
   }
 
+  const deleteBtn = (deleteFunc) => {
+    return (
+      <form onSubmit={(e) => {
+          e.preventDefault()
+          dispatch(deleteFunc(user, stake_address_id))
+        }}
+        className='w-100'>
+        <DeleteBtn type='Submit' className='w-100 text-center mt-0 mb-1 d-flex flex-column justify-content-center align-items-center' disabled={!stake.id || loading || !stake_address_id}>
+          <b className='position-absolute' style={{fontSize:'0.9em', top:'-1.5em'}}>Delete!</b>
+          { !(!stake.id || loading || !stake_address_id) && <CloseIcon size={14}/> }
+        </DeleteBtn>
+      </form>
+    )
+  }
+
+  const poolCompareBtn = () => {
+    return (
+      <Link to={`/pool-compare/epoch_stakes/${stake.id}`} className='w-100 h-100 mt-1 mb-1'>
+        <OverlayTrigger placement='top' overlay={compareTip}>     
+          <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id || loading}>
+            <PoolIcon size={20}/>{/*<br/><div style={{fontSize:'0.8em'}}>Pool-Compare</div>*/}
+          </FuncBtn>
+        </OverlayTrigger>
+      </Link>
+    )
+  }
+
   const buttons = () => {
     return (
-      <div className='d-flex flex-column justify-content-start align-items-start p-2'
-        style={{minWidth:'55px',background:'none'}}>
-        <form onSubmit={(e) => {
-            e.preventDefault()
-            dispatch(deleteStakeAddress(user, stake_address_id))
-          }}
-          className='w-100'>
-          <DeleteBtn type='Submit' className='w-100 text-center d-flex flex-column justify-content-center align-items-center' disabled={!stake.id || loading || !stake_address_id}>
-            <b className='position-absolute' style={{fontSize:'0.9em', top:'-1.5em'}}>Delete!</b>
-            { !(!stake.id || loading || !stake_address_id) && <CloseIcon size={14}/> }
-          </DeleteBtn>
-        </form>
-        
-        <Link to={`/pool-compare/epoch_stakes/${stake.id}`} className='w-100 h-100 mt-2'>
-          <OverlayTrigger placement='top' overlay={compareTip}>     
-            <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id || loading}>
-              <PoolIcon size={20}/>{/*<br/><div style={{fontSize:'0.8em'}}>Pool-Compare</div>*/}
-            </FuncBtn>
-          </OverlayTrigger>
-        </Link>
-        
-        <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`} className='w-100 h-100 mt-2 shadow-sm'> 
+      <div className='d-flex flex-column justify-content-start align-items-start p-2' style={{minWidth:'55px',background:'none'}}>
+
+        {buttonType == 3 && deleteBtn(deleteStakeAddress)}
+        {/*{buttonType == 2 && deleteBtn(deleteUserPoolHash)}*/}
+
+        {buttonType == 3 && poolCompareBtn()}
+      
+        <Link to={`/delegation-flows/epochs/${stake.epoch_no}/pools/${ticker}`} className='w-100 h-100 mt-1 mb-1 shadow-sm'> 
           <OverlayTrigger placement='bottom' overlay={delegationFlowTip}>   
           <FuncBtn type='Submit' className='w-100 h-100 shadow-sm' disabled={!stake.id || loading}>
             <DeleFlowIcon size={20}/>

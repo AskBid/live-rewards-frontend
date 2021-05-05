@@ -53,7 +53,7 @@ class PoolComparedStakesColumn extends Component {
                   </div>
                 </div>
                 <div className='col flex-grow-1 d-flex flex-row flex-wrap'>
-                  <StakeTab stake={stake}/>
+                  <StakeTab stake={stake} buttonType={2}/>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ class PoolComparedStakesColumn extends Component {
         }
         <div className='d-flex justify-content-center'>
         </div>
-        {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]}/>}
+        {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonType={0}/>}
         {this.textIfEmpty()}
         {this.deployProjectedEpochStakes()}
         <div style={{minHeight:'100px'}}></div>

@@ -7,7 +7,7 @@ export const DeleteBtn = styled.button `
 	border: 1px solid rgba(0, 123, 255, 0.4);
 	border-radius: 3px;
 	color: transparent;
-	padding: 0.5px;
+	padding: 2px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: rgba(245,120,90,0.8);

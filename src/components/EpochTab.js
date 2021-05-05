@@ -4,7 +4,7 @@ import Moment from 'moment'
 import { useSelector } from 'react-redux'
 import Skeleton from 'react-loading-skeleton';
 
-const EpochTab = ({epochno, stakes, tabType}) => {
+const EpochTab = ({epochno, stakes, buttonType}) => {
 
   // const last_update = useSelector(state => state.sessions.lastUpdate)
 
@@ -55,7 +55,7 @@ const EpochTab = ({epochno, stakes, tabType}) => {
 
   const deploy_stakes = () => {
     return stakes.map((stake, i) => {
-      return <StakeTab stake={stake} key={stake.id}/>
+      return <StakeTab stake={stake} key={stake.id} buttonType={buttonType}/>
     })
   }
 

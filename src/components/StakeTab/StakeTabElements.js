@@ -10,9 +10,9 @@ export const DeleteBtn = styled.button `
 	padding: 0.5px;
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: red;
-    color: red;
-    border: 1px solid red;
+    background: rgba(245,120,90,0.8);
+    color: rgba(245,120,90,0.8);
+    border: 1px solid rgba(245,120,90,0.8);
   }
   &:disabled {
   	background: rgba(200, 200, 200, 0.4);

@@ -2,16 +2,20 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { SUCCESS } from '../actions'
+import { ERROR } from '../actions'
 import { addUserStake } from '../actions/stake_address.actions'
 import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import CurrencySelector from './CurrencySelector'
 import styled from 'styled-components'
+import BounceLoader from "react-spinners/BounceLoader";
 
 
 const AddStakeForm = ({match}) => {
 
   const [address, setAddress] = useState('')
   const user = useSelector(state => state.sessions.user)
+  const epoch_stakes = useSelector(state => state.epoch_stakes.list)
+  const loading = useSelector(state => state.epoch_stakes.loading)
   const dispatch = useDispatch()
 
   const handleAddressInputChange = (e) => {
@@ -45,11 +49,13 @@ const AddStakeForm = ({match}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (user) {
+    if (epoch_stakes.length < 9) {
       dispatch(addUserStake(user, address))
     } else {
-      dispatch(noUserEpochStakes(address))
-      dispatch({type: SUCCESS, message: 'You can add only one stake if you are not logged in.'})
+      dispatch({
+        type: ERROR, 
+        message: "You have too many Addresses already. Delete one of them before adding a new one."
+      })
     }
   }
 
@@ -71,7 +77,7 @@ const AddStakeForm = ({match}) => {
 
   return (
     <>
-      <div className='col-lg d-flex flex-wrap justify-content-between mt-2'>
+      <div className='col-lg d-flex flex-wrap justify-content-between mt-2 p-0'>
         <form className='w-50 d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={handleSubmit}>
           <fieldset className='flex-grow-1'>
             <input
@@ -85,11 +91,12 @@ const AddStakeForm = ({match}) => {
               {addressChecksMessage()}
             </div>
           </fieldset>
-          <ButtonAddAddress className='text-nowrap rounded-pill ml-3 shadow-sm h-100'
+          <ButtonAddAddress className='text-nowrap rounded-pill ml-3 shadow-sm h-100 d-flex justify-content-center align-items-center'
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
-            <b>Submit Your Address</b>
+            <div className="position-absolute" style={{top:'13px'}}>{loading && <BounceLoader color='#fff' size={23}/>}</div>
+            <b> Submit Your Address</b>
           </ButtonAddAddress>
         </form>
         <CurrencySelector/>

@@ -16,21 +16,25 @@ class PoolComparedStakesColumn extends Component {
 
   deployProjectedEpochStakes = () => {
     return (
-      <div className='flex-grow-1 d-flex flex-row flex-wrap'>
-          {this.props.pool_compared_stakes.map((stake) => {
-            return (
-              <div className='d-flex flex-row flex-grow-1'>
-                <div className='col text-primary'>
-                  Delegating with <b>{stake.pool_hash.pool.ticker} </b> 
-                  rather than <b>{this.props.epoch_stake.pool_hash.pool.ticker}</b>
+      <>
+        {this.props.pool_compared_stakes.map((stake) => {
+          return (
+            <div className='text-light bg-white bg-gradient pt-3 pb-0 shadow-sm mb-0' style={{borderRadius:'10px', margin:'12px 0px 0px 0px'}}>
+              <div className='d-flex flex-lg-row flex-wrap'>
+                <div className='container col pb-3 pt-0 pl-0 pr-0 align-self-center'>
+                  <div className='container align-self-center mt-auto mb-auto ml-auto mr-auto d-flex flex-row'>
+                    Delegating with <b>{stake.pool_hash.pool.ticker} </b> 
+                    rather than <b>{this.props.epoch_stake.pool_hash.pool.ticker}</b>
+                  </div>
                 </div>
-                <div className='col-auto'>
+                <div className='col flex-grow-1 d-flex flex-row flex-wrap'>
                   <StakeTab stake={stake}/>
-                </div> 
+                </div>
               </div>
-            )
-          })}
-      </div>
+            </div>
+          )
+        })}
+      </>
     )
   }
 
@@ -43,7 +47,7 @@ class PoolComparedStakesColumn extends Component {
       return (
         <p className='text-muted m-5'>
           You are not following any pools.<br/>
-          To compare your stake with other pools, follow a pool by using the form on top of the page or by clicking <Link to={this.props.location.pathname + '/pools/new'} className='hardlink'>here</Link>.
+          To compare your stake with other pools, follow a pool by using the form on top of the page.
         </p>
       )
     }
@@ -56,25 +60,17 @@ class PoolComparedStakesColumn extends Component {
       <React.Fragment>
         { this.props.alert.message &&
           <div className={`w-100 d-flex justify-content-center`} onClick={this.props.closeAlert} style={{cursor:'pointer'}}>
-          <div className={`alert ${this.props.alert.type} w-75`}>
-            {this.props.alert.message.split('<b>').splice(0,1)}
-            <b>{this.props.alert.message.split('<b>').splice(1,1)}</b>
-          </div>
+            <div className={`alert ${this.props.alert.type} w-75`}>
+              <b>{this.props.alert.message}</b>
+            </div>
           </div>
         }
         <div className='d-flex justify-content-center'>
-          {this.props.loading && 
-            <div className='spinner1 border rounded d-flex justify-content-center vw-50 vh-50'>
-                <img className='mb-3 mt-auto mb-auto' alt='spinner' src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            </div>
-          }
         </div>
-        {(this.props.loading && !epoch_stake) && <h2 className='text-muted m-5'>Loading...</h2>}
         {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]}/>}
-        <div className='text-muted bg-white rounded pt-3 pl-0 pr-0 pb-1 mt-0 mb-5 shadow'>
-          {this.textIfEmpty()}
-          {this.deployProjectedEpochStakes()}
-        </div>
+        {this.textIfEmpty()}
+        {this.deployProjectedEpochStakes()}
+        <div style={{minHeight:'100px'}}></div>
       </React.Fragment>
     )
   }

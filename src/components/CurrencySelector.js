@@ -8,6 +8,17 @@ import styled from 'styled-components'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import numeral from 'numeral'
 
+const PriceDisplay = styled.div `
+  /*background: rgba(255,127,80,0.5);*/
+  background: rgba(245,240,240,0.5);
+  border: 1px solid #007bff;
+  color: #007bff;
+  min-width: 100px;
+  &:hover {
+    transition: all 0.05s ease-in-out;
+  }
+`;
+
 const CurrencySelector = () => {
   const currency = useSelector( state => state.sessions.currency )
   const loading = useSelector( state => state.sessions.gecko_loading )
@@ -26,17 +37,6 @@ const CurrencySelector = () => {
     btc: '฿'
   }
 
-  const PriceDisplay = styled.div `
-    /*background: rgba(255,127,80,0.5);*/
-    background: rgba(255,255,255,0.5);
-    border: 2px solid #007bff;
-    color: #007bff;
-    min-width: 100px;
-    &:hover {
-      transition: all 0.05s ease-in-out;
-    }
-  `;
-  console.log(loading)
   return (
     <div className='col-sm d-flex flex-inline flex-grow-1 justify-content-end mt-2 ml-2 mb-2 mr-0 pr-0'>
       <PriceDisplay className='ml-2 mr-2 h-100 text-monospace shadow-sm rounded d-flex justify-content-center align-items-center'>

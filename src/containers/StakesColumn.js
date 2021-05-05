@@ -12,7 +12,7 @@ import { getAddrFromLocalStorage } from '../helpers/local_storage_methods'
 class StakesColumn extends Component {
 
   componentDidMount() {
-    if (this.props.epoch_stakes && !this.props.epoch_stakes[0].id) {
+    if (this.props.epoch_stakes.length != 0 && !this.props.epoch_stakes[0].id) {
       this.props.username &&
         this.props.userEpochStakes(this.props.username).catch(res => this.props.noServer())
       !this.props.username &&
@@ -45,21 +45,12 @@ class StakesColumn extends Component {
   }
 
   textIfEmpty = () => {
-    const onClickLink = () => {
-      if (this.props.username) {
-        this.props.addUserStake(this.props.username, '')
-      }
-    }
     return (
       <React.Fragment>
-        <div className='text-muted rounded pt-2 pl-2 pr-2 pb-2 mb-5 shadow' style={{background:'rgba(255, 255, 255,0.5)'}}>
-          <p className='text-muted mb-3 mt-2 ml-5 mr-5'>
-          <span className='text-primary'>Enter your <b>Stake Address</b> to check your latest rewards.</span>
+        <div className='ml-auto mr-auto w-75 text-muted rounded p-5 mt-5 mb-5 shadow-sm' style={{background:'rgba(255, 255, 255,0.5)'}}>
+          <h2 className="text-center pl-5 pr-5">Upsi! it seems that you don't have any wallet address associated...</h2>
           <br/>
-          If you don't know how to find your address, please visit the <Link to={`/howto`} className='hardlink grey'>How To</Link>.
-          <br/>
-          To add a random stake address click -> <a onClick={onClickLink} className='hardlink grey' style={{cursor:'pointer'}}>Random Stake!</a>.
-        </p>
+          <h4 className="text-center">Enter one with the form above, or leave it empty, and submit, to visualise a random wallet!</h4>
         </div>
       </React.Fragment>
     )
@@ -75,8 +66,8 @@ class StakesColumn extends Component {
             </div>
           </div>
         }
-        {((this.props.epoch_stakes.length === 0) && this.props.username) && this.textIfEmpty()}
         {!this.props.username && !(getAddrFromLocalStorage().length > 0) && <MovingText textElement={this.movingText()}/>}
+        {this.props.epoch_stakes.length === 0 && this.textIfEmpty()}
         {this.deployEpochs()}
         <div style={{minHeight:'100px'}}></div>
       </React.Fragment>

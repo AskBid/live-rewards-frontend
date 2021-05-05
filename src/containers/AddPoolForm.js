@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTickers } from '../actions/pool.actions'
 import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
-import { getComparedEpochStake } from '../actions/pool_compared_stake.actions';
 import AutoComplete from '../components/AutoComplete'
 import { ButtonAdd, ButtonNav } from '../components/ButtonAddElement.js'
 import BounceLoader from "react-spinners/BounceLoader";
@@ -67,8 +66,6 @@ class AddPoolForm extends Component {
     const epoch_stake_id = this.props.match.params.epoch_stake_id
     const ticker = (this.state.text === '') ? this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
     this.props.addUserPoolHash(this.props.user, ticker, epoch_stake_id)
-      // .then(res => this.props.getComparedEpochStake(res.user_pool_hash_id, ))
-      // .catch(err => console.log(err))
   }
 
   render() { 
@@ -104,7 +101,6 @@ const mapDispatchToProps = dispatch => {
   return {
     getTickers: () => dispatch(getTickers()),
     addUserPoolHash: (username, ticker, epoch_stake_id) => dispatch(addUserPoolHash(username, ticker, epoch_stake_id)),
-    getComparedEpochStake: (user_pool_hash_id, epoch_stake_id) => dispatch(getComparedEpochStake(user_pool_hash_id, epoch_stake_id))
   }
 }
 

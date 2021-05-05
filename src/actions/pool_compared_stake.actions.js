@@ -75,6 +75,7 @@ export const addUserPoolHash = (username, ticker, epoch_stake_id) => {
 			.then(json => {
 				dispatch({
 	  			type: ADD_USER_POOL_HASH_SUCCESS,
+	  			payload: json
 	  		});
 	  		dispatch({
 	  			type: CLEAR
@@ -88,38 +89,38 @@ export const addUserPoolHash = (username, ticker, epoch_stake_id) => {
 	}
 }
 
-export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
-	return (dispatch) => {
-		dispatch({type: REQUEST_USER_POOL_HASH})
-		return fetch(`${process.env.REACT_APP_API_URL}/user_pool_hashes/${user_pool_hash_id}?epoch_stake_id=${epoch_stake_id}`, {
-			method: 'GET',
-	    headers: {
-	    	'Content-Type': 'application/json',
-	    	"Accept": "application/json"
-	    }
-	  }).then(res => {
-				if (res.ok) {
-					return res.json()
-				} else {
-					return res.json().then(json => Promise.reject(json.error))
-				}
-			})
-	  	.then(json => {
-	  		dispatch({
-	  			type: REQUEST_USER_POOL_HASH_SUCCESS, 
-	  			payload: json
-	  		});
-	  		dispatch({
-	  			type: SUCCESS, 
-	  			message: `You are now following ${json[0].pool_hash.pool.ticker} pool.`
-	  		})
-	  	})
-			.catch(err => {
-				dispatch({type: REQUEST_USER_POOL_HASH_FAILURE})
-				dispatch({type: ERROR, message: err.toString()})
-			})
-	}
-}
+// export const getComparedEpochStake = (user_pool_hash_id, epoch_stake_id) => {
+// 	return (dispatch) => {
+// 		dispatch({type: REQUEST_USER_POOL_HASH})
+// 		return fetch(`${process.env.REACT_APP_API_URL}/user_pool_hashes/${user_pool_hash_id}?epoch_stake_id=${epoch_stake_id}`, {
+// 			method: 'GET',
+// 	    headers: {
+// 	    	'Content-Type': 'application/json',
+// 	    	"Accept": "application/json"
+// 	    }
+// 	  }).then(res => {
+// 				if (res.ok) {
+// 					return res.json()
+// 				} else {
+// 					return res.json().then(json => Promise.reject(json.error))
+// 				}
+// 			})
+// 	  	.then(json => {
+// 	  		dispatch({
+// 	  			type: REQUEST_USER_POOL_HASH_SUCCESS, 
+// 	  			payload: json
+// 	  		});
+// 	  		dispatch({
+// 	  			type: SUCCESS, 
+// 	  			message: `You are now following ${json[0].pool_hash.pool.ticker} pool.`
+// 	  		})
+// 	  	})
+// 			.catch(err => {
+// 				dispatch({type: REQUEST_USER_POOL_HASH_FAILURE})
+// 				dispatch({type: ERROR, message: err.toString()})
+// 			})
+// 	}
+// }
 
 export const deleteUserPoolHash = (user_pool_hash_id) => {
 	return (dispatch) => {

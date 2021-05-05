@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getDelegationFlow } from '../actions/delegation_flows.actions'
 import { addUserPoolHash } from '../actions/pool_compared_stake.actions'
-import { getComparedEpochStake } from '../actions/pool_compared_stake.actions';
 import AutoComplete from '../components/AutoComplete'
 import chart_delegation_flows from '../helpers/chart_delegation_flows'
 
@@ -143,7 +142,6 @@ const mapDispatchToProps = dispatch => {
   return {
     getDelegationFlow: (epoch_no) => dispatch(getDelegationFlow(epoch_no)),
     addUserPoolHash: (username, ticker) => dispatch(addUserPoolHash(username, ticker)),
-    getComparedEpochStake: (user_pool_hash_id, epoch_stake_id) => dispatch(getComparedEpochStake(user_pool_hash_id, epoch_stake_id))
   }
 }
 

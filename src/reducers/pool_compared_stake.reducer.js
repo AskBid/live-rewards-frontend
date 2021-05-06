@@ -10,7 +10,8 @@ import {
   REQUEST_USER_POOL_HASH_FAILURE,
   DELETE_USER_POOL_HASH,
   DELETE_USER_POOL_HASH_SUCCESS,
-  DELETE_USER_POOL_HASH_FAILURE
+  DELETE_USER_POOL_HASH_FAILURE,
+  DELETE_LOCAL_STORAGE_POOL_HASH_SUCCESS
 } from '../actions'
 
 const initialState = {
@@ -92,6 +93,15 @@ export default function projectedStakeReducer(state = initialState, action) {
         ...state,
         deleting_user_pool_hash_id: undefined,
         list
+      }
+
+    case DELETE_LOCAL_STORAGE_POOL_HASH_SUCCESS:
+      return {
+        ...state,
+        deleting_user_pool_hash_id: undefined,
+        list: state.list.filter(compared_stake => {
+          return compared_stake.pool_hash.id != action.payload
+        })
       }
 
     case DELETE_USER_POOL_HASH_FAILURE:

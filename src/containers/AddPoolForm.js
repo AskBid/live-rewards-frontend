@@ -66,7 +66,6 @@ class AddPoolForm extends Component {
     e.preventDefault()
     const epoch_stake_id = this.props.match.params.epoch_stake_id
     const ticker = (this.state.text === '') ? this.props.tickers[Math.floor(Math.random() * this.props.tickers.length)] : this.state.text
-    debugger
     if (this.props.pools.length < 4) {
       this.props.addUserPoolHash(this.props.user, ticker, epoch_stake_id)
     } else {

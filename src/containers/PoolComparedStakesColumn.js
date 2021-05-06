@@ -19,7 +19,8 @@ class PoolComparedStakesColumn extends Component {
       this.fetchComparedEpochStakes(epoch_stake_id)
         .catch(err => console.log(err))
     } else {
-      this.fetchComparedEpochStakes(epoch_stake_id)
+      this.props.getEpochStake(epoch_stake_id)
+        .then(res => this.fetchComparedEpochStakes(epoch_stake_id))
         .catch(err => console.log(err))
     }
   }

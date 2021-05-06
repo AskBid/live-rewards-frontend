@@ -59,12 +59,8 @@ function fetchComparedEpochStakes(route, dispatch) {
 			})
 	  	.then(json => {
 	  		dispatch({
-	  			type: REQUEST_EPOCH_STAKE_SUCCESS, 
-	  			payload: json.epoch_stake
-	  		});
-	  		dispatch({
 	  			type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES_SUCCESS, 
-	  			payload: json.compared_stakes
+	  			payload: json
 	  		});
 	  		dispatch({
 	  			type: CLEAR

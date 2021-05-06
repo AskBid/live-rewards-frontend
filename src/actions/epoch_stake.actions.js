@@ -88,9 +88,11 @@ export const getEpochStake = (epoch_stake_id) => {
 	  			type: REQUEST_EPOCH_STAKE_SUCCESS, 
 	  			payload: json
 	  		});
+	  		return json
 	  	})
 			.catch(err => {
 				dispatch({type: REQUEST_EPOCH_STAKE_FAILURE})
+				return err
 			})
 	}
 }

@@ -4,6 +4,7 @@ import numeral from 'numeral';
 import StakeTab from '../components/StakeTab';
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteLocalStoragePoolHash } from '../actions/pool_compared_stake.actions';
+import { deleteUserPoolHash } from '../actions/pool_compared_stake.actions';
 
 const UnfollowLink = styled.div `
   background: none;
@@ -23,6 +24,7 @@ const UnfollowLink = styled.div `
 const ProjectedEpochStakeTab = ({stake, epoch_stake}) => {
 
   const dispatch = useDispatch()
+  const user = useSelector(state => state.sessions.user)
   const price = useSelector(state => state.sessions.currency.price)
   const currency = useSelector(state => state.sessions.currency.symbol)
   const difference = (stake.calc_rewards * price) - (epoch_stake.calc_rewards * price)
@@ -38,7 +40,8 @@ const ProjectedEpochStakeTab = ({stake, epoch_stake}) => {
   }
 
   const unfollowPool = () => {
-    dispatch(deleteLocalStoragePoolHash(stake.pool_hash))
+    !user && dispatch(deleteLocalStoragePoolHash(stake.pool_hash))
+    user && dispatch(deleteUserPoolHash(stake.user_pool_hash_id))
   }
 
   return (

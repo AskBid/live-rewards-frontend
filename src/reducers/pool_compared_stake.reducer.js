@@ -63,7 +63,7 @@ export default function projectedStakeReducer(state = initialState, action) {
     case DELETE_USER_POOL_HASH:
       return {
         ...state,
-        deleting_user_pool_hash_id: action.payload
+        deleting_pool_hash_id: action.payload
       }
 
     case DELETE_USER_POOL_HASH_SUCCESS:
@@ -72,14 +72,14 @@ export default function projectedStakeReducer(state = initialState, action) {
       })
       return {
         ...state,
-        deleting_user_pool_hash_id: undefined,
+        deleting_pool_hash_id: undefined,
         list
       }
 
     case DELETE_LOCAL_STORAGE_POOL_HASH_SUCCESS:
       return {
         ...state,
-        deleting_user_pool_hash_id: undefined,
+        deleting_pool_hash_id: undefined,
         list: state.list.filter(compared_stake => {
           return compared_stake.pool_hash.id != action.payload
         })
@@ -88,7 +88,7 @@ export default function projectedStakeReducer(state = initialState, action) {
     case DELETE_USER_POOL_HASH_FAILURE:
       return {
         ...state,
-        deleting_user_pool_hash_id: undefined
+        deleting_pool_hash_id: undefined
       }
 
     default:

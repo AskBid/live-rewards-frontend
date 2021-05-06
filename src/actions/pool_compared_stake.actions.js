@@ -124,13 +124,13 @@ export const deleteLocalStoragePoolHash = (pool_hash) => {
   }
 }
 
-export const deleteUserPoolHash = (user_pool_hash_id) => {
+export const deleteUserPoolHash = (user, pool_hash_id) => {
 	return (dispatch) => {
 		dispatch({
 			type: DELETE_USER_POOL_HASH,
-			payload: user_pool_hash_id
+			payload: pool_hash_id
 		})
-		return fetch(`${process.env.REACT_APP_API_URL}/user_pool_hashes/${user_pool_hash_id}`, {
+		return fetch(`${process.env.REACT_APP_API_URL}/usera/${user}/user_pool_hashes/${pool_hash_id}`, {
 			method: 'DELETE',
 	    headers: {
 	    	'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ export const deleteUserPoolHash = (user_pool_hash_id) => {
 			.then(json => {
 				dispatch({
 	  			type: DELETE_USER_POOL_HASH_SUCCESS,
-	  			payload: user_pool_hash_id
+	  			payload: pool_hash_id
 	  		});
 	  		dispatch({
 	  			type: CLEAR

@@ -41,7 +41,7 @@ const ProjectedEpochStakeTab = ({stake, epoch_stake}) => {
 
   const unfollowPool = () => {
     !user && dispatch(deleteLocalStoragePoolHash(stake.pool_hash))
-    user && dispatch(deleteUserPoolHash(stake.user_pool_hash_id))
+    user && dispatch(deleteUserPoolHash(user, stake.pool_hash.id))
   }
 
   return (

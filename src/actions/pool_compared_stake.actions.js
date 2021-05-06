@@ -19,12 +19,26 @@ import {
 import { authHeader } from '../helpers/auth-header'
 import { addPoolToLocalStorage } from '../helpers/local_storage_methods'
 import { deletePoolFromLocalStorage } from '../helpers/local_storage_methods'
+import { getPoolsFromLocalStorage } from '../helpers/local_storage_methods'
 
-export const getPoolCompareUserEpochStakes = (username, epoch_stake_id) => {
+export const getComparedEpochStakesFromUser = (username, epoch_stake_id) => {
 	return (dispatch) => {
 		dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES})
-		const route = username ? `users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}` : null
-		return fetchComparedEpochStakes(route, dispatch)
+		return fetchComparedEpochStakes(
+			`users/${username}/user_pool_hashes?epoch_stake_id=${epoch_stake_id}`, 
+			dispatch
+		)
+	}
+}
+
+export const getComparedEpochStakesFromLocalStorage = (epoch_stake_id) => {
+	return (dispatch) => {
+		const pool_hash_ids = getPoolsFromLocalStorage()
+		dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES})
+		return fetchComparedEpochStakes(
+			`user_pool_hashes?epoch_stake_id=${epoch_stake_id}&pool_hash_ids=${...pool_hash_ids}`, 
+			dispatch
+		)
 	}
 }
 

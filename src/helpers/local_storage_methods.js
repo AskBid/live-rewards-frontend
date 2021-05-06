@@ -22,10 +22,10 @@ export function addPoolToLocalStorage(pool_hash_id) {
   localStorage.setItem('pools', JSON.stringify(pool_hash_ids));
 }
 
-// export function getPoolsFromLocalStorage() {
-// 	const pools = JSON.parse(localStorage.getItem('pools')) 
-// 	return addrs ? addrs : []
-// }
+export function getPoolsFromLocalStorage() {
+	const pools = JSON.parse(localStorage.getItem('pools')) 
+	return pools ? pools : []
+}
 
 export function deletePoolFromLocalStorage(pool_hash_id) {
 	let pool_hash_ids = JSON.parse(localStorage.getItem('pools'))

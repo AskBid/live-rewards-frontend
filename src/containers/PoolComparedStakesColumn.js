@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { getPoolCompareUserEpochStakes } from '../actions/pool_compared_stake.actions';
+import { getComparedEpochStakesFromUser } from '../actions/pool_compared_stake.actions';
+import { getComparedEpochStakesFromLocalStorage} from '../actions/pool_compared_stake.actions';
 import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
 import { withRouter, Link } from "react-router-dom";
@@ -15,9 +16,13 @@ class PoolComparedStakesColumn extends Component {
     const epoch_stake = this.props.epoch_stakes.filter((epoch_stake) => epoch_stake.id == epoch_stake_id)[0]
     if (epoch_stake) {
       this.props.reuseEpochStake(epoch_stake)
+      this.props.getComparedEpochStakesFromLocalStorage()
+        .catch(err => console.log(err))
     } else {
       this.props.getEpochStake(epoch_stake_id)
-    }// this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
+        .then(res => {debugger; this.props.getComparedEpochStakesFromUser(this.props.user, epoch_stake_id)})
+        .catch(err => console.log(err))
+    }
   }
 
   textIfEmpty = () => {
@@ -60,8 +65,8 @@ class PoolComparedStakesColumn extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPoolCompareUserEpochStakes: (username, epoch_stake_id) => {
-      return dispatch(getPoolCompareUserEpochStakes(username, epoch_stake_id))
+    getComparedEpochStakesFromUser: (user, epoch_stake_id) => {
+      return dispatch(getComparedEpochStakesFromUser(user, epoch_stake_id))
     },
     getEpochStake: (epoch_stake_id) => dispatch(getEpochStake(epoch_stake_id)),
     reuseEpochStake: (epoch_stake) => dispatch({type: REQUEST_EPOCH_STAKE_SUCCESS, payload: epoch_stake}),

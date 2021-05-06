@@ -5,7 +5,7 @@ import { getDelegationFlow } from '../actions/delegation_flows.actions'
 import chart_delegation_flows from '../helpers/chart_delegation_flows'
 import numeral from 'numeral'
 import BeatLoader from "react-spinners/BeatLoader";
-import {ButtonAdd} from '../components/ButtonAddElement.js'
+import {ButtonAdd, ButtonNav} from '../components/ButtonAddElement.js'
 import { Link } from 'react-router-dom'
 
 
@@ -163,8 +163,14 @@ function DelegationFlows({history, match}) {
   return (
     <div className="w-100 fill d-flex flex-column">
       <div className='position-absolute text-muted ml-3 p-2 rounded' style={{top:'83px', background:"rgba(250,250,250,0.6)", overflowY:'scroll'}}>
-        <div className='w-100 text-center'>
-          <ButtonAdd className='shadow-sm mb-5' onClick={randomPoolPlot}> Plot Any Pool </ButtonAdd>
+        <div className='w-100 text-center d-flex flex-row'>
+          <ButtonNav onClick={() => history.goBack()} style={{width:'15px'}} className='mb-4 shadow-sm border-0 text-nowrap rounded mr-0 ml-0 d-flex justify-content-center align-items-center' alt='Go Back'>
+            <b>&larr;</b>
+          </ButtonNav>
+          <ButtonAdd className='shadow-sm ml-2 mr-2 mb-1' onClick={randomPoolPlot}> Plot Any Pool </ButtonAdd>
+          <ButtonNav onClick={() => history.goForward()} style={{width:'15px'}} className='mb-4 shadow-sm border-0 text-nowrap rounded mr-0 ml-0 d-flex justify-content-center align-items-center' alt='Go Back'>
+            <b>&rarr;</b>
+          </ButtonNav>
         </div>
         <div class="container"> 
           <div className='row'>

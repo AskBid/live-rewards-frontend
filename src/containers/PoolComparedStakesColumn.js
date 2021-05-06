@@ -43,13 +43,13 @@ class PoolComparedStakesColumn extends Component {
             </div>
           </div>
         }
+        {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonType={0}/>}
         {
-          this.props.loading_compared_stakes &&
-          <div className="w-100 h-100 d-flex justify-content-center align-self-center" style={{zIndex:'100'}}>
-            <BeatLoader className='position-absolute w-100 h-100 text-center' color='#999' size={30} style={{zIndex:'100'}}/>
+          this.props.loading_compared_stakes && 
+          <div className='position-fixed w-100 text-center'>
+            <BeatLoader className='position-fixed w-100 h-100 text-center' color='#999' size={30} style={{zIndex:'100'}}/>
           </div>
         }
-        {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonType={0}/>}
         {this.textIfEmpty()}
         {this.props.pool_compared_stakes.map(stake => <ProjectedEpochStakeTab stake={stake} epoch_stake={epoch_stake} />)}
         <div style={{minHeight:'100px'}}></div>

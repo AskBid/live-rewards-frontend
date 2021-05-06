@@ -60,25 +60,6 @@ export default function projectedStakeReducer(state = initialState, action) {
         loading: false,
       }
 
-    // case REQUEST_USER_POOL_HASH:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   }
-
-    // case REQUEST_USER_POOL_HASH_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     list: [...state.list, ...action.payload]
-    //   }
-
-    // case REQUEST_USER_POOL_HASH_FAILURE:
-    //   return {
-    //     ...state,
-    //     loading: false
-    //   }
-
     case DELETE_USER_POOL_HASH:
       return {
         ...state,

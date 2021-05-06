@@ -29,7 +29,6 @@ export default function projectedStakeReducer(state = initialState, action) {
   		}
 
   	case REQUEST_USER_POOL_HASHES_EPOCH_STAKES_SUCCESS:
-      debugger
   		return {
   			...state,
   			loading: false,

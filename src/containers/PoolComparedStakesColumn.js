@@ -3,26 +3,10 @@ import { connect } from "react-redux";
 import { getPoolCompareUserEpochStakes } from '../actions/pool_compared_stake.actions';
 import { getEpochStake } from '../actions/epoch_stake.actions';
 import EpochTab from '../components/EpochTab';
-import StakeTab from '../components/StakeTab';
 import { withRouter, Link } from "react-router-dom";
-import numeral from 'numeral';
 import { REQUEST_EPOCH_STAKE_SUCCESS } from '../actions';
 import BeatLoader from "react-spinners/BeatLoader";
-import styled from 'styled-components';
-
-const UnfollowLink = styled.div `
-  background: rgba(150, 150, 150, 0);
-  border: none;
-  color: rgba(220, 53, 69,0.5);
-  cursor: pointer;
-  font-size: 0.9em;
-  &:hover {
-    color: rgba(220, 53, 69, 1);
-    font-weight: bold;
-    transition: all 0.05s ease-in-out;
-  }
-`;
-
+import ProjectedEpochStakeTab from '../components/ProjectedEpochStakeTab'
 
 class PoolComparedStakesColumn extends Component {
 
@@ -35,54 +19,7 @@ class PoolComparedStakesColumn extends Component {
       this.props.getEpochStake(epoch_stake_id)
     }// this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
   }
-
-  symbols = {
-    ada: '₳',
-    usd: '$',
-    eur: '€',
-    gbp: '£',
-    jpy: '¥',
-    btc: '฿'
-  }
-
-  deployProjectedEpochStakes = () => {
-    return (
-      <>
-        {this.props.pool_compared_stakes.map((stake) => {
-          const difference = (stake.calc_rewards*this.props.price) - (this.props.epoch_stake.calc_rewards*this.props.price)
-          const color = difference < 0 ? 'danger' : 'primary'
-          return (
-            <div className='text-light bg-white bg-gradient pt-3 pb-0 shadow-sm mb-0' style={{borderRadius:'10px', margin:'12px 0px 0px 0px'}}>
-              <div className='d-flex flex-lg-row flex-wrap'>
-                <div className='container col pb-3 pt-0 pl-0 pr-0 align-self-center'>
-                  <UnfollowLink className='pl-3 mb-2 text-left' onClick={() => console.log('work')}>
-                    <u>Unfollow <i>{stake.pool_hash.pool.ticker}</i></u>
-                  </UnfollowLink>
-                  <div className='container w-100 text-primary text-center mt-auto mb-auto ml-auto mr-auto d-flex align-self-center flex-column'>
-                    <p className='mb-0'>Delegating with <b>{stake.pool_hash.pool.ticker}</b> rather than <b>{this.props.epoch_stake.pool_hash.pool.ticker}</b></p>
-                    <p className='mb-0'><u>estimated</u> rewards difference:</p>
-                    <p className={`border border-${color} text-${color} pt-2 pb-2 mt-3 mb-4 align-self-center text-white text-monospace rounded w-50`} style={{opacity:'60%'}}>
-                      {difference > 0 ? '+' : '' }
-                      {
-                        difference < 100 ? 
-                        numeral(difference).format('0,0.0') : 
-                        numeral(difference).format('0,0')}{this.symbols[this.props.currency]
-                      }
-                    </p>
-                  </div>
-                  
-                </div>
-                <div className='col flex-grow-1 d-flex flex-row flex-wrap'>
-                  <StakeTab stake={stake} buttonType={2}/>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-      </>
-    )
-  }
-
+  
   textIfEmpty = () => {
     if (this.props.loading_compared_stakes) {
       return (
@@ -116,7 +53,7 @@ class PoolComparedStakesColumn extends Component {
         </div>
         {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonType={0}/>}
         {this.textIfEmpty()}
-        {this.deployProjectedEpochStakes()}
+        {this.props.pool_compared_stakes.map(stake => <ProjectedEpochStakeTab stake={stake} epoch_stake={epoch_stake} />)}
         <div style={{minHeight:'100px'}}></div>
       </React.Fragment>
     )
@@ -142,8 +79,6 @@ const mapStateToProps = store => {
     loading: store.epoch_stakes.loading,
     loading_compared_stakes: store.pool_compared_stakes.loading,
     alert: store.alert,
-    price: store.sessions.currency.price,
-    currency: store.sessions.currency.symbol,
     user: store.user
   }
 }

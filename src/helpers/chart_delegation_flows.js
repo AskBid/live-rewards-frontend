@@ -73,12 +73,12 @@ export default function draw(edfJSON, pool_hash_id, svgRef, width, height, epoch
   const sum_sizes = make_angular(filtered_edfJSON);
   let edfARR = Object.keys(filtered_edfJSON)
 
-  const pool_opacity = 0.6;
-  const pool_stroke_width = 0.2;
-  const pool_stroke_opacity = 0.6;
-  const ribbon_opacity = 0.6;
-  const ribbon_stroke_width = 0.4;
-  const ribbon_stroke_opacity = 0.6;
+  const pool_opacity = 0.8;
+  const pool_stroke_width = 0.5;
+  const pool_stroke_opacity = 0.8;
+  const ribbon_opacity = 0.8;
+  const ribbon_stroke_width = 0.6;
+  const ribbon_stroke_opacity = 0.8;
 
   d3.selectAll(".chart > *").remove()
   svg.append("circle").attr("cx",center_translation_h).attr("cy",center_translation_v).attr("r",inner_rad)

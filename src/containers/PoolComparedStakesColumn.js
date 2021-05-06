@@ -19,15 +19,9 @@ class PoolComparedStakesColumn extends Component {
       this.props.getEpochStake(epoch_stake_id)
     }// this.props.getPoolCompareUserEpochStakes(username, epoch_stake_id)
   }
-  
+
   textIfEmpty = () => {
-    if (this.props.loading_compared_stakes) {
-      return (
-        <div className="position-absolute w-100 h-100 d-flex justify-content-center align-self-center" style={{zIndex:'100',top:'170px'}}>
-          <BeatLoader className='position-absolute w-100 h-100 text-center' color='#999' size={30} style={{zIndex:'100'}}/>
-        </div>
-      )
-    } else if (this.props.pool_compared_stakes.length === 0) {
+    if (this.props.pool_compared_stakes.length === 0) {
       return (
         <p className='text-muted m-5'>
           You are not following any pools.<br/>
@@ -49,8 +43,12 @@ class PoolComparedStakesColumn extends Component {
             </div>
           </div>
         }
-        <div className='d-flex justify-content-center'>
-        </div>
+        {
+          this.props.loading_compared_stakes &&
+          <div className="w-100 h-100 d-flex justify-content-center align-self-center" style={{zIndex:'100'}}>
+            <BeatLoader className='position-absolute w-100 h-100 text-center' color='#999' size={30} style={{zIndex:'100'}}/>
+          </div>
+        }
         {epoch_stake && <EpochTab epochno={epoch_stake.epoch_no} stakes={[epoch_stake]} buttonType={0}/>}
         {this.textIfEmpty()}
         {this.props.pool_compared_stakes.map(stake => <ProjectedEpochStakeTab stake={stake} epoch_stake={epoch_stake} />)}

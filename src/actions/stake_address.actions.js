@@ -26,11 +26,11 @@ export const addUserStake = (user, address) => {
 	    },
 	    body: JSON.stringify({stake_address: address})
 		}).then(res => {
-			if (res.ok) {
-				return res.json()
-			} else {
-				return res.json().then(json => Promise.reject(json.error))
-			}
+				if (res.ok) {
+					return res.json()
+				} else {
+					return res.json().then(json => Promise.reject(json.error))
+				}
 			})
 			.then(json => {
 				if (!user) { 

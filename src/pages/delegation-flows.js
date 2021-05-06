@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getDelegationFlow } from '../actions/delegation_flows.actions'
 import chart_delegation_flows from '../helpers/chart_delegation_flows'
 import numeral from 'numeral'
+import BeatLoader from "react-spinners/BeatLoader";
+import {ButtonAdd} from '../components/ButtonAddElement.js'
+import { Link } from 'react-router-dom'
 
 
 function DelegationFlows({history, match}) {
@@ -151,20 +154,29 @@ function DelegationFlows({history, match}) {
     return obj
   }
 
+  const randomPoolPlot = () => {
+    const arr = Object.keys(delegation_flow)
+    const random_key = arr[Math.floor(Math.random() * arr.length)]
+    history.push(`/delegation-flows/epochs/${match.params.epoch_no}/pools/${delegation_flow[random_key].ticker}`)
+  }
+
   return (
     <div className="w-100 fill d-flex flex-column">
-      <div className='position-absolute text-muted ml-3 p-2 rounded' style={{top:'100px', background:"rgba(250,250,250,0.6)", overflowY:'scroll'}}>
-          <div class="container"> 
-            <div className='row'>
-      		    <div className='col'><h5>Epoch:</h5></div>
-              <div className='col text-right text-dark'><b>{`${match.params.epoch_no}`}</b></div>
-            </div>
-            <div className='row'>
-              <div className='col'><h5>Pool:</h5></div>
-              <div className='col text-right text-info'><h5><b>{`${match.params.ticker}`}</b></h5></div>
-            </div>
+      <div className='position-absolute text-muted ml-3 p-2 rounded' style={{top:'83px', background:"rgba(250,250,250,0.6)", overflowY:'scroll'}}>
+        <div className='w-100 text-center'>
+          <ButtonAdd className='shadow-sm mb-5' onClick={randomPoolPlot}> Plot Any Pool </ButtonAdd>
+        </div>
+        <div class="container"> 
+          <div className='row'>
+    		    <div className='col'><h5>Epoch:</h5></div>
+            <div className='col text-right text-dark'><b>{`${match.params.epoch_no}`}</b></div>
           </div>
-          {delegation_flow && pool_hash_id && balances()}
+          <div className='row'>
+            <div className='col'><h5>Pool:</h5></div>
+            <div className='col text-right text-info'><h5><b>{`${match.params.ticker}`}</b></h5></div>
+          </div>
+        </div>
+        {delegation_flow && pool_hash_id && balances()}
       </div>
       { alert.message &&
         <div className={`m-5 w-100 d-flex justify-content-center`} onClick={() => dispatch({type: 'ALERT_CLEAR'})} style={{cursor:'pointer'}}>
@@ -175,8 +187,8 @@ function DelegationFlows({history, match}) {
       }
       <div className='d-flex justify-content-center'>
         {loading && 
-          <div className='spinner border rounded d-flex justify-content-center vw-50 vh-50'>
-              <img className='mb-3 mt-auto mb-auto' alt='spinner' src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          <div className='container position-absolute w-100 h-75 pr-5 text-center d-flex justify-content-center align-items-center' style={{zIndex:'15'}}>
+            <BeatLoader className='text-center self-align-center' color='#999' size={50}/>
           </div>
         }
       </div>

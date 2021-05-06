@@ -14,7 +14,8 @@ import {
 	ERROR,
 	SUCCESS,
 	CLEAR,
-	DELETE_LOCAL_STORAGE_POOL_HASH_SUCCESS
+	DELETE_LOCAL_STORAGE_POOL_HASH_SUCCESS,
+	REQUEST_EPOCH_STAKE_SUCCESS
 } from '.'
 import { authHeader } from '../helpers/auth-header'
 import { addPoolToLocalStorage } from '../helpers/local_storage_methods'
@@ -36,7 +37,7 @@ export const getComparedEpochStakesFromLocalStorage = (epoch_stake_id) => {
 		const pool_hash_ids = getPoolsFromLocalStorage()
 		dispatch({type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES})
 		return fetchComparedEpochStakes(
-			`user_pool_hashes?epoch_stake_id=${epoch_stake_id}&pool_hash_ids=${...pool_hash_ids}`, 
+			`user_pool_hashes?epoch_stake_id=${epoch_stake_id}&pool_hash_ids=${pool_hash_ids}`, 
 			dispatch
 		)
 	}
@@ -58,8 +59,12 @@ function fetchComparedEpochStakes(route, dispatch) {
 			})
 	  	.then(json => {
 	  		dispatch({
+	  			type: REQUEST_EPOCH_STAKE_SUCCESS, 
+	  			payload: json.epoch_stake
+	  		});
+	  		dispatch({
 	  			type: REQUEST_USER_POOL_HASHES_EPOCH_STAKES_SUCCESS, 
-	  			payload: json
+	  			payload: json.compared_stakes
 	  		});
 	  		dispatch({
 	  			type: CLEAR

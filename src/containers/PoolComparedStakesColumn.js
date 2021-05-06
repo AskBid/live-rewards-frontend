@@ -15,13 +15,20 @@ class PoolComparedStakesColumn extends Component {
     const { epoch_stake_id } = this.props.match.params
     const epoch_stake = this.props.epoch_stakes.filter((epoch_stake) => epoch_stake.id == epoch_stake_id)[0]
     if (epoch_stake) {
-      this.props.reuseEpochStake(epoch_stake)
-      this.props.getComparedEpochStakesFromLocalStorage()
+      this.props.recycleEpochStake(epoch_stake)
+      this.fetchComparedEpochStakes(epoch_stake_id)
         .catch(err => console.log(err))
     } else {
-      this.props.getEpochStake(epoch_stake_id)
-        .then(res => {debugger; this.props.getComparedEpochStakesFromUser(this.props.user, epoch_stake_id)})
+      this.fetchComparedEpochStakes(epoch_stake_id)
         .catch(err => console.log(err))
+    }
+  }
+
+  fetchComparedEpochStakes = (epoch_stake_id) => {
+    if (this.props.user) {
+      return this.props.getComparedEpochStakesFromUser(this.props.user, epoch_stake_id)
+    } else {
+      return this.props.getComparedEpochStakesFromLocalStorage(epoch_stake_id)
     }
   }
 
@@ -69,8 +76,9 @@ const mapDispatchToProps = dispatch => {
       return dispatch(getComparedEpochStakesFromUser(user, epoch_stake_id))
     },
     getEpochStake: (epoch_stake_id) => dispatch(getEpochStake(epoch_stake_id)),
-    reuseEpochStake: (epoch_stake) => dispatch({type: REQUEST_EPOCH_STAKE_SUCCESS, payload: epoch_stake}),
-    closeAlert: () => dispatch({type: 'ALERT_CLEAR'})
+    recycleEpochStake: (epoch_stake) => dispatch({type: REQUEST_EPOCH_STAKE_SUCCESS, payload: epoch_stake}),
+    closeAlert: () => dispatch({type: 'ALERT_CLEAR'}),
+    getComparedEpochStakesFromLocalStorage: (epoch_stake_id) => dispatch(getComparedEpochStakesFromLocalStorage(epoch_stake_id))
   }
 }
 

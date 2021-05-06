@@ -24,12 +24,12 @@ function Home() {
       			<p className="mt-5 text-white text-center">
               <br/>
 	      			<span>C</span>
-              <span style={{color:'transparent'}}>-------</span><span>₳</span>
-              <span style={{color:'transparent'}}>-------</span><span>R</span>
-              <span style={{color:'transparent'}}>-------</span><span>D</span>
-              <span style={{color:'transparent'}}>-------</span><span>₳</span>
-              <span style={{color:'transparent'}}>-------</span><span>N</span>
-              <span style={{color:'transparent'}}>-------</span><span>O</span>
+              <span style={{color:'transparent'}}>--</span><span>₳</span>
+              <span style={{color:'transparent'}}>--</span><span>R</span>
+              <span style={{color:'transparent'}}>--</span><span>D</span>
+              <span style={{color:'transparent'}}>--</span><span>₳</span>
+              <span style={{color:'transparent'}}>--</span><span>N</span>
+              <span style={{color:'transparent'}}>--</span><span>O</span>
 	      		</p>
       		</div>
       	</div>

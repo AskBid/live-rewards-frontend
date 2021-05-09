@@ -14,7 +14,7 @@ function LiveRewards({match}) {
 	        </div>
 	        <div className="col-lg-10 mr-auto ml-auto pt-3">
 	        	<AddStakeForm match={match}/>
-	          <StakesColumn/>
+	          <StakesColumn match={match}/>
 	        </div>
 	        <div className='col'></div>
 	      </div>

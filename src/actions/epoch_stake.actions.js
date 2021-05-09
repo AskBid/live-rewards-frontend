@@ -22,6 +22,13 @@ export const userEpochStakes = (username) => {
 	}
 }
 
+export const sampleAmountEpochStakes = (amount) => {
+	return (dispatch) => {
+		dispatch({type: REQUEST_USER_EPOCH_STAKES})
+		return fetchEpochStakes(`sample/${amount}`, dispatch)
+	}
+}
+
 export const noUserEpochStakes = (stake_address_ids) => {
 	return (dispatch) => {
 		const route = 

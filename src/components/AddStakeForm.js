@@ -8,6 +8,8 @@ import { noUserEpochStakes } from '../actions/epoch_stake.actions'
 import CurrencySelector from './CurrencySelector'
 import SquareLoader from "react-spinners/SquareLoader";
 import {ButtonAdd} from './ButtonAddElement.js'
+import numeral from 'numeral'
+import { sampleAmountEpochStakes } from '../actions/epoch_stake.actions'
 
 
 const AddStakeForm = ({match}) => {
@@ -23,11 +25,16 @@ const AddStakeForm = ({match}) => {
   }
 
   const buttonActivation = () => {
-    const correct_address = (address.includes("stake1") || address.includes("addr1")) && (address.length === 59 || address.length === 103)
+    const correct_address = (!isNaN(address) && parseInt(address) > 0) || (address.includes("stake1") || address.includes("addr1")) && (address.length === 59 || address.length === 103)
     return address.length === 0 ? true : correct_address
   }
 
   const addressChecksMessage = () => {
+    if (!isNaN(address) && parseInt(address) > 0 ) {
+      return <div className='alert alert-info position-absolute'>
+          {`get the closest wallet delegating (`}<b>{`₳${numeral(address).format('0,0')}`}</b>).
+        </div>
+    }
     if (!address.includes("stake1") && !address.includes("addr1") && address.length > 2) {
       return <div className='alert alert-danger position-absolute'>
           {`The address should start with`} <b>{`"stake1"`}</b> or <b>{`"addr1"`}</b>{`.`}
@@ -49,13 +56,20 @@ const AddStakeForm = ({match}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+     if (!isNaN(address) && parseInt(address) > 0) {
+      dispatch(sampleAmountEpochStakes(address))
+      setAddress(() => '')
+      return true
+    }
     if (epoch_stakes.length < 9) {
       dispatch(addUserStake(user, address))
+      setAddress(() => '')
     } else {
       dispatch({
         type: ERROR, 
         message: "You have too many Addresses already. Delete one of them before adding a new one."
       })
+      setAddress(() => '')
     }
   }
 
@@ -67,7 +81,7 @@ const AddStakeForm = ({match}) => {
             <input
               type="text"
               name="stake_address"
-              placeholder="stake1*** / addr1***   (random if empty)"
+              placeholder="stake1* / addr1* / amount   (random if empty)"
               className='h-100 w-100 p-2 border border-primary rounded shadow-sm'
               onChange={handleAddressInputChange}>
             </input>

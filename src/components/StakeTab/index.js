@@ -127,7 +127,7 @@ const StakeTab = ({stake, buttonType}) => {
     </Tooltip>
   );
 
-  const rewards = `${symbols[currency]}${stake.calc_rewards*price < 100 ? numeral(stake.calc_rewards*price).format('0,0.0') : numeral(stake.calc_rewards*price).format('0,0')}`
+  const rewards = `${symbols[currency]}${stake.calc_rewards*price < 100 ? numeral(stake.calc_rewards*price).format('0,0.00') : numeral(stake.calc_rewards*price).format('0,0')}`
 
   return (
     <div className='col rounded mb-3 p-0 d-flex flex-row flex-wrap shadow-sm'

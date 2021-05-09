@@ -22,7 +22,7 @@ function Howto({history}) {
           <div className="App">
             <h2 className='text-dark'>All you need is a wallet address</h2>
             <br/>
-            <p>In this video we show you how to get an address from your <b>Yoroi</b> app and use the <i>Live-Rewards</i></p>
+            <p>In this video we show you how to get an address from your <b>Yoroi</b> app and use the <i>Live-Rewards</i> functionality.</p>
             <br/>
             <br/>
             <YoutubeEmbed embedId="3MhCjNFLlWE" />

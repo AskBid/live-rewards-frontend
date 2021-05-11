@@ -4,20 +4,20 @@ import { FaTimes, FaSwimmingPool, FaChartPie } from 'react-icons/fa'
 export const DeleteBtn = styled.button `
 	/*background: rgba(255,127,80,0.5);*/
 	background: transparent;
-	border: 1px solid rgba(0, 123, 255, 0.4);
+	border: none;
 	border-radius: 3px;
-	color: transparent;
+	color: rgba(100, 43, 59, 0.6);
 	padding: 2px;
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: rgba(245,120,90,0.8);
-    color: rgba(245,120,90,0.8);
-    border: 1px solid rgba(245,120,90,0.8);
+    background: none;
+    color: red;
+    border: none;
   }
   &:disabled {
-  	background: rgba(200, 200, 200, 0.4);
-  	border: 1px solid #eee;
-  	color: transparent;
+  	background: none;
+  	border: none;
+  	color: #ccc;
   }
 `;
 

@@ -61,9 +61,10 @@ const StakeTab = ({stake, buttonType}) => {
           dispatch(deleteFunc(user, stake_address_id))
         }}
         className='w-100'>
-        <DeleteBtn type='Submit' className='w-100 text-center mt-0 mb-1 d-flex flex-column justify-content-center align-items-center' disabled={!stake.id || loading || !stake_address_id}>
-          <b className='position-absolute' style={{fontSize:'0.9em', top:'-1.5em'}}>Delete!</b>
-          { !(!stake.id || loading || !stake_address_id) && <CloseIcon size={14}/> }
+        <DeleteBtn type='Submit' className='position-absolute text-left mt-0 mb-1 d-flex flex-column justify-content-start'
+          disabled={!stake.id || loading || !stake_address_id} 
+          style={{fontSize:'0.85em', top:'-1.75em'}}>
+          <u>{ !(!stake.id || loading || !stake_address_id) && "delete" }</u>
         </DeleteBtn>
       </form>
     )
@@ -145,6 +146,7 @@ const StakeTab = ({stake, buttonType}) => {
 
         <div className='col d-flex flex-row flex-wrap m-0 p-1'>
           <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto' style={{ minWidth:'7em'}}>
+            <p className="w-100 position-absolute reward-label" style={{fontSize:'0.9em', top:'-1.5em'}}>delegation w/ pool:</p>
             <h2 className='text-dark mt-auto mb-auto mr-auto ml-auto'>
               {(ticker && !loading) ? ticker : <Skeleton />}
             </h2>

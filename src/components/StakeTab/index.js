@@ -145,11 +145,18 @@ const StakeTab = ({stake, buttonType}) => {
         { buttons() }
 
         <div className='col d-flex flex-row flex-wrap m-0 p-1'>
-          <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto' style={{ minWidth:'7em'}}>
-            <p className="w-100 position-absolute reward-label" style={{fontSize:'0.9em', top:'-1.5em'}}>delegation w/ pool:</p>
-            <h2 className='text-dark mt-auto mb-auto mr-auto ml-auto'>
-              {(ticker && !loading) ? ticker : <Skeleton />}
-            </h2>
+          <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto d-flex flex-column' style={{ minWidth:'7em'}}>
+            <div>
+              <p className="w-100 mb-0 reward-label" style={{fontSize:'0.9em'}}>delegation w/ pool:</p>
+            </div>
+            <div>
+              <h2 className='text-dark mt-auto mb-auto mr-auto ml-auto'>
+                {(ticker && !loading) ? ticker : <Skeleton />}
+              </h2>
+            </div>
+            <div>
+              <p className="w-100 mb-0 reward-label" style={{fontSize:'0.9em', color:'transparent'}}>-</p>
+            </div>
           </div>
           <div className='container col mb-auto mt-auto mr-1'>
             <div className='ml-auto mb-auto mt-auto'>

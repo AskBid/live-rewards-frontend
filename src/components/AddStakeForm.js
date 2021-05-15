@@ -81,7 +81,7 @@ const AddStakeForm = ({match}) => {
             <input
               type="text"
               name="stake_address"
-              placeholder="stake1* / addr1* / amount   (random if empty)"
+              placeholder="Enter address or amount     -     (random if empty)"
               className='h-100 w-100 p-2 border border-primary rounded shadow-sm'
               onChange={handleAddressInputChange}>
             </input>
@@ -94,7 +94,7 @@ const AddStakeForm = ({match}) => {
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
             <div className="position-absolute" style={{top:'13px'}}>{loading && <SquareLoader color='#fff' size={23}/>}</div>
-            <b> Submit Your Address</b>
+            <b>Submit</b>
           </ButtonAdd>
         </form>
         <CurrencySelector/>

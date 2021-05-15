@@ -10,9 +10,9 @@ import numeral from 'numeral'
 
 const PriceDisplay = styled.div `
   /*background: rgba(255,127,80,0.5);*/
-  background: rgba(245,240,240,0.5);
-  border: 1px solid #007bff;
-  color: #007bff;
+  background: rgba(125, 125, 125, 0.9);
+  border: none;
+  color: white;
   min-width: 100px;
   &:hover {
     transition: all 0.05s ease-in-out;
@@ -42,7 +42,7 @@ const CurrencySelector = () => {
       <PriceDisplay className='ml-2 mr-2 h-100 text-monospace shadow-sm rounded d-flex justify-content-center align-items-center'>
         <SkeletonTheme color="rgba(0, 123, 255, 0.65)" highlightColor="rgba(40, 173, 255, 0.45)">
           <h5 className='pl-2 pr-2 m-0 text-nowrap text-monospace'>
-            {loading ? <Skeleton  style={{minWidth:"50px"}}/> : (currency.symbol != 'ada' ? `${symbols[currency.symbol]}${numeral(currency.price).format('0,0.00')}` : '₳1.00')}
+            {loading ? <Skeleton  style={{minWidth:"50px"}}/> : (currency.symbol != 'ada' ? `${symbols[currency.symbol]}${numeral(currency.price).format('0,0.00')}` : '₳')}
           </h5>
         </SkeletonTheme>
       </PriceDisplay>

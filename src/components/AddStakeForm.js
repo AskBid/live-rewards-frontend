@@ -93,7 +93,7 @@ const AddStakeForm = ({match}) => {
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
-            <div className="position-absolute" style={{top:'13px'}}>{loading && <SquareLoader color='#fff' size={23}/>}</div>
+            <div className="position-absolute" style={{top:'13px'}}>{loading && <SquareLoader color='rgba(255,255,255,0.4)' size={23}/>}</div>
             <b>Submit</b>
           </ButtonAdd>
         </form>

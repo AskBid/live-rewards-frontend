@@ -8,17 +8,6 @@ import styled from 'styled-components'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import numeral from 'numeral'
 
-const PriceDisplay = styled.div `
-  /*background: rgba(255,127,80,0.5);*/
-  background: rgba(125, 125, 125, 0.9);
-  border: none;
-  color: white;
-  min-width: 100px;
-  &:hover {
-    transition: all 0.05s ease-in-out;
-  }
-`;
-
 const CurrencySelector = () => {
   const currency = useSelector( state => state.sessions.currency )
   const loading = useSelector( state => state.sessions.gecko_loading )
@@ -39,16 +28,11 @@ const CurrencySelector = () => {
 
   return (
     <div className='col-sm d-flex flex-inline flex-grow-1 justify-content-end mt-2 ml-2 mb-2 mr-0 pr-0'>
-      <PriceDisplay className='ml-2 mr-2 h-100 text-monospace shadow-sm rounded d-flex justify-content-center align-items-center'>
-        <SkeletonTheme color="rgba(0, 123, 255, 0.65)" highlightColor="rgba(40, 173, 255, 0.45)">
-          <h5 className='pl-2 pr-2 m-0 text-nowrap text-monospace'>
-            {loading ? <Skeleton  style={{minWidth:"50px"}}/> : (currency.symbol != 'ada' ? `${symbols[currency.symbol]}${numeral(currency.price).format('0,0.00')}` : '₳')}
-          </h5>
-        </SkeletonTheme>
-      </PriceDisplay>
       <Dropdown className='shadow-sm'>
-        <Dropdown.Toggle id="dropdown-basic">
-          Change Currency
+        <Dropdown.Toggle id="dropdown-basic" className="d-flex flex-nowrap align-items-center text-monospace">
+          <SkeletonTheme color="rgba(0, 123, 255, 0.65)" highlightColor="rgba(40, 173, 255, 0.45)">
+            {loading ? <Skeleton  style={{minWidth:"50px"}}/> : (currency.symbol != 'ada' ? <span className='text-monospace' style={{fontSize:"1.1em"}}>{symbols[currency.symbol]}{numeral(currency.price).format('0,0.00')}</span> : '₳')}<span style={{color:'rgba(0, 123, 255, 0.65)'}}>-</span>
+          </SkeletonTheme>
         </Dropdown.Toggle>
 
         <Dropdown.Menu>

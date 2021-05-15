@@ -147,7 +147,7 @@ const StakeTab = ({stake, buttonType}) => {
         <div className='col d-flex flex-row flex-wrap m-0 p-1'>
           <div className='col text-dark text-center m-0 p-0 mt-auto mb-auto mr-auto ml-auto d-flex flex-column' style={{ minWidth:'7em'}}>
             <div>
-              <p className="w-100 mb-0 reward-label" style={{fontSize:'0.9em'}}>delegation w/ pool:</p>
+              <p className="w-100 mb-0 reward-label" style={{fontSize:'0.9em'}}>delegating to pool:</p>
             </div>
             <div>
               <h2 className='text-dark mt-auto mb-auto mr-auto ml-auto'>

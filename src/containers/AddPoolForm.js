@@ -76,10 +76,10 @@ class AddPoolForm extends Component {
   render() { 
     return (
     <React.Fragment>
-      <div className='col-lg d-flex flex-wrap justify-content-between mt-2 p-0'>
-        <form className='w-50 d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={this.handleSubmit}>
+      <div className='col-lg d-flex flex-nowrap justify-content-between mt-2 p-0'>
+        <form className='w-100 d-inline-flex flex-grow-1 justify-content-center align-items-center mt-2 mb-2 ml-2 mr-0' onSubmit={this.handleSubmit}>
           <Link to={`/live-rewards`}>
-            <ButtonNav className='shadow-sm border-0 text-nowrap rounded mr-2 ml-0 d-flex justify-content-center align-items-center' alt='Go Back'>
+            <ButtonNav className='pr-2 pl-2 shadow-sm border-0 text-nowrap rounded mr-2 ml-0 d-flex justify-content-center align-items-center' alt='Go Back'>
               <b>⟵</b>
             </ButtonNav>
           </Link>
@@ -88,12 +88,12 @@ class AddPoolForm extends Component {
           handleTextChange={this.handleTextChange} 
           selectSuggestion={this.selectSuggestion}
           text={this.state.text}/>
-          <ButtonAdd className='text-nowrap rounded-pill ml-3 shadow-sm h-100 d-flex justify-content-center align-items-center'
+          <ButtonAdd className='text-nowrap rounded-pill ml-1 shadow-sm h-100 d-flex justify-content-center align-items-center'
             type='Submit'
             disabled={!this.buttonActivation()}
             style={{outline: 'none !important'}}>
             <div className="position-absolute" style={{top:'13px'}}>{this.props.loading && <SquareLoader color='rgba(255,255,255,0.4)' size={23}/>}</div>
-            <b> Follow Pool</b>
+            <b> Follow</b>
           </ButtonAdd>
         </form>
         <CurrencySelector/>

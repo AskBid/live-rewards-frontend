@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getPrice } from '../actions/session.actions'
 import { REQUEST_PRICE_SUCCESS } from '../actions'
 import Dropdown from 'react-bootstrap/Dropdown'
-import styled from 'styled-components'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import numeral from 'numeral'
 
@@ -27,11 +26,18 @@ const CurrencySelector = () => {
   }
 
   return (
-    <div className='col-sm d-flex flex-inline flex-grow-1 justify-content-end mt-2 ml-2 mb-2 mr-0 pr-0'>
+    <div className='d-flex flex-inline flex-grow-1 justify-content-end mt-2 ml-3 mb-2 mr-0 pr-0'>
       <Dropdown className='shadow-sm'>
         <Dropdown.Toggle id="dropdown-basic" className="d-flex flex-nowrap align-items-center text-monospace">
           <SkeletonTheme color="rgba(0, 123, 255, 0.65)" highlightColor="rgba(40, 173, 255, 0.45)">
-            {loading ? <Skeleton  style={{minWidth:"50px"}}/> : (currency.symbol != 'ada' ? <span className='text-monospace' style={{fontSize:"1.1em"}}>{symbols[currency.symbol]}{numeral(currency.price).format('0,0.00')}</span> : '₳')}<span style={{color:'rgba(0, 123, 255, 0.65)'}}>-</span>
+            {loading ? 
+              <Skeleton  style={{minWidth:"50px"}}/> : 
+              (currency.symbol != 'ada' ? 
+                <span className='text-monospace' style={{fontSize:"1.1em"}}>{symbols[currency.symbol]}{numeral(currency.price).format('0,0.00')}</span> : 
+                '₳'
+              )
+            }
+            <span style={{color:'rgba(0, 123, 255, 0.65)'}}>-</span>
           </SkeletonTheme>
         </Dropdown.Toggle>
 

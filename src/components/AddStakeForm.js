@@ -75,21 +75,22 @@ const AddStakeForm = ({match}) => {
 
   return (
     <>
-      <div className='col-lg d-flex flex-wrap justify-content-between mt-2 p-0'>
-        <form className='w-50 d-inline-flex flex-grow-1 justify-content-center align-items-center m-2' onSubmit={handleSubmit}>
+      <div className='col-lg d-flex flex-nowrap justify-content-between mt-2 p-0'>
+        <form className='w-100 d-inline-flex flex-grow-1 justify-content-center align-items-center mt-2 mb-2 ml-0 mr-0' onSubmit={handleSubmit}>
           <fieldset className='flex-grow-1'>
             <input
               type="text"
               name="stake_address"
               placeholder="Enter address or amount     -     (random if empty)"
               className='h-100 w-100 p-2 border border-primary rounded shadow-sm'
-              onChange={handleAddressInputChange}>
+              onChange={handleAddressInputChange}
+              style={{minWidth:'100px'}}>
             </input>
             <div className='d-flex justify-content-end flex-grow-1'> 
               {addressChecksMessage()}
             </div>
           </fieldset>
-          <ButtonAdd className='text-nowrap rounded-pill ml-3 shadow-sm h-100 d-flex justify-content-center align-items-center'
+          <ButtonAdd className='text-nowrap rounded-pill ml-1 shadow-sm h-100 d-flex justify-content-center align-items-center'
             type='Submit'
             disabled={!buttonActivation()}
             style={{outline: 'none !important'}}>
